@@ -1,0 +1,33 @@
+extends CharacterBody2D
+class_name Player
+
+@export var projectile_scene: PackedScene
+@export var fire_rate: float = 0.2
+
+var can_fire: bool = true
+
+func _physics_process(delta: float) -> void:
+	pass
+	
+func _process(delta: float) -> void:
+	if can_fire:
+		if Input.is_action_just_pressed("fire-up"):
+			_fire_projectile(Vector2.UP)
+		elif Input.is_action_just_pressed("fire-down"):
+			_fire_projectile(Vector2.DOWN)
+		elif Input.is_action_just_pressed("fire-left"):
+			_fire_projectile(Vector2.LEFT)
+		elif Input.is_action_just_pressed("fire-right"):
+			_fire_projectile(Vector2.RIGHT)
+
+func _fire_projectile(direction: Vector2) -> void:
+	print("player position: ", position)
+	var projectile: PlayerProjectile = projectile_scene.instantiate()
+	owner.add_child(projectile)
+	projectile.global_position = global_position  # Start position for the projectile (same as player)
+	projectile.setup(direction)
+	print("fired")
+
+	can_fire = false  # Prevent further firing
+	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
+	can_fire = true  # Allow firing again after the delay

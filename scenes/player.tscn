@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxvtbudu80b4f"]
+
+[ext_resource type="Texture2D" uid="uid://10uckrpdny7t" path="res://assets/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cywb2avasjihk" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://504iphb33yyk" path="res://scenes/player_projectile.tscn" id="2_qhqgy"]
+
+[sub_resource type="GDScript" id="GDScript_qhqgy"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(63, 64)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_g2els")
+projectile_scene = ExtResource("2_qhqgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3vyb7")
+script = SubResource("GDScript_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.16666667, 0)
+shape = SubResource("RectangleShape2D_qhqgy")
