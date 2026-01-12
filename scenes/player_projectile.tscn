@@ -4,14 +4,16 @@
 [ext_resource type="Script" uid="uid://b55wx1lhyj4ib" path="res://scripts/player_projectile.gd" id="1_oxij3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxij3"]
-size = Vector2(18.75, 18)
+size = Vector2(6.000001, 6)
 
 [node name="PlayerProjectile" type="Area2D"]
+scale = Vector2(5, 5)
 script = ExtResource("1_oxij3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
 texture = ExtResource("1_lqp5n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.39999995, 0)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_oxij3")
