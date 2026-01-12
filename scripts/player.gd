@@ -12,19 +12,21 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if can_fire:
 		if Input.is_action_just_pressed("fire-up"):
-			_fire_projectile(Vector2.UP)
+			_fire_projectile(Vector2.UP, Vector2(0,-10))
 		elif Input.is_action_just_pressed("fire-down"):
-			_fire_projectile(Vector2.DOWN)
+			_fire_projectile(Vector2.DOWN, Vector2(0,10))
 		elif Input.is_action_just_pressed("fire-left"):
-			_fire_projectile(Vector2.LEFT)
+			_fire_projectile(Vector2.LEFT, Vector2(-10,0))
 		elif Input.is_action_just_pressed("fire-right"):
-			_fire_projectile(Vector2.RIGHT)
+			_fire_projectile(Vector2.RIGHT, Vector2(10,0))
 
-func _fire_projectile(direction: Vector2) -> void:
+func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	print("player position: ", position)
 	var projectile: PlayerProjectile = projectile_scene.instantiate()
-	owner.add_child(projectile)
-	projectile.global_position = global_position  # Start position for the projectile (same as player)
+	get_parent().add_child(projectile)
+	var start_position := global_position + offset
+	print(start_position)
+	projectile.global_position =  start_position
 	projectile.setup(direction)
 	print("fired")
 
