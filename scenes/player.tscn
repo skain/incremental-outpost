@@ -33,3 +33,17 @@ script = SubResource("GDScript_qhqgy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.16666667, 0)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="Markers" type="Node" parent="."]
+
+[node name="TopMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(0, -98)
+
+[node name="RightMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(97, 0)
+
+[node name="BottomMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(0, 97)
+
+[node name="LeftMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(-97, 0)

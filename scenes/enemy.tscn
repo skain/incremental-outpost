@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmc3ik5tigjec"]
 
-[ext_resource type="Script" uid="uid://dud3351rov223" path="res://scenes/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://dud3351rov223" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://c78ssusbt68u4" path="res://assets/enemy.png" id="2_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
