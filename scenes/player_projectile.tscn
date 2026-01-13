@@ -7,7 +7,6 @@
 size = Vector2(6.000001, 6)
 
 [node name="PlayerProjectile" type="Area2D"]
-scale = Vector2(5, 5)
 collision_layer = 8
 script = ExtResource("1_oxij3")
 
