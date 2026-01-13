@@ -13,11 +13,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
-	var viewport_size := get_viewport_rect().size
-	if position.x < 0 or position.y < 0 or position.x > viewport_size.x or position.y > viewport_size.y:
-		print('projectile destroyed')
-		queue_free()
 
 func setup(starting_direction: Vector2):
 	direction = starting_direction.normalized()
 	velocity = direction * speed
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print('projectile destroyed')
+	queue_free()
