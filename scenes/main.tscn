@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxhlenghvkl16"]
+
+[ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/player.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/enemy.tscn" id="3_tbgi4"]
+[ext_resource type="Theme" uid="uid://bu7liu2y80vnx" path="res://themes/default_theme.tres" id="4_jyhfs"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_sugp2")
+
+[node name="Player" parent="." instance=ExtResource("2_jyhfs")]
+position = Vector2(640, 640)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemyLeft" parent="Enemies" instance=ExtResource("3_tbgi4")]
+position = Vector2(96, 640)
+rotation = 1.5707964
+
+[node name="EnemyTop" parent="Enemies" instance=ExtResource("3_tbgi4")]
+position = Vector2(640, 96)
+rotation = 3.1415927
+
+[node name="EnemyRight" parent="Enemies" instance=ExtResource("3_tbgi4")]
+position = Vector2(1184, 640)
+rotation = 4.712389
+
+[node name="EnemyBottom" parent="Enemies" instance=ExtResource("3_tbgi4")]
+position = Vector2(640, 1184)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("4_jyhfs")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/ScoreHBoxContainer"]
+layout_mode = 2
+text = "Score: "
+
+[node name="ScoreValue" type="Label" parent="CanvasLayer/ScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[connection signal="enemy_hit" from="Enemies/EnemyLeft" to="." method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="Enemies/EnemyTop" to="." method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="Enemies/EnemyRight" to="." method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="Enemies/EnemyBottom" to="." method="_on_enemy_hit"]

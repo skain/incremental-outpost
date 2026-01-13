@@ -12,13 +12,13 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if can_fire:
 		if Input.is_action_just_pressed("fire-up"):
-			_fire_projectile(Vector2.UP, Vector2(0,-10))
+			_fire_projectile(Vector2.UP, Vector2(0,-128))
 		elif Input.is_action_just_pressed("fire-down"):
-			_fire_projectile(Vector2.DOWN, Vector2(0,10))
+			_fire_projectile(Vector2.DOWN, Vector2(0,128))
 		elif Input.is_action_just_pressed("fire-left"):
-			_fire_projectile(Vector2.LEFT, Vector2(-10,0))
+			_fire_projectile(Vector2.LEFT, Vector2(-128,0))
 		elif Input.is_action_just_pressed("fire-right"):
-			_fire_projectile(Vector2.RIGHT, Vector2(10,0))
+			_fire_projectile(Vector2.RIGHT, Vector2(128,0))
 
 func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	print("player position: ", position)
