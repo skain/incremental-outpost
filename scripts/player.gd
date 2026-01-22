@@ -1,13 +1,10 @@
-extends CharacterBody2D
+extends Area2D
 class_name Player
 
 const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 @export var fire_rate: float = 0.2
 
 var can_fire: bool = true
-
-func _physics_process(delta: float) -> void:
-	pass
 	
 func _process(delta: float) -> void:
 	if can_fire:
@@ -33,3 +30,7 @@ func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	can_fire = false  # Prevent further firing
 	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
 	can_fire = true  # Allow firing again after the delay
+
+
+func _on_area_entered(area: Area2D) -> void:
+	area.queue_free()

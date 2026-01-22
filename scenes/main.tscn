@@ -14,19 +14,23 @@ position = Vector2(640, 640)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemyLeft" parent="Enemies" instance=ExtResource("3_tbgi4")]
-position = Vector2(96, 640)
+position = Vector2(64, 640)
 rotation = 1.5707964
+scale = Vector2(2, 2)
 
 [node name="EnemyTop" parent="Enemies" instance=ExtResource("3_tbgi4")]
-position = Vector2(640, 96)
+position = Vector2(640, 64)
 rotation = 3.1415927
+scale = Vector2(2, 2)
 
 [node name="EnemyRight" parent="Enemies" instance=ExtResource("3_tbgi4")]
-position = Vector2(1184, 640)
+position = Vector2(1216, 640)
 rotation = 4.712389
+scale = Vector2(2, 2)
 
 [node name="EnemyBottom" parent="Enemies" instance=ExtResource("3_tbgi4")]
-position = Vector2(640, 1184)
+position = Vector2(640, 1216)
+scale = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

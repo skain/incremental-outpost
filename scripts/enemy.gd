@@ -6,6 +6,7 @@ signal enemy_hit(enemy:Enemy)
 const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
 
 @export var base_shoot_delay: float = 1
+@export var base_shoot_chance: float = 50
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var revive_timer: Timer = $ReviveTimer
@@ -16,7 +17,7 @@ var disable_decay_factor := .9
 
 func _ready() -> void:
 	_start_shoot_timer()
-	print(name + ": " + str(rotation))
+	print(GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25))
 	
 func _start_shoot_timer() -> void:
 	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, 1.5)
@@ -27,6 +28,7 @@ func _enable() -> void:
 	#print('enabled')
 	visible = true
 	collision_shape_2d.set_deferred("disabled", false)
+	_start_shoot_timer()
 	
 func _disable() -> void:
 	#print('disabled')
@@ -55,6 +57,9 @@ func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	#print("enemy fired")
 
 func _on_shoot_timer_timeout() -> void:
-	_fire_projectile(-transform.y.round(), Vector2.ZERO)
-	#print(name + " fired")
+	if visible:		
+		var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
+		if GameMath.chance_check(cur_chance):
+			_fire_projectile(-transform.y.round(), Vector2.ZERO) #negative transform.y is the direction the sprite is facing
+			#print(name + " fired")
 	_start_shoot_timer()
