@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-@export var projectile_scene: PackedScene
+const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 @export var fire_rate: float = 0.2
 
 var can_fire: bool = true
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 
 func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	print("player position: ", position)
-	var projectile: PlayerProjectile = projectile_scene.instantiate()
+	var projectile: PlayerProjectile = PROJECTILE_SCENE.instantiate()
 	get_parent().add_child(projectile)
 	var start_position := global_position + offset
 	print(start_position)
