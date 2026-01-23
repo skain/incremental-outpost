@@ -2,6 +2,16 @@ extends Node2D
 class_name Main
 
 @onready var score_value: Label = %ScoreValue
+@onready var player: Player = $Player
+@onready var health_1: TextureRect = $CanvasLayer/Panel/HealthHBoxContainer/Health1
+@onready var health_2: TextureRect = $CanvasLayer/Panel/HealthHBoxContainer/Health2
+@onready var health_3: TextureRect = $CanvasLayer/Panel/HealthHBoxContainer/Health3
+@onready var enemy_left: Enemy = $Enemies/EnemyLeft
+@onready var enemy_top: Enemy = $Enemies/EnemyTop
+@onready var enemy_right: Enemy = $Enemies/EnemyRight
+@onready var enemy_bottom: Enemy = $Enemies/EnemyBottom
+@onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
+
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -17,8 +27,43 @@ func _process(delta: float) -> void:
 
 func _update_ui() -> void:
 	score_value.text = str(current_score)
+	_set_health()
+	
+func _set_health() -> void:
+	if player.health > 0:
+		health_1.visible = true
+	else:
+		health_1.visible = false
+		
+	if player.health > 1:
+		health_2.visible = true
+	else:
+		health_2.visible = false
+		
+	if player.health > 2:
+		health_3.visible = true
+	else:
+		health_3.visible = false
+		
+func _end_game() -> void:
+	game_over_panel.visible = true
+	player.die()
+	enemy_bottom.disable(false)
+	enemy_left.disable(false)
+	enemy_right.disable(false)
+	enemy_top.disable(false)
+		
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += enemy.enemy_level * BASE_SCORE
 	_update_ui()
 	enemy.enemy_level += 1
+
+
+func _on_player_player_hit() -> void:	
+	player.health -= 1
+	if player.health < 1:
+		_end_game()
+		return
+	_update_ui()
+	#print(player.health)
