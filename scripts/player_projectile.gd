@@ -14,7 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
-func setup(starting_direction: Vector2):
+func setup(starting_direction: Vector2) -> void:
 	direction = starting_direction.normalized()
 	velocity = direction * speed
 

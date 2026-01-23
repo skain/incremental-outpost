@@ -9,14 +9,12 @@ var velocity: Vector2 = Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
-func setup(starting_direction: Vector2):
+func setup(starting_direction: Vector2) -> void:
 	direction = starting_direction.normalized()
 	velocity = direction * speed
-	
-
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerProjectile:
-		print("projectile collision")
+		#print("projectile collision")
 		area.queue_free()
 		queue_free()

@@ -14,5 +14,5 @@ static func get_scaled_value(base_value: float, level: int, exponent: float = 1.
 ## Returns true if a random roll (1-100) is less than or equal to the chance provided.
 static func chance_check(percentage: float) -> bool:
 	# randf_range generates a random float between 0.0 and 100.0
-	var roll = randf_range(0.0, 100.0)
+	var roll := randf_range(0.0, 100.0)
 	return roll <= percentage

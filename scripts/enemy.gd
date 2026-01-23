@@ -14,7 +14,7 @@ const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
 
 var enemy_level := 1
 var disable_decay_factor := .9
-var can_shoot = true
+var can_shoot := true
 
 func _ready() -> void:
 	_start_shoot_timer()
