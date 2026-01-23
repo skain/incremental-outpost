@@ -13,3 +13,10 @@ func setup(starting_direction: Vector2):
 	direction = starting_direction.normalized()
 	velocity = direction * speed
 	
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is PlayerProjectile:
+		print("projectile collision")
+		area.queue_free()
+		queue_free()

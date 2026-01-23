@@ -18,7 +18,7 @@ var can_shoot = true
 
 func _ready() -> void:
 	_start_shoot_timer()
-	print(GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25))
+	#print(GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25))
 	
 func _start_shoot_timer() -> void:
 	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, 1.5)

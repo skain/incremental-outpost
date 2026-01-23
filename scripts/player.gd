@@ -21,14 +21,14 @@ func _process(delta: float) -> void:
 			_fire_projectile(Vector2.RIGHT, Vector2(128,0))
 
 func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
-	print("player position: ", position)
+	#print("player position: ", position)
 	var projectile: PlayerProjectile = PROJECTILE_SCENE.instantiate()
 	get_parent().add_child(projectile)
 	var start_position := global_position + offset
 	print(start_position)
 	projectile.global_position =  start_position
 	projectile.setup(direction)
-	print("fired")
+	#print("fired")
 
 	can_fire = false  # Prevent further firing
 	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
