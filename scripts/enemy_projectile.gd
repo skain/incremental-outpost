@@ -14,7 +14,5 @@ func setup(starting_direction: Vector2) -> void:
 	velocity = direction * speed
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is PlayerProjectile:
-		#print("projectile collision")
-		area.queue_free()
-		queue_free()
+	area.queue_free()
+	queue_free()

@@ -21,9 +21,10 @@ func _ready() -> void:
 	#print(GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25))
 	
 func _start_shoot_timer() -> void:
-	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, 1.5)
+	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, -1.1)
 	#print(name + " starting shoot timer: " + str(cur_delay))
-	shoot_timer.start(cur_delay)
+	var rand_delay: float = cur_delay + randf_range(.2, 1.2)
+	shoot_timer.start(rand_delay)
 
 func _enable() -> void:
 	#print('enabled')

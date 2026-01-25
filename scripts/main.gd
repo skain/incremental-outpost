@@ -1,5 +1,4 @@
 extends Node2D
-class_name Main
 
 @onready var score_value: Label = %ScoreValue
 @onready var player: Player = $Player

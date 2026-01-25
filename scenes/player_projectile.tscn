@@ -7,6 +7,7 @@
 size = Vector2(64, 64)
 
 [node name="PlayerProjectile" type="Area2D"]
+show_behind_parent = true
 collision_layer = 8
 script = ExtResource("1_oxij3")
 

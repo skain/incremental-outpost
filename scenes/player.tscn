@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxvtbudu80b4f"]
+[gd_scene load_steps=7 format=3 uid="uid://dxvtbudu80b4f"]
 
 [ext_resource type="Texture2D" uid="uid://10uckrpdny7t" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cywb2avasjihk" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://dulyh4ydd2vqf" path="res://scenes/shield.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/cannon.tscn" id="4_dqkch"]
 
 [sub_resource type="GDScript" id="GDScript_qhqgy"]
 script/source = "extends Sprite2D
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(52.666668, 50.666668)
+size = Vector2(50, 50.666668)
 
 [node name="Player" type="Area2D"]
 scale = Vector2(3, 3)
@@ -51,5 +52,25 @@ rotation = 3.1415927
 [node name="LeftShield" parent="Shields" instance=ExtResource("3_qhqgy")]
 position = Vector2(-40, 0)
 rotation = 4.712389
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TopCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+position = Vector2(0, -27)
+
+[node name="RightCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+position = Vector2(27, 0)
+rotation = 1.5707964
+fire_direction = Vector2(1, 0)
+
+[node name="BottomCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+position = Vector2(0, 27)
+rotation = 3.1415927
+fire_direction = Vector2(0, 1)
+
+[node name="LeftCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+position = Vector2(-27, 0)
+rotation = 4.712389
+fire_direction = Vector2(-1, 0)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
