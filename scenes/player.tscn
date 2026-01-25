@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(63, 64)
+size = Vector2(52.666668, 50.666668)
 
 [node name="Player" type="Area2D"]
 scale = Vector2(3, 3)
@@ -32,24 +32,24 @@ texture = ExtResource("1_3vyb7")
 script = SubResource("GDScript_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.16666667, 0)
+position = Vector2(-4.7683716e-07, 9.536743e-07)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Shields" type="Node2D" parent="."]
 
 [node name="TopShield" parent="Shields" instance=ExtResource("3_qhqgy")]
-position = Vector2(0, -10)
+position = Vector2(0, -40)
 
 [node name="RightShield" parent="Shields" instance=ExtResource("3_qhqgy")]
-position = Vector2(10, 0)
+position = Vector2(40, 0)
 rotation = 1.5707964
 
 [node name="BottomShield" parent="Shields" instance=ExtResource("3_qhqgy")]
-position = Vector2(0, 10)
+position = Vector2(0, 40)
 rotation = 3.1415927
 
 [node name="LeftShield" parent="Shields" instance=ExtResource("3_qhqgy")]
-position = Vector2(-10, 0)
+position = Vector2(-40, 0)
 rotation = 4.712389
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
