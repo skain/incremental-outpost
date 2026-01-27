@@ -45,6 +45,7 @@ func _set_health() -> void:
 		health_3.visible = false
 		
 func _end_game() -> void:
+	_update_ui()
 	game_over_panel.visible = true
 	player.die()
 	enemy_bottom.disable(false)
