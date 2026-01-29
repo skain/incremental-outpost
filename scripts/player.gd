@@ -16,11 +16,13 @@ signal player_hit
 @onready var bottom_cannon: Cannon = $Node2D/BottomCannon
 @onready var left_cannon: Cannon = $Node2D/LeftCannon
 
-var health: int = 3
+var max_health := 3
+var health := 3
 var shield_determiner := ShieldDeterminer.new()
 
 func _ready() -> void:
 	shield_determiner.shield_changed.connect(_update_shields)
+	reset()
 	
 func _process(delta: float) -> void:
 	_handle_firing()
@@ -29,7 +31,6 @@ func _input(event: InputEvent) -> void:
 	shield_determiner.set_input(event)
 	
 func _update_shields(dir: String) -> void:
-	print(dir)
 	top_shield.shield_off()
 	right_shield.shield_off()
 	bottom_shield.shield_off()
@@ -55,27 +56,19 @@ func _handle_firing() -> void:
 		left_cannon.fire_projectile(parent)
 	elif Input.is_action_just_pressed("fire_right"):
 		right_cannon.fire_projectile(parent)
-
-#func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
-	##print("player position: ", position)
-	#var projectile: PlayerProjectile = PROJECTILE_SCENE.instantiate()
-	#get_parent().add_child(projectile)
-	#var start_position := global_position + offset
-	##print(start_position)
-	#projectile.global_position =  start_position
-	#projectile.setup(direction)
-	##print("fired")
-#
-	#can_fire = false  # Prevent further firing
-	#await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
-	#can_fire = true  # Allow firing again after the delay
 	
 func die() -> void:
-	top_cannon.can_fire = false
-	bottom_cannon.can_fire = false
-	left_cannon.can_fire = false
-	right_cannon.can_fire = false
+	_set_can_fire(false)	
+	
+func reset() -> void:
+	health = max_health
+	_set_can_fire(true)	
 
+func _set_can_fire(can_fire: bool) -> void:
+	top_cannon.can_fire = can_fire
+	bottom_cannon.can_fire = can_fire
+	left_cannon.can_fire = can_fire
+	right_cannon.can_fire = can_fire
 
 func _on_area_entered(area: Area2D) -> void:
 	player_hit.emit()
