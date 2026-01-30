@@ -12,6 +12,9 @@ func _physics_process(delta: float) -> void:
 func setup(starting_direction: Vector2) -> void:
 	direction = starting_direction.normalized()
 	velocity = direction * speed
+	
+func handle_hit() -> void:
+	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
 	area.queue_free()

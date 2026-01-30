@@ -76,4 +76,5 @@ func _set_can_fire(can_fire: bool) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	player_hit.emit()
-	area.queue_free()
+	var projectile := area as EnemyProjectile
+	projectile.handle_hit()

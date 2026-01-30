@@ -55,7 +55,9 @@ func _on_area_entered(area: Area2D) -> void:
 	#print('hit')
 	disable()
 	enemy_hit.emit(self)
-	area.queue_free()
+	var projectile := area as PlayerProjectile
+	if projectile:
+		projectile.handle_hit()
 	
 func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	#print("enemy position: ", position)
