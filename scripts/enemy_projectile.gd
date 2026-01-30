@@ -1,8 +1,6 @@
 extends Area2D
 class_name EnemyProjectile
 
-signal projectile_collision
-
 @export var speed: float = 400
 @export var projectile_collision_sound: AudioStream
 

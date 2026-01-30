@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b51k07kmg5p46"
+path="res://.godot/imported/Climb_Rope_Loop_00.wav-1ff96d9fe2cdcdb7e782b60cdb7721d1.sample"
+
+[deps]
+
+source_file="res://assets/sounds/8-bit Sound Library/Climb_Rope_Loop_00.wav"
+dest_files=["res://.godot/imported/Climb_Rope_Loop_00.wav-1ff96d9fe2cdcdb7e782b60cdb7721d1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
