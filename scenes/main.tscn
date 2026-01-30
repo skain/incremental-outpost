@@ -7,10 +7,33 @@
 [ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="4_tbgi4"]
 [ext_resource type="FontFile" uid="uid://c6yugg4s6ayo3" path="res://assets/Pixel Game.otf" id="6_tefeu"]
 
+[sub_resource type="Environment" id="Environment_tefeu"]
+background_mode = 3
+glow_enabled = true
+glow_levels/4 = 0.3
+glow_levels/5 = 0.4
+glow_levels/6 = 0.5
+glow_bloom = 0.25
+glow_blend_mode = 0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
 script = ExtResource("1_sugp2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1950625691]
+environment = SubResource("Environment_tefeu")
+
+[node name="Backdrop" type="CanvasLayer" parent="." unique_id=402731984]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="Backdrop" unique_id=740235027]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." unique_id=507027384 instance=ExtResource("2_jyhfs")]
 position = Vector2(640, 640)
