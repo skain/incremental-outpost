@@ -12,10 +12,11 @@ signal start_game_pressed
 @onready var right_shield: Area2D = $Shields/RightShield
 @onready var bottom_shield: Area2D = $Shields/BottomShield
 @onready var left_shield: Area2D = $Shields/LeftShield
-@onready var top_cannon: Cannon = $Node2D/TopCannon
-@onready var right_cannon: Cannon = $Node2D/RightCannon
-@onready var bottom_cannon: Cannon = $Node2D/BottomCannon
-@onready var left_cannon: Cannon = $Node2D/LeftCannon
+@onready var top_cannon: Cannon = $Canons/TopCannon
+@onready var right_cannon: Cannon = $Canons/RightCannon
+@onready var bottom_cannon: Cannon = $Canons/BottomCannon
+@onready var left_cannon: Cannon = $Canons/LeftCannon
+@onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 
 var max_health := 3
 var health := 3
@@ -74,7 +75,14 @@ func _set_can_fire(can_fire: bool) -> void:
 	left_cannon.reset()
 	right_cannon.reset()
 
-func _on_area_entered(area: Area2D) -> void:
+func _handle_hit(projectile: EnemyProjectile) -> void:
+	if not health > 0:
+		return
 	player_hit.emit()
-	var projectile := area as EnemyProjectile
 	projectile.handle_hit()
+	hit_player.play()
+
+func _on_area_entered(area: Area2D) -> void:
+	_handle_hit(area)
+	
+	

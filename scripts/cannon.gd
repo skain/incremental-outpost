@@ -5,6 +5,8 @@ const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var fire_audio_player: AudioStreamPlayer2D = $FireAudioPlayer
+@onready var hit_audio_player: AudioStreamPlayer2D = $HitAudioPlayer
 
 @export var fire_rate: float = 0.2
 @export var fire_direction: Vector2 = Vector2.UP
@@ -21,9 +23,13 @@ func _process(delta: float) -> void:
 	pass
 	
 func _handle_hit() -> void:
+	if not can_fire:
+		return
+		
 	collision_shape_2d.set_deferred("disabled", true)
 	sprite_2d.frame = 1
 	can_fire = false
+	hit_audio_player.play()
 	
 func fire_projectile(projectile_owner: Node) -> void:
 	if not can_fire:
@@ -35,6 +41,7 @@ func fire_projectile(projectile_owner: Node) -> void:
 	#print(start_position)
 	projectile.global_position =  start_position
 	projectile.setup(fire_direction)
+	fire_audio_player.play()
 	#print("fired")
 
 	can_fire = false  # Prevent further firing

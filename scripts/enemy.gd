@@ -12,6 +12,7 @@ const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var revive_timer: Timer = $ReviveTimer
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var enemy_level := 1
 var disable_decay_factor := .9
@@ -67,6 +68,7 @@ func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	#print(start_position)
 	projectile.global_position =  start_position
 	projectile.setup(direction)
+	audio_stream_player_2d.play()
 	#print("enemy fired")
 
 func _on_shoot_timer_timeout() -> void:

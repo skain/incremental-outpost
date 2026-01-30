@@ -19,6 +19,14 @@ run/main_scene="uid://bxhlenghvkl16"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bifferrg6qgy1"
+
+[autoload]
+
+Sfx="*uid://b0ijv4ulsrdui"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2

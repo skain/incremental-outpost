@@ -1,6 +1,8 @@
 extends Area2D
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hit_player: AudioStreamPlayer2D = $HitPlayer
+@onready var shield_on_player: AudioStreamPlayer2D = $ShieldOnPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,12 +16,18 @@ func _process(delta: float) -> void:
 func shield_on() -> void:
 	collision_shape_2d.set_deferred("disabled", false)
 	visible = true
+	shield_on_player.play()
 	
 func shield_off() -> void:
 	collision_shape_2d.set_deferred("disabled", true)
 	visible = false
+	shield_on_player.stop()
+	
+func _handle_hit(enemy_projectile: EnemyProjectile) -> void:
+	if enemy_projectile:
+		enemy_projectile.handle_hit()
+		hit_player.play()
 
 func _on_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile
-	if projectile:
-		projectile.handle_hit()
+	_handle_hit(projectile)

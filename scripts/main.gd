@@ -7,6 +7,7 @@ extends Node2D
 @onready var enemy_bottom: Enemy = $Enemies/EnemyBottom
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 @onready var ui: CanvasLayer = $UI
+@onready var projectile_collision_player: AudioStreamPlayer2D = $ProjectileCollisionPlayer
 
 const BASE_SCORE := 10
 var current_score := 0

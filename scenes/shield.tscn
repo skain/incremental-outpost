@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0j1xq1rfccbx" path="res://scripts/shield.gd" id="1_ohv3a"]
 [ext_resource type="Texture2D" uid="uid://dofi87kcbpa8v" path="res://assets/Shield.png" id="1_vtru8"]
+[ext_resource type="AudioStream" uid="uid://dhmhy2csml72q" path="res://assets/sounds/8-bit Sound Library/Hit_00.wav" id="3_e3gf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohv3a"]
 size = Vector2(20, 5)
@@ -59,5 +60,10 @@ texture = ExtResource("1_vtru8")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1129545218]
 libraries/ = SubResource("AnimationLibrary_gsp1a")
 autoplay = &"pulse"
+
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1343873377]
+stream = ExtResource("3_e3gf5")
+
+[node name="ShieldOnPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1435657877]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
