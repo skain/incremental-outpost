@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxhlenghvkl16"]
+[gd_scene format=3 uid="uid://bxhlenghvkl16"]
 
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/player.tscn" id="2_jyhfs"]
@@ -9,37 +9,37 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=42505495]
 script = ExtResource("1_sugp2")
 
-[node name="Player" parent="." instance=ExtResource("2_jyhfs")]
+[node name="Player" parent="." unique_id=507027384 instance=ExtResource("2_jyhfs")]
 position = Vector2(640, 640)
 scale = Vector2(3.5, 3.5)
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=1832100047]
 
-[node name="EnemyLeft" parent="Enemies" instance=ExtResource("3_tbgi4")]
+[node name="EnemyLeft" parent="Enemies" unique_id=1591691842 instance=ExtResource("3_tbgi4")]
 position = Vector2(64, 640)
 rotation = 1.5707964
 scale = Vector2(2, 2)
 
-[node name="EnemyTop" parent="Enemies" instance=ExtResource("3_tbgi4")]
+[node name="EnemyTop" parent="Enemies" unique_id=308799815 instance=ExtResource("3_tbgi4")]
 position = Vector2(640, 64)
 rotation = 3.1415927
 scale = Vector2(2, 2)
 
-[node name="EnemyRight" parent="Enemies" instance=ExtResource("3_tbgi4")]
+[node name="EnemyRight" parent="Enemies" unique_id=1690167790 instance=ExtResource("3_tbgi4")]
 position = Vector2(1216, 640)
 rotation = 4.712389
 scale = Vector2(2, 2)
 
-[node name="EnemyBottom" parent="Enemies" instance=ExtResource("3_tbgi4")]
+[node name="EnemyBottom" parent="Enemies" unique_id=672570749 instance=ExtResource("3_tbgi4")]
 position = Vector2(640, 1216)
 scale = Vector2(2, 2)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1535914188]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1816793784]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,24 +47,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tbgi4")
 
-[node name="HealthHBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+[node name="HealthHBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=1925595329]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Health1" type="TextureRect" parent="CanvasLayer/Panel/HealthHBoxContainer"]
+[node name="Health1" type="TextureRect" parent="CanvasLayer/Panel/HealthHBoxContainer" unique_id=774984711]
 layout_mode = 2
 texture = ExtResource("4_tbgi4")
 
-[node name="Health2" type="TextureRect" parent="CanvasLayer/Panel/HealthHBoxContainer"]
+[node name="Health2" type="TextureRect" parent="CanvasLayer/Panel/HealthHBoxContainer" unique_id=154724649]
 layout_mode = 2
 texture = ExtResource("4_tbgi4")
 
-[node name="Health3" type="TextureRect" parent="CanvasLayer/Panel/HealthHBoxContainer"]
+[node name="Health3" type="TextureRect" parent="CanvasLayer/Panel/HealthHBoxContainer" unique_id=1909809484]
 layout_mode = 2
 texture = ExtResource("4_tbgi4")
 
-[node name="ScoreHBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=1928245140]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -75,16 +75,16 @@ grow_horizontal = 0
 size_flags_horizontal = 0
 theme = ExtResource("4_jyhfs")
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/Panel/ScoreHBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Panel/ScoreHBoxContainer" unique_id=1081202567]
 layout_mode = 2
 text = "Score: "
 
-[node name="ScoreValue" type="Label" parent="CanvasLayer/Panel/ScoreHBoxContainer"]
+[node name="ScoreValue" type="Label" parent="CanvasLayer/Panel/ScoreHBoxContainer" unique_id=1134696510]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 
-[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer" unique_id=1912378579]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,23 +92,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/GameOverPanel"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverPanel" unique_id=982054327]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.5
-offset_top = -11.5
-offset_right = 30.5
-offset_bottom = 11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel/CenterContainer" unique_id=645053854]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/VBoxContainer" unique_id=482866067]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
 theme_override_fonts/font = ExtResource("6_tefeu")
 theme_override_font_sizes/font_size = 271
 text = "GAME OVER"
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverPanel/CenterContainer/VBoxContainer" unique_id=1170567370]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_tefeu")
+theme_override_font_sizes/font_size = 56
+text = "Press any key to Continue..."
+horizontal_alignment = 1
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="enemy_hit" from="Enemies/EnemyLeft" to="." method="_on_enemy_hit"]

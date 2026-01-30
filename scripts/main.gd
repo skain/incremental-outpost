@@ -14,6 +14,7 @@ extends Node2D
 
 const BASE_SCORE := 10
 var current_score := 0
+var game_over := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,8 +23,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if game_over:
+		if Input.is_anything_pressed():
+			_start_game()
 
+func _start_game() -> void:
+	if not game_over:
+		return
+		
+	game_over = false
+	_update_ui()
+	player.reset()
+	enemy_bottom.reset()
+	enemy_left.reset()
+	enemy_right.reset()
+	enemy_top.reset()
+	game_over_panel.visible = false
+	
 func _update_ui() -> void:
 	score_value.text = str(current_score)
 	_set_health()
@@ -52,6 +68,7 @@ func _end_game() -> void:
 	enemy_left.disable(false)
 	enemy_right.disable(false)
 	enemy_top.disable(false)
+	game_over = true
 		
 
 func _on_enemy_hit(enemy: Enemy) -> void:

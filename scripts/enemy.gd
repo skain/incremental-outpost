@@ -7,6 +7,7 @@ const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
 
 @export var base_shoot_delay: float = 1
 @export var base_shoot_chance: float = 50
+@export var base_revive_delay: float = 5
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var revive_timer: Timer = $ReviveTimer
@@ -17,8 +18,12 @@ var disable_decay_factor := .9
 var can_shoot := true
 
 func _ready() -> void:
+	reset()
+	
+func reset() -> void:
+	enemy_level = 1
+	disable(true)
 	_start_shoot_timer()
-	#print(GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25))
 	
 func _start_shoot_timer() -> void:
 	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, -1.1)
@@ -39,8 +44,9 @@ func disable(is_temporary: bool = true) -> void:
 	collision_shape_2d.set_deferred("disabled", true)
 	if is_temporary:
 		visible = false
-		var hit_timeout_secs :float =  5 * (disable_decay_factor ** (enemy_level - 1))
-		revive_timer.start(hit_timeout_secs)
+
+		var hit_timeout_secs :float = GameMath.get_scaled_value(base_revive_delay, enemy_level, -1.1)
+		revive_timer.start(hit_timeout_secs + randf_range(.5, 1.5))
 	
 func _on_revive_timer_timeout() -> void:
 	_enable()
