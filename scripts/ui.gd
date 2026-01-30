@@ -9,11 +9,6 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	game_over_panel.visible = false
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func update_ui(score: int, player_health: int) -> void:
 	score_value.text = str(score)
@@ -24,7 +19,6 @@ func show_game_over() -> void:
 	
 func hide_game_over() -> void:
 	game_over_panel.visible = false
-
 
 func _set_player_health(player_health: int) -> void:
 	if player_health > 0:

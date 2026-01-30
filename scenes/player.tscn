@@ -6,20 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/cannon.tscn" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
 
-[sub_resource type="GDScript" id="GDScript_qhqgy"]
-script/source = "extends Sprite2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(50, 50.666668)
 
@@ -31,7 +17,6 @@ script = ExtResource("1_g2els")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1655677136]
 modulate = Color(1.2574322, 1.2574322, 1.2574322, 1)
 texture = ExtResource("1_3vyb7")
-script = SubResource("GDScript_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552792780]
 position = Vector2(-4.7683716e-07, 9.536743e-07)

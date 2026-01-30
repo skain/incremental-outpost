@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/player.tscn" id="2_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://c6nqyyr7inav1" path="res://assets/sounds/8-bit Sound Library/Pickup_03.wav" id="2_tefeu"]
+[ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/enemy.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bveowmm44i684" path="res://scenes/ui.tscn" id="4_jyhfs"]
 
@@ -43,6 +45,8 @@ color_ramp = SubResource("Gradient_tipki")
 
 [node name="Main" type="Node2D" unique_id=42505495]
 script = ExtResource("1_sugp2")
+game_start_sound = ExtResource("2_tefeu")
+game_over_sound = ExtResource("3_o6xl0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1950625691]
 environment = SubResource("Environment_tefeu")

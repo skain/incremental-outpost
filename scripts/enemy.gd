@@ -12,7 +12,9 @@ const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var revive_timer: Timer = $ReviveTimer
 @onready var shoot_timer: Timer = $ShootTimer
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var shoot_player: AudioStreamPlayer2D = $ShootPlayer
+@onready var hit_player: AudioStreamPlayer2D = $HitPlayer
+@onready var revive_player: AudioStreamPlayer2D = $RevivePlayer
 
 var enemy_level := 1
 var disable_decay_factor := .9
@@ -37,15 +39,16 @@ func _enable() -> void:
 	visible = true
 	can_shoot = true
 	collision_shape_2d.set_deferred("disabled", false)
+	revive_player.play()
 	_start_shoot_timer()
 	
 func disable(is_temporary: bool = true) -> void:
 	#print('disabled')
 	can_shoot = false
 	collision_shape_2d.set_deferred("disabled", true)
+	
 	if is_temporary:
 		visible = false
-
 		var hit_timeout_secs :float = GameMath.get_scaled_value(base_revive_delay + randf_range(0, 5), enemy_level, -1.1)
 		revive_timer.start(hit_timeout_secs)
 	
@@ -55,6 +58,7 @@ func _on_revive_timer_timeout() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	#print('hit')
 	disable()
+	hit_player.play()
 	enemy_hit.emit(self)
 	var projectile := area as PlayerProjectile
 	if projectile:
@@ -68,7 +72,7 @@ func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
 	#print(start_position)
 	projectile.global_position =  start_position
 	projectile.setup(direction)
-	audio_stream_player_2d.play()
+	shoot_player.play()
 	#print("enemy fired")
 
 func _on_shoot_timer_timeout() -> void:

@@ -8,11 +8,6 @@ extends Area2D
 func _ready() -> void:
 	shield_off()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func shield_on() -> void:
 	collision_shape_2d.set_deferred("disabled", false)
 	visible = true

@@ -4,7 +4,6 @@ class_name EnemyProjectile
 @export var speed: float = 400
 @export var projectile_collision_sound: AudioStream
 
-@onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 
 var direction: Vector2
 var velocity: Vector2 = Vector2.ZERO

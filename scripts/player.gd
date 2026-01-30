@@ -26,7 +26,7 @@ func _ready() -> void:
 	shield_determiner.shield_changed.connect(_update_shields)
 	reset()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if health > 0:
 		_handle_firing()
 	elif Input.is_action_pressed("start_game"):
@@ -63,13 +63,13 @@ func _handle_firing() -> void:
 		right_cannon.fire_projectile(parent)
 	
 func die() -> void:
-	_set_can_fire(false)	
+	_reset_cannons()	
 	
 func reset() -> void:
 	health = max_health
-	_set_can_fire(true)	
+	_reset_cannons()	
 
-func _set_can_fire(can_fire: bool) -> void:
+func _reset_cannons() -> void:
 	top_cannon.reset()
 	bottom_cannon.reset()
 	left_cannon.reset()
