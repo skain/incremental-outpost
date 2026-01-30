@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxvtbudu80b4f"]
+[gd_scene format=3 uid="uid://dxvtbudu80b4f"]
 
 [ext_resource type="Texture2D" uid="uid://10uckrpdny7t" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cywb2avasjihk" path="res://scripts/player.gd" id="1_g2els"]
@@ -22,53 +22,52 @@ func _process(delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(50, 50.666668)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" unique_id=1689945115]
 scale = Vector2(3, 3)
 collision_mask = 16
 script = ExtResource("1_g2els")
-fire_rate = null
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1655677136]
 texture = ExtResource("1_3vyb7")
 script = SubResource("GDScript_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552792780]
 position = Vector2(-4.7683716e-07, 9.536743e-07)
 shape = SubResource("RectangleShape2D_qhqgy")
 
-[node name="Shields" type="Node2D" parent="."]
+[node name="Shields" type="Node2D" parent="." unique_id=1734988738]
 
-[node name="TopShield" parent="Shields" instance=ExtResource("3_qhqgy")]
+[node name="TopShield" parent="Shields" unique_id=2144481525 instance=ExtResource("3_qhqgy")]
 position = Vector2(0, -40)
 
-[node name="RightShield" parent="Shields" instance=ExtResource("3_qhqgy")]
+[node name="RightShield" parent="Shields" unique_id=979293929 instance=ExtResource("3_qhqgy")]
 position = Vector2(40, 0)
 rotation = 1.5707964
 
-[node name="BottomShield" parent="Shields" instance=ExtResource("3_qhqgy")]
+[node name="BottomShield" parent="Shields" unique_id=365177142 instance=ExtResource("3_qhqgy")]
 position = Vector2(0, 40)
 rotation = 3.1415927
 
-[node name="LeftShield" parent="Shields" instance=ExtResource("3_qhqgy")]
+[node name="LeftShield" parent="Shields" unique_id=1421130794 instance=ExtResource("3_qhqgy")]
 position = Vector2(-40, 0)
 rotation = 4.712389
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=1725042301]
 
-[node name="TopCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+[node name="TopCannon" parent="Node2D" unique_id=1127117473 instance=ExtResource("4_dqkch")]
 position = Vector2(0, -27)
 
-[node name="RightCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+[node name="RightCannon" parent="Node2D" unique_id=573162622 instance=ExtResource("4_dqkch")]
 position = Vector2(27, 0)
 rotation = 1.5707964
 fire_direction = Vector2(1, 0)
 
-[node name="BottomCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+[node name="BottomCannon" parent="Node2D" unique_id=737632046 instance=ExtResource("4_dqkch")]
 position = Vector2(0, 27)
 rotation = 3.1415927
 fire_direction = Vector2(0, 1)
 
-[node name="LeftCannon" parent="Node2D" instance=ExtResource("4_dqkch")]
+[node name="LeftCannon" parent="Node2D" unique_id=1200227506 instance=ExtResource("4_dqkch")]
 position = Vector2(-27, 0)
 rotation = 4.712389
 fire_direction = Vector2(-1, 0)

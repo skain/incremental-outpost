@@ -2,6 +2,7 @@ extends Area2D
 class_name Player
 
 signal player_hit
+signal start_game_pressed
 
 #const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 #
@@ -25,7 +26,10 @@ func _ready() -> void:
 	reset()
 	
 func _process(delta: float) -> void:
-	_handle_firing()
+	if health > 0:
+		_handle_firing()
+	elif Input.is_action_pressed("start_game"):
+		start_game_pressed.emit()
 	
 func _input(event: InputEvent) -> void:
 	shield_determiner.set_input(event)
@@ -65,10 +69,10 @@ func reset() -> void:
 	_set_can_fire(true)	
 
 func _set_can_fire(can_fire: bool) -> void:
-	top_cannon.can_fire = can_fire
-	bottom_cannon.can_fire = can_fire
-	left_cannon.can_fire = can_fire
-	right_cannon.can_fire = can_fire
+	top_cannon.reset()
+	bottom_cannon.reset()
+	left_cannon.reset()
+	right_cannon.reset()
 
 func _on_area_entered(area: Area2D) -> void:
 	player_hit.emit()

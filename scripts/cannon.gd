@@ -4,6 +4,7 @@ class_name Cannon
 const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var fire_rate: float = 0.2
 @export var fire_direction: Vector2 = Vector2.UP
@@ -20,6 +21,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _handle_hit() -> void:
+	collision_shape_2d.set_deferred("disabled", true)
 	sprite_2d.frame = 1
 	can_fire = false
 	
@@ -39,6 +41,11 @@ func fire_projectile(projectile_owner: Node) -> void:
 	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
 	can_fire = true  # Allow firing again after the delay
 
+func reset() -> void:
+	sprite_2d.frame = 0
+	can_fire = true
+	collision_shape_2d.set_deferred("disabled", false)
 
 func _on_area_entered(area: Area2D) -> void:
+	area.queue_free()
 	_handle_hit()

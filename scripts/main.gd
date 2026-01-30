@@ -11,7 +11,6 @@ extends Node2D
 @onready var enemy_bottom: Enemy = $Enemies/EnemyBottom
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 
-
 const BASE_SCORE := 10
 var current_score := 0
 var game_over := false
@@ -23,22 +22,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if game_over:
-		if Input.is_anything_pressed():
-			_start_game()
+	pass
 
 func _start_game() -> void:
 	if not game_over:
 		return
 		
 	game_over = false
-	_update_ui()
+	current_score = 0
 	player.reset()
 	enemy_bottom.reset()
 	enemy_left.reset()
 	enemy_right.reset()
 	enemy_top.reset()
 	game_over_panel.visible = false
+	_update_ui()
 	
 func _update_ui() -> void:
 	score_value.text = str(current_score)
@@ -84,3 +82,8 @@ func _on_player_player_hit() -> void:
 		return
 	_update_ui()
 	#print(player.health)
+
+
+func _on_player_start_game_pressed() -> void:
+	if game_over:
+		_start_game()
