@@ -1,10 +1,6 @@
 extends Node2D
 
-@onready var score_value: Label = %ScoreValue
 @onready var player: Player = $Player
-@onready var health_1: TextureRect = $CanvasLayer/Panel/HealthHBoxContainer/Health1
-@onready var health_2: TextureRect = $CanvasLayer/Panel/HealthHBoxContainer/Health2
-@onready var health_3: TextureRect = $CanvasLayer/Panel/HealthHBoxContainer/Health3
 @onready var enemy_left: Enemy = $Enemies/EnemyLeft
 @onready var enemy_top: Enemy = $Enemies/EnemyTop
 @onready var enemy_right: Enemy = $Enemies/EnemyRight
