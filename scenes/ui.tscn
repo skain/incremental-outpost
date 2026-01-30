@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bveowmm44i684"]
+
+[ext_resource type="Script" uid="uid://pxxdoiok44h3" path="res://scripts/ui.gd" id="1_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="1_yev5y"]
+[ext_resource type="Theme" uid="uid://bu7liu2y80vnx" path="res://themes/default_theme.tres" id="2_gdt2y"]
+[ext_resource type="FontFile" uid="uid://c6yugg4s6ayo3" path="res://assets/Pixel Game.otf" id="3_wm3ai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+
+[node name="UI" type="CanvasLayer" unique_id=110416762]
+script = ExtResource("1_gdt2y")
+
+[node name="Panel" type="Panel" parent="." unique_id=412204589]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tbgi4")
+
+[node name="HealthHBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1623456052]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health1" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=46811982]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_yev5y")
+
+[node name="Health2" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=1320696598]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_yev5y")
+
+[node name="Health3" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=993478229]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_yev5y")
+
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="Panel" unique_id=2078757583]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -235.0
+offset_bottom = 74.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+theme = ExtResource("2_gdt2y")
+
+[node name="ScoreLabel" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=1288837128]
+layout_mode = 2
+text = "Score: "
+
+[node name="ScoreValue" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=1654644774]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="GameOverPanel" type="Panel" parent="." unique_id=85327275]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverPanel" unique_id=673995625]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel/CenterContainer" unique_id=472214859]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="GameOverPanel/CenterContainer/VBoxContainer" unique_id=624317083]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
+theme_override_fonts/font = ExtResource("3_wm3ai")
+theme_override_font_sizes/font_size = 271
+text = "GAME OVER"
+
+[node name="Label" type="Label" parent="GameOverPanel/CenterContainer/VBoxContainer" unique_id=1781666490]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wm3ai")
+theme_override_font_sizes/font_size = 56
+text = "Press any key to Continue..."
+horizontal_alignment = 1

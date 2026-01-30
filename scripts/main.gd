@@ -10,6 +10,7 @@ extends Node2D
 @onready var enemy_right: Enemy = $Enemies/EnemyRight
 @onready var enemy_bottom: Enemy = $Enemies/EnemyBottom
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
+@onready var ui: CanvasLayer = $UI
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -35,32 +36,16 @@ func _start_game() -> void:
 	enemy_left.reset()
 	enemy_right.reset()
 	enemy_top.reset()
-	game_over_panel.visible = false
+	ui.hide_game_over()
 	_update_ui()
 	
 func _update_ui() -> void:
-	score_value.text = str(current_score)
-	_set_health()
-	
-func _set_health() -> void:
-	if player.health > 0:
-		health_1.visible = true
-	else:
-		health_1.visible = false
-		
-	if player.health > 1:
-		health_2.visible = true
-	else:
-		health_2.visible = false
-		
-	if player.health > 2:
-		health_3.visible = true
-	else:
-		health_3.visible = false
+	ui.update_ui(current_score, player.health)	
+
 		
 func _end_game() -> void:
 	_update_ui()
-	game_over_panel.visible = true
+	ui.show_game_over()
 	player.die()
 	enemy_bottom.disable(false)
 	enemy_left.disable(false)
