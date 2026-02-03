@@ -22,8 +22,10 @@ shape = SubResource("RectangleShape2D_pxhkx")
 
 [node name="FireAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2099081052]
 stream = ExtResource("3_yjxeu")
+bus = &"SoundFx"
 
 [node name="HitAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=36513656]
 stream = ExtResource("4_jfr8q")
+bus = &"SoundFx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
