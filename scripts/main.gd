@@ -10,6 +10,7 @@ extends Node2D
 @onready var enemy_bottom: Enemy = $Enemies/EnemyBottom
 @onready var ui: CanvasLayer = $UI
 @onready var game_start_player: AudioStreamPlayer2D = $GameStartPlayer
+@onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -35,6 +36,8 @@ func _start_game() -> void:
 	for i in range(6):
 		Sfx.play_sfx(game_start_sound, global_position)
 		await get_tree().create_timer(i / 6 * 0.001).timeout
+	if not bg_music_player.playing:
+		bg_music_player.play()
 	
 func _update_ui() -> void:
 	ui.update_ui(current_score, player.health)	
@@ -50,6 +53,7 @@ func _end_game() -> void:
 	player.die()
 	game_over = true
 	Sfx.play_sfx(game_over_sound, global_position)
+	bg_music_player.stop()
 		
 
 func _on_enemy_hit(enemy: Enemy) -> void:

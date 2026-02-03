@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/enemy.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bveowmm44i684" path="res://scenes/ui.tscn" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="7_o6xl0"]
 
 [sub_resource type="Environment" id="Environment_tefeu"]
 background_mode = 3
@@ -106,6 +107,10 @@ position = Vector2(640, 1216)
 scale = Vector2(2, 2)
 
 [node name="UI" parent="." unique_id=110416762 instance=ExtResource("4_jyhfs")]
+
+[node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=55557947]
+unique_name_in_owner = true
+stream = ExtResource("7_o6xl0")
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="start_game_pressed" from="Player" to="." method="_on_player_start_game_pressed"]

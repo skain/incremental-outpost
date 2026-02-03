@@ -89,5 +89,5 @@ text = "GAME OVER"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_wm3ai")
 theme_override_font_sizes/font_size = 56
-text = "Press any key to Continue..."
+text = "Press any Enter to Continue..."
 horizontal_alignment = 1
