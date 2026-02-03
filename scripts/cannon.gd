@@ -1,6 +1,8 @@
 extends Area2D
 class_name Cannon
 
+signal cannon_hit(cannon_direction: Vector2)
+
 const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -20,6 +22,7 @@ func _handle_hit() -> void:
 	collision_shape_2d.set_deferred("disabled", true)
 	sprite_2d.frame = 1
 	can_fire = false
+	cannon_hit.emit(fire_direction)
 	hit_audio_player.play()
 	
 func fire_projectile(projectile_owner: Node) -> void:
