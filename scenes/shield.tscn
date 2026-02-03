@@ -64,8 +64,10 @@ autoplay = &"pulse"
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1343873377]
 stream = ExtResource("3_e3gf5")
+bus = &"SoundFx"
 
 [node name="ShieldOnPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1435657877]
 stream = ExtResource("4_gsp1a")
+bus = &"SoundFx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

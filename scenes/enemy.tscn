@@ -29,12 +29,15 @@ one_shot = true
 
 [node name="ShootPlayer" type="AudioStreamPlayer2D" parent="." unique_id=151001254]
 stream = ExtResource("3_4ra3w")
+bus = &"SoundFx"
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=976021530]
 stream = ExtResource("4_5uy6h")
+bus = &"SoundFx"
 
 [node name="RevivePlayer" type="AudioStreamPlayer2D" parent="." unique_id=386878944]
 stream = ExtResource("5_c4w8v")
+bus = &"SoundFx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="ReviveTimer" to="." method="_on_revive_timer_timeout"]
