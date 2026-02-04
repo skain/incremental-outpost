@@ -37,12 +37,9 @@ func fire_projectile(projectile_owner: Node) -> void:
 		
 	var projectile: PlayerProjectile = PROJECTILE_SCENE.instantiate()
 	projectile_owner.add_child(projectile)
-	var start_position := global_position + (fire_direction * 25)
-	#print(start_position)
-	projectile.global_position =  start_position
+	projectile.global_position =  global_position
 	projectile.setup(fire_direction)
 	fire_audio_player.play()
-	#print("fired")
 
 	can_fire = false  # Prevent further firing
 	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
