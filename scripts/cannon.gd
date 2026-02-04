@@ -11,9 +11,12 @@ const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 @onready var hit_audio_player: AudioStreamPlayer2D = $HitAudioPlayer
 
 @export var fire_rate: float = 0.2
-@export var fire_direction: Vector2 = Vector2.UP
 
+var fire_direction: Vector2
 var can_fire := true
+
+func _ready() -> void:
+	fire_direction = _get_fire_direction()
 	
 func _handle_hit() -> void:
 	if not can_fire:
@@ -24,6 +27,9 @@ func _handle_hit() -> void:
 	can_fire = false
 	cannon_hit.emit(fire_direction)
 	hit_audio_player.play()
+	
+func _get_fire_direction() -> Vector2:
+	return -global_transform.y
 	
 func fire_projectile(projectile_owner: Node) -> void:
 	if not can_fire:
