@@ -111,6 +111,7 @@ scale = Vector2(2, 2)
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=55557947]
 unique_name_in_owner = true
 stream = ExtResource("7_o6xl0")
+bus = &"Music"
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="start_game_pressed" from="Player" to="." method="_on_player_start_game_pressed"]
