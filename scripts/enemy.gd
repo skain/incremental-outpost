@@ -15,6 +15,7 @@ const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
 @onready var shoot_player: AudioStreamPlayer2D = $ShootPlayer
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var revive_player: AudioStreamPlayer2D = $RevivePlayer
+@onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
 
 var enemy_level := 1
 var disable_decay_factor := .9
@@ -73,6 +74,7 @@ func _fire_projectile() -> void:
 	#negative transform.y is the direction the sprite is facing
 	projectile.setup(-transform.y.round())
 	shoot_player.play()
+	muzzle_flash.emit_flash()
 	#print("enemy fired")
 
 func _on_shoot_timer_timeout() -> void:

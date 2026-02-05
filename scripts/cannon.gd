@@ -9,6 +9,7 @@ const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var fire_audio_player: AudioStreamPlayer2D = $FireAudioPlayer
 @onready var hit_audio_player: AudioStreamPlayer2D = $HitAudioPlayer
+@onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
 
 @export var fire_rate: float = 0.2
 
@@ -40,6 +41,7 @@ func fire_projectile(projectile_owner: Node) -> void:
 	projectile.global_position =  global_position
 	projectile.setup(fire_direction)
 	fire_audio_player.play()
+	muzzle_flash.emit_flash()
 
 	can_fire = false  # Prevent further firing
 	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
