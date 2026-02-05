@@ -18,8 +18,8 @@ initial_velocity_max = 194.81999
 gravity = Vector3(0, 0, 0)
 damping_min = 500.00003
 damping_max = 500.00003
-scale_min = 3.0
-scale_max = 8.0
+scale_min = 2.0
+scale_max = 5.0
 color = Color(1.8977889, 0.69504464, 0.46488988, 1)
 color_ramp = SubResource("GradientTexture1D_r2kf7")
 
@@ -31,5 +31,4 @@ emitting = false
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-collision_base_size = 0.0
 process_material = SubResource("ParticleProcessMaterial_r243d")
