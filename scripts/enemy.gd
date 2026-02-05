@@ -64,14 +64,14 @@ func _on_area_entered(area: Area2D) -> void:
 	if projectile:
 		projectile.handle_hit()
 	
-func _fire_projectile(direction: Vector2, offset: Vector2) -> void:
+func _fire_projectile() -> void:
 	#print("enemy position: ", position)
 	var projectile: EnemyProjectile = PROJECTILE_SCENE.instantiate()
 	get_parent().add_child(projectile)
-	var start_position := global_position + offset
 	#print(start_position)
-	projectile.global_position =  start_position
-	projectile.setup(direction)
+	projectile.global_position =  global_position
+	#negative transform.y is the direction the sprite is facing
+	projectile.setup(-transform.y.round())
 	shoot_player.play()
 	#print("enemy fired")
 
@@ -79,6 +79,6 @@ func _on_shoot_timer_timeout() -> void:
 	if visible and can_shoot:		
 		var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
 		if GameMath.chance_check(cur_chance):
-			_fire_projectile(-transform.y.round(), Vector2.ZERO) #negative transform.y is the direction the sprite is facing
+			_fire_projectile() 
 			#print(name + " fired")
 	_start_shoot_timer()
