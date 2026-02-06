@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bkgov81stuqku"]
+
+[ext_resource type="Script" uid="uid://d0pg51fthyw1t" path="res://scripts/muzzle_flash.gd" id="1_r2kf7"]
+
+[sub_resource type="Gradient" id="Gradient_yjv0y"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r2kf7"]
+gradient = SubResource("Gradient_yjv0y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r243d"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 71.321
+initial_velocity_min = 100.4
+initial_velocity_max = 194.81999
+gravity = Vector3(0, 0, 0)
+damping_min = 500.00003
+damping_max = 500.00003
+scale_min = 2.0
+scale_max = 5.0
+color = Color(1.8977889, 0.69504464, 0.46488988, 1)
+color_ramp = SubResource("GradientTexture1D_r2kf7")
+
+[node name="MuzzleFlash" type="Node2D" unique_id=2020624600]
+script = ExtResource("1_r2kf7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1039120399]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_r243d")

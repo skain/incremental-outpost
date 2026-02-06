@@ -27,40 +27,45 @@ offset_bottom = 40.0
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_yev5y")
+stretch_mode = 2
 
 [node name="Health2" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=1320696598]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_yev5y")
+stretch_mode = 2
 
 [node name="Health3" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=993478229]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_yev5y")
+stretch_mode = 2
 
 [node name="ScoreHBoxContainer" type="HBoxContainer" parent="Panel" unique_id=2078757583]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -235.0
-offset_bottom = 74.0
+offset_left = -158.0
+offset_bottom = 49.0
 grow_horizontal = 0
 size_flags_horizontal = 0
 theme = ExtResource("2_gdt2y")
+alignment = 2
 
 [node name="ScoreLabel" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=1288837128]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Score: "
 
 [node name="ScoreValue" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=1654644774]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "10"
 
 [node name="GameOverPanel" type="Panel" parent="." unique_id=85327275]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -82,12 +87,12 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
 theme_override_fonts/font = ExtResource("3_wm3ai")
-theme_override_font_sizes/font_size = 271
+theme_override_font_sizes/font_size = 142
 text = "GAME OVER"
 
 [node name="Label" type="Label" parent="GameOverPanel/CenterContainer/VBoxContainer" unique_id=1781666490]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_wm3ai")
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 36
 text = "Press any Enter to Continue..."
 horizontal_alignment = 1
