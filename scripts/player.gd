@@ -17,10 +17,8 @@ signal start_game_pressed
 
 var max_health := 3
 var health := 3
-var shield_determiner := ShieldDeterminer.new()
 
 func _ready() -> void:
-	shield_determiner.shield_changed.connect(_update_shields)
 	reset()
 	
 func _process(_delta: float) -> void:
@@ -28,9 +26,6 @@ func _process(_delta: float) -> void:
 		_handle_firing()
 	elif Input.is_action_pressed("start_game"):
 		start_game_pressed.emit()
-	
-func _input(event: InputEvent) -> void:
-	shield_determiner.set_input(event)
 	
 func _update_shields(dir: String) -> void:
 	top_shield.shield_off()
@@ -96,3 +91,6 @@ func _on_cannon_hit(cannon_direction: Vector2) -> void:
 	
 func _on_area_entered(area: Area2D) -> void:
 	_handle_hit(area)
+
+func _on_shields_component_shield_changed(new_direction: String) -> void:
+	_update_shields(new_direction)

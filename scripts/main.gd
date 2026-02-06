@@ -68,7 +68,6 @@ func _on_player_player_hit() -> void:
 		_end_game()
 		return
 	_update_ui()
-	#print(player.health)
 
 
 func _on_player_start_game_pressed() -> void:

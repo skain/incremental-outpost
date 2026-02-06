@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dulyh4ydd2vqf" path="res://scenes/shield.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/cannon.tscn" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://b1cj3iotsjfut" path="res://scripts/shields_component.gd" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(50, 50.666668)
@@ -47,17 +48,14 @@ position = Vector2(0, -27)
 [node name="RightCannon" parent="Canons" unique_id=573162622 instance=ExtResource("4_dqkch")]
 position = Vector2(27, 0)
 rotation = 1.5707964
-fire_direction = Vector2(1, 0)
 
 [node name="BottomCannon" parent="Canons" unique_id=737632046 instance=ExtResource("4_dqkch")]
 position = Vector2(0, 27)
 rotation = 3.1415927
-fire_direction = Vector2(0, 1)
 
 [node name="LeftCannon" parent="Canons" unique_id=1200227506 instance=ExtResource("4_dqkch")]
 position = Vector2(-27, 0)
 rotation = 4.712389
-fire_direction = Vector2(-1, 0)
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1238842363]
 stream = ExtResource("5_qlg0r")
@@ -65,8 +63,12 @@ bus = &"SoundFx"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=653930879]
 
+[node name="ShieldsComponent" type="Node" parent="." unique_id=692035364]
+script = ExtResource("6_tuyoq")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="cannon_hit" from="Canons/TopCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Canons/RightCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Canons/BottomCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Canons/LeftCannon" to="." method="_on_cannon_hit"]
+[connection signal="shield_changed" from="ShieldsComponent" to="." method="_on_shields_component_shield_changed"]

@@ -1,5 +1,4 @@
-extends Object
-class_name ShieldDeterminer
+class_name ShieldsComponent extends Node
 
 signal shield_changed(new_direction: String)
 
@@ -14,7 +13,7 @@ var active_inputs: Array[String] = []
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
 
-func set_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	# Quick exit: if the event isn't a shield action, don't loop
 	var is_shield_action := false
 	for action: String in ACTIONS:
