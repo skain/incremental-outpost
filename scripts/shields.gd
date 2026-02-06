@@ -1,13 +1,10 @@
-class_name ShieldsComponent extends Node
+extends Node2D
 
-signal shield_changed(new_direction: String)
+@onready var top_shield: Area2D = $TopShield
+@onready var right_shield: Area2D = $RightShield
+@onready var bottom_shield: Area2D = $BottomShield
+@onready var left_shield: Area2D = $LeftShield
 
-var current_shield_direction := "" :
-	set(value):
-		if current_shield_direction != value:
-			current_shield_direction = value
-			shield_changed.emit(value) # Only fire when it actually changes
-			
 var active_inputs: Array[String] = []
 
 # Cache the actions for performance
@@ -31,15 +28,28 @@ func _input(event: InputEvent) -> void:
 				active_inputs.append(action)
 				_apply_shield_logic()
 			# break once we find the action to save cycles
-			break 
-			
+			break
 		elif event.is_action_released(action):
 			active_inputs.erase(action)
 			_apply_shield_logic()
 			break
 
 func _apply_shield_logic() -> void:
-	if active_inputs.is_empty():
-		current_shield_direction = ""
-	else:
+	var current_shield_direction := ""
+	if not active_inputs.is_empty():
 		current_shield_direction = active_inputs.back().replace("shield_", "")
+	
+	top_shield.shield_off()
+	right_shield.shield_off()
+	bottom_shield.shield_off()
+	left_shield.shield_off()
+	
+	match current_shield_direction:
+		"up":
+			top_shield.shield_on()
+		"right":
+			right_shield.shield_on()
+		"down":
+			bottom_shield.shield_on()
+		"left":
+			left_shield.shield_on()

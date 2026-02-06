@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://10uckrpdny7t" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cywb2avasjihk" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://cyf6fhon2yb2e" path="res://scripts/shields.gd" id="3_fjrip"]
 [ext_resource type="PackedScene" uid="uid://dulyh4ydd2vqf" path="res://scenes/shield.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/cannon.tscn" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://b1cj3iotsjfut" path="res://scripts/shields_component.gd" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(50, 50.666668)
@@ -24,6 +24,7 @@ position = Vector2(-4.7683716e-07, 9.536743e-07)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Shields" type="Node2D" parent="." unique_id=1734988738]
+script = ExtResource("3_fjrip")
 
 [node name="TopShield" parent="Shields" unique_id=2144481525 instance=ExtResource("3_qhqgy")]
 position = Vector2(0, -40)
@@ -63,12 +64,8 @@ bus = &"SoundFx"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=653930879]
 
-[node name="ShieldsComponent" type="Node" parent="." unique_id=692035364]
-script = ExtResource("6_tuyoq")
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="cannon_hit" from="Canons/TopCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Canons/RightCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Canons/BottomCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Canons/LeftCannon" to="." method="_on_cannon_hit"]
-[connection signal="shield_changed" from="ShieldsComponent" to="." method="_on_shields_component_shield_changed"]
