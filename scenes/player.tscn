@@ -41,20 +41,20 @@ rotation = 3.1415927
 position = Vector2(-40, 0)
 rotation = 4.712389
 
-[node name="Canons" type="Node2D" parent="." unique_id=1725042301]
+[node name="Cannons" type="Node2D" parent="." unique_id=1725042301]
 
-[node name="TopCannon" parent="Canons" unique_id=1127117473 instance=ExtResource("4_dqkch")]
+[node name="TopCannon" parent="Cannons" unique_id=1127117473 instance=ExtResource("4_dqkch")]
 position = Vector2(0, -27)
 
-[node name="RightCannon" parent="Canons" unique_id=573162622 instance=ExtResource("4_dqkch")]
+[node name="RightCannon" parent="Cannons" unique_id=573162622 instance=ExtResource("4_dqkch")]
 position = Vector2(27, 0)
 rotation = 1.5707964
 
-[node name="BottomCannon" parent="Canons" unique_id=737632046 instance=ExtResource("4_dqkch")]
+[node name="BottomCannon" parent="Cannons" unique_id=737632046 instance=ExtResource("4_dqkch")]
 position = Vector2(0, 27)
 rotation = 3.1415927
 
-[node name="LeftCannon" parent="Canons" unique_id=1200227506 instance=ExtResource("4_dqkch")]
+[node name="LeftCannon" parent="Cannons" unique_id=1200227506 instance=ExtResource("4_dqkch")]
 position = Vector2(-27, 0)
 rotation = 4.712389
 
@@ -65,7 +65,7 @@ bus = &"SoundFx"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=653930879]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="cannon_hit" from="Canons/TopCannon" to="." method="_on_cannon_hit"]
-[connection signal="cannon_hit" from="Canons/RightCannon" to="." method="_on_cannon_hit"]
-[connection signal="cannon_hit" from="Canons/BottomCannon" to="." method="_on_cannon_hit"]
-[connection signal="cannon_hit" from="Canons/LeftCannon" to="." method="_on_cannon_hit"]
+[connection signal="cannon_hit" from="Cannons/TopCannon" to="." method="_on_cannon_hit"]
+[connection signal="cannon_hit" from="Cannons/RightCannon" to="." method="_on_cannon_hit"]
+[connection signal="cannon_hit" from="Cannons/BottomCannon" to="." method="_on_cannon_hit"]
+[connection signal="cannon_hit" from="Cannons/LeftCannon" to="." method="_on_cannon_hit"]

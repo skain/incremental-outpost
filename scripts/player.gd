@@ -4,14 +4,16 @@ class_name Player
 signal player_hit
 signal start_game_pressed
 
-@onready var top_shield: Area2D = $Shields/TopShield
-@onready var right_shield: Area2D = $Shields/RightShield
-@onready var bottom_shield: Area2D = $Shields/BottomShield
-@onready var left_shield: Area2D = $Shields/LeftShield
-@onready var top_cannon: Cannon = $Canons/TopCannon
-@onready var right_cannon: Cannon = $Canons/RightCannon
-@onready var bottom_cannon: Cannon = $Canons/BottomCannon
-@onready var left_cannon: Cannon = $Canons/LeftCannon
+#@onready var top_shield: Area2D = $Shields/TopShield
+#@onready var right_shield: Area2D = $Shields/RightShield
+#@onready var bottom_shield: Area2D = $Shields/BottomShield
+#@onready var left_shield: Area2D = $Shields/LeftShield
+
+@onready var top_cannon: Cannon = $Cannons/TopCannon
+@onready var right_cannon: Cannon = $Cannons/RightCannon
+@onready var bottom_cannon: Cannon = $Cannons/BottomCannon
+@onready var left_cannon: Cannon = $Cannons/LeftCannon
+
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -27,21 +29,21 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_pressed("start_game"):
 		start_game_pressed.emit()
 	
-func _update_shields(dir: String) -> void:
-	top_shield.shield_off()
-	right_shield.shield_off()
-	bottom_shield.shield_off()
-	left_shield.shield_off()
-	
-	match dir:
-		"up":
-			top_shield.shield_on()
-		"right":
-			right_shield.shield_on()
-		"down":
-			bottom_shield.shield_on()
-		"left":
-			left_shield.shield_on()
+#func _update_shields(dir: String) -> void:
+	#top_shield.shield_off()
+	#right_shield.shield_off()
+	#bottom_shield.shield_off()
+	#left_shield.shield_off()
+	#
+	#match dir:
+		#"up":
+			#top_shield.shield_on()
+		#"right":
+			#right_shield.shield_on()
+		#"down":
+			#bottom_shield.shield_on()
+		#"left":
+			#left_shield.shield_on()
 	
 func _handle_firing() -> void:
 	var parent := get_parent()
@@ -91,6 +93,3 @@ func _on_cannon_hit(cannon_direction: Vector2) -> void:
 	
 func _on_area_entered(area: Area2D) -> void:
 	_handle_hit(area)
-
-func _on_shields_component_shield_changed(new_direction: String) -> void:
-	_update_shields(new_direction)
