@@ -35,7 +35,10 @@ func _start_game() -> void:
 	_update_ui()
 	for i in range(6):
 		Sfx.play_sfx(game_start_sound, global_position)
-		await get_tree().create_timer(i / 6 * 0.001).timeout
+		# Start at 0.25s and get smaller as i increases
+		# Using a negative exponent causes the value to shrink
+		var delay := GameMath.get_scaled_value(0.25, i + 1, -1.5)
+		await get_tree().create_timer(delay).timeout
 	if not bg_music_player.playing:
 		bg_music_player.play()
 	
@@ -45,13 +48,13 @@ func _update_ui() -> void:
 		
 func _end_game() -> void:
 	_update_ui()
+	game_over = true
 	enemy_bottom.disable(false)
 	enemy_left.disable(false)
 	enemy_right.disable(false)
 	enemy_top.disable(false)
 	ui.show_game_over()
 	player.die()
-	game_over = true
 	Sfx.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
 		
