@@ -1,37 +1,21 @@
-extends CanvasLayer
+@tool
+class_name UI extends Node2D
 
-@onready var score_value: Label = %ScoreValue
-@onready var health_1: TextureRect = %Health1
-@onready var health_2: TextureRect = %Health2
-@onready var health_3: TextureRect = %Health3
 @onready var game_over_panel: Panel = %GameOverPanel
+@onready var arcade_overlay: ArcadeOverlay = %ArcadeOverlay
+@onready var upgrade_interface: Node2D = %UpgradeInterface
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	game_over_panel.visible = false
-	
+func _ready() -> void:	
+	print("Panel Size: ", game_over_panel.size)
+	print("Viewport Size: ", get_viewport_rect().size)
+	hide_game_over()
+
 func update_ui(score: int, player_health: int) -> void:
-	score_value.text = str(score)
-	_set_player_health(player_health)
-	
+	arcade_overlay.update_ui(score, player_health)
+
 func show_game_over() -> void:
-	game_over_panel.visible = true
+	upgrade_interface.visible = true
 	
 func hide_game_over() -> void:
-	game_over_panel.visible = false
-
-func _set_player_health(player_health: int) -> void:
-	if player_health > 0:
-		health_1.visible = true
-	else:
-		health_1.visible = false
-		
-	if player_health > 1:
-		health_2.visible = true
-	else:
-		health_2.visible = false
-		
-	if player_health > 2:
-		health_3.visible = true
-	else:
-		health_3.visible = false
+	upgrade_interface.visible = false

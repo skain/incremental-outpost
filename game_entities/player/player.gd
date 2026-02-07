@@ -26,6 +26,9 @@ func die() -> void:
 func reset() -> void:
 	health = max_health
 	cannons.reset_cannons()	
+	
+func make_camera_current() -> void:
+	camera_2d.make_current()
 
 func _handle_hit(projectile: EnemyProjectile) -> void:
 	if not health > 0:

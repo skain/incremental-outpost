@@ -5,7 +5,7 @@ extends Node2D
 
 @onready var player: Player = $Player
 @onready var enemies: Node2D = $Enemies
-@onready var ui: CanvasLayer = $UI
+@onready var ui: UI = $UI
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 
 const BASE_SCORE := 10
@@ -23,6 +23,7 @@ func _start_game() -> void:
 	game_over = false
 	current_score = 0
 	player.reset()
+	player.make_camera_current()
 	enemies.reset_enemies()
 	ui.hide_game_over()
 	_update_ui()
