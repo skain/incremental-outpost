@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkgov81stuqku"]
 
-[ext_resource type="Script" uid="uid://d0pg51fthyw1t" path="res://scripts/muzzle_flash.gd" id="1_r2kf7"]
+[ext_resource type="Script" uid="uid://d0pg51fthyw1t" path="res://game_entities/muzzle_flash/muzzle_flash.gd" id="1_ssybx"]
 
 [sub_resource type="Gradient" id="Gradient_yjv0y"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -24,7 +24,7 @@ color = Color(1.8977889, 0.69504464, 0.46488988, 1)
 color_ramp = SubResource("GradientTexture1D_r2kf7")
 
 [node name="MuzzleFlash" type="Node2D" unique_id=2020624600]
-script = ExtResource("1_r2kf7")
+script = ExtResource("1_ssybx")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1039120399]
 emitting = false

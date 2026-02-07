@@ -4,12 +4,8 @@ extends Node2D
 @export var game_over_sound: AudioStream
 
 @onready var player: Player = $Player
-@onready var enemy_left: Enemy = $Enemies/EnemyLeft
-@onready var enemy_top: Enemy = $Enemies/EnemyTop
-@onready var enemy_right: Enemy = $Enemies/EnemyRight
-@onready var enemy_bottom: Enemy = $Enemies/EnemyBottom
+@onready var enemies: Node2D = $Enemies
 @onready var ui: CanvasLayer = $UI
-@onready var game_start_player: AudioStreamPlayer2D = $GameStartPlayer
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 
 const BASE_SCORE := 10
@@ -27,10 +23,7 @@ func _start_game() -> void:
 	game_over = false
 	current_score = 0
 	player.reset()
-	enemy_bottom.reset()
-	enemy_left.reset()
-	enemy_right.reset()
-	enemy_top.reset()
+	enemies.reset_enemies()
 	ui.hide_game_over()
 	_update_ui()
 	for i in range(6):
@@ -49,10 +42,7 @@ func _update_ui() -> void:
 func _end_game() -> void:
 	_update_ui()
 	game_over = true
-	enemy_bottom.disable(false)
-	enemy_left.disable(false)
-	enemy_right.disable(false)
-	enemy_top.disable(false)
+	enemies.disable_enemies()
 	ui.show_game_over()
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)

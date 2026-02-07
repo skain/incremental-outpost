@@ -3,7 +3,7 @@ class_name Cannon
 
 signal cannon_hit(cannon_direction: Vector2)
 
-const PROJECTILE_SCENE = preload("res://scenes/player_projectile.tscn")
+const PROJECTILE_SCENE = preload("res://game_entities/player_projectile/player_projectile.tscn")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D

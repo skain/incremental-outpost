@@ -44,7 +44,7 @@ func _shake_camera(intensity: float, duration: float) -> void:
 		shake_tween.tween_property(camera_2d, "offset", offset, duration / 10.0).set_trans(Tween.TRANS_SINE)
 		shake_tween.tween_property(camera_2d, "offset", Vector2.ZERO, duration / 10.0).set_trans(Tween.TRANS_SINE)
 
-func _on_cannon_hit(cannon_direction: Vector2) -> void:
+func _on_cannon_hit(_cannon_direction: Vector2) -> void:
 	_shake_camera(5.0, 0.125)
 	
 func _on_area_entered(area: Area2D) -> void:

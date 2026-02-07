@@ -3,7 +3,7 @@ class_name Enemy
 
 signal enemy_hit(enemy:Enemy)
 
-const PROJECTILE_SCENE = preload("res://scenes/enemy_projectile.tscn")
+const PROJECTILE_SCENE = preload("res://game_entities/enemy_projectile/enemy_projectile.tscn")
 
 @export var base_shoot_delay: float = 1
 @export var base_shoot_chance: float = 50
