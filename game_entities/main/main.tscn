@@ -6,17 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://game_entities/enemy/enemy.tscn" id="2_kj2c7"]
 [ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_4iaaq"]
 [ext_resource type="PackedScene" uid="uid://bveowmm44i684" path="res://game_entities/ui/ui.tscn" id="3_vqoxj"]
+[ext_resource type="Environment" uid="uid://bh4i7llghal6a" path="res://world_environment.tres" id="4_4iaaq"]
 [ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="4_dooaf"]
 [ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://game_entities/main/enemies.gd" id="5_83wlk"]
-
-[sub_resource type="Environment" id="Environment_tefeu"]
-background_mode = 3
-glow_enabled = true
-glow_levels/4 = 0.3
-glow_levels/5 = 0.4
-glow_levels/6 = 0.5
-glow_bloom = 0.25
-glow_blend_mode = 0
 
 [sub_resource type="Gradient" id="Gradient_jyhfs"]
 offsets = PackedFloat32Array(0.8648649, 1)
@@ -51,7 +43,7 @@ game_start_sound = ExtResource("2_83wlk")
 game_over_sound = ExtResource("3_4iaaq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1950625691]
-environment = SubResource("Environment_tefeu")
+environment = ExtResource("4_4iaaq")
 
 [node name="Backdrop" type="CanvasLayer" parent="." unique_id=402731984]
 layer = -100
