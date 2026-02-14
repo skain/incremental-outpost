@@ -12,39 +12,45 @@
 
 [node name="GlowTest" type="Node2D" unique_id=1447636078]
 
+[node name="ArcadeBackdrop" parent="." unique_id=674294416 instance=ExtResource("2_t67k3")]
+position = Vector2(320, 320)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740934367]
 environment = ExtResource("1_byxpa")
 
-[node name="ArcadeBackdrop" parent="." unique_id=674294416 instance=ExtResource("2_t67k3")]
-
 [node name="Cannon" type="Sprite2D" parent="." unique_id=1890649953]
-self_modulate = Color(1.0138007, 1.0138007, 1.0138007, 1)
+self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 position = Vector2(304, 467)
 scale = Vector2(3, 3)
 texture = ExtResource("3_schhy")
 
 [node name="Enemy" type="Sprite2D" parent="." unique_id=1316741027]
+self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 position = Vector2(196, 230)
 texture = ExtResource("4_qqx7u")
 
 [node name="Health" type="Sprite2D" parent="." unique_id=1785392721]
+self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 position = Vector2(82, 317)
 texture = ExtResource("5_1q4ox")
 
 [node name="Player" type="Sprite2D" parent="." unique_id=1164911279]
+self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 position = Vector2(299, 331)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("6_yjphi")
 
 [node name="Shield" type="Sprite2D" parent="." unique_id=773977545]
+self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 position = Vector2(299, 273)
 texture = ExtResource("7_wegfq")
-
-[node name="PlayerProjectile" parent="." unique_id=123665237 instance=ExtResource("8_n4uko")]
-position = Vector2(93, 224)
 
 [node name="EnemyProjectile" parent="." unique_id=1387055740 instance=ExtResource("9_1phbt")]
 position = Vector2(279, 219)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=253644478]
-color = Color(0.91, 0.91, 0.91, 1)
+color = Color(0.65, 0.65, 0.65, 1)
+
+[node name="PlayerProjectile" parent="." unique_id=123665237 instance=ExtResource("8_n4uko")]
+show_behind_parent = false
+position = Vector2(445, 251)

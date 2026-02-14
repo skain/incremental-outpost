@@ -27,10 +27,10 @@ frequency = 0.0511
 noise = SubResource("FastNoiseLite_85g3d")
 color_ramp = SubResource("Gradient_tipki")
 
-[node name="ArcadeBackdrop" type="CanvasLayer" unique_id=674294416]
-layer = -100
+[node name="ArcadeBackdrop" type="Node2D" unique_id=1580856931]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=698168626]
+custom_minimum_size = Vector2(640, 640)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,6 +39,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1263292019]
+custom_minimum_size = Vector2(640, 640)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,6 +49,7 @@ texture = SubResource("NoiseTexture2D_tefeu")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1412525680]
 material = SubResource("CanvasItemMaterial_o6xl0")
+custom_minimum_size = Vector2(640, 640)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
