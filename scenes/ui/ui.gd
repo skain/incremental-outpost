@@ -1,4 +1,3 @@
-@tool
 class_name UI extends Node2D
 
 @onready var game_over_panel: Panel = %GameOverPanel

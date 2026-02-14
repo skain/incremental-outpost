@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 	#upgrade_camera_2d.zoom = Vector2(sin(0.1 * delta), sin(0.1 * delta))
 	
 func make_camera_current() -> void:
-	upgrade_camera_2d.make_current()
+	pass
+	#upgrade_camera_2d.make_current()
 	
 func show_upgrade_interface() -> void:
 	upgrade_canvas_layer.visible = true

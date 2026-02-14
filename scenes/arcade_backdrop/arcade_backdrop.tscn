@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://drxvkp0wgbvqv"]
+
+[sub_resource type="Gradient" id="Gradient_jyhfs"]
+offsets = PackedFloat32Array(0.8648649, 1)
+colors = PackedColorArray(0, 0, 0.01, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tbgi4"]
+noise_type = 2
+frequency = 0.371
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tefeu"]
+noise = SubResource("FastNoiseLite_tbgi4")
+color_ramp = SubResource("Gradient_jyhfs")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o6xl0"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_tipki"]
+offsets = PackedFloat32Array(0.8648649, 1)
+colors = PackedColorArray(0, 0, 0.047058824, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_85g3d"]
+noise_type = 2
+frequency = 0.0511
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_choun"]
+noise = SubResource("FastNoiseLite_85g3d")
+color_ramp = SubResource("Gradient_tipki")
+
+[node name="ArcadeBackdrop" type="CanvasLayer" unique_id=674294416]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=698168626]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1263292019]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_tefeu")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1412525680]
+material = SubResource("CanvasItemMaterial_o6xl0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_choun")

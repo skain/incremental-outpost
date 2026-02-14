@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b811xsj461t3e"]
 
 [ext_resource type="Texture2D" uid="uid://c1tnv4c8momyn" path="res://assets/enemy-bullet.png" id="1_bhg48"]
-[ext_resource type="Script" uid="uid://8tomxvdjshrn" path="res://game_entities/enemy_projectile/enemy_projectile.gd" id="1_e4rc5"]
+[ext_resource type="Script" uid="uid://8tomxvdjshrn" path="res://scenes/enemy_projectile/enemy_projectile.gd" id="1_e4rc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ik0"]
 size = Vector2(32, 32)
@@ -16,6 +16,7 @@ modulate = Color(1.4586968, 1.4586968, 1.4586968, 1)
 texture = ExtResource("1_bhg48")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394548682]
+visible = false
 shape = SubResource("RectangleShape2D_e8ik0")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cvh1j1joqv81t"]
 
-[ext_resource type="Script" uid="uid://nq6xthwv0xht" path="res://game_entities/ui/upgrade_interface.gd" id="1_3o6ct"]
+[ext_resource type="Script" uid="uid://nq6xthwv0xht" path="res://scenes/ui/upgrade_interface.gd" id="1_3o6ct"]
 [ext_resource type="FontFile" uid="uid://c6yugg4s6ayo3" path="res://assets/Pixel Game.otf" id="2_ocpqy"]
 
 [node name="UpgradeInterface" type="Node2D" unique_id=1375513929]
-visible = false
 script = ExtResource("1_3o6ct")
 
 [node name="UpgradeCamera2D" type="Camera2D" parent="." unique_id=618262142]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drdfp1uduh77v"]
 
-[ext_resource type="Script" uid="uid://b2yuue61t8cj6" path="res://game_entities/ui/arcade_overlay.gd" id="1_uki8k"]
+[ext_resource type="Script" uid="uid://b2yuue61t8cj6" path="res://scenes/ui/arcade_overlay.gd" id="1_uki8k"]
 [ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="2_g8o6g"]
 [ext_resource type="Theme" uid="uid://bu7liu2y80vnx" path="res://themes/default_theme.tres" id="3_5if7m"]
 
