@@ -1,110 +1,14 @@
 [gd_scene format=3 uid="uid://bveowmm44i684"]
 
 [ext_resource type="Script" uid="uid://dl5uham4enamd" path="res://game_entities/ui/ui.gd" id="1_qys5q"]
-[ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="1_yev5y"]
-[ext_resource type="Script" uid="uid://b2yuue61t8cj6" path="res://game_entities/ui/arcade_overlay.gd" id="2_cyx88"]
-[ext_resource type="Theme" uid="uid://bu7liu2y80vnx" path="res://themes/default_theme.tres" id="2_gdt2y"]
-[ext_resource type="FontFile" uid="uid://c6yugg4s6ayo3" path="res://assets/Pixel Game.otf" id="3_wm3ai"]
-[ext_resource type="Script" uid="uid://nq6xthwv0xht" path="res://game_entities/ui/upgrade_interface.gd" id="5_tup45"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://drdfp1uduh77v" path="res://game_entities/ui/arcade_overlay.tscn" id="2_2jqha"]
+[ext_resource type="PackedScene" uid="uid://cvh1j1joqv81t" path="res://game_entities/ui/upgrade_interface.tscn" id="3_qys5q"]
 
 [node name="UI" type="Node2D" unique_id=379921246]
 script = ExtResource("1_qys5q")
 
-[node name="ArcadeOverlay" type="CanvasLayer" parent="." unique_id=110416762]
+[node name="ArcadeOverlay" parent="." unique_id=370100714 instance=ExtResource("2_2jqha")]
 unique_name_in_owner = true
-script = ExtResource("2_cyx88")
 
-[node name="Panel" type="Panel" parent="ArcadeOverlay" unique_id=412204589]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_tbgi4")
-
-[node name="HealthHBoxContainer" type="HBoxContainer" parent="ArcadeOverlay/Panel" unique_id=1623456052]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Health1" type="TextureRect" parent="ArcadeOverlay/Panel/HealthHBoxContainer" unique_id=46811982]
+[node name="UpgradeInterface" parent="." unique_id=1375513929 instance=ExtResource("3_qys5q")]
 unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_yev5y")
-stretch_mode = 2
-
-[node name="Health2" type="TextureRect" parent="ArcadeOverlay/Panel/HealthHBoxContainer" unique_id=1320696598]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_yev5y")
-stretch_mode = 2
-
-[node name="Health3" type="TextureRect" parent="ArcadeOverlay/Panel/HealthHBoxContainer" unique_id=993478229]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("1_yev5y")
-stretch_mode = 2
-
-[node name="ScoreHBoxContainer" type="HBoxContainer" parent="ArcadeOverlay/Panel" unique_id=2078757583]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -158.0
-offset_bottom = 49.0
-grow_horizontal = 0
-size_flags_horizontal = 0
-theme = ExtResource("2_gdt2y")
-alignment = 2
-
-[node name="ScoreLabel" type="Label" parent="ArcadeOverlay/Panel/ScoreHBoxContainer" unique_id=1288837128]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Score: "
-
-[node name="ScoreValue" type="Label" parent="ArcadeOverlay/Panel/ScoreHBoxContainer" unique_id=1654644774]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "10"
-
-[node name="UpgradeInterface" type="Node2D" parent="." unique_id=1042056814]
-unique_name_in_owner = true
-script = ExtResource("5_tup45")
-
-[node name="UpgradeCamera2D" type="Camera2D" parent="UpgradeInterface" unique_id=1649520620]
-
-[node name="UpgradeCanvasLayer" type="CanvasLayer" parent="UpgradeInterface" unique_id=1041438799]
-
-[node name="GameOverPanel" type="Panel" parent="UpgradeInterface/UpgradeCanvasLayer" unique_id=571100863]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(640, 640)
-offset_right = 640.0
-offset_bottom = 640.0
-
-[node name="CenterContainer" type="CenterContainer" parent="UpgradeInterface/UpgradeCanvasLayer/GameOverPanel" unique_id=673995625]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeInterface/UpgradeCanvasLayer/GameOverPanel/CenterContainer" unique_id=472214859]
-layout_mode = 2
-
-[node name="GameOver" type="Label" parent="UpgradeInterface/UpgradeCanvasLayer/GameOverPanel/CenterContainer/VBoxContainer" unique_id=624317083]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
-theme_override_fonts/font = ExtResource("3_wm3ai")
-theme_override_font_sizes/font_size = 142
-text = "GAME OVER"
-
-[node name="Label" type="Label" parent="UpgradeInterface/UpgradeCanvasLayer/GameOverPanel/CenterContainer/VBoxContainer" unique_id=1781666490]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_wm3ai")
-theme_override_font_sizes/font_size = 36
-text = "Press Enter to Continue..."
-horizontal_alignment = 1

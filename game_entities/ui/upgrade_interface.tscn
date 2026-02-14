@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cvh1j1joqv81t"]
+
+[ext_resource type="Script" uid="uid://nq6xthwv0xht" path="res://game_entities/ui/upgrade_interface.gd" id="1_3o6ct"]
+[ext_resource type="FontFile" uid="uid://c6yugg4s6ayo3" path="res://assets/Pixel Game.otf" id="2_ocpqy"]
+
+[node name="UpgradeInterface" type="Node2D" unique_id=1375513929]
+visible = false
+script = ExtResource("1_3o6ct")
+
+[node name="UpgradeCamera2D" type="Camera2D" parent="." unique_id=618262142]
+
+[node name="UpgradeCanvasLayer" type="CanvasLayer" parent="." unique_id=1576673112]
+
+[node name="GameOverPanel" type="Panel" parent="UpgradeCanvasLayer" unique_id=1051713875]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(640, 640)
+offset_right = 640.0
+offset_bottom = 640.0
+
+[node name="CenterContainer" type="CenterContainer" parent="UpgradeCanvasLayer/GameOverPanel" unique_id=1960873545]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeCanvasLayer/GameOverPanel/CenterContainer" unique_id=1863191476]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="UpgradeCanvasLayer/GameOverPanel/CenterContainer/VBoxContainer" unique_id=1326215285]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
+theme_override_fonts/font = ExtResource("2_ocpqy")
+theme_override_font_sizes/font_size = 142
+text = "GAME OVER"
+
+[node name="Label" type="Label" parent="UpgradeCanvasLayer/GameOverPanel/CenterContainer/VBoxContainer" unique_id=1166581502]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ocpqy")
+theme_override_font_sizes/font_size = 36
+text = "Press Enter to Continue..."
+horizontal_alignment = 1

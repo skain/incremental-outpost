@@ -39,7 +39,6 @@ func _start_game() -> void:
 func _update_ui() -> void:
 	ui.update_ui(current_score, player.health)	
 
-		
 func _end_game() -> void:
 	_update_ui()
 	game_over = true
@@ -48,7 +47,6 @@ func _end_game() -> void:
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
-		
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += enemy.enemy_level * BASE_SCORE
