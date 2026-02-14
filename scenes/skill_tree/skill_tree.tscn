@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cygy2bkg5ej1v"]
+
+[ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://game_entities/skill_tree/skill_tree.gd" id="1_8xoaq"]
+[ext_resource type="PackedScene" uid="uid://brpiv34bgojm7" path="res://game_entities/skill_tree_node/skill_tree_node.tscn" id="3_0k2sf"]
+[ext_resource type="Texture2D" uid="uid://dri68be65dtg2" path="res://assets/skill_tree/icons/plus.png" id="4_0k2sf"]
+[ext_resource type="Texture2D" uid="uid://dwvcaducbrtwn" path="res://assets/skill_tree/icons/question_mark.png" id="5_30tvk"]
+[ext_resource type="Environment" uid="uid://bh4i7llghal6a" path="res://world_environment.tres" id="5_ktcmd"]
+[ext_resource type="PackedScene" uid="uid://b61vvq1pqjeal" path="res://game_entities/skill_line/skill_line.tscn" id="5_s4aw3"]
+
+[node name="SkillTree" type="Node2D" unique_id=1981789528]
+script = ExtResource("1_8xoaq")
+
+[node name="Nodes" type="Node2D" parent="." unique_id=1264610525]
+unique_name_in_owner = true
+
+[node name="SkillTreeNode" parent="Nodes" unique_id=1768832873 instance=ExtResource("3_0k2sf")]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(175, 173)
+icon_texture = ExtResource("4_0k2sf")
+current_state = 2
+
+[node name="SkillTreeNode2" parent="Nodes" unique_id=1280570480 instance=ExtResource("3_0k2sf")]
+position = Vector2(405, 179)
+icon_texture = ExtResource("5_30tvk")
+current_state = 1
+
+[node name="Lines" type="Node2D" parent="." unique_id=727771407]
+unique_name_in_owner = true
+
+[node name="SkillLine" parent="Lines" unique_id=940538298 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("5_s4aw3")]
+points = PackedVector2Array(581, 66)
+node_a = NodePath("../../Nodes/SkillTreeNode")
+node_b = NodePath("../../Nodes/SkillTreeNode2")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1707505872]
+unique_name_in_owner = true
+offset = Vector2(320, 320)
+
+[node name="DevWorldEnvironment" type="WorldEnvironment" parent="." unique_id=291671582]
+unique_name_in_owner = true
+environment = ExtResource("5_ktcmd")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://jqxw647e4pa0"]
+
+[ext_resource type="PackedScene" uid="uid://brpiv34bgojm7" path="res://game_entities/skill_tree_node/skill_tree_node.tscn" id="1_njl3s"]
+[ext_resource type="Texture2D" uid="uid://dri68be65dtg2" path="res://assets/skill_tree/icons/plus.png" id="2_uvj3m"]
+
+[node name="TestScene" type="Node2D" unique_id=1570263889]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1709173416]
+offset_right = 640.0
+offset_bottom = 640.0
+color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+
+[node name="SkillTreeNode" parent="." unique_id=1768832873 instance=ExtResource("1_njl3s")]
+position = Vector2(327, 296)
+icon_texture = ExtResource("2_uvj3m")
+current_state = 1
