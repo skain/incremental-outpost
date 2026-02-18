@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1tnv4c8momyn"
-path="res://.godot/imported/enemy-bullet.png-db8f244dea52746b3d64c9db2700aa9a.ctex"
+uid="uid://xbg5pfiuubgs"
+path="res://.godot/imported/sprite-sprout-309x309.png-77403d772cc42259b3603e428906b2f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets-old/enemy-bullet.png"
-dest_files=["res://.godot/imported/enemy-bullet.png-db8f244dea52746b3d64c9db2700aa9a.ctex"]
+source_file="res://wip/sprite-sprout-309x309.png"
+dest_files=["res://.godot/imported/sprite-sprout-309x309.png-77403d772cc42259b3603e428906b2f1.ctex"]
 
 [params]
 

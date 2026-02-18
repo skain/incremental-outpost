@@ -1,24 +1,25 @@
 [gd_scene format=3 uid="uid://xute0hqlqdqy"]
 
-[ext_resource type="Texture2D" uid="uid://bcucr2yj5l30l" path="res://assets/Cannon.png" id="1_7hmgl"]
 [ext_resource type="Script" uid="uid://wfclnfyk0tgx" path="res://scenes/cannon/cannon.gd" id="1_kguej"]
-[ext_resource type="AudioStream" uid="uid://bma2jj20i0mew" path="res://assets/sounds/8-bit Sound Library/Shoot_02.wav" id="2_kguej"]
-[ext_resource type="AudioStream" uid="uid://b7hx5efsubi5v" path="res://assets/sounds/8-bit Sound Library/Explosion_02.wav" id="3_fq1eg"]
+[ext_resource type="AudioStream" uid="uid://bma2jj20i0mew" path="res://assets.bak/sounds/8-bit Sound Library/Shoot_02.wav" id="2_kguej"]
+[ext_resource type="AudioStream" uid="uid://b7hx5efsubi5v" path="res://assets.bak/sounds/8-bit Sound Library/Explosion_02.wav" id="3_fq1eg"]
 [ext_resource type="PackedScene" uid="uid://bkgov81stuqku" path="res://scenes/muzzle_flash/muzzle_flash.tscn" id="4_hrred"]
+[ext_resource type="Texture2D" uid="uid://n4afrcf75re3" path="res://assets/Cannon.png" id="5_lb0lo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxhkx"]
-size = Vector2(28, 2)
+size = Vector2(14, 2)
 
 [node name="Cannon" type="Area2D" unique_id=1914894468]
 collision_mask = 16
 script = ExtResource("1_kguej")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1545639210]
-texture = ExtResource("1_7hmgl")
+[node name="Cannon" type="Sprite2D" parent="." unique_id=646691869]
+scale = Vector2(0.86, 0.86)
+texture = ExtResource("5_lb0lo")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047179144]
-position = Vector2(0, -1)
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_pxhkx")
 
 [node name="FireAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2099081052]
