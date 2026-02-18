@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://ion13oa2cn05"]
+
+[ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade_backdrop/arcade_backdrop.tscn" id="1_iyses"]
+[ext_resource type="Texture2D" uid="uid://10uckrpdny7t" path="res://assets/player.png" id="2_1nlwk"]
+[ext_resource type="Texture2D" uid="uid://bcucr2yj5l30l" path="res://assets/Cannon.png" id="3_b6ebu"]
+[ext_resource type="Texture2D" uid="uid://c78ssusbt68u4" path="res://assets/enemy.png" id="4_v4i6i"]
+[ext_resource type="Texture2D" uid="uid://dofi87kcbpa8v" path="res://assets/Shield.png" id="5_1hi8c"]
+[ext_resource type="Texture2D" uid="uid://b5lwugpcxrhhf" path="res://assets/player-bullet.png" id="6_lmyum"]
+[ext_resource type="Texture2D" uid="uid://c1tnv4c8momyn" path="res://assets/enemy-bullet.png" id="7_htolm"]
+
+[node name="Node2D" type="Node2D" unique_id=644554449]
+
+[node name="ArcadeBackdrop" parent="." unique_id=1580856931 instance=ExtResource("1_iyses")]
+position = Vector2(320, 320)
+
+[node name="Player" type="Sprite2D" parent="." unique_id=2038935190]
+position = Vector2(320, 320)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_1nlwk")
+
+[node name="Cannon" type="Sprite2D" parent="." unique_id=840172349]
+position = Vector2(320, 286)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_b6ebu")
+hframes = 2
+
+[node name="Cannon2" type="Sprite2D" parent="." unique_id=829914540]
+position = Vector2(320, 354.00003)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_b6ebu")
+hframes = 2
+
+[node name="Cannon4" type="Sprite2D" parent="." unique_id=1038762298]
+position = Vector2(286.00003, 320.00003)
+rotation = 1.5707964
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_b6ebu")
+hframes = 2
+
+[node name="Cannon5" type="Sprite2D" parent="." unique_id=1621754791]
+position = Vector2(354.00003, 319.99997)
+rotation = 1.5707964
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_b6ebu")
+hframes = 2
+frame = 1
+
+[node name="Enemy" type="Sprite2D" parent="." unique_id=2071252141]
+position = Vector2(320, 606)
+texture = ExtResource("4_v4i6i")
+
+[node name="Enemy2" type="Sprite2D" parent="." unique_id=1640713121]
+position = Vector2(320, 32)
+rotation = 3.1415927
+texture = ExtResource("4_v4i6i")
+
+[node name="Enemy3" type="Sprite2D" parent="." unique_id=940267076]
+position = Vector2(32, 320)
+rotation = 1.5707964
+texture = ExtResource("4_v4i6i")
+
+[node name="Enemy4" type="Sprite2D" parent="." unique_id=1324544979]
+position = Vector2(607, 320)
+rotation = 4.712389
+texture = ExtResource("4_v4i6i")
+
+[node name="Shield" type="Sprite2D" parent="." unique_id=532867393]
+position = Vector2(320, 270)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_1hi8c")
+
+[node name="PlayerBullet" type="Sprite2D" parent="." unique_id=253853725]
+position = Vector2(254, 320)
+texture = ExtResource("6_lmyum")
+
+[node name="EnemyBullet" type="Sprite2D" parent="." unique_id=1846005622]
+position = Vector2(533, 320)
+texture = ExtResource("7_htolm")

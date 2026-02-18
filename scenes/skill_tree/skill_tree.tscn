@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cygy2bkg5ej1v"]
 
-[ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://game_entities/skill_tree/skill_tree.gd" id="1_8xoaq"]
-[ext_resource type="PackedScene" uid="uid://brpiv34bgojm7" path="res://game_entities/skill_tree_node/skill_tree_node.tscn" id="3_0k2sf"]
+[ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://scenes/skill_tree/skill_tree.gd" id="1_8xoaq"]
+[ext_resource type="PackedScene" uid="uid://brpiv34bgojm7" path="res://scenes/skill_tree_node/skill_tree_node.tscn" id="3_0k2sf"]
 [ext_resource type="Texture2D" uid="uid://dri68be65dtg2" path="res://assets/skill_tree/icons/plus.png" id="4_0k2sf"]
 [ext_resource type="Texture2D" uid="uid://dwvcaducbrtwn" path="res://assets/skill_tree/icons/question_mark.png" id="5_30tvk"]
 [ext_resource type="Environment" uid="uid://bh4i7llghal6a" path="res://world_environment.tres" id="5_ktcmd"]
-[ext_resource type="PackedScene" uid="uid://b61vvq1pqjeal" path="res://game_entities/skill_line/skill_line.tscn" id="5_s4aw3"]
+[ext_resource type="PackedScene" uid="uid://b61vvq1pqjeal" path="res://scenes/skill_line/skill_line.tscn" id="5_s4aw3"]
 
 [node name="SkillTree" type="Node2D" unique_id=1981789528]
 script = ExtResource("1_8xoaq")
@@ -14,10 +14,9 @@ script = ExtResource("1_8xoaq")
 unique_name_in_owner = true
 
 [node name="SkillTreeNode" parent="Nodes" unique_id=1768832873 instance=ExtResource("3_0k2sf")]
-modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(175, 173)
 icon_texture = ExtResource("4_0k2sf")
-current_state = 2
+current_state = 1
 
 [node name="SkillTreeNode2" parent="Nodes" unique_id=1280570480 instance=ExtResource("3_0k2sf")]
 position = Vector2(405, 179)

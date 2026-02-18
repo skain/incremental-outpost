@@ -33,17 +33,20 @@ func _update_line() -> void:
 	_update_style()
 
 func _update_style() -> void:
+	
+	default_color = Color(1.5, 1.0, 0.2, 1.0) # Glowing Amber
+	width = 2.0
 	# LOGIC: The cable's appearance depends on the nodes it connects
-	if node_a.current_state == SkillTreeNode.State.PURCHASED:
-		if node_b.current_state == SkillTreeNode.State.PURCHASED:
-			# Fully powered connection
-			default_color = Color(1.5, 1.0, 0.2, 1.0) # Glowing Amber
-			width = 2.0
-		elif node_b.current_state != SkillTreeNode.State.UNAVAILABLE:
-			# Available path, but not yet taken
-			default_color = Color(1.0, 0.7, 0, 1.0) # Standard Amber
-			width = 1.0
-	else:
-		# Unpowered / Locked path
-		default_color = Color(0.2, 0.15, 0, 0.5) # Very dark/dim
-		width = 1.0
+	#if node_a.current_state == SkillTreeNode.State.PURCHASED:
+		#if node_b.current_state == SkillTreeNode.State.PURCHASED:
+			## Fully powered connection
+			#default_color = Color(1.5, 1.0, 0.2, 1.0) # Glowing Amber
+			#width = 2.0
+		#elif node_b.current_state != SkillTreeNode.State.UNAVAILABLE:
+			## Available path, but not yet taken
+			#default_color = Color(1.0, 0.7, 0, 1.0) # Standard Amber
+			#width = 1.0
+	#else:
+		## Unpowered / Locked path
+		#default_color = Color(0.2, 0.15, 0, 0.5) # Very dark/dim
+		#width = 1.0
