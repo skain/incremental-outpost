@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	#upgrade_camera_2d.zoom = Vector2(sin(0.1 * delta), sin(0.1 * delta))
 	

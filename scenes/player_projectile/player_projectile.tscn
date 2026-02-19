@@ -11,6 +11,9 @@ show_behind_parent = true
 collision_layer = 8
 script = ExtResource("1_8fsl8")
 
+[node name="PlayerProjectile" type="Sprite2D" parent="." unique_id=1607288836]
+texture = ExtResource("2_hqjk7")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1330633448]
 visible = false
 position = Vector2(1.9073486e-06, 0)
@@ -20,8 +23,5 @@ shape = SubResource("RectangleShape2D_oxij3")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199237935]
 visible = false
 rect = Rect2(-32, -32, 64, 64)
-
-[node name="PlayerProjectile" type="Sprite2D" parent="." unique_id=1607288836]
-texture = ExtResource("2_hqjk7")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
