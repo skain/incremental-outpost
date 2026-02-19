@@ -17,6 +17,7 @@ collision_mask = 16
 script = ExtResource("1_7ow0l")
 
 [node name="Player" type="Sprite2D" parent="." unique_id=1249087377]
+self_modulate = Color(1.4586968, 1.4586968, 1.4586968, 1)
 texture = ExtResource("2_0owmy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552792780]
