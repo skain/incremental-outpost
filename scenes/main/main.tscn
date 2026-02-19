@@ -32,21 +32,21 @@ script = ExtResource("5_83wlk")
 [node name="EnemyLeft" parent="Enemies" unique_id=1591691842 instance=ExtResource("2_kj2c7")]
 position = Vector2(32, 320)
 rotation = 1.5707964
-scale = Vector2(1, 1)
+scale = Vector2(2, 2)
 
 [node name="EnemyTop" parent="Enemies" unique_id=308799815 instance=ExtResource("2_kj2c7")]
 position = Vector2(320, 32)
 rotation = 3.1415927
-scale = Vector2(1, 1)
+scale = Vector2(2, 2)
 
 [node name="EnemyRight" parent="Enemies" unique_id=1690167790 instance=ExtResource("2_kj2c7")]
 position = Vector2(608, 320)
 rotation = 4.712389
-scale = Vector2(1, 1)
+scale = Vector2(2, 2)
 
 [node name="EnemyBottom" parent="Enemies" unique_id=672570749 instance=ExtResource("2_kj2c7")]
 position = Vector2(320, 608)
-scale = Vector2(1, 1)
+scale = Vector2(2, 2)
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=55557947]
 unique_name_in_owner = true
