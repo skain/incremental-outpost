@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 func setup(starting_direction: Vector2) -> void:
 	direction = starting_direction.normalized()
 	velocity = direction * speed
+	rotation = starting_direction.angle()
 	
 func handle_hit() -> void:
 	queue_free()

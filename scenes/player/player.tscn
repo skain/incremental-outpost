@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dulyh4ydd2vqf" path="res://scenes/shield/shield.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/cannon/cannon.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cmo2t14e770kl" path="res://scenes/player/cannons.gd" id="5_7ow0l"]
-[ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets.bak/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
+[ext_resource type="AudioStream" path="res://assets.bak/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(64, 64)
@@ -20,7 +20,6 @@ script = ExtResource("1_7ow0l")
 texture = ExtResource("2_0owmy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552792780]
-visible = false
 position = Vector2(0.33333334, -0.33333397)
 shape = SubResource("RectangleShape2D_qhqgy")
 

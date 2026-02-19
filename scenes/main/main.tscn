@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scenes/main/main.gd" id="1_dooaf"]
 [ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/player/player.tscn" id="1_kaalg"]
-[ext_resource type="AudioStream" uid="uid://c6nqyyr7inav1" path="res://assets/sounds/8-bit Sound Library/Pickup_03.wav" id="2_83wlk"]
+[ext_resource type="AudioStream" path="res://assets.bak/sounds/8-bit Sound Library/Pickup_03.wav" id="2_83wlk"]
 [ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/enemy/enemy.tscn" id="2_kj2c7"]
-[ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_4iaaq"]
+[ext_resource type="AudioStream" path="res://assets.bak/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_4iaaq"]
 [ext_resource type="PackedScene" uid="uid://bveowmm44i684" path="res://scenes/ui/ui.tscn" id="3_vqoxj"]
 [ext_resource type="Environment" uid="uid://dvkbg3qcvg8lo" path="res://resources/main_world_environment.tres" id="4_4iaaq"]
-[ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="4_dooaf"]
+[ext_resource type="AudioStream" path="res://assets.bak/sounds/music/incremental-outpost-music.wav" id="4_dooaf"]
 [ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/main/enemies.gd" id="5_83wlk"]
 [ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade_backdrop/arcade_backdrop.tscn" id="5_a8run"]
 
@@ -48,8 +48,6 @@ scale = Vector2(1, 1)
 position = Vector2(320, 608)
 scale = Vector2(1, 1)
 
-[node name="UI" parent="." unique_id=110416762 instance=ExtResource("3_vqoxj")]
-
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=55557947]
 unique_name_in_owner = true
 stream = ExtResource("4_dooaf")
@@ -58,9 +56,20 @@ bus = &"Music"
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1969405326]
 color = Color(0.6, 0.6, 0.6, 1)
 
+[node name="UI" parent="." unique_id=379921246 instance=ExtResource("3_vqoxj")]
+
+[node name="UpgradeCanvasLayer" parent="UI/UpgradeInterface" parent_id_path=PackedInt32Array(379921246, 1375513929) index="1" unique_id=1576673112]
+visible = false
+
+[node name="Enemy" parent="." unique_id=579912282 instance=ExtResource("2_kj2c7")]
+position = Vector2(490, 460)
+
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="start_game_pressed" from="Player" to="." method="_on_player_start_game_pressed"]
 [connection signal="enemy_hit" from="Enemies/EnemyLeft" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="Enemies/EnemyTop" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="Enemies/EnemyRight" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="Enemies/EnemyBottom" to="." method="_on_enemy_hit"]
+
+[editable path="UI"]
+[editable path="UI/UpgradeInterface"]
