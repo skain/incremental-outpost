@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dulyh4ydd2vqf"]
 
-[ext_resource type="Script" uid="uid://b0j1xq1rfccbx" path="res://scenes/shield/shield.gd" id="1_4ldry"]
+[ext_resource type="Script" uid="uid://b0j1xq1rfccbx" path="res://scenes/arcade/shield/shield.gd" id="1_4ldry"]
 [ext_resource type="Texture2D" uid="uid://dofi87kcbpa8v" path="res://assets/Shield.png" id="1_a1e1u"]
 [ext_resource type="AudioStream" uid="uid://dhmhy2csml72q" path="res://assets/sounds/8-bit Sound Library/Hit_00.wav" id="2_4ldry"]
 [ext_resource type="AudioStream" uid="uid://b51k07kmg5p46" path="res://assets/sounds/8-bit Sound Library/Climb_Rope_Loop_00.wav" id="3_hg65h"]

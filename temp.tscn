@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://ion13oa2cn05"]
 
-[ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade_backdrop/arcade_backdrop.tscn" id="1_iyses"]
-[ext_resource type="Texture2D" uid="uid://10uckrpdny7t" path="res://assets/player.png" id="2_1nlwk"]
-[ext_resource type="Texture2D" uid="uid://bcucr2yj5l30l" path="res://assets/Cannon.png" id="3_b6ebu"]
-[ext_resource type="Texture2D" uid="uid://c78ssusbt68u4" path="res://assets/enemy.png" id="4_v4i6i"]
+[ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade/arcade_backdrop/arcade_backdrop.tscn" id="1_iyses"]
+[ext_resource type="Texture2D" uid="uid://cxjjqp2urhlxv" path="res://assets/player.png" id="2_1nlwk"]
+[ext_resource type="Texture2D" uid="uid://n4afrcf75re3" path="res://assets/Cannon.png" id="3_b6ebu"]
+[ext_resource type="Texture2D" path="res://assets/enemy.png" id="4_v4i6i"]
 [ext_resource type="Texture2D" uid="uid://dofi87kcbpa8v" path="res://assets/Shield.png" id="5_1hi8c"]
-[ext_resource type="Texture2D" uid="uid://b5lwugpcxrhhf" path="res://assets/player-bullet.png" id="6_lmyum"]
-[ext_resource type="Texture2D" uid="uid://c1tnv4c8momyn" path="res://assets/enemy-bullet.png" id="7_htolm"]
+[ext_resource type="Texture2D" path="res://assets/player-bullet.png" id="6_lmyum"]
+[ext_resource type="Texture2D" path="res://assets/enemy-bullet.png" id="7_htolm"]
 
 [node name="Node2D" type="Node2D" unique_id=644554449]
 

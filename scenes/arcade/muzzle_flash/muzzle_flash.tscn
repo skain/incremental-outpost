@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkgov81stuqku"]
 
-[ext_resource type="Script" uid="uid://d0pg51fthyw1t" path="res://scenes/muzzle_flash/muzzle_flash.gd" id="1_ssybx"]
+[ext_resource type="Script" uid="uid://d0pg51fthyw1t" path="res://scenes/arcade/muzzle_flash/muzzle_flash.gd" id="1_ssybx"]
 
 [sub_resource type="Gradient" id="Gradient_yjv0y"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)

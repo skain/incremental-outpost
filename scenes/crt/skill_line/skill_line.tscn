@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b61vvq1pqjeal"]
 
-[ext_resource type="Script" uid="uid://xntsv3xfj37c" path="res://game_entities/skill_line/skill_line.gd" id="1_18oxn"]
+[ext_resource type="Script" path="res://game_entities/skill_line/skill_line.gd" id="1_18oxn"]
 
 [node name="SkillLine" type="Line2D" unique_id=940538298]
 width = 2.0

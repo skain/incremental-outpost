@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bxhlenghvkl16"]
 
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scenes/main/main.gd" id="1_dooaf"]
-[ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/player/player.tscn" id="1_kaalg"]
+[ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/arcade/player/player.tscn" id="1_kaalg"]
 [ext_resource type="AudioStream" uid="uid://c6nqyyr7inav1" path="res://assets/sounds/8-bit Sound Library/Pickup_03.wav" id="2_83wlk"]
-[ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/enemy/enemy.tscn" id="2_kj2c7"]
+[ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/arcade/enemy/enemy.tscn" id="2_kj2c7"]
 [ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_4iaaq"]
 [ext_resource type="PackedScene" uid="uid://bveowmm44i684" path="res://scenes/ui/ui.tscn" id="3_vqoxj"]
 [ext_resource type="Environment" uid="uid://dvkbg3qcvg8lo" path="res://resources/main_world_environment.tres" id="4_4iaaq"]
 [ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="4_dooaf"]
 [ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/main/enemies.gd" id="5_83wlk"]
-[ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade_backdrop/arcade_backdrop.tscn" id="5_a8run"]
+[ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade/arcade_backdrop/arcade_backdrop.tscn" id="5_a8run"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
 script = ExtResource("1_dooaf")
