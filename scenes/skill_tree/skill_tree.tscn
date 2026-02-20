@@ -2,34 +2,138 @@
 
 [ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://scenes/skill_tree/skill_tree.gd" id="1_8xoaq"]
 [ext_resource type="PackedScene" uid="uid://brpiv34bgojm7" path="res://scenes/skill_tree_node/skill_tree_node.tscn" id="3_0k2sf"]
-[ext_resource type="Texture2D" uid="uid://dri68be65dtg2" path="res://assets/skill_tree/icons/plus.png" id="4_0k2sf"]
-[ext_resource type="Texture2D" uid="uid://dwvcaducbrtwn" path="res://assets/skill_tree/icons/question_mark.png" id="5_30tvk"]
-[ext_resource type="PackedScene" uid="uid://b61vvq1pqjeal" path="res://scenes/skill_line/skill_line.tscn" id="5_s4aw3"]
+[ext_resource type="Script" uid="uid://w2oe8ri1sc1" path="res://scenes/skill_tree/end_game_interstitial.gd" id="3_cppxt"]
+[ext_resource type="Shader" uid="uid://ctmqckux88tcu" path="res://shaders/amber_crt.gdshader" id="4_sb1ul"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbf46"]
+shader = ExtResource("4_sb1ul")
+shader_parameter/warp = 0.05400000256499999
+shader_parameter/scan = 0.28400001349
+shader_parameter/noise_amount = 0.010000000475
 
 [node name="SkillTree" type="Node2D" unique_id=1981789528]
 script = ExtResource("1_8xoaq")
 
-[node name="Nodes" type="Node2D" parent="." unique_id=1264610525]
-unique_name_in_owner = true
+[node name="Background" type="CanvasLayer" parent="." unique_id=1247727966]
+layer = -1
 
-[node name="SkillTreeNode" parent="Nodes" unique_id=1768832873 instance=ExtResource("3_0k2sf")]
-position = Vector2(175, 173)
-icon_texture = ExtResource("4_0k2sf")
-current_state = 1
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1817761643]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="SkillTreeNode2" parent="Nodes" unique_id=1280570480 instance=ExtResource("3_0k2sf")]
-position = Vector2(405, 179)
-icon_texture = ExtResource("5_30tvk")
-current_state = 1
+[node name="SkillTreeNodes" type="Node2D" parent="." unique_id=57239728]
+visible = false
 
-[node name="Lines" type="Node2D" parent="." unique_id=727771407]
-unique_name_in_owner = true
-
-[node name="SkillLine" parent="Lines" unique_id=940538298 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("5_s4aw3")]
-points = PackedVector2Array(581, 66)
-node_a = NodePath("../../Nodes/SkillTreeNode")
-node_b = NodePath("../../Nodes/SkillTreeNode2")
+[node name="SkillTreeNode" parent="SkillTreeNodes" unique_id=1768832873 instance=ExtResource("3_0k2sf")]
+position = Vector2(311, 295)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1707505872]
 unique_name_in_owner = true
 offset = Vector2(320, 320)
+
+[node name="EndGameInterstitial" type="CanvasLayer" parent="." unique_id=43730878]
+script = ExtResource("3_cppxt")
+character_reveal_speed = 0.1
+
+[node name="MarginContainer" type="MarginContainer" parent="EndGameInterstitial" unique_id=2057519644]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="InterstitialLabelsContainer" type="VBoxContainer" parent="EndGameInterstitial/MarginContainer" unique_id=295817908]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Message1" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1206768920]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Consciousness retrieved...
+Verifying...
+.
+.
+.
+Consciousness Verified."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Message2" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=797767799]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = ". . . . . . . . . . ."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ConversionMessage" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1037910890]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Converting %points% points to Bucks (1p/%bucks_per%B). . ."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="BucksConversionDisplay" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1792927170]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "B: 0"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ConversionSuccessMessage" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=2130687641]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Successfully converted %points% points to %bucks% Bucks."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Message3" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=2124928251]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = ". . . . . . . . . . ."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ConversionSuccessMessage2" type="Label" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=481680230]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Press 'Space' To Upgrade -Or- Press 'Enter' To Return To Outpost"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="InterstitialMessageTimer" type="Timer" parent="EndGameInterstitial" unique_id=1879508052]
+unique_name_in_owner = true
+
+[node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=381617986]
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CRTOverlay" unique_id=1682153144]
+copy_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CRTOverlay" unique_id=1399246375]
+material = SubResource("ShaderMaterial_mbf46")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -3,13 +3,11 @@ class_name SkillTreeNode extends Node2D
 
 enum State { UNAVAILABLE, AFFORDABLE, UNAFFORDABLE, PURCHASED }
 
-@export_group("Textures")
 @export var icon_texture: Texture2D:
 	set(v):
 		icon_texture = v
 		_update_visuals()
 
-@export_group("Current Status")
 @export var current_state: State = State.UNAVAILABLE:
 	set(v):
 		current_state = v

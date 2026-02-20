@@ -16,3 +16,6 @@ static func chance_check(percentage: float) -> bool:
 	# randf_range generates a random float between 0.0 and 100.0
 	var roll := randf_range(0.0, 100.0)
 	return roll <= percentage
+
+static func convert_points_to_bucks(points: int, conversion_rate: float) -> int:
+	return floor(points * conversion_rate)

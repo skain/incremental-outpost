@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://brpiv34bgojm7"]
 
-[ext_resource type="Script" uid="uid://h1wyu3nqdquw" path="res://game_entities/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
+[ext_resource type="Script" uid="uid://h1wyu3nqdquw" path="res://scenes/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
 [ext_resource type="Texture2D" uid="uid://t4hkm8pr4v8o" path="res://assets/skill_tree/skill-tree-node-frame.png" id="1_ve1un"]
 [ext_resource type="Texture2D" uid="uid://bxciwg0u45dir" path="res://assets/skill_tree/skill-tree-node-glass.png" id="2_ppave"]
 [ext_resource type="Texture2D" uid="uid://dwvcaducbrtwn" path="res://assets/skill_tree/icons/question_mark.png" id="3_tc6t7"]
 
 [node name="SkillTreeNode" type="Node2D" unique_id=1768832873]
+modulate = Color(0.5, 0.5, 0.5, 1)
 script = ExtResource("1_ppave")
+icon_texture = ExtResource("3_tc6t7")
+current_state = 2
 
 [node name="Frame" type="Sprite2D" parent="." unique_id=1958722130]
 unique_name_in_owner = true
