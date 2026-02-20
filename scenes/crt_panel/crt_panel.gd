@@ -1,4 +1,4 @@
-class_name SkillTree extends Node2D
+class_name CRTPanel extends Node2D
 
 @onready var camera_2d: Camera2D = %Camera2D
 
