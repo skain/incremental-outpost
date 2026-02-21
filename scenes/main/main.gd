@@ -7,7 +7,7 @@ extends Node2D
 @onready var player: Player = %Player
 @onready var enemies: Node2D = %Enemies
 @onready var arcade_game: Node2D = %ArcadeGame
-@onready var crt: Node2D = %CRT
+@onready var crt: CRT = %CRT
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -29,7 +29,7 @@ func _start_game() -> void:
 	#ui.hide_game_over()
 	_update_ui()
 	arcade_game.visible = true
-	crt.visible = false
+	crt.hide_crt()
 	for i in range(6):
 		Sfx.play_sfx(game_start_sound, global_position)
 		# Start at 0.25s and get smaller as i increases

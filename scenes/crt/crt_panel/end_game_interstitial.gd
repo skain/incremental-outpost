@@ -39,6 +39,7 @@ func run_interstitial(points: int, bucks_per_point: float) -> int:
 	conversion_message.text = conversion_message.text.replace("%points%", str(points)).replace("%bucks_per%", str(bucks_per_point))
 	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points)).replace("%bucks%", str(new_bucks))
 	
+	await _power_up()
 	await _reveal_label(message_1)
 	await _reveal_label(message_2)
 	await _reveal_label(conversion_message)
