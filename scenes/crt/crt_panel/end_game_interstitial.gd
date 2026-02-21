@@ -2,37 +2,38 @@ class_name EndGameInterstitial extends CanvasLayer
 
 @export var character_reveal_speed: float = .25
 
-@onready var message_1: Label = %Message1
-@onready var message_2: Label = %Message2
-@onready var conversion_message: Label = %ConversionMessage
-@onready var bucks_conversion_display: Label = %BucksConversionDisplay
-@onready var conversion_success_message: Label = %ConversionSuccessMessage
-@onready var message_3: Label = %Message3
-@onready var conversion_success_message_2: Label = %ConversionSuccessMessage2
+@onready var message_1: TypingLabel = %Message1
+@onready var message_2: TypingLabel = %Message2
+@onready var conversion_message: TypingLabel = %ConversionMessage
+@onready var bucks_conversion_display: TypingLabel = %BucksConversionDisplay
+@onready var conversion_success_message: TypingLabel = %ConversionSuccessMessage
+@onready var message_3: TypingLabel = %Message3
+@onready var conversion_success_message_2: TypingLabel = %ConversionSuccessMessage2
 @onready var interstitial_message_timer: Timer = %InterstitialMessageTimer
 @onready var interstitial_labels_container: VBoxContainer = %InterstitialLabelsContainer
 @onready var crt_shader: ColorRect = %CRTShader
 @onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
+@onready var m_1: TypingLabel = $MarginContainer/InterstitialLabelsContainer/M1
 
 func _ready() -> void:
 	_screen_off()
 	_reset_messages()
+	#_test_screen()
 	
 func _test_screen() -> void:
-	await _power_up()
 	await run_interstitial(100, 0.1)
 	await get_tree().create_timer(2.0).timeout
 	await _power_down()
 	
 func _reset_messages() -> void:
-	message_1.visible_ratio = 0
-	message_2.visible_ratio = 0
-	conversion_message.visible_ratio = 0
-	bucks_conversion_display.visible_ratio = 0
-	conversion_success_message.visible_ratio = 0
-	message_3.visible_ratio = 0
-	conversion_success_message_2.visible_ratio = 0
-	bucks_conversion_display.text = "B: 0"
+	message_1.reset()
+	message_2.reset()
+	conversion_message.reset()
+	bucks_conversion_display.reset()
+	conversion_success_message.reset()
+	message_3.reset()
+	conversion_success_message_2.reset()
+	bucks_conversion_display.reset()
 	
 func run_interstitial(points: int, bucks_per_point: float) -> int:
 	var new_bucks := GameMath.convert_points_to_bucks(points, bucks_per_point)
@@ -40,26 +41,19 @@ func run_interstitial(points: int, bucks_per_point: float) -> int:
 	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points)).replace("%bucks%", str(new_bucks))
 	
 	await _power_up()
-	await _reveal_label(message_1)
-	await _reveal_label(message_2)
-	await _reveal_label(conversion_message)
-	await _reveal_label(bucks_conversion_display)
+	await message_1.start_typing()
+	await message_2.start_typing()
+	await conversion_message.start_typing()
+	await bucks_conversion_display.start_typing()
 	await _count_up_bucks(new_bucks)
-	await _reveal_label(conversion_success_message)
-	await _reveal_label(message_3)
-	await _reveal_label(conversion_success_message_2)
+	await conversion_success_message.start_typing()
+	await message_3.start_typing()
+	await conversion_success_message_2.start_typing()
 	
 	
 	
 	return new_bucks
-	
-func _reveal_label(label: Label) -> void:
-	print("revealing: " + label.name)
-	var time_to_reveal := character_reveal_speed * label.text.length()
-	var tween := create_tween()
-	tween.tween_property(label, "visible_ratio", 1.0, time_to_reveal)
-	await tween.finished
-	
+		
 func _count_up_bucks(target_amount: float) -> void:
 	var duration := target_amount * (character_reveal_speed / 2)
 	

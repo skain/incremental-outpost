@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b5oyxlhbvwdu2"]
+
+[ext_resource type="Script" uid="uid://c2dvh1myc4fpc" path="res://scenes/crt/typing_label/typing_label.gd" id="1_xx6wq"]
+[ext_resource type="AudioStream" uid="uid://ck5eqdk8og7ca" path="res://assets/sounds/dragon-studio-single-key-press-393908.mp3" id="2_p06se"]
+
+[node name="TypingLabel" type="Label" unique_id=1321450307]
+offset_right = 40.0
+offset_bottom = 17.0
+text = "The text to be typed goes here.
+
+It can be multi-line."
+script = ExtResource("1_xx6wq")
+typing_sound = ExtResource("2_p06se")
+
+[node name="Timer" type="Timer" parent="." unique_id=342623692]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
