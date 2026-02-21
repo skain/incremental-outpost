@@ -4,6 +4,7 @@ class_name Cannons extends Node2D
 @onready var right_cannon: Cannon = $RightCannon
 @onready var bottom_cannon: Cannon = $BottomCannon
 @onready var left_cannon: Cannon = $LeftCannon
+@onready var cannons: Cannons = %Cannons
 
 func handle_firing() -> void:
 	var parent := get_parent()
@@ -17,7 +18,9 @@ func handle_firing() -> void:
 		right_cannon.fire_projectile(parent)
 		
 func reset_cannons() -> void:
-	top_cannon.reset()
-	bottom_cannon.reset()
-	left_cannon.reset()
-	right_cannon.reset()
+	for cannon: Cannon in cannons.get_children():
+		cannon.reset()
+
+func disable_cannons() -> void:
+	for cannon: Cannon in cannons.get_children():
+		cannon.disable()

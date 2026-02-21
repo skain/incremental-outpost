@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		start_game_pressed.emit()
 		
 func die() -> void:
-	cannons.reset_cannons()	
+	cannons.disable_cannons()	
 	
 func reset() -> void:
 	health = max_health

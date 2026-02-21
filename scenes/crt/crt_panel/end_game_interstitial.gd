@@ -17,6 +17,8 @@ class_name EndGameInterstitial extends CanvasLayer
 func _ready() -> void:
 	_screen_off()
 	_reset_messages()
+	
+func _test_screen() -> void:
 	await _power_up()
 	await run_interstitial(100, 0.1)
 	await get_tree().create_timer(2.0).timeout

@@ -43,6 +43,7 @@ position = Vector2(-79, 2.383279e-14)
 rotation = 4.712389
 
 [node name="Cannons" type="Node2D" parent="." unique_id=1725042301]
+unique_name_in_owner = true
 script = ExtResource("5_7ow0l")
 
 [node name="TopCannon" parent="Cannons" unique_id=1127117473 instance=ExtResource("4_dqkch")]

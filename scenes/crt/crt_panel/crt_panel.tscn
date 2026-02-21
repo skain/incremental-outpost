@@ -16,6 +16,7 @@ shader_parameter/power_on = 1.0
 script = ExtResource("1_8xoaq")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1247727966]
+unique_name_in_owner = true
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Background" unique_id=1817761643]
@@ -27,7 +28,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="SkillTreeNodes" type="Node2D" parent="." unique_id=57239728]
-visible = false
+unique_name_in_owner = true
 
 [node name="SkillTreeNode" parent="SkillTreeNodes" unique_id=1768832873 instance=ExtResource("3_0k2sf")]
 position = Vector2(311, 295)
@@ -37,6 +38,7 @@ unique_name_in_owner = true
 offset = Vector2(320, 320)
 
 [node name="EndGameInterstitial" type="CanvasLayer" parent="." unique_id=43730878]
+unique_name_in_owner = true
 script = ExtResource("3_cppxt")
 character_reveal_speed = 0.1
 
@@ -127,6 +129,7 @@ visible_ratio = 0.0
 unique_name_in_owner = true
 
 [node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=381617986]
+unique_name_in_owner = true
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="CRTOverlay" unique_id=1682153144]
 copy_mode = 2

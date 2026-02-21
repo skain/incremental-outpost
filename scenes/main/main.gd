@@ -3,10 +3,11 @@ extends Node2D
 @export var game_start_sound: AudioStream
 @export var game_over_sound: AudioStream
 
-@onready var player: Player = $Player
-@onready var enemies: Node2D = $Enemies
-@onready var ui: UI = $UI
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
+@onready var player: Player = %Player
+@onready var enemies: Node2D = %Enemies
+@onready var arcade_game: Node2D = %ArcadeGame
+@onready var crt: Node2D = %CRT
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -25,8 +26,10 @@ func _start_game() -> void:
 	player.reset()
 	player.make_camera_current()
 	enemies.reset_enemies()
-	ui.hide_game_over()
+	#ui.hide_game_over()
 	_update_ui()
+	arcade_game.visible = true
+	crt.visible = false
 	for i in range(6):
 		Sfx.play_sfx(game_start_sound, global_position)
 		# Start at 0.25s and get smaller as i increases
@@ -37,16 +40,20 @@ func _start_game() -> void:
 		bg_music_player.play()
 	
 func _update_ui() -> void:
-	ui.update_ui(current_score, player.health)	
+	pass
+	#ui.update_ui(current_score, player.health)	
 
 func _end_game() -> void:
 	_update_ui()
 	game_over = true
 	enemies.disable_enemies()
-	ui.show_game_over()
+	#ui.show_game_over()
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
+	crt.visible = true
+	arcade_game.visible = false
+	crt.run_upgrader()
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += enemy.enemy_level * BASE_SCORE

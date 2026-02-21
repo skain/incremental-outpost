@@ -51,6 +51,9 @@ func reset() -> void:
 	sprite_2d.frame = 0
 	can_fire = true
 	collision_shape_2d.set_deferred("disabled", false)
+	
+func disable() -> void:
+	can_fire = false
 
 func _on_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile
