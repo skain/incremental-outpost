@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ct8l5cchi7u0p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nsq1"]
+bg_color = Color(0.26, 0.26, 0.26, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbwcn"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 1.0
+
+[node name="CrtButton" type="Button" unique_id=379915991]
+theme_override_styles/normal = SubResource("StyleBoxFlat_7nsq1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tbwcn")
+text = "Upgrade"

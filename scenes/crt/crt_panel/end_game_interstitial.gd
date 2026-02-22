@@ -18,7 +18,7 @@ class_name EndGameInterstitial extends CanvasLayer
 func _ready() -> void:
 	_screen_off()
 	_reset_messages()
-	#_test_screen()
+	_test_screen()
 	
 func _test_screen() -> void:
 	await run_interstitial(100, 0.1)
@@ -107,3 +107,11 @@ func _animate_power(from: float, to: float) -> void:
 	
 func _screen_off() -> void:
 	crt_shader_mat.set_shader_parameter("power_on", 0.0)
+
+
+func _on_upgrade_button_pressed() -> void:
+	print("upgrade")
+
+
+func _on_return_button_pressed() -> void:
+	print("return")
