@@ -62,10 +62,19 @@ func start_typing() -> void:
 	timer.start()
 	await typing_complete
 	
-func finish_typing() -> void:
+func stop_typing() -> void:
 	timer.stop()
 	visible_ratio = 1
-	typing_complete.emit()
+
+# The difference between stop and finish_typing is that finish_typing will still emit
+# the typing_complete signal if there are still chars to type. stop_typing stops the timer and reveals
+# the text without emitting the signal.
+func finish_typing() -> void:
+	var is_typing := visible_ratio < 1
+	stop_typing()
+	if is_typing:
+		typing_complete.emit()
+	
 	
 func reset() -> void:
 	timer.stop()

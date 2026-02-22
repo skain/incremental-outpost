@@ -2,6 +2,8 @@ class_name EndGameInterstitial extends CanvasLayer
 
 signal return_to_outpost_clicked
 
+var is_bucks_counted := false
+
 @export var character_reveal_speed: float = .25
 
 @onready var message_1: TypingLabel = %Message1
@@ -20,12 +22,22 @@ func _ready() -> void:
 	_reset_messages()
 	#_test_screen()
 	
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		message_1.stop_typing()
+		conversion_message.stop_typing()
+		bucks_conversion_display.stop_typing()
+		_count_up_bucks(100)
+		conversion_success_message.stop_typing()
+		conversion_success_message_2.stop_typing()
+	
 func _test_screen() -> void:
 	await run_interstitial(100, 0.1)
 	await get_tree().create_timer(2.0).timeout
 	await _power_down()
 	
 func _reset_messages() -> void:
+	is_bucks_counted = false
 	message_1.reset()
 	conversion_message.reset()
 	bucks_conversion_display.reset()
@@ -51,6 +63,9 @@ func run_interstitial(points: int, bucks_per_point: float) -> int:
 	return new_bucks
 		
 func _count_up_bucks(target_amount: float) -> void:
+	if not is_bucks_counted:
+		return
+
 	var duration := target_amount * (character_reveal_speed / 2)
 	
 	var tween := create_tween()
@@ -65,6 +80,7 @@ func _count_up_bucks(target_amount: float) -> void:
 	)
 
 	await tween.finished
+	is_bucks_counted = true
 	
 func _power_up() -> void:
 	await _animate_power(0.0, 1.0)
