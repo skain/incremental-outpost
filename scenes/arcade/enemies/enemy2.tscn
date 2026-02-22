@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://cmc3ik5tigjec"]
+[gd_scene format=3 uid="uid://ct38itdxum0sd"]
 
-[ext_resource type="Script" uid="uid://dud3351rov223" path="res://scenes/arcade/enemy/enemy.gd" id="1_m2msb"]
-[ext_resource type="Texture2D" uid="uid://cla8b7wp3ab71" path="res://assets/enemy1.png" id="2_cwlon"]
-[ext_resource type="AudioStream" uid="uid://30n5ehy3il2a" path="res://assets/sounds/8-bit Sound Library/Shoot_01.wav" id="3_4ra3w"]
-[ext_resource type="AudioStream" uid="uid://ck3bxuak0ycbf" path="res://assets/sounds/8-bit Sound Library/Explosion_00.wav" id="4_5uy6h"]
-[ext_resource type="AudioStream" uid="uid://ctfkha5v65008" path="res://assets/sounds/8-bit Sound Library/Hit_01.wav" id="5_c4w8v"]
-[ext_resource type="PackedScene" uid="uid://bkgov81stuqku" path="res://scenes/arcade/muzzle_flash/muzzle_flash.tscn" id="6_xwavj"]
+[ext_resource type="Script" uid="uid://dud3351rov223" path="res://scenes/arcade/enemies/enemy.gd" id="1_s7rde"]
+[ext_resource type="Texture2D" uid="uid://btdbahkbxq7hn" path="res://assets/enemy2.png" id="2_s7rde"]
+[ext_resource type="AudioStream" uid="uid://30n5ehy3il2a" path="res://assets/sounds/8-bit Sound Library/Shoot_01.wav" id="3_3a56k"]
+[ext_resource type="AudioStream" uid="uid://ck3bxuak0ycbf" path="res://assets/sounds/8-bit Sound Library/Explosion_00.wav" id="4_021k4"]
+[ext_resource type="AudioStream" uid="uid://ctfkha5v65008" path="res://assets/sounds/8-bit Sound Library/Hit_01.wav" id="5_l0vw8"]
+[ext_resource type="PackedScene" uid="uid://bkgov81stuqku" path="res://scenes/arcade/muzzle_flash/muzzle_flash.tscn" id="6_7wjua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(63.66667, 10.333334)
@@ -14,11 +14,12 @@ size = Vector2(63.66667, 10.333334)
 scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("1_m2msb")
+script = ExtResource("1_s7rde")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=606885093]
 self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
-texture = ExtResource("2_cwlon")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_s7rde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=149711576]
 position = Vector2(0.16666731, -10.166667)
@@ -31,18 +32,18 @@ one_shot = true
 one_shot = true
 
 [node name="ShootPlayer" type="AudioStreamPlayer2D" parent="." unique_id=151001254]
-stream = ExtResource("3_4ra3w")
+stream = ExtResource("3_3a56k")
 bus = &"SoundFx"
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=976021530]
-stream = ExtResource("4_5uy6h")
+stream = ExtResource("4_021k4")
 bus = &"SoundFx"
 
 [node name="RevivePlayer" type="AudioStreamPlayer2D" parent="." unique_id=386878944]
-stream = ExtResource("5_c4w8v")
+stream = ExtResource("5_l0vw8")
 bus = &"SoundFx"
 
-[node name="MuzzleFlash" parent="." unique_id=2020624600 instance=ExtResource("6_xwavj")]
+[node name="MuzzleFlash" parent="." unique_id=2020624600 instance=ExtResource("6_7wjua")]
 position = Vector2(0, -30)
 flash_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
 
