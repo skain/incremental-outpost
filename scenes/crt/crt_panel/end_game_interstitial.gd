@@ -18,7 +18,7 @@ class_name EndGameInterstitial extends CanvasLayer
 func _ready() -> void:
 	_screen_off()
 	_reset_messages()
-	_test_screen()
+	#_test_screen()
 	
 func _test_screen() -> void:
 	await run_interstitial(100, 0.1)
