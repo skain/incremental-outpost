@@ -41,6 +41,7 @@ func _update_ui() -> void:
 	arcade_ui.update_ui(current_score, player.health)	
 
 func _end_game() -> void:
+	game_over = true
 	_update_ui()
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)
@@ -52,7 +53,6 @@ func _switch_to_crt() -> void:
 	arcade_ui.visible = false
 	crt_panel.set_visibility(true)
 	arcade_game.visible = false
-	game_over = true
 	crt_panel.run_endgame_interstitial()
 	
 func _switch_to_arcade() -> void:
