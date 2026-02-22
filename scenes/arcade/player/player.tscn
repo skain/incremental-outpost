@@ -28,18 +28,18 @@ shape = SubResource("RectangleShape2D_qhqgy")
 script = ExtResource("3_7ow0l")
 
 [node name="TopShield" parent="Shields" unique_id=2144481525 instance=ExtResource("3_qhqgy")]
-position = Vector2(0, -84)
+position = Vector2(0, -70.00001)
 
 [node name="RightShield" parent="Shields" unique_id=979293929 instance=ExtResource("3_qhqgy")]
-position = Vector2(79.333336, 0.33333334)
+position = Vector2(67.667145, 0)
 rotation = 1.5707964
 
 [node name="BottomShield" parent="Shields" unique_id=365177142 instance=ExtResource("3_qhqgy")]
-position = Vector2(0.33333334, 82.333336)
+position = Vector2(0.33333337, 70.00003)
 rotation = 3.1415927
 
 [node name="LeftShield" parent="Shields" unique_id=1421130794 instance=ExtResource("3_qhqgy")]
-position = Vector2(-79, 2.383279e-14)
+position = Vector2(-70, 0)
 rotation = 4.712389
 
 [node name="Cannons" type="Node2D" parent="." unique_id=1725042301]
