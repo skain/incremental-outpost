@@ -28,6 +28,7 @@ func _start_game() -> void:
 	player.make_camera_current()
 	enemies.reset_enemies()
 	_update_ui()
+	arcade_ui.visible = true
 	arcade_game.visible = true
 	crt_panel.set_visibility(false)
 	for i in range(6):
@@ -46,10 +47,10 @@ func _end_game() -> void:
 	_update_ui()
 	game_over = true
 	enemies.disable_enemies()
-	#ui.show_game_over()
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
+	arcade_ui.visible = false
 	crt_panel.set_visibility(true)
 	arcade_game.visible = false
 	crt_panel.run_endgame_interstitial()
