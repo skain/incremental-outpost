@@ -1,6 +1,7 @@
 class_name EndGameInterstitial extends CanvasLayer
 
 signal return_to_outpost_clicked
+signal upgrade_clicked
 
 var is_bucks_counted := false
 
@@ -107,7 +108,7 @@ func _screen_off() -> void:
 
 
 func _on_upgrade_button_pressed() -> void:
-	visible = false
+	upgrade_clicked.emit()
 	print("upgrade")
 
 

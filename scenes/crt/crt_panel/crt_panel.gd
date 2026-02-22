@@ -27,3 +27,8 @@ func make_camera_current() -> void:
 
 func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
 	return_to_outpost_clicked.emit()
+
+
+func _on_end_game_interstitial_upgrade_clicked() -> void:
+	end_game_interstitial.visible = false
+	skill_tree_nodes.visible = true
