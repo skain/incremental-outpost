@@ -17,6 +17,7 @@ var game_over := true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_start_game()
+	#_switch_to_crt()
 
 func _start_game() -> void:
 	if not game_over:
@@ -25,12 +26,8 @@ func _start_game() -> void:
 	game_over = false
 	current_score = 0
 	player.reset()
-	player.make_camera_current()
-	enemies.reset_enemies()
 	_update_ui()
-	arcade_ui.visible = true
-	arcade_game.visible = true
-	crt_panel.set_visibility(false)
+	_switch_to_arcade()
 	for i in range(6):
 		Sfx.play_sfx(game_start_sound, global_position)
 		# Start at 0.25s and get smaller as i increases
@@ -39,21 +36,31 @@ func _start_game() -> void:
 		await get_tree().create_timer(delay).timeout
 	if not bg_music_player.playing:
 		bg_music_player.play()
-	
+
 func _update_ui() -> void:
 	arcade_ui.update_ui(current_score, player.health)	
 
 func _end_game() -> void:
 	_update_ui()
-	game_over = true
-	enemies.disable_enemies()
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
+	_switch_to_crt()
+	
+func _switch_to_crt() -> void:
+	enemies.disable_enemies()
 	arcade_ui.visible = false
 	crt_panel.set_visibility(true)
 	arcade_game.visible = false
+	game_over = true
 	crt_panel.run_endgame_interstitial()
+	
+func _switch_to_arcade() -> void:
+	arcade_ui.visible = true
+	arcade_game.visible = true
+	crt_panel.set_visibility(false)
+	player.make_camera_current()
+	enemies.reset_enemies()
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += enemy.enemy_level * BASE_SCORE
@@ -67,12 +74,6 @@ func _on_player_player_hit() -> void:
 		_end_game()
 		return
 	_update_ui()
-
-
-func _on_player_start_game_pressed() -> void:
-	if game_over:
-		_start_game()
-
 
 func _on_crt_panel_return_to_outpost_clicked() -> void:
 	_start_game()

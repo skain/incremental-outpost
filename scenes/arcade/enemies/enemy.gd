@@ -52,6 +52,9 @@ func disable(is_temporary: bool = true) -> void:
 		visible = false
 		var hit_timeout_secs :float = GameMath.get_scaled_value(base_revive_delay + randf_range(0, 5), enemy_level, -1.1)
 		revive_timer.start(hit_timeout_secs)
+	else:
+		shoot_timer.stop()
+		revive_timer.stop()
 	
 func _on_revive_timer_timeout() -> void:
 	_enable()
