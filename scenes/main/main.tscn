@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade/arcade_backdrop/arcade_backdrop.tscn" id="5_a8run"]
 [ext_resource type="PackedScene" uid="uid://cygy2bkg5ej1v" path="res://scenes/crt/crt_panel/crt_panel.tscn" id="10_a8run"]
 [ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="10_blune"]
-[ext_resource type="Script" uid="uid://75tn37p0gbla" path="res://scenes/main/crt.gd" id="10_ouso4"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
 script = ExtResource("1_dooaf")
@@ -66,11 +65,7 @@ color = Color(0.6, 0.6, 0.6, 1)
 [node name="ArcadeUI" parent="ArcadeGame" unique_id=1381448654 instance=ExtResource("10_blune")]
 unique_name_in_owner = true
 
-[node name="CRT" type="Node2D" parent="." unique_id=1916891730]
-unique_name_in_owner = true
-script = ExtResource("10_ouso4")
-
-[node name="CRTPanel" parent="CRT" unique_id=1981789528 instance=ExtResource("10_a8run")]
+[node name="CRTPanel" parent="." unique_id=1981789528 instance=ExtResource("10_a8run")]
 unique_name_in_owner = true
 
 [connection signal="player_hit" from="ArcadeGame/Player" to="." method="_on_player_player_hit"]
@@ -79,4 +74,4 @@ unique_name_in_owner = true
 [connection signal="enemy_hit" from="ArcadeGame/Enemies/EnemyTop" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="ArcadeGame/Enemies/EnemyRight" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="ArcadeGame/Enemies/EnemyBottom" to="." method="_on_enemy_hit"]
-[connection signal="return_to_outpost_clicked" from="CRT/CRTPanel" to="." method="_on_crt_panel_return_to_outpost_clicked"]
+[connection signal="return_to_outpost_clicked" from="CRTPanel" to="." method="_on_crt_panel_return_to_outpost_clicked"]

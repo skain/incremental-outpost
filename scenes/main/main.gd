@@ -7,8 +7,8 @@ extends Node2D
 @onready var player: Player = %Player
 @onready var enemies: Node2D = %Enemies
 @onready var arcade_game: Node2D = %ArcadeGame
-@onready var crt: CRT = %CRT
 @onready var arcade_ui: CanvasLayer = %ArcadeUI
+@onready var crt_panel: CRTPanel = %CRTPanel
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -29,7 +29,7 @@ func _start_game() -> void:
 	enemies.reset_enemies()
 	_update_ui()
 	arcade_game.visible = true
-	crt.hide_crt()
+	crt_panel.set_visibility(false)
 	for i in range(6):
 		Sfx.play_sfx(game_start_sound, global_position)
 		# Start at 0.25s and get smaller as i increases
@@ -50,9 +50,9 @@ func _end_game() -> void:
 	player.die()
 	Sfx.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
-	crt.visible = true
+	crt_panel.set_visibility(true)
 	arcade_game.visible = false
-	crt.run_upgrader()
+	crt_panel.run_endgame_interstitial()
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += enemy.enemy_level * BASE_SCORE
