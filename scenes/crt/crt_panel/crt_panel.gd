@@ -4,7 +4,7 @@ signal return_to_outpost_clicked
 
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var background: CanvasLayer = %Background
-@onready var skill_tree_nodes: Node2D = %SkillTreeNodes
+@onready var skill_tree_nodes: SkillTreeNodes = %SkillTreeNodes
 @onready var end_game_interstitial: EndGameInterstitial = %EndGameInterstitial
 @onready var crt_overlay: CanvasLayer = %CRTOverlay
 
@@ -30,5 +30,7 @@ func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
 
 
 func _on_end_game_interstitial_upgrade_clicked() -> void:
+	make_camera_current()
+	skill_tree_nodes.home_camera()
 	end_game_interstitial.visible = false
 	skill_tree_nodes.visible = true

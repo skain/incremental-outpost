@@ -1,24 +1,17 @@
-[gd_scene format=3 uid="uid://brpiv34bgojm7"]
+[gd_scene format=3 uid="uid://bxh7esmyaw302"]
 
-[ext_resource type="Script" uid="uid://h1wyu3nqdquw" path="res://scenes/crt/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
-[ext_resource type="Texture2D" uid="uid://t4hkm8pr4v8o" path="res://assets/skill_tree/skill-tree-node-frame.png" id="1_ve1un"]
-[ext_resource type="Texture2D" uid="uid://bxciwg0u45dir" path="res://assets/skill_tree/skill-tree-node-glass.png" id="2_ppave"]
-[ext_resource type="Texture2D" uid="uid://dwvcaducbrtwn" path="res://assets/skill_tree/icons/question_mark.png" id="3_tc6t7"]
+[ext_resource type="Script" uid="uid://dp8l4ek8up3rd" path="res://scenes/crt/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
 
-[node name="SkillTreeNode" type="Node2D" unique_id=1768832873]
-modulate = Color(0.5, 0.5, 0.5, 1)
+[sub_resource type="Gradient" id="Gradient_mtsnd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dgmcs"]
+gradient = SubResource("Gradient_mtsnd")
+width = 96
+height = 128
+
+[node name="SkillTreeNode" type="Node2D" unique_id=1572228902]
 script = ExtResource("1_ppave")
-icon_texture = ExtResource("3_tc6t7")
-current_state = 2
 
-[node name="Frame" type="Sprite2D" parent="." unique_id=1958722130]
-unique_name_in_owner = true
-texture = ExtResource("1_ve1un")
-
-[node name="Glass" type="Sprite2D" parent="." unique_id=1801157941]
-unique_name_in_owner = true
-texture = ExtResource("2_ppave")
-
-[node name="Icon" type="Sprite2D" parent="." unique_id=1081162424]
-unique_name_in_owner = true
-texture = ExtResource("3_tc6t7")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940737944]
+texture = SubResource("GradientTexture2D_dgmcs")
