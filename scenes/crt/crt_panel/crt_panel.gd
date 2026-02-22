@@ -12,16 +12,11 @@ signal return_to_outpost_clicked
 func _ready() -> void:
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func set_visibility(is_visible: bool) -> void:
-	background.visible = is_visible
-	skill_tree_nodes.visible = is_visible
-	end_game_interstitial.visible = is_visible
-	crt_overlay.visible = is_visible
+func set_visibility(visibility: bool) -> void:
+	background.visible = visibility
+	skill_tree_nodes.visible = visibility
+	end_game_interstitial.visible = visibility
+	crt_overlay.visible = visibility
 	
 func run_endgame_interstitial() -> void:
 	skill_tree_nodes.visible = false

@@ -15,7 +15,6 @@ var is_bucks_counted := false
 @onready var interstitial_labels_container: VBoxContainer = %InterstitialLabelsContainer
 @onready var crt_shader: ColorRect = %CRTShader
 @onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
-@onready var m_1: TypingLabel = $MarginContainer/InterstitialLabelsContainer/M1
 
 func _ready() -> void:
 	_screen_off()
