@@ -107,6 +107,7 @@ func _screen_off() -> void:
 
 
 func _on_upgrade_button_pressed() -> void:
+	visible = false
 	print("upgrade")
 
 
