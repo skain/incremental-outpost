@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/main/enemies.gd" id="5_83wlk"]
 [ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade/arcade_backdrop/arcade_backdrop.tscn" id="5_a8run"]
 [ext_resource type="PackedScene" uid="uid://cygy2bkg5ej1v" path="res://scenes/crt/crt_panel/crt_panel.tscn" id="10_a8run"]
+[ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="10_blune"]
 [ext_resource type="Script" uid="uid://75tn37p0gbla" path="res://scenes/main/crt.gd" id="10_ouso4"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
@@ -62,6 +63,9 @@ bus = &"Music"
 [node name="CanvasModulate" type="CanvasModulate" parent="ArcadeGame" unique_id=1969405326]
 color = Color(0.6, 0.6, 0.6, 1)
 
+[node name="ArcadeUI" parent="ArcadeGame" unique_id=1381448654 instance=ExtResource("10_blune")]
+unique_name_in_owner = true
+
 [node name="CRT" type="Node2D" parent="." unique_id=1916891730]
 unique_name_in_owner = true
 script = ExtResource("10_ouso4")
@@ -75,3 +79,4 @@ unique_name_in_owner = true
 [connection signal="enemy_hit" from="ArcadeGame/Enemies/EnemyTop" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="ArcadeGame/Enemies/EnemyRight" to="." method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="ArcadeGame/Enemies/EnemyBottom" to="." method="_on_enemy_hit"]
+[connection signal="return_to_outpost_clicked" from="CRT/CRTPanel" to="." method="_on_crt_panel_return_to_outpost_clicked"]

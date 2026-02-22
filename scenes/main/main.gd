@@ -8,6 +8,7 @@ extends Node2D
 @onready var enemies: Node2D = %Enemies
 @onready var arcade_game: Node2D = %ArcadeGame
 @onready var crt: CRT = %CRT
+@onready var arcade_ui: CanvasLayer = %ArcadeUI
 
 const BASE_SCORE := 10
 var current_score := 0
@@ -26,7 +27,6 @@ func _start_game() -> void:
 	player.reset()
 	player.make_camera_current()
 	enemies.reset_enemies()
-	#ui.hide_game_over()
 	_update_ui()
 	arcade_game.visible = true
 	crt.hide_crt()
@@ -40,8 +40,7 @@ func _start_game() -> void:
 		bg_music_player.play()
 	
 func _update_ui() -> void:
-	pass
-	#ui.update_ui(current_score, player.health)	
+	arcade_ui.update_ui(current_score, player.health)	
 
 func _end_game() -> void:
 	_update_ui()
@@ -72,3 +71,7 @@ func _on_player_player_hit() -> void:
 func _on_player_start_game_pressed() -> void:
 	if game_over:
 		_start_game()
+
+
+func _on_crt_panel_return_to_outpost_clicked() -> void:
+	_start_game()

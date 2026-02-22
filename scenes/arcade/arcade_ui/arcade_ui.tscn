@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c5u0q6cpsel47"]
+
+[ext_resource type="Script" uid="uid://3bgr41d1yv0o" path="res://scenes/arcade/arcade_ui/arcade_ui.gd" id="1_qo35t"]
+[ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="2_2orwx"]
+[ext_resource type="Theme" uid="uid://bu7liu2y80vnx" path="res://themes/default_theme.tres" id="3_m3jlt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aripk"]
+
+[node name="ArcadeUI" type="CanvasLayer" unique_id=1381448654]
+script = ExtResource("1_qo35t")
+
+[node name="Panel" type="Panel" parent="." unique_id=1294074296]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aripk")
+
+[node name="HealthHBoxContainer" type="HBoxContainer" parent="Panel" unique_id=848925730]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health1" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=1410261432]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_2orwx")
+stretch_mode = 2
+
+[node name="Health2" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=969063324]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_2orwx")
+stretch_mode = 2
+
+[node name="Health3" type="TextureRect" parent="Panel/HealthHBoxContainer" unique_id=773940047]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_2orwx")
+stretch_mode = 2
+
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="Panel" unique_id=301256690]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -158.0
+offset_bottom = 49.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+theme = ExtResource("3_m3jlt")
+alignment = 2
+
+[node name="ScoreLabel" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=980329209]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Score: "
+
+[node name="ScoreValue" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=164330345]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "10"

@@ -1,4 +1,4 @@
-class_name ArcadeOverlay extends CanvasLayer
+class_name ArcadeUI extends CanvasLayer
 
 @onready var score_value: Label = %ScoreValue
 @onready var health_1: TextureRect = %Health1

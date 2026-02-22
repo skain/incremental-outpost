@@ -1,13 +1,13 @@
 class_name EndGameInterstitial extends CanvasLayer
 
+signal return_to_outpost_clicked
+
 @export var character_reveal_speed: float = .25
 
 @onready var message_1: TypingLabel = %Message1
-@onready var message_2: TypingLabel = %Message2
 @onready var conversion_message: TypingLabel = %ConversionMessage
 @onready var bucks_conversion_display: TypingLabel = %BucksConversionDisplay
 @onready var conversion_success_message: TypingLabel = %ConversionSuccessMessage
-@onready var message_3: TypingLabel = %Message3
 @onready var conversion_success_message_2: TypingLabel = %ConversionSuccessMessage2
 @onready var interstitial_message_timer: Timer = %InterstitialMessageTimer
 @onready var interstitial_labels_container: VBoxContainer = %InterstitialLabelsContainer
@@ -27,11 +27,9 @@ func _test_screen() -> void:
 	
 func _reset_messages() -> void:
 	message_1.reset()
-	message_2.reset()
 	conversion_message.reset()
 	bucks_conversion_display.reset()
 	conversion_success_message.reset()
-	message_3.reset()
 	conversion_success_message_2.reset()
 	bucks_conversion_display.reset()
 	
@@ -42,12 +40,10 @@ func run_interstitial(points: int, bucks_per_point: float) -> int:
 	
 	await _power_up()
 	await message_1.start_typing()
-	await message_2.start_typing()
 	await conversion_message.start_typing()
 	await bucks_conversion_display.start_typing()
 	await _count_up_bucks(new_bucks)
 	await conversion_success_message.start_typing()
-	await message_3.start_typing()
 	await conversion_success_message_2.start_typing()
 	
 	
@@ -72,20 +68,6 @@ func _count_up_bucks(target_amount: float) -> void:
 	
 func _power_up() -> void:
 	await _animate_power(0.0, 1.0)
-	## Create a Tween to animate it turning on
-	#var tween := create_tween()
-#
-	## We use tween_property with the "shader_parameter/" prefix.
-	## .from(0.0) forces it to start completely black every time!
-	#await tween.tween_property(
-		#crt_shader_mat, 
-		#"shader_parameter/power_on", 
-		#1.0, 
-		#0.75
-	#).from(0.0).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	#
-	## add a small delay before the screen is ready
-	#await get_tree().create_timer(1.5).timeout
 	
 func _power_down() -> void:
 	await _animate_power(1.0, 0.0)
@@ -114,4 +96,5 @@ func _on_upgrade_button_pressed() -> void:
 
 
 func _on_return_button_pressed() -> void:
-	print("return")
+	await _power_down()
+	return_to_outpost_clicked.emit()

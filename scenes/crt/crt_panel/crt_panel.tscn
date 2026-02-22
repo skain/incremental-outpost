@@ -50,9 +50,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 261
 
 [node name="InterstitialLabelsContainer" type="VBoxContainer" parent="EndGameInterstitial/MarginContainer" unique_id=295817908]
@@ -70,16 +70,10 @@ Verifying...
 Consciousness Verified."
 chars_per_second = 15.0
 
-[node name="Message2" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1468048731 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = ". . . . . . . . . . ."
-chars_per_second = 15.0
-
 [node name="ConversionMessage" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1834412677 instance=ExtResource("4_36fmf")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Converting %points% points to Bucks (1p/%bucks_per%B). . ."
+text = "Converting %points% points to Bucks (1p/%bucks_per%B)."
 chars_per_second = 15.0
 
 [node name="BucksConversionDisplay" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1738709693 instance=ExtResource("4_36fmf")]
@@ -91,13 +85,8 @@ chars_per_second = 15.0
 [node name="ConversionSuccessMessage" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1228665792 instance=ExtResource("4_36fmf")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Successfully converted %points% points to %bucks% Bucks."
-chars_per_second = 15.0
-
-[node name="Message3" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1111040411 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = ". . . . . . . . . . ."
+text = "Successfully converted %points% points to %bucks% Bucks.
+"
 chars_per_second = 15.0
 
 [node name="ConversionSuccessMessage2" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1677569307 instance=ExtResource("4_36fmf")]
@@ -147,5 +136,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[connection signal="return_to_outpost_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_return_to_outpost_clicked"]
 [connection signal="pressed" from="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer/UpgradeButton" to="EndGameInterstitial" method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer2/ReturnButton" to="EndGameInterstitial" method="_on_return_button_pressed"]
