@@ -10,6 +10,17 @@ gradient = SubResource("Gradient_dgmcs")
 width = 96
 height = 128
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgmcs"]
+size = Vector2(97, 128)
+
 [node name="SkillTreeNode" type="Sprite2D" unique_id=980992063]
 texture = SubResource("GradientTexture2D_kbu51")
 script = ExtResource("1_ppave")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1245209223]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2022327996]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dgmcs")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

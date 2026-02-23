@@ -1,6 +1,7 @@
 class_name SkillTreeNode extends Sprite2D
 
 #func _ready() -> void:
+	##probably not the best way to do lines
 	#for node in get_children():
 		#var skill_node := node as SkillTreeNode
 		#var line := Line2D.new()
@@ -10,7 +11,6 @@ class_name SkillTreeNode extends Sprite2D
 		#
 		#line.default_color = Color(1.0, 1.0, 1.0, 1.0)
 		#line.width = 2.0
-		##line.top_level = true
 		#
 		#add_child(line)
 		
@@ -31,3 +31,8 @@ func _ready() -> void:
 		line.width = 2.0
 
 		add_child(line)
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print(name + " clicked")
