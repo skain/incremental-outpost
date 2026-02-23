@@ -106,11 +106,8 @@ func _animate_power(from: float, to: float) -> void:
 func _screen_off() -> void:
 	crt_shader_mat.set_shader_parameter("power_on", 0.0)
 
-
 func _on_upgrade_button_pressed() -> void:
 	upgrade_clicked.emit()
-	print("upgrade")
-
 
 func _on_return_button_pressed() -> void:
 	await _power_down()

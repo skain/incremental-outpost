@@ -2,7 +2,7 @@ class_name CRTPanel extends Node2D
 
 signal return_to_outpost_clicked
 
-@onready var camera_2d: Camera2D = %Camera2D
+@onready var skill_tree_camera: Camera2D = %SkillTreeCamera
 @onready var background: CanvasLayer = %Background
 @onready var skill_tree_nodes: SkillTreeNodes = %SkillTreeNodes
 @onready var end_game_interstitial: EndGameInterstitial = %EndGameInterstitial
@@ -23,7 +23,7 @@ func run_endgame_interstitial() -> void:
 	end_game_interstitial.run_interstitial(100, 0.1)
 	
 func make_camera_current() -> void:
-	camera_2d.make_current()
+	skill_tree_camera.make_current()
 
 func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
 	return_to_outpost_clicked.emit()
