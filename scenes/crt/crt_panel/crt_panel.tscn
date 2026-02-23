@@ -34,6 +34,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="SkillTreeCamera" type="Camera2D" parent="." unique_id=1707505872]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("4_xhaol")
 
 [node name="EndGameInterstitial" type="CanvasLayer" parent="." unique_id=43730878]
@@ -126,7 +127,10 @@ unique_name_in_owner = true
 script = ExtResource("2_33ycp")
 
 [node name="SkillTreeNode" parent="SkillTreeNodes" unique_id=1572228902 instance=ExtResource("3_0k2sf")]
-position = Vector2(284, 269)
+position = Vector2(200, 280)
+
+[node name="SkillTreeNode2" parent="SkillTreeNodes/SkillTreeNode" unique_id=980992063 instance=ExtResource("3_0k2sf")]
+position = Vector2(280, 0)
 
 [node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=381617986]
 unique_name_in_owner = true

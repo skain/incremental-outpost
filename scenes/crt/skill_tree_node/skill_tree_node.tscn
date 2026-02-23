@@ -2,16 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dp8l4ek8up3rd" path="res://scenes/crt/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
 
-[sub_resource type="Gradient" id="Gradient_mtsnd"]
+[sub_resource type="Gradient" id="Gradient_dgmcs"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dgmcs"]
-gradient = SubResource("Gradient_mtsnd")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kbu51"]
+gradient = SubResource("Gradient_dgmcs")
 width = 96
 height = 128
 
-[node name="SkillTreeNode" type="Node2D" unique_id=1572228902]
+[node name="SkillTreeNode" type="Sprite2D" unique_id=980992063]
+texture = SubResource("GradientTexture2D_kbu51")
 script = ExtResource("1_ppave")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940737944]
-texture = SubResource("GradientTexture2D_dgmcs")
