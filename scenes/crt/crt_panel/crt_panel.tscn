@@ -133,7 +133,6 @@ position = Vector2(200, 280)
 position = Vector2(280, 0)
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="SkillTreeNodes" unique_id=1930219746]
-visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="SkillTreeNodes/SkillTreeUI" unique_id=84853954]
 anchors_preset = 15
