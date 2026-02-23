@@ -132,8 +132,64 @@ position = Vector2(200, 280)
 [node name="SkillTreeNode2" parent="SkillTreeNodes/SkillTreeNode" unique_id=980992063 instance=ExtResource("3_0k2sf")]
 position = Vector2(280, 0)
 
+[node name="SkillTreeUI" type="CanvasLayer" parent="SkillTreeNodes" unique_id=1930219746]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="SkillTreeNodes/SkillTreeUI" unique_id=84853954]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SkillTreeNodes/SkillTreeUI/CenterContainer" unique_id=251057149]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel" unique_id=1184613707]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer" unique_id=464085301]
+layout_mode = 2
+
+[node name="SkillNameLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1951140068]
+layout_mode = 2
+text = "Skill Name"
+
+[node name="SkillDescriptionLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1434104894]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Skill Description"
+
+[node name="SkillCostLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=2135503754]
+layout_mode = 2
+text = "Skill Cost"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=118813560]
+layout_mode = 2
+theme_override_constants/separation = 44
+alignment = 1
+
+[node name="BuyButton" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=343289552 instance=ExtResource("5_33ycp")]
+layout_mode = 2
+text = "Buy"
+
+[node name="CloseButton" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=311199730 instance=ExtResource("5_33ycp")]
+layout_mode = 2
+text = "Close"
+
 [node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=381617986]
 unique_name_in_owner = true
+layer = 10
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="CRTOverlay" unique_id=1682153144]
 copy_mode = 2
