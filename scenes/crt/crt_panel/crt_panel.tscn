@@ -195,12 +195,13 @@ autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=772087296]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1553047799]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "Cost: [img=bottom,baseline,9x11]res://assets/BucksSymbol.png[/img]"
+text = "Cost:  [img=baseline,6x12]res://assets/BucksSymbol.png[/img]"
 fit_content = true
 autowrap_mode = 0
 
