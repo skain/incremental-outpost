@@ -4,7 +4,7 @@ var root_node: SkillTreeNode = null
 
 @onready var skill_tree_camera: Camera2D = %SkillTreeCamera
 @onready var skill_tree_ui: CanvasLayer = %SkillTreeUI
-@onready var skill_node_info_container: CenterContainer = %SkillNodeInfoContainer
+@onready var skill_node_info_container: SkillNodeInfoContainer = %SkillNodeInfoContainer
 
 func _ready() -> void:
 	root_node = get_child(0) as SkillTreeNode
@@ -19,6 +19,7 @@ func _connect_skill_node_signals() -> void:
 
 func _show_skill_node_info(node: SkillTreeNode) -> void:
 	skill_tree_ui.visible = true
+	skill_node_info_container.load_node_info(node)
 	
 func _hide_skill_node_info() -> void:
 	skill_tree_ui.visible = false

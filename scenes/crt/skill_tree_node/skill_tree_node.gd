@@ -2,6 +2,8 @@ class_name SkillTreeNode extends Sprite2D
 
 signal skill_tree_node_clicked(node: SkillTreeNode)
 
+@export var skill_node_resource: SkillNodeResource
+
 #func _ready() -> void:
 	##probably not the best way to do lines
 	#for node in get_children():
