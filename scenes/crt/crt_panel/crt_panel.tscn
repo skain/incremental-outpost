@@ -196,9 +196,13 @@ autowrap_mode = 3
 [node name="HBoxContainer2" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=772087296]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=394965368]
+[node name="RichTextLabel" type="RichTextLabel" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1553047799]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Cost: B"
+bbcode_enabled = true
+text = "Cost: [img=bottom,baseline,9x11]res://assets/BucksSymbol.png[/img]"
+fit_content = true
+autowrap_mode = 0
 
 [node name="SkillCostLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2135503754]
 unique_name_in_owner = true
