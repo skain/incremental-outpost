@@ -133,19 +133,21 @@ position = Vector2(200, 280)
 position = Vector2(280, 0)
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="SkillTreeNodes" unique_id=1930219746]
+unique_name_in_owner = true
 
-[node name="CenterContainer" type="CenterContainer" parent="SkillTreeNodes/SkillTreeUI" unique_id=84853954]
+[node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeNodes/SkillTreeUI" unique_id=84853954]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="SkillTreeNodes/SkillTreeUI/CenterContainer" unique_id=251057149]
+[node name="Panel" type="Panel" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer" unique_id=251057149]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel" unique_id=1184613707]
+[node name="MarginContainer" type="MarginContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel" unique_id=1184613707]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,32 +159,32 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer" unique_id=464085301]
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer" unique_id=464085301]
 layout_mode = 2
 
-[node name="SkillNameLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1951140068]
+[node name="SkillNameLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=1951140068]
 layout_mode = 2
 text = "Skill Name"
 
-[node name="SkillDescriptionLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1434104894]
+[node name="SkillDescriptionLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=1434104894]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Skill Description"
 
-[node name="SkillCostLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=2135503754]
+[node name="SkillCostLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=2135503754]
 layout_mode = 2
 text = "Skill Cost"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=118813560]
+[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=118813560]
 layout_mode = 2
 theme_override_constants/separation = 44
 alignment = 1
 
-[node name="BuyButton" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=343289552 instance=ExtResource("5_33ycp")]
+[node name="BuyButton" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=343289552 instance=ExtResource("5_33ycp")]
 layout_mode = 2
 text = "Buy"
 
-[node name="CloseButton" parent="SkillTreeNodes/SkillTreeUI/CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=311199730 instance=ExtResource("5_33ycp")]
+[node name="CloseButton" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=311199730 instance=ExtResource("5_33ycp")]
 layout_mode = 2
 text = "Close"
 
@@ -207,3 +209,4 @@ mouse_filter = 2
 [connection signal="upgrade_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_upgrade_clicked"]
 [connection signal="pressed" from="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer/UpgradeButton" to="EndGameInterstitial" method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer2/ReturnButton" to="EndGameInterstitial" method="_on_return_button_pressed"]
+[connection signal="pressed" from="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeNodes" method="_on_close_button_pressed"]

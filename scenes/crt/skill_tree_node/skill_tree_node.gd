@@ -1,5 +1,7 @@
 class_name SkillTreeNode extends Sprite2D
 
+signal skill_tree_node_clicked(node: SkillTreeNode)
+
 #func _ready() -> void:
 	##probably not the best way to do lines
 	#for node in get_children():
@@ -15,7 +17,7 @@ class_name SkillTreeNode extends Sprite2D
 		#add_child(line)
 		
 func _ready() -> void:
-	for node in get_children():
+	for node in find_children("*", "SkillTreeNode", true, false):
 		var skill_node := node as SkillTreeNode
 		if not skill_node: 
 			continue # Good practice: skips the node if it isn't a SkillTreeNode
@@ -33,6 +35,6 @@ func _ready() -> void:
 		add_child(line)
 
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print(name + " clicked")
+		skill_tree_node_clicked.emit(self)

@@ -10,9 +10,9 @@ signal return_to_outpost_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	skill_tree_nodes.hide_skill_tree()
 
-func set_visibility(visibility: bool) -> void:
+func set_crt_visibility(visibility: bool) -> void:
 	background.visible = visibility
 	skill_tree_nodes.visible = visibility
 	end_game_interstitial.visible = visibility

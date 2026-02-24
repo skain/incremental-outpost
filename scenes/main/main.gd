@@ -16,8 +16,8 @@ var game_over := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#_start_game()
-	_switch_to_crt()
+	_start_game()
+	#_switch_to_crt()
 
 func _start_game() -> void:
 	if not game_over:
@@ -51,14 +51,14 @@ func _end_game() -> void:
 func _switch_to_crt() -> void:
 	enemies.disable_enemies()
 	arcade_ui.visible = false
-	crt_panel.set_visibility(true)
+	crt_panel.set_crt_visibility(true)
 	arcade_game.visible = false
 	crt_panel.run_endgame_interstitial()
 	
 func _switch_to_arcade() -> void:
 	arcade_ui.visible = true
 	arcade_game.visible = true
-	crt_panel.set_visibility(false)
+	crt_panel.set_crt_visibility(false)
 	player.make_camera_current()
 	enemies.reset_enemies()
 
