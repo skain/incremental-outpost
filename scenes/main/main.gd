@@ -16,8 +16,8 @@ var game_over := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#_start_game()
-	_switch_to_crt()
+	_start_game()
+	#_switch_to_crt()
 
 func _start_game() -> void:
 	if not game_over:
