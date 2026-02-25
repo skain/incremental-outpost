@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c8on55w5456nn"]
+
+[ext_resource type="PackedScene" uid="uid://drxvkp0wgbvqv" path="res://scenes/arcade/arcade_backdrop/arcade_backdrop.tscn" id="1_jdn5i"]
+[ext_resource type="Script" uid="uid://cq4qgmrxagqfo" path="res://scenes/arcade/arcade_game/arcade_game.gd" id="1_jp8dw"]
+[ext_resource type="AudioStream" uid="uid://c6nqyyr7inav1" path="res://assets/sounds/8-bit Sound Library/Pickup_03.wav" id="2_i5osn"]
+[ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/arcade/player/player.tscn" id="2_jp8dw"]
+[ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/main/enemies.gd" id="3_g57us"]
+[ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_leafu"]
+[ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/arcade/enemies/enemy1.tscn" id="4_i5osn"]
+[ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="5_leafu"]
+[ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="6_7p05h"]
+
+[node name="ArcadeGame" type="Node2D" unique_id=2042800404]
+script = ExtResource("1_jp8dw")
+game_start_sound = ExtResource("2_i5osn")
+game_over_sound = ExtResource("3_leafu")
+
+[node name="ArcadeBackdrop" parent="." unique_id=1580856931 instance=ExtResource("1_jdn5i")]
+position = Vector2(320, 320)
+
+[node name="Player" parent="." unique_id=1689945115 instance=ExtResource("2_jp8dw")]
+unique_name_in_owner = true
+position = Vector2(320, 320)
+scale = Vector2(1.25, 1.25)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1968370946]
+unique_name_in_owner = true
+script = ExtResource("3_g57us")
+
+[node name="EnemyLeft" parent="Enemies" unique_id=579912282 instance=ExtResource("4_i5osn")]
+position = Vector2(32, 320)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+
+[node name="EnemyTop" parent="Enemies" unique_id=1420555113 instance=ExtResource("4_i5osn")]
+position = Vector2(320, 32)
+rotation = 3.1415927
+scale = Vector2(2, 2)
+
+[node name="EnemyRight" parent="Enemies" unique_id=1296224430 instance=ExtResource("4_i5osn")]
+position = Vector2(608, 320)
+rotation = 4.712389
+scale = Vector2(2, 2)
+
+[node name="EnemyBottom" parent="Enemies" unique_id=429286059 instance=ExtResource("4_i5osn")]
+position = Vector2(320, 608)
+scale = Vector2(2, 2)
+
+[node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1272531663]
+unique_name_in_owner = true
+stream = ExtResource("5_leafu")
+bus = &"Music"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=467714390]
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="ArcadeUI" parent="." unique_id=1381448654 instance=ExtResource("6_7p05h")]
+unique_name_in_owner = true
+
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
