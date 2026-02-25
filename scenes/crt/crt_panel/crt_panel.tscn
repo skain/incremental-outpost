@@ -20,8 +20,8 @@ metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="Resource" id="Resource_m35fp"]
 script = ExtResource("8_fbx44")
-skill_name = "Skill2"
-skill_desc = "This is the second skill."
+skill_name = "Skill5"
+skill_desc = "This is the fifth skill."
 skill_cost = 2
 metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
@@ -147,7 +147,23 @@ position = Vector2(200, 280)
 skill_node_resource = SubResource("Resource_mry14")
 
 [node name="SkillTreeNode2" parent="SkillTreeNodes/SkillTreeNode" unique_id=980992063 instance=ExtResource("3_0k2sf")]
-position = Vector2(280, 0)
+position = Vector2(184, 0)
+skill_node_resource = SubResource("Resource_m35fp")
+
+[node name="SkillTreeNode6" parent="SkillTreeNodes/SkillTreeNode/SkillTreeNode2" unique_id=652644876 instance=ExtResource("3_0k2sf")]
+position = Vector2(176, 0)
+skill_node_resource = SubResource("Resource_m35fp")
+
+[node name="SkillTreeNode3" parent="SkillTreeNodes/SkillTreeNode" unique_id=313193352 instance=ExtResource("3_0k2sf")]
+position = Vector2(0, -200)
+skill_node_resource = SubResource("Resource_m35fp")
+
+[node name="SkillTreeNode4" parent="SkillTreeNodes/SkillTreeNode" unique_id=456626741 instance=ExtResource("3_0k2sf")]
+position = Vector2(0, 192)
+skill_node_resource = SubResource("Resource_m35fp")
+
+[node name="SkillTreeNode5" parent="SkillTreeNodes/SkillTreeNode" unique_id=556358856 instance=ExtResource("3_0k2sf")]
+position = Vector2(-176, 0)
 skill_node_resource = SubResource("Resource_m35fp")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="SkillTreeNodes" unique_id=1930219746]
