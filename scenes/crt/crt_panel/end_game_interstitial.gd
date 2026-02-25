@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 		conversion_success_message_2.stop_typing()
 	
 func _test_screen() -> void:
-	await run_interstitial(100, 0.1)
+	await run_interstitial()
 	await get_tree().create_timer(2.0).timeout
 	await _power_down()
 	
@@ -45,10 +45,13 @@ func _reset_messages() -> void:
 	conversion_success_message_2.reset()
 	bucks_conversion_display.reset()
 	
-func run_interstitial(points: int, bucks_per_point: float) -> int:
-	var new_bucks := GameMath.convert_points_to_bucks(points, bucks_per_point)
-	conversion_message.text = conversion_message.text.replace("%points%", str(points)).replace("%bucks_per%", str(bucks_per_point))
-	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points)).replace("%bucks%", str(new_bucks))
+func run_interstitial() -> void:
+	is_bucks_counted = false
+	var game_data := GameManager.game_data
+	var points_to_convert := game_data.current_points
+	var new_bucks := GameManager.convert_points_to_bucks()
+	conversion_message.text = conversion_message.text.replace("%points%", str(points_to_convert)).replace("%bucks_per%", str(GameManager.get_points_to_bucks_rate()))
+	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points_to_convert)).replace("%bucks%", str(new_bucks))
 	
 	await _power_up()
 	await message_1.start_typing()
@@ -57,10 +60,6 @@ func run_interstitial(points: int, bucks_per_point: float) -> int:
 	await _count_up_bucks(new_bucks)
 	await conversion_success_message.start_typing()
 	await conversion_success_message_2.start_typing()
-	
-	
-	
-	return new_bucks
 		
 func _count_up_bucks(target_amount: float) -> void:
 	if not is_bucks_counted:
@@ -73,7 +72,7 @@ func _count_up_bucks(target_amount: float) -> void:
 	# We "tween" a method. 
 	# It sends values from 0 to target_amount into the helper function below.
 	tween.tween_method(
-		func(value: float) -> void: bucks_conversion_display.text = "B: " + str(snapped(value, 0.01)), 
+		func(value: float) -> void: bucks_conversion_display.text = "B: " + str(snapped(value, 1.0)), 
 		0.0, 
 		target_amount, 
 		duration

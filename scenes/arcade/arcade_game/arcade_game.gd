@@ -33,7 +33,7 @@ func start_game() -> bool:
 	player.make_camera_current()
 	_update_ui()
 	for i in range(6):
-		Sfx.play_sfx(game_start_sound, global_position)
+		SfxManager.play_sfx(game_start_sound, global_position)
 		# Start at 0.25s and get smaller as i increases
 		# Using a negative exponent causes the value to shrink
 		var delay := GameMath.get_scaled_value(0.25, i + 1, -1.5)
@@ -50,8 +50,9 @@ func _end_game() -> void:
 	enemies.disable_enemies()
 	arcade_ui.visible = false
 	player.die()
-	Sfx.play_sfx(game_over_sound, global_position)
+	SfxManager.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
+	GameManager.set_points(current_score)
 	game_ended.emit()
 
 func _update_ui() -> void:

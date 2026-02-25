@@ -20,7 +20,7 @@ func set_crt_visibility(visibility: bool) -> void:
 	
 func run_endgame_interstitial() -> void:
 	skill_tree_nodes.visible = false
-	end_game_interstitial.run_interstitial(100, 0.1)
+	end_game_interstitial.run_interstitial()
 	
 func make_camera_current() -> void:
 	skill_tree_camera.make_current()

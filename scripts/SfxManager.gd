@@ -1,5 +1,5 @@
 extends Node
-class_name SfxManagerClass
+class_name SfxManagerAutoload
 
 func play_sfx(stream: AudioStream, position: Vector2 = Vector2.ZERO) -> void:
 	if not stream: return

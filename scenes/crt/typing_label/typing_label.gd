@@ -31,7 +31,7 @@ func _type_character() -> void:
 		# If not, you can adjust the pitch of the AudioStreamPlayer directly
 		#var pitch = randf_range(0.9, 1.1) 
 		#Sfx.play_sfx(typing_sound, global_position, pitch)
-		Sfx.play_sfx(typing_sound, global_position)
+		SfxManager.play_sfx(typing_sound, global_position)
 
 	# 2. Dynamic Timing Logic
 	var next_delay := _get_wait_time()
@@ -52,10 +52,6 @@ func _type_character() -> void:
 
 	if visible_ratio == 1:
 		finish_typing()
-			
-	
-	if visible_ratio == 1:
-		finish_typing()
 	
 func start_typing() -> void:
 	timer.wait_time = _get_wait_time()
@@ -72,8 +68,7 @@ func stop_typing() -> void:
 func finish_typing() -> void:
 	var is_typing := visible_ratio < 1
 	stop_typing()
-	if is_typing:
-		typing_complete.emit()
+	typing_complete.emit()
 	
 	
 func reset() -> void:

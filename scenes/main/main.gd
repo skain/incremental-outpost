@@ -5,6 +5,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(GameManager.game_data.current_bucks)
 	_start_arcade_game()
 
 func _start_arcade_game() -> void:

@@ -25,7 +25,8 @@ buses/default_bus_layout="uid://bifferrg6qgy1"
 
 [autoload]
 
-Sfx="*uid://b0ijv4ulsrdui"
+GameManager="*uid://cdiidqaiwcbef"
+SfxManager="*uid://b0ijv4ulsrdui"
 
 [debug]
 

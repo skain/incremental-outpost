@@ -22,5 +22,5 @@ func handle_hit() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	area.queue_free()
-	Sfx.play_sfx(projectile_collision_sound, global_position)
+	SfxManager.play_sfx(projectile_collision_sound, global_position)
 	queue_free()
