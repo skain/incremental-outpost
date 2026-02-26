@@ -21,4 +21,5 @@ func get_points_to_bucks_rate() -> float:
 func convert_points_to_bucks() -> int:
 	var new_bucks:int = floor(game_data.current_points * get_points_to_bucks_rate())
 	set_points(0)
+	game_data.current_bucks += new_bucks
 	return new_bucks
