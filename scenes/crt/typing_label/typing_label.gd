@@ -66,7 +66,6 @@ func stop_typing() -> void:
 # the typing_complete signal if there are still chars to type. stop_typing stops the timer and reveals
 # the text without emitting the signal.
 func finish_typing() -> void:
-	var is_typing := visible_ratio < 1
 	stop_typing()
 	typing_complete.emit()
 	

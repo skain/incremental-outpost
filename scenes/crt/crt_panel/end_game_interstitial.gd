@@ -3,7 +3,7 @@ class_name EndGameInterstitial extends CanvasLayer
 signal return_to_outpost_clicked
 signal upgrade_clicked
 
-var is_bucks_counted := false
+var new_bucks := 0
 
 @export var character_reveal_speed: float = .25
 
@@ -24,10 +24,13 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		_interrupt_and_finish_typing()
+
+func _interrupt_and_finish_typing() -> void:
 		message_1.stop_typing()
 		conversion_message.stop_typing()
 		bucks_conversion_display.stop_typing()
-		_count_up_bucks(100)
+		_count_up_bucks()
 		conversion_success_message.stop_typing()
 		conversion_success_message_2.stop_typing()
 	
@@ -37,7 +40,6 @@ func _test_screen() -> void:
 	await _power_down()
 	
 func _reset_messages() -> void:
-	is_bucks_counted = false
 	message_1.reset()
 	conversion_message.reset()
 	bucks_conversion_display.reset()
@@ -46,10 +48,9 @@ func _reset_messages() -> void:
 	bucks_conversion_display.reset()
 	
 func run_interstitial() -> void:
-	is_bucks_counted = false
 	var game_data := GameManager.game_data
 	var points_to_convert := game_data.current_points
-	var new_bucks := GameManager.convert_points_to_bucks()
+	new_bucks = GameManager.convert_points_to_bucks()
 	conversion_message.text = conversion_message.text.replace("%points%", str(points_to_convert)).replace("%bucks_per%", str(GameManager.get_points_to_bucks_rate()))
 	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points_to_convert)).replace("%bucks%", str(new_bucks))
 	
@@ -57,16 +58,16 @@ func run_interstitial() -> void:
 	await message_1.start_typing()
 	await conversion_message.start_typing()
 	await bucks_conversion_display.start_typing()
-	await _count_up_bucks(new_bucks)
+	await _count_up_bucks()
 	await conversion_success_message.start_typing()
 	await conversion_success_message_2.start_typing()
 		
-func _count_up_bucks(target_amount: float) -> void:
+func _count_up_bucks() -> void:
 	bucks_conversion_display.visible_characters = -1
-	if is_bucks_counted:
+	if new_bucks < 1:
 		return
 	
-	var duration := target_amount * (character_reveal_speed / 2)
+	var duration := new_bucks * (character_reveal_speed / 2)
 	
 	var tween := create_tween()
 
@@ -75,12 +76,12 @@ func _count_up_bucks(target_amount: float) -> void:
 	tween.tween_method(
 		func(value: float) -> void: bucks_conversion_display.text = "B: " + str(snapped(value, 1.0)), 
 		0.0, 
-		target_amount, 
+		new_bucks, 
 		duration
 	)
 
 	await tween.finished
-	is_bucks_counted = true
+	new_bucks = 0
 	
 func _power_up() -> void:
 	await _animate_power(0.0, 1.0)
