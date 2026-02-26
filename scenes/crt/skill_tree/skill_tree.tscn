@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://boyv0xjpxpikw"]
 
-[ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/crt_panel/skill_tree_nodes.gd" id="1_m31mo"]
+[ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/skill_tree/skill_tree.gd" id="1_m31mo"]
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.tscn" id="2_vt0yg"]
 [ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/SkillNodeResource.gd" id="3_dp713"]
 [ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/crt_panel/skill_node_info_container.gd" id="4_1c8pd"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
+[ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="6_vt0yg"]
 
 [sub_resource type="Resource" id="Resource_mry14"]
 script = ExtResource("3_dp713")
@@ -123,5 +124,10 @@ text = "Buy"
 [node name="CloseButton" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=914146644 instance=ExtResource("5_1pgdg")]
 layout_mode = 2
 text = "Close"
+
+[node name="SkillTreeCamera" type="Camera2D" parent="." unique_id=957935231]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("6_vt0yg")
 
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

@@ -25,6 +25,7 @@ func _hide_skill_node_info() -> void:
 	skill_tree_ui.visible = false
 
 func home_camera() -> void:
+	skill_tree_camera.make_current()
 	skill_tree_camera.zoom = Vector2.ONE
 	skill_tree_camera.global_position = root_node.global_position
 

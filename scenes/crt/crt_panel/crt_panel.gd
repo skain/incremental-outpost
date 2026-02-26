@@ -26,8 +26,8 @@ func run_endgame_interstitial() -> void:
 	await _power_up()
 	end_game_interstitial.run_interstitial()
 	
-func make_camera_current() -> void:
-	skill_tree_camera.make_current()
+#func make_camera_current() -> void:
+	#skill_tree_camera.make_current()
 
 	
 func _test_screen() -> void:
@@ -67,7 +67,6 @@ func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
 
 
 func _on_end_game_interstitial_upgrade_clicked() -> void:
-	make_camera_current()
 	skill_tree_nodes.home_camera()
 	end_game_interstitial.visible = false
 	skill_tree_nodes.visible = true
