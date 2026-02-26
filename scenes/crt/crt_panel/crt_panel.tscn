@@ -30,7 +30,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="StartGameInterstitial" parent="." unique_id=1635292208 instance=ExtResource("2_36fmf")]
-visible = false
+unique_name_in_owner = true
 
 [node name="EndGameInterstitial" parent="." unique_id=9638797 instance=ExtResource("3_fbx44")]
 unique_name_in_owner = true
@@ -55,5 +55,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[connection signal="load_game_clicked" from="StartGameInterstitial" to="." method="_on_start_game_interstitial_load_game_clicked"]
+[connection signal="new_game_clicked" from="StartGameInterstitial" to="." method="_on_start_game_interstitial_new_game_clicked"]
 [connection signal="return_to_outpost_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_return_to_outpost_clicked"]
 [connection signal="upgrade_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_upgrade_clicked"]
+[connection signal="upgrades_completed" from="SkillTree" to="." method="_on_skill_tree_upgrades_completed"]

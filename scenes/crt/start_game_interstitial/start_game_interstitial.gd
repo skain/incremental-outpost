@@ -8,17 +8,27 @@ signal load_game_clicked
 @export var pulse_speed := 1.0
 
 @onready var title_label: Label = %TitleLabel
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var pulse_tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	hide_interstitial()
+
+
+func show_interstitial() -> void:
+	visible = true
 	_pulse_title()
+	audio_stream_player.play()
+	
 
+func hide_interstitial() -> void:
+	visible = false
+	if pulse_tween:
+		pulse_tween.kill()
+	audio_stream_player.stop()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func _pulse_title() -> void:
 	title_label.self_modulate = Color.WHITE * pulse_min
@@ -28,8 +38,8 @@ func _pulse_title() -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	print("new game pressed")
+	new_game_clicked.emit()
 
 
 func _on_continue_button_pressed() -> void:
-	print("continue pressed")
+	load_game_clicked.emit()

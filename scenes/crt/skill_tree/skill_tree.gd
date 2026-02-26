@@ -1,5 +1,7 @@
 class_name SkillTree extends Node2D
 
+signal upgrades_completed
+
 var root_node: SkillTreeNode = null
 
 @onready var skill_tree_camera: Camera2D = %SkillTreeCamera
@@ -26,7 +28,7 @@ func _show_skill_node_info(node: SkillTreeNode) -> void:
 	
 	
 func _hide_skill_node_info() -> void:
-	skill_tree_ui.visible = false
+	skill_node_info_container.visible = false
 	
 
 func home_camera() -> void:
@@ -50,7 +52,7 @@ func hide_skill_tree() -> void:
 
 func _update_ui() -> void:
 	print(GameManager.game_data.current_bucks)
-	bucks_label.text = "B : " + str(GameManager.game_data.current_bucks)
+	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)
 	
 	
 	
@@ -61,3 +63,7 @@ func _on_skill_tree_node_clicked(node: SkillTreeNode) -> void:
 
 func _on_close_button_pressed() -> void:
 	_hide_skill_node_info()
+
+
+func _on_return_to_outpost_button_pressed() -> void:
+	upgrades_completed.emit()

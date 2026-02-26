@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="1_sxoj8"]
 [ext_resource type="Script" uid="uid://wleojbn1fqa5" path="res://scenes/crt/start_game_interstitial/start_game_interstitial.gd" id="1_v5q77"]
+[ext_resource type="AudioStream" uid="uid://c617xpj0d3tsi" path="res://assets/sounds/music/incremental-outpost-title-music.wav" id="3_6nvb1"]
 
 [node name="StartGameInterstitial" type="CanvasLayer" unique_id=1635292208]
+visible = false
 script = ExtResource("1_v5q77")
 
 [node name="TitleScreen" type="Control" parent="." unique_id=1532289031]
@@ -69,6 +71,9 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=735659905]
+stream = ExtResource("3_6nvb1")
 
 [connection signal="pressed" from="TitleScreen/MarginContainer2/CenterContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="TitleScreen/MarginContainer2/CenterContainer/HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

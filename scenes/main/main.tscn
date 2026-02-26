@@ -18,4 +18,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [connection signal="game_ended" from="ArcadeGame" to="." method="_on_arcade_game_game_ended"]
+[connection signal="load_game_clicked" from="CRTPanel" to="." method="_on_crt_panel_load_game_clicked"]
+[connection signal="new_game_clicked" from="CRTPanel" to="." method="_on_crt_panel_new_game_clicked"]
 [connection signal="return_to_outpost_clicked" from="CRTPanel" to="." method="_on_crt_panel_return_to_outpost_clicked"]
+[connection signal="upgrades_completed" from="CRTPanel" to="." method="_on_crt_panel_upgrades_completed"]

@@ -170,3 +170,4 @@ visible = false
 script = ExtResource("6_vt0yg")
 
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/MarginContainer/HBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]
