@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cd5wgaixw371d"]
+
+[ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="1_sxoj8"]
+[ext_resource type="Script" uid="uid://wleojbn1fqa5" path="res://scenes/crt/start_game_interstitial/start_game_interstitial.gd" id="1_v5q77"]
+
+[node name="StartGameInterstitial" type="CanvasLayer" unique_id=1635292208]
+script = ExtResource("1_v5q77")
+
+[node name="TitleScreen" type="Control" parent="." unique_id=1532289031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen" unique_id=961374922]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 92
+
+[node name="CenterContainer" type="CenterContainer" parent="TitleScreen/MarginContainer" unique_id=914835458]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleScreen/MarginContainer/CenterContainer" unique_id=125069815]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 101
+text = "INCREMENTAL 
+OUTPOST"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="TitleScreen" unique_id=1727372386]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -279.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 200
+
+[node name="CenterContainer" type="CenterContainer" parent="TitleScreen/MarginContainer2" unique_id=1745490949]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/MarginContainer2/CenterContainer" unique_id=2043027920]
+layout_mode = 2
+theme_override_constants/separation = 38
+
+[node name="NewGameButton" parent="TitleScreen/MarginContainer2/CenterContainer/HBoxContainer" unique_id=379915991 instance=ExtResource("1_sxoj8")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "New Game"
+
+[node name="ContinueButton" parent="TitleScreen/MarginContainer2/CenterContainer/HBoxContainer" unique_id=64778043 instance=ExtResource("1_sxoj8")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "Continue"
+
+[node name="CenterContainer2" type="CenterContainer" parent="TitleScreen" unique_id=2091730863]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="TitleScreen/MarginContainer2/CenterContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="TitleScreen/MarginContainer2/CenterContainer/HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

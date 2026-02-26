@@ -11,7 +11,7 @@ signal return_to_outpost_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_screen_off()
+	#_screen_off()
 	skill_tree_nodes.hide_skill_tree()
 
 

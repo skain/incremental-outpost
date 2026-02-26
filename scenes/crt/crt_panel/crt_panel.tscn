@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cygy2bkg5ej1v"]
 
 [ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://scenes/crt/crt_panel/crt_panel.gd" id="1_8xoaq"]
-[ext_resource type="PackedScene" uid="uid://beewv4rnu7sqd" path="res://scenes/crt/EndGameInterstitial/end_game_interstitial.tscn" id="3_fbx44"]
+[ext_resource type="PackedScene" uid="uid://cd5wgaixw371d" path="res://scenes/crt/start_game_interstitial/start_game_interstitial.tscn" id="2_36fmf"]
+[ext_resource type="PackedScene" uid="uid://beewv4rnu7sqd" path="res://scenes/crt/end_game_interstitial/end_game_interstitial.tscn" id="3_fbx44"]
 [ext_resource type="PackedScene" uid="uid://boyv0xjpxpikw" path="res://scenes/crt/skill_tree/skill_tree.tscn" id="4_36fmf"]
 [ext_resource type="Shader" uid="uid://ctmqckux88tcu" path="res://shaders/amber_crt.gdshader" id="4_sb1ul"]
 
@@ -27,6 +28,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="StartGameInterstitial" parent="." unique_id=1635292208 instance=ExtResource("2_36fmf")]
 
 [node name="EndGameInterstitial" parent="." unique_id=9638797 instance=ExtResource("3_fbx44")]
 unique_name_in_owner = true
