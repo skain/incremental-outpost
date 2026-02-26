@@ -1,11 +1,14 @@
 class_name GameManagerAutoload extends Node
 
-@onready var game_data:GameData = load("user://game_data.tres")
+const save_data_path = "user://game_data.tres"
+@onready var game_data:GameData
 
 var _base_points_to_bucks_rate: float = 0.1
 
 func _ready() -> void:
-	if not game_data:
+	if ResourceLoader.exists(save_data_path):
+		game_data = load(save_data_path)
+	else:
 		game_data = GameData.new()
 
 func set_points(new_points: int) -> void:
