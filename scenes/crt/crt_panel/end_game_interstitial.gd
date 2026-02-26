@@ -62,9 +62,10 @@ func run_interstitial() -> void:
 	await conversion_success_message_2.start_typing()
 		
 func _count_up_bucks(target_amount: float) -> void:
-	if not is_bucks_counted:
+	bucks_conversion_display.visible_characters = -1
+	if is_bucks_counted:
 		return
-
+	
 	var duration := target_amount * (character_reveal_speed / 2)
 	
 	var tween := create_tween()
