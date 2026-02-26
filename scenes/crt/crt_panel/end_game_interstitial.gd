@@ -14,11 +14,10 @@ var new_bucks := 0
 @onready var conversion_success_message_2: TypingLabel = %ConversionSuccessMessage2
 @onready var interstitial_message_timer: Timer = %InterstitialMessageTimer
 @onready var interstitial_labels_container: VBoxContainer = %InterstitialLabelsContainer
-@onready var crt_shader: ColorRect = %CRTShader
-@onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
+#@onready var crt_shader: ColorRect = %CRTShader
+#@onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
 
 func _ready() -> void:
-	_screen_off()
 	_reset_messages()
 	#_test_screen()
 	
@@ -33,11 +32,7 @@ func _interrupt_and_finish_typing() -> void:
 		_count_up_bucks()
 		conversion_success_message.stop_typing()
 		conversion_success_message_2.stop_typing()
-	
-func _test_screen() -> void:
-	await run_interstitial()
-	await get_tree().create_timer(2.0).timeout
-	await _power_down()
+
 	
 func _reset_messages() -> void:
 	message_1.reset()
@@ -54,7 +49,6 @@ func run_interstitial() -> void:
 	conversion_message.text = conversion_message.text.replace("%points%", str(points_to_convert)).replace("%bucks_per%", str(GameManager.get_points_to_bucks_rate()))
 	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points_to_convert)).replace("%bucks%", str(new_bucks))
 	
-	await _power_up()
 	await message_1.start_typing()
 	await conversion_message.start_typing()
 	await bucks_conversion_display.start_typing()
@@ -83,33 +77,32 @@ func _count_up_bucks() -> void:
 	await tween.finished
 	new_bucks = 0
 	
-func _power_up() -> void:
-	await _animate_power(0.0, 1.0)
-	
-func _power_down() -> void:
-	await _animate_power(1.0, 0.0)
-	
-func _animate_power(from: float, to: float) -> void:
-	# Create a Tween to animate it turning on
-	var tween := create_tween()
-
-	# We use tween_property with the "shader_parameter/" prefix.
-	# .from(0.0) forces it to start completely black every time!
-	tween.tween_property(
-		crt_shader_mat, 
-		"shader_parameter/power_on", 
-		to, 
-		0.75
-	).from(from).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	
-	await tween.finished
-	
-func _screen_off() -> void:
-	crt_shader_mat.set_shader_parameter("power_on", 0.0)
+#func _power_up() -> void:
+	#await _animate_power(0.0, 1.0)
+	#
+#func _power_down() -> void:
+	#await _animate_power(1.0, 0.0)
+	#
+#func _animate_power(from: float, to: float) -> void:
+	## Create a Tween to animate it turning on
+	#var tween := create_tween()
+#
+	## We use tween_property with the "shader_parameter/" prefix.
+	## .from(0.0) forces it to start completely black every time!
+	#tween.tween_property(
+		#crt_shader_mat, 
+		#"shader_parameter/power_on", 
+		#to, 
+		#0.75
+	#).from(from).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	#
+	#await tween.finished
+	#
+#func _screen_off() -> void:
+	#crt_shader_mat.set_shader_parameter("power_on", 0.0)
 
 func _on_upgrade_button_pressed() -> void:
 	upgrade_clicked.emit()
 
 func _on_return_button_pressed() -> void:
-	await _power_down()
 	return_to_outpost_clicked.emit()
