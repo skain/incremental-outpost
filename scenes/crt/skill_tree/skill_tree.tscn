@@ -22,6 +22,7 @@ skill_cost = 2
 metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [node name="SkillTree" type="Node2D" unique_id=1865863170]
+visible = false
 script = ExtResource("1_m31mo")
 
 [node name="SkillTreeNode" parent="." unique_id=980992063 instance=ExtResource("2_vt0yg")]
@@ -50,6 +51,7 @@ skill_node_resource = SubResource("Resource_m35fp")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
+visible = false
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]
 unique_name_in_owner = true

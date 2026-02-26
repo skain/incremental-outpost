@@ -2,7 +2,6 @@ class_name CRTPanel extends Node2D
 
 signal return_to_outpost_clicked
 
-@onready var skill_tree_camera: Camera2D = %SkillTreeCamera
 @onready var background: CanvasLayer = %Background
 @onready var skill_tree_nodes: SkillTree = %SkillTree
 @onready var end_game_interstitial: EndGameInterstitial = %EndGameInterstitial
@@ -15,20 +14,19 @@ func _ready() -> void:
 	_screen_off()
 	skill_tree_nodes.hide_skill_tree()
 
+
 func set_crt_visibility(visibility: bool) -> void:
 	background.visible = visibility
 	skill_tree_nodes.visible = visibility
 	end_game_interstitial.visible = visibility
 	crt_overlay.visible = visibility
 	
+	
 func run_endgame_interstitial() -> void:
 	skill_tree_nodes.visible = false
 	await _power_up()
 	end_game_interstitial.run_interstitial()
 	
-#func make_camera_current() -> void:
-	#skill_tree_camera.make_current()
-
 	
 func _test_screen() -> void:
 	await _power_up()
@@ -40,8 +38,10 @@ func _test_screen() -> void:
 func _power_up() -> void:
 	await _animate_power(0.0, 1.0)
 	
+	
 func _power_down() -> void:
 	await _animate_power(1.0, 0.0)
+	
 	
 func _animate_power(from: float, to: float) -> void:
 	# Create a Tween to animate it turning on
@@ -58,8 +58,10 @@ func _animate_power(from: float, to: float) -> void:
 	
 	await tween.finished
 	
+	
 func _screen_off() -> void:
 	crt_shader_mat.set_shader_parameter("power_on", 0.0)
+
 
 func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
 	await _power_down()
