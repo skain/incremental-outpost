@@ -4,7 +4,7 @@ signal return_to_outpost_clicked
 
 @onready var skill_tree_camera: Camera2D = %SkillTreeCamera
 @onready var background: CanvasLayer = %Background
-@onready var skill_tree_nodes: SkillTreeNodes = %SkillTreeNodes
+@onready var skill_tree_nodes: SkillTree = %SkillTree
 @onready var end_game_interstitial: EndGameInterstitial = %EndGameInterstitial
 @onready var crt_overlay: CanvasLayer = %CRTOverlay
 @onready var crt_shader: ColorRect = %CRTShader

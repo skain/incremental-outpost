@@ -1,4 +1,4 @@
-class_name SkillTreeNodes extends Node2D
+class_name SkillTree extends Node2D
 
 var root_node: SkillTreeNode = null
 

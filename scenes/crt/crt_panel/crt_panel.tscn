@@ -1,28 +1,10 @@
 [gd_scene format=3 uid="uid://cygy2bkg5ej1v"]
 
 [ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://scenes/crt/crt_panel/crt_panel.gd" id="1_8xoaq"]
-[ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/crt_panel/skill_tree_nodes.gd" id="2_33ycp"]
-[ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree_node/skill_tree_node.tscn" id="3_0k2sf"]
 [ext_resource type="PackedScene" uid="uid://beewv4rnu7sqd" path="res://scenes/crt/EndGameInterstitial/end_game_interstitial.tscn" id="3_fbx44"]
+[ext_resource type="PackedScene" uid="uid://boyv0xjpxpikw" path="res://scenes/crt/skill_tree/skill_tree.tscn" id="4_36fmf"]
 [ext_resource type="Shader" uid="uid://ctmqckux88tcu" path="res://shaders/amber_crt.gdshader" id="4_sb1ul"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="4_xhaol"]
-[ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_33ycp"]
-[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/SkillNodeResource.gd" id="8_fbx44"]
-[ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/crt_panel/skill_node_info_container.gd" id="9_mry14"]
-
-[sub_resource type="Resource" id="Resource_mry14"]
-script = ExtResource("8_fbx44")
-skill_name = "Skill1"
-skill_desc = "This is the first skill and the root of the skill tree."
-skill_cost = 1
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
-
-[sub_resource type="Resource" id="Resource_m35fp"]
-script = ExtResource("8_fbx44")
-skill_name = "Skill5"
-skill_desc = "This is the fifth skill."
-skill_cost = 2
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mbf46"]
 shader = ExtResource("4_sb1ul")
@@ -55,110 +37,8 @@ script = ExtResource("4_xhaol")
 [node name="EndGameInterstitial" parent="." unique_id=9638797 instance=ExtResource("3_fbx44")]
 unique_name_in_owner = true
 
-[node name="SkillTreeNodes" type="Node2D" parent="." unique_id=57239728]
+[node name="SkillTree" parent="." unique_id=1865863170 instance=ExtResource("4_36fmf")]
 unique_name_in_owner = true
-script = ExtResource("2_33ycp")
-
-[node name="SkillTreeNode" parent="SkillTreeNodes" unique_id=1572228902 instance=ExtResource("3_0k2sf")]
-position = Vector2(200, 280)
-skill_node_resource = SubResource("Resource_mry14")
-
-[node name="SkillTreeNode2" parent="SkillTreeNodes/SkillTreeNode" unique_id=980992063 instance=ExtResource("3_0k2sf")]
-position = Vector2(184, 0)
-skill_node_resource = SubResource("Resource_m35fp")
-
-[node name="SkillTreeNode6" parent="SkillTreeNodes/SkillTreeNode/SkillTreeNode2" unique_id=652644876 instance=ExtResource("3_0k2sf")]
-position = Vector2(176, 0)
-skill_node_resource = SubResource("Resource_m35fp")
-
-[node name="SkillTreeNode3" parent="SkillTreeNodes/SkillTreeNode" unique_id=313193352 instance=ExtResource("3_0k2sf")]
-position = Vector2(0, -200)
-skill_node_resource = SubResource("Resource_m35fp")
-
-[node name="SkillTreeNode4" parent="SkillTreeNodes/SkillTreeNode" unique_id=456626741 instance=ExtResource("3_0k2sf")]
-position = Vector2(0, 192)
-skill_node_resource = SubResource("Resource_m35fp")
-
-[node name="SkillTreeNode5" parent="SkillTreeNodes/SkillTreeNode" unique_id=556358856 instance=ExtResource("3_0k2sf")]
-position = Vector2(-176, 0)
-skill_node_resource = SubResource("Resource_m35fp")
-
-[node name="SkillTreeUI" type="CanvasLayer" parent="SkillTreeNodes" unique_id=1930219746]
-unique_name_in_owner = true
-
-[node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeNodes/SkillTreeUI" unique_id=84853954]
-unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("9_mry14")
-
-[node name="Panel" type="Panel" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer" unique_id=251057149]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel" unique_id=1184613707]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer" unique_id=464085301]
-layout_mode = 2
-
-[node name="SkillNameLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=1951140068]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Skill Name"
-
-[node name="SkillDescriptionLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=1434104894]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 100)
-layout_mode = 2
-text = "Skill Description"
-autowrap_mode = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=772087296]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1553047799]
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-bbcode_enabled = true
-text = "Cost:  [img=baseline,6x12]res://assets/BucksSymbol.png[/img]"
-fit_content = true
-autowrap_mode = 0
-
-[node name="SkillCostLabel" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2135503754]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="Spacer" type="Label" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=300902884]
-layout_mode = 2
-size_flags_vertical = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=118813560]
-layout_mode = 2
-theme_override_constants/separation = 44
-alignment = 1
-
-[node name="BuyButton" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=343289552 instance=ExtResource("5_33ycp")]
-layout_mode = 2
-text = "Buy"
-
-[node name="CloseButton" parent="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=311199730 instance=ExtResource("5_33ycp")]
-layout_mode = 2
-text = "Close"
 
 [node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=381617986]
 unique_name_in_owner = true
@@ -179,4 +59,3 @@ mouse_filter = 2
 
 [connection signal="return_to_outpost_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_return_to_outpost_clicked"]
 [connection signal="upgrade_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_upgrade_clicked"]
-[connection signal="pressed" from="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeNodes" method="_on_close_button_pressed"]

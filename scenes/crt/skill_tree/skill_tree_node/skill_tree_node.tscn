@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxh7esmyaw302"]
 
-[ext_resource type="Script" uid="uid://dp8l4ek8up3rd" path="res://scenes/crt/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
+[ext_resource type="Script" uid="uid://dp8l4ek8up3rd" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.gd" id="1_ppave"]
 
 [sub_resource type="Gradient" id="Gradient_dgmcs"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
