@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://beewv4rnu7sqd"]
+
+[ext_resource type="Script" uid="uid://w2oe8ri1sc1" path="res://scenes/crt/crt_panel/end_game_interstitial.gd" id="1_dpqa3"]
+[ext_resource type="PackedScene" uid="uid://b5oyxlhbvwdu2" path="res://scenes/crt/typing_label/typing_label.tscn" id="2_5qkvq"]
+[ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="3_5bk5w"]
+
+[node name="EndGameInterstitial" type="CanvasLayer" unique_id=9638797]
+visible = false
+script = ExtResource("1_dpqa3")
+character_reveal_speed = 0.1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=671199607]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 261
+
+[node name="InterstitialLabelsContainer" type="VBoxContainer" parent="MarginContainer" unique_id=253626224]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Message1" parent="MarginContainer/InterstitialLabelsContainer" unique_id=1321450307 instance=ExtResource("2_5qkvq")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Consciousness retrieved...
+Verifying...
+.
+.
+.
+Consciousness Verified."
+chars_per_second = 15.0
+
+[node name="ConversionMessage" parent="MarginContainer/InterstitialLabelsContainer" unique_id=14615020 instance=ExtResource("2_5qkvq")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Converting %points% points to Bucks (1p/%bucks_per%B)."
+chars_per_second = 15.0
+
+[node name="BucksConversionDisplay" parent="MarginContainer/InterstitialLabelsContainer" unique_id=1498565309 instance=ExtResource("2_5qkvq")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "B: 0"
+chars_per_second = 15.0
+
+[node name="ConversionSuccessMessage" parent="MarginContainer/InterstitialLabelsContainer" unique_id=1793089740 instance=ExtResource("2_5qkvq")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Successfully converted %points% points to %bucks% Bucks.
+"
+chars_per_second = 15.0
+
+[node name="ConversionSuccessMessage2" parent="MarginContainer/InterstitialLabelsContainer" unique_id=972048313 instance=ExtResource("2_5qkvq")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Use the Buttons Below To Upgrade -Or- Return To Outpost"
+chars_per_second = 15.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=511279511]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=612850028]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="UpgradeButton" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=379915991 instance=ExtResource("3_5bk5w")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=704583727]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="ReturnButton" parent="MarginContainer/HBoxContainer/MarginContainer2" unique_id=1917666549 instance=ExtResource("3_5bk5w")]
+layout_mode = 2
+text = "Return to Outpost"
+
+[node name="InterstitialMessageTimer" type="Timer" parent="." unique_id=1927472551]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer2/ReturnButton" to="." method="_on_return_button_pressed"]

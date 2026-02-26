@@ -14,8 +14,6 @@ var new_bucks := 0
 @onready var conversion_success_message_2: TypingLabel = %ConversionSuccessMessage2
 @onready var interstitial_message_timer: Timer = %InterstitialMessageTimer
 @onready var interstitial_labels_container: VBoxContainer = %InterstitialLabelsContainer
-#@onready var crt_shader: ColorRect = %CRTShader
-#@onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
 
 func _ready() -> void:
 	_reset_messages()
@@ -77,29 +75,6 @@ func _count_up_bucks() -> void:
 	await tween.finished
 	new_bucks = 0
 	
-#func _power_up() -> void:
-	#await _animate_power(0.0, 1.0)
-	#
-#func _power_down() -> void:
-	#await _animate_power(1.0, 0.0)
-	#
-#func _animate_power(from: float, to: float) -> void:
-	## Create a Tween to animate it turning on
-	#var tween := create_tween()
-#
-	## We use tween_property with the "shader_parameter/" prefix.
-	## .from(0.0) forces it to start completely black every time!
-	#tween.tween_property(
-		#crt_shader_mat, 
-		#"shader_parameter/power_on", 
-		#to, 
-		#0.75
-	#).from(from).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	#
-	#await tween.finished
-	#
-#func _screen_off() -> void:
-	#crt_shader_mat.set_shader_parameter("power_on", 0.0)
 
 func _on_upgrade_button_pressed() -> void:
 	upgrade_clicked.emit()

@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://dbqj64ihq87oj" path="res://scenes/crt/crt_panel/crt_panel.gd" id="1_8xoaq"]
 [ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/crt_panel/skill_tree_nodes.gd" id="2_33ycp"]
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree_node/skill_tree_node.tscn" id="3_0k2sf"]
-[ext_resource type="Script" uid="uid://w2oe8ri1sc1" path="res://scenes/crt/crt_panel/end_game_interstitial.gd" id="3_cppxt"]
-[ext_resource type="PackedScene" uid="uid://b5oyxlhbvwdu2" path="res://scenes/crt/typing_label/typing_label.tscn" id="4_36fmf"]
+[ext_resource type="PackedScene" uid="uid://beewv4rnu7sqd" path="res://scenes/crt/EndGameInterstitial/end_game_interstitial.tscn" id="3_fbx44"]
 [ext_resource type="Shader" uid="uid://ctmqckux88tcu" path="res://shaders/amber_crt.gdshader" id="4_sb1ul"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="4_xhaol"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_33ycp"]
@@ -53,89 +52,7 @@ unique_name_in_owner = true
 visible = false
 script = ExtResource("4_xhaol")
 
-[node name="EndGameInterstitial" type="CanvasLayer" parent="." unique_id=43730878]
-unique_name_in_owner = true
-visible = false
-script = ExtResource("3_cppxt")
-character_reveal_speed = 0.1
-
-[node name="MarginContainer" type="MarginContainer" parent="EndGameInterstitial" unique_id=2057519644]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 261
-
-[node name="InterstitialLabelsContainer" type="VBoxContainer" parent="EndGameInterstitial/MarginContainer" unique_id=295817908]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Message1" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1321450307 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Consciousness retrieved...
-Verifying...
-.
-.
-.
-Consciousness Verified."
-chars_per_second = 15.0
-
-[node name="ConversionMessage" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1834412677 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Converting %points% points to Bucks (1p/%bucks_per%B)."
-chars_per_second = 15.0
-
-[node name="BucksConversionDisplay" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1738709693 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "B: 0"
-chars_per_second = 15.0
-
-[node name="ConversionSuccessMessage" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1228665792 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Successfully converted %points% points to %bucks% Bucks.
-"
-chars_per_second = 15.0
-
-[node name="ConversionSuccessMessage2" parent="EndGameInterstitial/MarginContainer/InterstitialLabelsContainer" unique_id=1677569307 instance=ExtResource("4_36fmf")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Use the Buttons Below To Upgrade -Or- Return To Outpost"
-chars_per_second = 15.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="EndGameInterstitial/MarginContainer" unique_id=426603910]
-layout_mode = 2
-size_flags_vertical = 8
-mouse_filter = 2
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="EndGameInterstitial/MarginContainer/HBoxContainer" unique_id=1651259146]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
-
-[node name="UpgradeButton" parent="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer" unique_id=379915991 instance=ExtResource("5_33ycp")]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="EndGameInterstitial/MarginContainer/HBoxContainer" unique_id=684036174]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
-
-[node name="ReturnButton" parent="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer2" unique_id=574001029 instance=ExtResource("5_33ycp")]
-layout_mode = 2
-text = "Return to Outpost"
-
-[node name="InterstitialMessageTimer" type="Timer" parent="EndGameInterstitial" unique_id=1879508052]
+[node name="EndGameInterstitial" parent="." unique_id=9638797 instance=ExtResource("3_fbx44")]
 unique_name_in_owner = true
 
 [node name="SkillTreeNodes" type="Node2D" parent="." unique_id=57239728]
@@ -262,6 +179,4 @@ mouse_filter = 2
 
 [connection signal="return_to_outpost_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_return_to_outpost_clicked"]
 [connection signal="upgrade_clicked" from="EndGameInterstitial" to="." method="_on_end_game_interstitial_upgrade_clicked"]
-[connection signal="pressed" from="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer/UpgradeButton" to="EndGameInterstitial" method="_on_upgrade_button_pressed"]
-[connection signal="pressed" from="EndGameInterstitial/MarginContainer/HBoxContainer/MarginContainer2/ReturnButton" to="EndGameInterstitial" method="_on_return_button_pressed"]
 [connection signal="pressed" from="SkillTreeNodes/SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeNodes" method="_on_close_button_pressed"]
