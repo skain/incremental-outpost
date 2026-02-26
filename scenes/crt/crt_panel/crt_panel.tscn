@@ -30,6 +30,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="StartGameInterstitial" parent="." unique_id=1635292208 instance=ExtResource("2_36fmf")]
+visible = false
 
 [node name="EndGameInterstitial" parent="." unique_id=9638797 instance=ExtResource("3_fbx44")]
 unique_name_in_owner = true

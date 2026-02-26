@@ -18,7 +18,7 @@ func _connect_skill_node_signals() -> void:
 			skill_node.skill_tree_node_clicked.connect(_on_skill_tree_node_skill_tree_node_clicked)
 
 func _show_skill_node_info(node: SkillTreeNode) -> void:
-	skill_tree_ui.visible = true
+	skill_node_info_container.visible = true
 	skill_node_info_container.load_node_info(node)
 	
 func _hide_skill_node_info() -> void:
@@ -32,10 +32,12 @@ func home_camera() -> void:
 func show_skill_tree() -> void:
 	visible = true
 	skill_tree_ui.visible = true
+	skill_node_info_container.visible = false
 	
 func hide_skill_tree() -> void:
 	visible = false
 	skill_tree_ui.visible = false
+	skill_node_info_container.visible = false
 
 func _on_skill_tree_node_skill_tree_node_clicked(node: SkillTreeNode) -> void:
 	print(node.name + " clicked")

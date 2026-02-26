@@ -3,7 +3,7 @@ class_name CRTPanel extends Node2D
 signal return_to_outpost_clicked
 
 @onready var background: CanvasLayer = %Background
-@onready var skill_tree_nodes: SkillTree = %SkillTree
+@onready var skill_tree: SkillTree = %SkillTree
 @onready var end_game_interstitial: EndGameInterstitial = %EndGameInterstitial
 @onready var crt_overlay: CanvasLayer = %CRTOverlay
 @onready var crt_shader: ColorRect = %CRTShader
@@ -12,18 +12,18 @@ signal return_to_outpost_clicked
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#_screen_off()
-	skill_tree_nodes.hide_skill_tree()
+	skill_tree.hide_skill_tree()
 
 
 func set_crt_visibility(visibility: bool) -> void:
 	background.visible = visibility
-	skill_tree_nodes.visible = visibility
+	skill_tree.hide_skill_tree()
 	end_game_interstitial.visible = visibility
 	crt_overlay.visible = visibility
 	
 	
 func run_endgame_interstitial() -> void:
-	skill_tree_nodes.visible = false
+	skill_tree.hide_skill_tree()
 	await _power_up()
 	end_game_interstitial.run_interstitial()
 	
@@ -69,6 +69,6 @@ func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
 
 
 func _on_end_game_interstitial_upgrade_clicked() -> void:
-	skill_tree_nodes.home_camera()
+	skill_tree.home_camera()
 	end_game_interstitial.visible = false
-	skill_tree_nodes.visible = true
+	skill_tree.show_skill_tree()
