@@ -7,6 +7,8 @@ signal start_game_pressed
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var cannons: Node2D = $Cannons
+@onready var player_sprite: Sprite2D = %Player
+
 
 var max_health := 3
 var health := 3
@@ -36,8 +38,21 @@ func _handle_hit(projectile: EnemyProjectile) -> void:
 	player_hit.emit()
 	projectile.handle_hit()
 	hit_player.play()
+	_hit_flash()
 	_shake_camera(15.0, 0.25)
+
+
+func _hit_flash() -> void:
+	var tween := create_tween()
+
+	tween.set_parallel(true)	
 	
+	HitFlashHelper.add_hit_flash_to_tween(tween, player_sprite)
+	
+	for node in cannons.find_children("*", "Cannon", false, false):
+		var cannon := node as Cannon
+		cannon.add_flash_to_tween(tween)
+
 func _shake_camera(intensity: float, duration: float) -> void:
 	var shake_tween := create_tween()
 

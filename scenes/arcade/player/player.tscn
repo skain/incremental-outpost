@@ -2,11 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cywb2avasjihk" path="res://scenes/arcade/player/player.gd" id="1_7ow0l"]
 [ext_resource type="Texture2D" uid="uid://cxjjqp2urhlxv" path="res://assets/player.png" id="2_0owmy"]
+[ext_resource type="Shader" uid="uid://bpkr2sln3kef" path="res://shaders/hit_flash.gdshader" id="2_05dtb"]
 [ext_resource type="Script" uid="uid://cyf6fhon2yb2e" path="res://scenes/arcade/player/shields.gd" id="3_7ow0l"]
 [ext_resource type="PackedScene" uid="uid://dulyh4ydd2vqf" path="res://scenes/arcade/shield/shield.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/arcade/cannon/cannon.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cmo2t14e770kl" path="res://scenes/arcade/player/cannons.gd" id="5_7ow0l"]
 [ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l18vc"]
+resource_local_to_scene = true
+shader = ExtResource("2_05dtb")
+shader_parameter/flash_modifier = 0.0
+shader_parameter/flash_color = Color(1.6938539, 1.6938539, 1.6938539, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(64, 64)
@@ -17,7 +24,9 @@ collision_mask = 16
 script = ExtResource("1_7ow0l")
 
 [node name="Player" type="Sprite2D" parent="." unique_id=1249087377]
+unique_name_in_owner = true
 self_modulate = Color(1.4586968, 1.4586968, 1.4586968, 1)
+material = SubResource("ShaderMaterial_l18vc")
 texture = ExtResource("2_0owmy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552792780]
