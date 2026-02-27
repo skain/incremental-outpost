@@ -16,6 +16,7 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/enemy_projectile/enemy_pro
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var revive_player: AudioStreamPlayer2D = $RevivePlayer
 @onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
+@onready var sprite_2d: Sprite2D = %Sprite2D
 
 var enemy_level := 1
 var disable_decay_factor := .9
@@ -24,16 +25,19 @@ var can_shoot := true
 func _ready() -> void:
 	reset()
 	
+	
 func reset() -> void:
 	enemy_level = 1
 	disable(true)
 	_start_shoot_timer()
+	
 	
 func _start_shoot_timer() -> void:
 	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, -1.1)
 	#print(name + " starting shoot timer: " + str(cur_delay))
 	var rand_delay: float = cur_delay + randf_range(.2, 1.2)
 	shoot_timer.start(rand_delay)
+
 
 func _enable() -> void:
 	#print('enabled')
@@ -42,6 +46,7 @@ func _enable() -> void:
 	collision_shape_2d.set_deferred("disabled", false)
 	revive_player.play()
 	_start_shoot_timer()
+	
 	
 func disable(is_temporary: bool = true) -> void:
 	#print('disabled')
@@ -55,18 +60,32 @@ func disable(is_temporary: bool = true) -> void:
 	else:
 		shoot_timer.stop()
 		revive_timer.stop()
+		
 	
 func _on_revive_timer_timeout() -> void:
 	_enable()
+	
 
 func _on_area_entered(area: Area2D) -> void:
 	#print('hit')
+	_handle_hit(area)
+	
+	
+func _handle_hit(area: Area2D) -> void:
+	await _hit_flash()
 	disable()
 	hit_player.play()
 	enemy_hit.emit(self)
 	var projectile := area as PlayerProjectile
 	if projectile:
 		projectile.handle_hit()
+		
+		
+func _hit_flash() -> void:
+	var tween := create_tween()
+	HitFlashHelper.add_hit_flash_to_tween(tween, sprite_2d)
+	await tween.finished
+	
 	
 func _fire_projectile() -> void:
 	#print("enemy position: ", position)

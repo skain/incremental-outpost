@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://cmc3ik5tigjec"]
 
 [ext_resource type="Script" uid="uid://dud3351rov223" path="res://scenes/arcade/enemies/enemy.gd" id="1_m2msb"]
+[ext_resource type="Shader" uid="uid://bpkr2sln3kef" path="res://shaders/hit_flash.gdshader" id="2_cibs5"]
 [ext_resource type="Texture2D" uid="uid://cla8b7wp3ab71" path="res://assets/enemy1.png" id="2_cwlon"]
 [ext_resource type="AudioStream" uid="uid://30n5ehy3il2a" path="res://assets/sounds/8-bit Sound Library/Shoot_01.wav" id="3_4ra3w"]
 [ext_resource type="AudioStream" uid="uid://ck3bxuak0ycbf" path="res://assets/sounds/8-bit Sound Library/Explosion_00.wav" id="4_5uy6h"]
 [ext_resource type="AudioStream" uid="uid://ctfkha5v65008" path="res://assets/sounds/8-bit Sound Library/Hit_01.wav" id="5_c4w8v"]
 [ext_resource type="PackedScene" uid="uid://bkgov81stuqku" path="res://scenes/arcade/muzzle_flash/muzzle_flash.tscn" id="6_xwavj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_povgh"]
+resource_local_to_scene = true
+shader = ExtResource("2_cibs5")
+shader_parameter/flash_modifier = 0.0
+shader_parameter/flash_color = Color(1.6938539, 1.6938539, 1.6938539, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(63.66667, 10.333334)
@@ -17,7 +24,9 @@ collision_mask = 8
 script = ExtResource("1_m2msb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=606885093]
+unique_name_in_owner = true
 self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+material = SubResource("ShaderMaterial_povgh")
 texture = ExtResource("2_cwlon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=149711576]
