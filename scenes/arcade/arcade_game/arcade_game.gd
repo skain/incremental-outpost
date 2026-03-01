@@ -14,6 +14,7 @@ var game_over := true
 @onready var arcade_ui: CanvasLayer = %ArcadeUI
 
 func _ready() -> void:
+	enemies.disable_enemies()
 	_connect_enemy_hits()
 	
 func _connect_enemy_hits() -> void:

@@ -8,6 +8,7 @@ var root_node: SkillTreeNode = null
 @onready var skill_tree_ui: CanvasLayer = %SkillTreeUI
 @onready var skill_node_info_container: SkillNodeInfoContainer = %SkillNodeInfoContainer
 @onready var bucks_label: Label = %BucksLabel
+@onready var skill_tree_music: AudioStreamPlayer = %SkillTreeMusic
 
 func _ready() -> void:
 	root_node = get_child(0) as SkillTreeNode
@@ -42,12 +43,15 @@ func show_skill_tree() -> void:
 	visible = true
 	skill_tree_ui.visible = true
 	skill_node_info_container.visible = false
+	if not skill_tree_music.playing:
+		skill_tree_music.play()
 	
 	
 func hide_skill_tree() -> void:
 	visible = false
 	skill_tree_ui.visible = false
 	skill_node_info_container.visible = false
+	skill_tree_music.stop()
 	
 
 func _update_ui() -> void:
