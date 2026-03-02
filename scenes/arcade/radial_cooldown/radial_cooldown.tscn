@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://7wadnnpadmh6"]
+
+[ext_resource type="Texture2D" uid="uid://da50u48k1dfj5" path="res://assets/radial-progress-under.png" id="1_uhwue"]
+[ext_resource type="Texture2D" uid="uid://doe54yir55ucb" path="res://assets/radial-progress-progress.png" id="2_ipnot"]
+[ext_resource type="Script" uid="uid://bmmew1pv6s56h" path="res://scenes/arcade/radial_cooldown/radial_cooldown.gd" id="3_ipnot"]
+
+[node name="RadialCooldown" type="TextureProgressBar" unique_id=1715744450]
+self_modulate = Color(2.1331975, 2.1331975, 2.1331975, 1)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+pivot_offset = Vector2(8, 8)
+fill_mode = 5
+texture_under = ExtResource("1_uhwue")
+texture_progress = ExtResource("2_ipnot")
+tint_under = Color(0.81, 0, 0, 1)
+tint_progress = Color(0.82, 0, 0, 1)
+script = ExtResource("3_ipnot")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=373507145]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

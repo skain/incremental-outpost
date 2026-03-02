@@ -10,6 +10,7 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_p
 @onready var fire_audio_player: AudioStreamPlayer2D = $FireAudioPlayer
 @onready var hit_audio_player: AudioStreamPlayer2D = $HitAudioPlayer
 @onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
+@onready var radial_cooldown: RadialCooldown = %RadialCooldown
 
 @export var fire_rate: float = 0.2
 
@@ -18,6 +19,7 @@ var can_fire := true
 
 func _ready() -> void:
 	fire_direction = _get_fire_direction()
+	radial_cooldown.cooldown_duration = fire_rate
 	
 	
 func _handle_hit() -> void:
@@ -52,8 +54,10 @@ func fire_projectile(projectile_owner: Node) -> void:
 	muzzle_flash.emit_flash()
 
 	can_fire = false  # Prevent further firing
-	await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
-	can_fire = true  # Allow firing again after the delay
+	radial_cooldown.start_cooldown()
+	#await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
+	#can_fire = true  # Allow firing again after the delay
+	
 
 
 func add_flash_to_tween(tween: Tween) -> void:
@@ -75,5 +79,8 @@ func _on_area_entered(area: Area2D) -> void:
 	if projectile:
 		projectile.handle_hit()
 		
-	_handle_hit()
-	
+	_handle_hit()	
+
+
+func _on_radial_cooldown_cooldown_complete() -> void:
+	can_fire = true

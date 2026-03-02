@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsccarl3md46n"
-path="res://.godot/imported/Shield.png-263ac5c6e89d170bf3e5519e418d5045.ctex"
+uid="uid://da50u48k1dfj5"
+path="res://.godot/imported/radial-progress-under.png-add3bbd77797ee0e682b92b7e466fa2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Shield.png"
-dest_files=["res://.godot/imported/Shield.png-263ac5c6e89d170bf3e5519e418d5045.ctex"]
+source_file="res://assets/radial-progress-under.png"
+dest_files=["res://.godot/imported/radial-progress-under.png-add3bbd77797ee0e682b92b7e466fa2c.ctex"]
 
 [params]
 
