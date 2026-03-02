@@ -51,6 +51,7 @@ skill_node_resource = SubResource("Resource_m35fp")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
+visible = false
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]
 unique_name_in_owner = true
