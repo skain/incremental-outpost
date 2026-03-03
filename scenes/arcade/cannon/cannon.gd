@@ -20,6 +20,8 @@ var can_fire := true
 func _ready() -> void:
 	fire_direction = _get_fire_direction()
 	radial_cooldown.cooldown_duration = fire_rate
+	if rotation_degrees == 90.0 or rotation_degrees == 180.0:
+		radial_cooldown.position.x *= -1.0
 	
 	
 func _handle_hit() -> void:
@@ -72,7 +74,7 @@ func reset() -> void:
 	
 func disable() -> void:
 	can_fire = false
-	
+
 
 func _on_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile
