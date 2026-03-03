@@ -4,21 +4,13 @@ signal skill_tree_node_clicked(node: SkillTreeNode)
 
 @export var skill_node_resource: SkillNodeResource
 
-#func _ready() -> void:
-	##probably not the best way to do lines
-	#for node in get_children():
-		#var skill_node := node as SkillTreeNode
-		#var line := Line2D.new()
-		#
-		#line.add_point(Vector2.ZERO)
-		#line.add_point(skill_node.position)
-		#
-		#line.default_color = Color(1.0, 1.0, 1.0, 1.0)
-		#line.width = 2.0
-		#
-		#add_child(line)
-		
+
 func _ready() -> void:
+	_register_with_game_manager()
+	draw_lines()
+	
+	
+func draw_lines() -> void:
 	for node in find_children("*", "SkillTreeNode", true, false):
 		var skill_node := node as SkillTreeNode
 		if not skill_node: 
@@ -36,6 +28,9 @@ func _ready() -> void:
 
 		add_child(line)
 
+
+func _register_with_game_manager() -> void:
+	GameManager.register_skill_node(self)
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
