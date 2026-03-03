@@ -12,17 +12,24 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_p
 @onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
 @onready var radial_cooldown: RadialCooldown = %RadialCooldown
 
-@export var fire_rate: float = 0.2
+@export var fire_cooldown_base: float = 10.0
 
 var fire_direction: Vector2
 var can_fire := true
 
 func _ready() -> void:
 	fire_direction = _get_fire_direction()
-	radial_cooldown.cooldown_duration = fire_rate
+	radial_cooldown.cooldown_duration = _calculate_fire_cooldown()
 	if rotation_degrees == 90.0 or rotation_degrees == 180.0:
 		radial_cooldown.position.x *= -1.0
-	
+
+
+func _calculate_fire_cooldown() -> float:
+	var mod := GameManager.get_cannon_cooldown_modifier()
+	if mod == 0.0:
+		mod = 1.0
+	var cooldown: float = mod * fire_cooldown_base
+	return cooldown
 	
 func _handle_hit() -> void:
 	if not can_fire:

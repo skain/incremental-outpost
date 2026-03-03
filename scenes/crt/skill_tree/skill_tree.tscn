@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/skill_tree/skill_tree.gd" id="1_m31mo"]
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.tscn" id="2_vt0yg"]
-[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/SkillNodeResource.gd" id="3_dp713"]
+[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="3_dp713"]
 [ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/crt_panel/skill_node_info_container.gd" id="4_1c8pd"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="6_vt0yg"]
@@ -13,6 +13,27 @@ script = ExtResource("3_dp713")
 skill_name = "Skill1"
 skill_desc = "This is the first skill and the root of the skill tree."
 skill_cost = 1
+max_level = 1
+modifier_type = 1
+modifier_values_by_level = Array[float]([0.75])
+metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
+
+[sub_resource type="Resource" id="Resource_dp713"]
+script = ExtResource("3_dp713")
+skill_name = "Skill5"
+skill_desc = "This is the fifth skill."
+skill_cost = 2
+max_level = 1
+modifier_values_by_level = Array[float]([3.0])
+metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
+
+[sub_resource type="Resource" id="Resource_1c8pd"]
+script = ExtResource("3_dp713")
+skill_name = "Skill5"
+skill_desc = "This is the fifth skill."
+skill_cost = 2
+max_level = 1
+modifier_values_by_level = Array[float]([4.0])
 metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="Resource" id="Resource_m35fp"]
@@ -20,6 +41,26 @@ script = ExtResource("3_dp713")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
 skill_cost = 2
+max_level = 1
+modifier_values_by_level = Array[float]([1.0])
+metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
+
+[sub_resource type="Resource" id="Resource_1pgdg"]
+script = ExtResource("3_dp713")
+skill_name = "Skill5"
+skill_desc = "This is the fifth skill."
+skill_cost = 2
+max_level = 1
+modifier_values_by_level = Array[float]([5.0])
+metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
+
+[sub_resource type="Resource" id="Resource_jlgqv"]
+script = ExtResource("3_dp713")
+skill_name = "Skill5"
+skill_desc = "This is the fifth skill."
+skill_cost = 2
+max_level = 1
+modifier_values_by_level = Array[float]([2.0])
 metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [node name="SkillTree" type="Node2D" unique_id=1865863170]
@@ -31,11 +72,11 @@ skill_node_resource = SubResource("Resource_mry14")
 
 [node name="SkillTreeNode2" parent="SkillTreeNode" unique_id=1842658866 instance=ExtResource("2_vt0yg")]
 position = Vector2(184, 0)
-skill_node_resource = SubResource("Resource_m35fp")
+skill_node_resource = SubResource("Resource_dp713")
 
 [node name="SkillTreeNode6" parent="SkillTreeNode/SkillTreeNode2" unique_id=647787278 instance=ExtResource("2_vt0yg")]
 position = Vector2(176, 0)
-skill_node_resource = SubResource("Resource_m35fp")
+skill_node_resource = SubResource("Resource_1c8pd")
 
 [node name="SkillTreeNode3" parent="SkillTreeNode" unique_id=1002892421 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -200)
@@ -43,11 +84,11 @@ skill_node_resource = SubResource("Resource_m35fp")
 
 [node name="SkillTreeNode4" parent="SkillTreeNode" unique_id=1809098976 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 192)
-skill_node_resource = SubResource("Resource_m35fp")
+skill_node_resource = SubResource("Resource_1pgdg")
 
 [node name="SkillTreeNode5" parent="SkillTreeNode" unique_id=2112073943 instance=ExtResource("2_vt0yg")]
 position = Vector2(-176, 0)
-skill_node_resource = SubResource("Resource_m35fp")
+skill_node_resource = SubResource("Resource_jlgqv")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
