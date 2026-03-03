@@ -3,7 +3,9 @@ class_name GameManagerAutoload extends Node
 const save_data_path = "user://game_data.tres"
 @onready var game_data:GameData
 
+var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 var _base_points_to_bucks_rate: float = 0.1
+
 
 func _ready() -> void:
 	if ResourceLoader.exists(save_data_path):
@@ -23,3 +25,9 @@ func convert_points_to_bucks() -> int:
 	set_points(0)
 	game_data.current_bucks += new_bucks
 	return new_bucks
+	
+func register_skill_node(node: SkillTreeNode) -> void:
+	_skill_nodes_by_name[node.name] = node
+	
+func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
+	return _skill_nodes_by_name[node_name]
