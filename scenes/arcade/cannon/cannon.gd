@@ -31,10 +31,7 @@ func _calculate_fire_cooldown() -> float:
 	var cooldown: float = mod * fire_cooldown_base
 	return cooldown
 	
-func _handle_hit() -> void:
-	if not can_fire:
-		return
-		
+func _handle_hit() -> void:		
 	collision_shape_2d.set_deferred("disabled", true)
 	cannon.frame = 1
 	can_fire = false
@@ -63,10 +60,7 @@ func fire_projectile(projectile_owner: Node) -> void:
 	muzzle_flash.emit_flash()
 
 	can_fire = false  # Prevent further firing
-	radial_cooldown.start_cooldown()
-	#await get_tree().create_timer(fire_rate).timeout  # Wait for fire_rate seconds
-	#can_fire = true  # Allow firing again after the delay
-	
+	radial_cooldown.start_cooldown()	
 
 
 func add_flash_to_tween(tween: Tween) -> void:
