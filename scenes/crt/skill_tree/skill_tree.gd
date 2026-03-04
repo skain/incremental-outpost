@@ -65,9 +65,10 @@ func _on_skill_tree_node_clicked(node: SkillTreeNode) -> void:
 	_show_skill_node_info(node)
 
 
-func _on_close_button_pressed() -> void:
-	_hide_skill_node_info()
-
 
 func _on_return_to_outpost_button_pressed() -> void:
 	upgrades_completed.emit()
+
+
+func _on_skill_tree_ui_info_container_close_button_pressed() -> void:
+	_hide_skill_node_info()

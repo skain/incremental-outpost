@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.tscn" id="2_vt0yg"]
 [ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="3_dp713"]
 [ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/crt_panel/skill_node_info_container.gd" id="4_1c8pd"]
+[ext_resource type="Script" uid="uid://cgnpskxfopoqq" path="res://scenes/crt/skill_tree/skill_tree_ui.gd" id="4_1pgdg"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
@@ -93,6 +94,7 @@ skill_node_resource = SubResource("Resource_jlgqv")
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
 visible = false
+script = ExtResource("4_1pgdg")
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]
 unique_name_in_owner = true
@@ -216,5 +218,9 @@ script = ExtResource("6_vt0yg")
 unique_name_in_owner = true
 stream = ExtResource("7_dp713")
 
-[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="info_container_close_button_pressed" from="SkillTreeUI" to="." method="_on_skill_tree_ui_info_container_close_button_pressed"]
+[connection signal="buy_button_pressed" from="SkillTreeUI/SkillNodeInfoContainer" to="SkillTreeUI" method="_on_skill_node_info_container_buy_button_pressed"]
+[connection signal="close_button_pressed" from="SkillTreeUI/SkillNodeInfoContainer" to="SkillTreeUI" method="_on_skill_node_info_container_close_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/BuyButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/MarginContainer/HBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]

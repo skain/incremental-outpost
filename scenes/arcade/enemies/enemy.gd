@@ -75,8 +75,8 @@ func _handle_hit(area: Area2D) -> void:
 	await _hit_flash()
 	disable()
 	hit_player.play()
-	var projectile := area as PlayerProjectile
-	if projectile:
+	if is_instance_valid(area) and area is PlayerProjectile:
+		var projectile := area as PlayerProjectile
 		projectile.handle_hit()
 	
 	enemy_hit.emit(self)
