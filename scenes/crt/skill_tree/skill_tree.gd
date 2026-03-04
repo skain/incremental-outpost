@@ -5,8 +5,7 @@ signal upgrades_completed
 var root_node: SkillTreeNode = null
 
 @onready var skill_tree_camera: Camera2D = %SkillTreeCamera
-@onready var skill_tree_ui: CanvasLayer = %SkillTreeUI
-@onready var skill_node_info_container: SkillNodeInfoContainer = %SkillNodeInfoContainer
+@onready var skill_tree_ui: SkillTreeUI = %SkillTreeUI
 @onready var bucks_label: Label = %BucksLabel
 @onready var skill_tree_music: AudioStreamPlayer = %SkillTreeMusic
 
@@ -23,15 +22,6 @@ func _connect_skill_node_signals() -> void:
 			skill_node.skill_tree_node_clicked.connect(_on_skill_tree_node_clicked)
 			
 
-func _show_skill_node_info(node: SkillTreeNode) -> void:
-	skill_node_info_container.visible = true
-	skill_node_info_container.load_node_info(node)
-	
-	
-func _hide_skill_node_info() -> void:
-	skill_node_info_container.visible = false
-	
-
 func home_camera() -> void:
 	skill_tree_camera.make_current()
 	skill_tree_camera.zoom = Vector2.ONE
@@ -41,16 +31,14 @@ func home_camera() -> void:
 func show_skill_tree() -> void:
 	_update_ui()
 	visible = true
-	skill_tree_ui.visible = true
-	skill_node_info_container.visible = false
+	skill_tree_ui.show_skill_tree_ui()
 	if not skill_tree_music.playing:
 		skill_tree_music.play()
 	
 	
 func hide_skill_tree() -> void:
 	visible = false
-	skill_tree_ui.visible = false
-	skill_node_info_container.visible = false
+	skill_tree_ui.hide_skill_tree_ui()
 	skill_tree_music.stop()
 	
 
@@ -62,7 +50,8 @@ func _update_ui() -> void:
 	
 func _on_skill_tree_node_clicked(node: SkillTreeNode) -> void:
 	print(node.name + " clicked")
-	_show_skill_node_info(node)
+	#_show_skill_node_info(node)
+	skill_tree_ui.show_skill_node_info(node)
 
 
 
@@ -70,5 +59,9 @@ func _on_return_to_outpost_button_pressed() -> void:
 	upgrades_completed.emit()
 
 
-func _on_skill_tree_ui_info_container_close_button_pressed() -> void:
-	_hide_skill_node_info()
+func _on_skill_tree_ui_buy_skill_node_pressed(node: SkillTreeNode) -> void:
+	pass
+	#_hide_skill_node_info()
+	# TODO
+	# Process purchase through game manager
+	# Refresh node tree
