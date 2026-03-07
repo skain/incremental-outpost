@@ -12,3 +12,6 @@ func get_cannon_cooldown(nodes: Array[SkillTreeNode]) -> float:
 			elif node.skill_node_resource.modifier_type == SkillNodeResource.ModifierType.MULTIPLY:
 				_cannon_cooldown *= node.get_current_modifier_value()
 	return _cannon_cooldown
+
+func request_refresh() -> void:
+	cannon_cooldown_refresh_requested = true

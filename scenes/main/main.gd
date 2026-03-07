@@ -14,7 +14,7 @@ func _start_arcade_game() -> void:
 
 func _show_crt() -> void:	
 	crt_panel.set_crt_visibility(true)
-	arcade_game.visible = false
+	arcade_game.hide_arcade()
 	
 	
 func _hide_crt() -> void:
@@ -33,7 +33,7 @@ func _switch_to_startgame() -> void:
 	
 func _switch_to_arcade() -> void:
 	#arcade_ui.visible = true
-	arcade_game.visible = true
+	arcade_game.show_arcade()
 	_hide_crt()
 	
 	

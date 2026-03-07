@@ -2,67 +2,50 @@
 
 [ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/skill_tree/skill_tree.gd" id="1_m31mo"]
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.tscn" id="2_vt0yg"]
-[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="3_dp713"]
 [ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/crt_panel/skill_node_info_container.gd" id="4_1c8pd"]
 [ext_resource type="Script" uid="uid://cgnpskxfopoqq" path="res://scenes/crt/skill_tree/skill_tree_ui.gd" id="4_1pgdg"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
+[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/SkillNodeResource.gd" id="8_snr"]
 
 [sub_resource type="Resource" id="Resource_mry14"]
-script = ExtResource("3_dp713")
+script = ExtResource("8_snr")
 skill_name = "Skill1"
 skill_desc = "This is the first skill and the root of the skill tree."
 skill_cost = 1
-max_level = 1
 modifier_type = 1
-modifier_values_by_level = Array[float]([0.75])
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
+modifier_value = 0.1
 
 [sub_resource type="Resource" id="Resource_dp713"]
-script = ExtResource("3_dp713")
+script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
 skill_cost = 2
-max_level = 1
-modifier_values_by_level = Array[float]([3.0])
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="Resource" id="Resource_1c8pd"]
-script = ExtResource("3_dp713")
+script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
 skill_cost = 2
-max_level = 1
-modifier_values_by_level = Array[float]([4.0])
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="Resource" id="Resource_m35fp"]
-script = ExtResource("3_dp713")
+script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
 skill_cost = 2
-max_level = 1
-modifier_values_by_level = Array[float]([1.0])
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="Resource" id="Resource_1pgdg"]
-script = ExtResource("3_dp713")
+script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
 skill_cost = 2
-max_level = 1
-modifier_values_by_level = Array[float]([5.0])
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [sub_resource type="Resource" id="Resource_jlgqv"]
-script = ExtResource("3_dp713")
+script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
 skill_cost = 2
-max_level = 1
-modifier_values_by_level = Array[float]([2.0])
-metadata/_custom_type_script = "uid://ds1j4u8mamvw1"
 
 [node name="SkillTree" type="Node2D" unique_id=1865863170]
 script = ExtResource("1_m31mo")
@@ -219,7 +202,6 @@ unique_name_in_owner = true
 stream = ExtResource("7_dp713")
 
 [connection signal="buy_skill_node_pressed" from="SkillTreeUI" to="." method="_on_skill_tree_ui_buy_skill_node_pressed"]
-[connection signal="buy_button_pressed" from="SkillTreeUI/SkillNodeInfoContainer" to="SkillTreeUI" method="_on_skill_node_info_container_buy_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/BuyButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/MarginContainer/HBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]

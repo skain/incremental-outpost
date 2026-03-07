@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://3bgr41d1yv0o" path="res://scenes/arcade/arcade_ui/arcade_ui.gd" id="1_qo35t"]
 [ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="2_2orwx"]
-[ext_resource type="Theme" uid="uid://bu7liu2y80vnx" path="res://themes/default_theme.tres" id="3_m3jlt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aripk"]
 
@@ -49,7 +48,6 @@ offset_left = -158.0
 offset_bottom = 49.0
 grow_horizontal = 0
 size_flags_horizontal = 0
-theme = ExtResource("3_m3jlt")
 alignment = 2
 
 [node name="ScoreLabel" type="Label" parent="Panel/ScoreHBoxContainer" unique_id=980329209]

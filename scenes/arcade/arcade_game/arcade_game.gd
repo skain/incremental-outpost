@@ -45,6 +45,14 @@ func start_game() -> bool:
 		
 	return true
 	
+func hide_arcade() -> void:
+	hide()
+	arcade_ui.hide()
+	
+func show_arcade() -> void:
+	show()
+	arcade_ui.show()
+	
 func _end_game() -> void:
 	game_over = true
 	_update_ui()

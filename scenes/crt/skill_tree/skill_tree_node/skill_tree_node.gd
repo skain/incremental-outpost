@@ -6,11 +6,19 @@ signal skill_tree_node_clicked(node: SkillTreeNode)
 
 @export var skill_node_resource: SkillNodeResource
 
-const COLOR_MODULATOR_UNAVAILABLE := Color(1.0, 1.0, 1.0, 0.0)
+const COLOR_MODULATOR_UNREVEALED := Color(1.0, 1.0, 1.0, 0.0)
 const COLOR_MODULATOR_UNAFFORDABLE := Color(0.75, 0.75, 0.75, 1.0)
 const COLOR_MODULATOR_AFFORDABLE := Color(1.75, 1.75, 1.75, 1.0)
+const COLOR_MODULATOR_PURCHASED := Color(0.25, 0.25, 0.25, 1.0)
 
-var _current_status := SkillNodeStatus.UNREVEALED
+var current_status := SkillNodeStatus.UNREVEALED
+
+var _status_color_dict := {
+	SkillNodeStatus.UNREVEALED: COLOR_MODULATOR_UNREVEALED,
+	SkillNodeStatus.UNAFFORDABLE: COLOR_MODULATOR_UNAFFORDABLE,
+	SkillNodeStatus.AFFORDABLE: COLOR_MODULATOR_AFFORDABLE,
+	SkillNodeStatus.PURCHASED: COLOR_MODULATOR_PURCHASED
+}
 
 
 func _ready() -> void:
@@ -29,7 +37,7 @@ func _draw_lines() -> void:
 		line.z_index = -1
 
 		line.default_color = Color(1.0, 1.0, 1.0, 1.0)
-		line.self_modulate = COLOR_MODULATOR_UNAVAILABLE
+		line.self_modulate = COLOR_MODULATOR_UNREVEALED
 		line.width = 2.0
 
 		add_child(line)
@@ -42,17 +50,43 @@ func get_cost() -> int:
 func get_modifier_value() -> float:
 	return skill_node_resource.modifier_value
 	
-func update_from_game_data() -> void:
-	_update_node_appearance_from_game_data()
-	_update_lines_appearance_from_game_data()
+	
+func update_from_game_data(recurse: bool) -> void:
+	_set_status_from_game_data()
+	_update_node_appearance()
+	_update_lines_appearance()
+	
+	if recurse:
+		for child_skill in _get_child_skill_nodes():
+			child_skill.update_from_game_data(true)
 
 
-func _update_node_appearance_from_game_data() -> void:
-	pass
+func _set_status_from_game_data() -> void:
+	if GameManager.is_node_purchased(self):
+		current_status = SkillNodeStatus.PURCHASED
+		return
+		
+	var parent := get_parent() as SkillTreeNode
+	if parent:
+		#this isn't the root node
+		if parent.current_status == SkillNodeStatus.UNREVEALED:
+			current_status = SkillNodeStatus.UNREVEALED
+			return
+	
+	if get_cost() <= GameManager.game_data.current_bucks:
+		current_status = SkillNodeStatus.AFFORDABLE
+	else:
+		current_status = SkillNodeStatus.UNAFFORDABLE
+		
+
+
+func _update_node_appearance() -> void:
+	self_modulate = _status_color_dict[current_status]
 	
 	
-func _update_lines_appearance_from_game_data() -> void:
-	pass
+func _update_lines_appearance() -> void:
+	for line in _get_child_lines():
+		line.self_modulate = _status_color_dict[current_status]
 	
 	
 func _register_with_game_manager() -> void:

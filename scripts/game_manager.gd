@@ -50,17 +50,19 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 
 	
 func process_node_purchase(node: SkillTreeNode) -> void:
-	var purchased := PurchasedNodeResource.new()
-	purchased.node_name = node.name
-	purchased.current_level = node.current_level
+	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= node.get_current_cost()
-	node.try_raise_level()
+	_calculated_mods.request_refresh()
+	
+	
+func is_node_purchased(node: SkillTreeNode) -> bool:
+	return game_data.purchased_node_names.has(node.name)
 
 func get_cannon_cooldown_modifier() -> float:
 	var purchased_cannon_nodes :Array[SkillTreeNode] = []
-	for purchased in game_data.purchased_nodes:
-		assert(_skill_nodes_by_name.has(purchased.node_name))
-		var node := _skill_nodes_by_name[purchased.node_name]
+	for purchased in game_data.purchased_node_names:
+		assert(_skill_nodes_by_name.has(purchased))
+		var node := _skill_nodes_by_name[purchased]
 		if node.skill_node_resource.affected_stat == SkillNodeResource.AffectedStat.CANNON_COOLDOWN:
 			purchased_cannon_nodes.append(node)
 			

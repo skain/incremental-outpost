@@ -45,6 +45,7 @@ func hide_skill_tree() -> void:
 func _update_ui() -> void:
 	print(GameManager.game_data.current_bucks)
 	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)
+	root_node.update_from_game_data(true)
 	
 	
 	
@@ -60,8 +61,5 @@ func _on_return_to_outpost_button_pressed() -> void:
 
 
 func _on_skill_tree_ui_buy_skill_node_pressed(node: SkillTreeNode) -> void:
-	pass
-	#_hide_skill_node_info()
-	# TODO
-	# Process purchase through game manager
-	# Refresh node tree
+	GameManager.process_node_purchase(node)
+	_update_ui()
