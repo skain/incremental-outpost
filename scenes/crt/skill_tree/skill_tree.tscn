@@ -15,7 +15,7 @@ skill_name = "Skill1"
 skill_desc = "This is the first skill and the root of the skill tree."
 skill_cost = 1
 modifier_type = 1
-modifier_value = 0.1
+modifier_value = 0.8
 
 [sub_resource type="Resource" id="Resource_dp713"]
 script = ExtResource("8_snr")
