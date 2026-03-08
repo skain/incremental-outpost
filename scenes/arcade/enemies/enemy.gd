@@ -40,7 +40,6 @@ func _start_shoot_timer() -> void:
 
 
 func _enable() -> void:
-	#print('enabled')
 	visible = true
 	can_shoot = true
 	collision_shape_2d.set_deferred("disabled", false)
@@ -49,7 +48,6 @@ func _enable() -> void:
 	
 	
 func disable(is_temporary: bool = true) -> void:
-	#print('disabled')
 	can_shoot = false
 	collision_shape_2d.set_deferred("disabled", true)
 	

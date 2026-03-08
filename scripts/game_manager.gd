@@ -50,9 +50,11 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 
 	
 func process_node_purchase(node: SkillTreeNode) -> void:
+	#print("starting game manager purchase")
 	game_data.purchased_node_names.append(node.name)
-	game_data.current_bucks -= node.get_current_cost()
+	game_data.current_bucks -= node.get_cost()
 	_calculated_mods.request_refresh()
+	#print("game manager purchase complete")
 	
 	
 func is_node_purchased(node: SkillTreeNode) -> bool:

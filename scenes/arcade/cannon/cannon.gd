@@ -19,17 +19,17 @@ var can_fire := true
 
 func _ready() -> void:
 	fire_direction = _get_fire_direction()
-	radial_cooldown.cooldown_duration = _calculate_fire_cooldown()
 	if rotation_degrees == 90.0 or rotation_degrees == 180.0:
 		radial_cooldown.position.x *= -1.0
 
 
-func _calculate_fire_cooldown() -> float:
+func _set_fire_cooldown() -> void:
 	var mod := GameManager.get_cannon_cooldown_modifier()
 	if mod == 0.0:
 		mod = 1.0
 	var cooldown: float = mod * fire_cooldown_base
-	return cooldown
+	radial_cooldown.cooldown_duration = cooldown
+	
 	
 func _handle_hit() -> void:		
 	collision_shape_2d.set_deferred("disabled", true)
@@ -71,6 +71,7 @@ func reset() -> void:
 	cannon.frame = 0
 	can_fire = true
 	collision_shape_2d.set_deferred("disabled", false)
+	_set_fire_cooldown()
 	
 	
 func disable() -> void:

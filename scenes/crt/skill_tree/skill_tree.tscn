@@ -202,6 +202,7 @@ unique_name_in_owner = true
 stream = ExtResource("7_dp713")
 
 [connection signal="buy_skill_node_pressed" from="SkillTreeUI" to="." method="_on_skill_tree_ui_buy_skill_node_pressed"]
+[connection signal="buy_button_pressed" from="SkillTreeUI/SkillNodeInfoContainer" to="SkillTreeUI" method="_on_skill_node_info_container_buy_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/BuyButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/MarginContainer/HBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]
