@@ -45,15 +45,13 @@ func hide_skill_tree() -> void:
 func _update_ui() -> void:
 	#print(GameManager.game_data.current_bucks)
 	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)
-	root_node.update_from_game_data(true)
-	
+	root_node.update_from_game_data(true)	
 	
 	
 func _on_skill_tree_node_clicked(node: SkillTreeNode) -> void:
 	#print(node.name + " clicked")
 	#_show_skill_node_info(node)
 	skill_tree_ui.show_skill_node_info(node)
-
 
 
 func _on_return_to_outpost_button_pressed() -> void:
