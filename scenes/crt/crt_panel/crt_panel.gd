@@ -3,7 +3,7 @@ class_name CRTPanel extends Node2D
 signal return_to_outpost_clicked
 signal load_game_clicked
 signal new_game_clicked
-signal upgrades_completed
+#signal upgrades_completed
 
 @onready var background: CanvasLayer = %Background
 @onready var skill_tree: SkillTree = %SkillTree
@@ -97,4 +97,4 @@ func _on_start_game_interstitial_new_game_clicked() -> void:
 
 
 func _on_skill_tree_upgrades_completed() -> void:
-	upgrades_completed.emit()
+	return_to_outpost_clicked.emit()
