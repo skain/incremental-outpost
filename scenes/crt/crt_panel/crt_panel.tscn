@@ -19,7 +19,6 @@ script = ExtResource("1_8xoaq")
 [node name="Background" type="CanvasLayer" parent="." unique_id=1247727966]
 unique_name_in_owner = true
 layer = -1
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Background" unique_id=1817761643]
 anchors_preset = 15
@@ -32,18 +31,18 @@ color = Color(0, 0, 0, 1)
 
 [node name="StartGameInterstitial" parent="." unique_id=1635292208 instance=ExtResource("2_36fmf")]
 unique_name_in_owner = true
+visible = true
 
 [node name="EndGameInterstitial" parent="." unique_id=9638797 instance=ExtResource("3_fbx44")]
 unique_name_in_owner = true
+visible = true
 
 [node name="SkillTree" parent="." unique_id=1865863170 instance=ExtResource("4_36fmf")]
 unique_name_in_owner = true
-visible = false
 
 [node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=381617986]
 unique_name_in_owner = true
 layer = 10
-visible = false
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="CRTOverlay" unique_id=1682153144]
 copy_mode = 2

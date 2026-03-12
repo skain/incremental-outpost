@@ -2,23 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scenes/main/main.gd" id="1_dooaf"]
 [ext_resource type="Environment" uid="uid://dvkbg3qcvg8lo" path="res://resources/main_world_environment.tres" id="4_4iaaq"]
-[ext_resource type="PackedScene" uid="uid://c8on55w5456nn" path="res://scenes/arcade/arcade_game/arcade_game.tscn" id="5_ow5a4"]
-[ext_resource type="PackedScene" uid="uid://cygy2bkg5ej1v" path="res://scenes/crt/crt_panel/crt_panel.tscn" id="10_a8run"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
 script = ExtResource("1_dooaf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1950625691]
 environment = ExtResource("4_4iaaq")
-
-[node name="ArcadeGame" parent="." unique_id=2042800404 instance=ExtResource("5_ow5a4")]
-unique_name_in_owner = true
-
-[node name="CRTPanel" parent="." unique_id=1981789528 instance=ExtResource("10_a8run")]
-unique_name_in_owner = true
-
-[connection signal="game_ended" from="ArcadeGame" to="." method="_on_arcade_game_game_ended"]
-[connection signal="load_game_clicked" from="CRTPanel" to="." method="_on_crt_panel_load_game_clicked"]
-[connection signal="new_game_clicked" from="CRTPanel" to="." method="_on_crt_panel_new_game_clicked"]
-[connection signal="return_to_outpost_clicked" from="CRTPanel" to="." method="_on_crt_panel_return_to_outpost_clicked"]
-[connection signal="upgrades_completed" from="CRTPanel" to="." method="_on_crt_panel_upgrades_completed"]

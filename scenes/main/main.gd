@@ -1,57 +1,45 @@
 extends Node2D
 
-@onready var arcade_game: ArcadeGame = %ArcadeGame
-@onready var crt_panel: CRTPanel = %CRTPanel
+# Export the scenes so you can drag and drop them in the Inspector
+@export var arcade_scene: PackedScene = preload("res://scenes/arcade/arcade_game/arcade_game.tscn")
+@export var crt_scene: PackedScene = preload("res://scenes/crt/crt_panel/crt_panel.tscn")
 
-# Called when the node enters the scene tree for the first time.
+var current_view: Node = null
+
 func _ready() -> void:
-	_switch_to_startgame()
+	# Start with the initial CRT view
+	_switch_to_view(crt_scene, "startgame")
+
+func _switch_to_view(next_packed_scene: PackedScene, mode: String = "") -> void:
+	# 1. Clean up the existing view
+	if current_view:
+		current_view.queue_free()
+
+	# 2. Instance and add the new one
+	current_view = next_packed_scene.instantiate()
+	add_child(current_view)
+
+	# 3. Dynamic Signal & State Handling
+	if current_view is ArcadeGame:
+		current_view.game_ended.connect(_on_arcade_game_game_ended)
+		current_view.start_game()
+		
+	elif current_view is CRTPanel:
+		_connect_crt_signals(current_view)
+		
+		# Handle the different CRT states (start/end/upgrade)
+		match mode:
+			"startgame": current_view.run_startgame_interstitial()
+			"endgame": current_view.run_endgame_interstitial()
+			"upgrade": current_view.set_crt_visibility(true)
+
+func _connect_crt_signals(panel: CRTPanel) -> void:
+	panel.return_to_outpost_clicked.connect(_start_arcade_game)
+	panel.load_game_clicked.connect(_start_arcade_game)
+	panel.new_game_clicked.connect(_start_arcade_game)
 
 func _start_arcade_game() -> void:
-	_switch_to_arcade()
-	arcade_game.start_game()
-
-
-func _show_crt() -> void:	
-	crt_panel.set_crt_visibility(true)
-	arcade_game.hide_arcade()
-	
-	
-func _hide_crt() -> void:
-	crt_panel.set_crt_visibility(false)
-	
-	
-func _switch_to_endgame() -> void:
-	_show_crt()
-	crt_panel.run_endgame_interstitial()
-	
-	
-func _switch_to_startgame() -> void:
-	_show_crt()
-	crt_panel.run_startgame_interstitial()
-	
-	
-func _switch_to_arcade() -> void:
-	#arcade_ui.visible = true
-	arcade_game.show_arcade()
-	_hide_crt()
-	
-	
-func _on_crt_panel_return_to_outpost_clicked() -> void:
-	_start_arcade_game()
-	
+	_switch_to_view(arcade_scene)
 
 func _on_arcade_game_game_ended() -> void:
-	_switch_to_endgame()
-
-
-func _on_crt_panel_load_game_clicked() -> void:
-	_start_arcade_game()
-
-
-func _on_crt_panel_new_game_clicked() -> void:
-	_start_arcade_game()
-
-
-func _on_crt_panel_upgrades_completed() -> void:
-	_start_arcade_game()
+	_switch_to_view(crt_scene, "endgame")
