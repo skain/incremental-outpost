@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="3_5bk5w"]
 
 [node name="EndGameInterstitial" type="CanvasLayer" unique_id=9638797]
-visible = false
 script = ExtResource("1_dpqa3")
 character_reveal_speed = 0.1
 

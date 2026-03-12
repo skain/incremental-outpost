@@ -3,46 +3,65 @@ class_name CRTPanel extends Node2D
 signal return_to_outpost_clicked
 signal load_game_clicked
 signal new_game_clicked
-#signal upgrades_completed
 
-@onready var background: CanvasLayer = %Background
-@onready var skill_tree: SkillTree = %SkillTree
-@onready var end_game_interstitial: EndGameInterstitial = %EndGameInterstitial
-@onready var crt_overlay: CanvasLayer = %CRTOverlay
-@onready var crt_shader: ColorRect = %CRTShader
+@export var start_interstitial_scene: PackedScene = preload("res://scenes/crt/start_game_interstitial/start_game_interstitial.tscn")
+@export var end_interstitial_scene: PackedScene = preload("res://scenes/crt/end_game_interstitial/end_game_interstitial.tscn")
+@export var skill_tree_scene: PackedScene = preload("res://scenes/crt/skill_tree/skill_tree.tscn")
+
+@onready var view_container: Node2D = %ViewContainer
 @onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
-@onready var start_game_interstitial: StartGameInterstitial = %StartGameInterstitial
 
-# Called when the node enters the scene tree for the first time.
+var current_sub_view: Node = null
+
 func _ready() -> void:
-	skill_tree.hide_skill_tree()
-	start_game_interstitial.hide_interstitial()
+	# Initial state is usually off/hidden until run_ functions are called
+	_screen_off() 
 
+func _switch_sub_view(next_scene: PackedScene) -> Node:
+	if current_sub_view:
+		current_sub_view.queue_free()
 
-func set_crt_visibility(visibility: bool) -> void:
-	background.visible = visibility
-	skill_tree.hide_skill_tree()
+	current_sub_view = next_scene.instantiate()
+	view_container.add_child(current_sub_view)
+	return current_sub_view
 
-	end_game_interstitial.visible = visibility
-	crt_overlay.visible = visibility
-	
-	
+# Called by main.gd
 func run_startgame_interstitial() -> void:
-	end_game_interstitial.hide()
-	await _power_up()
-	start_game_interstitial.show_interstitial()
-	
+	var view := _switch_sub_view(start_interstitial_scene)
+	view.load_game_clicked.connect(func() -> void: _on_start_finished(load_game_clicked))
+	view.new_game_clicked.connect(func() -> void: _on_start_finished(new_game_clicked))
+
+	await _power_up() 
+	view.show_interstitial()
+
+# Called by main.gd
 func run_endgame_interstitial() -> void:
-	skill_tree.hide_skill_tree()
-	await _power_up()
-	end_game_interstitial.run_interstitial()
+	var view := _switch_sub_view(end_interstitial_scene)
+	view.return_to_outpost_clicked.connect(_on_return_requested)
+	view.upgrade_clicked.connect(_on_upgrade_clicked)
+
+	await _power_up() 
+	view.run_interstitial()
+
+func _on_start_finished(sig: Signal) -> void:
+	await _power_down() 
+	sig.emit()
+
+func _on_return_requested() -> void:
+	await _power_down() 
+	return_to_outpost_clicked.emit()
+
+func _on_upgrade_clicked() -> void:
+	var tree := _switch_sub_view(skill_tree_scene)
+	tree.upgrades_completed.connect(_on_return_requested)
+	tree.home_camera()
+	tree.show_skill_tree()
 	
-	
-func _test_screen() -> void:
-	await _power_up()
-	await end_game_interstitial.run_interstitial()
-	await get_tree().create_timer(2.0).timeout
-	await _power_down()
+#func _test_screen() -> void:
+	#await _power_up()
+	#await end_game_interstitial.run_interstitial()
+	#await get_tree().create_timer(2.0).timeout
+	#await _power_down()
 	
 	
 func _power_up() -> void:
@@ -52,6 +71,8 @@ func _power_up() -> void:
 func _power_down() -> void:
 	await _animate_power(1.0, 0.0)
 	
+func _screen_off() -> void:
+	crt_shader_mat.set_shader_parameter("power_on", 0.0)
 	
 func _animate_power(from: float, to: float) -> void:
 	# Create a Tween to animate it turning on
@@ -67,34 +88,3 @@ func _animate_power(from: float, to: float) -> void:
 	).from(from).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	
 	await tween.finished
-	
-	
-func _screen_off() -> void:
-	crt_shader_mat.set_shader_parameter("power_on", 0.0)
-
-
-func _on_end_game_interstitial_return_to_outpost_clicked() -> void:
-	await _power_down()
-	return_to_outpost_clicked.emit()
-
-
-func _on_end_game_interstitial_upgrade_clicked() -> void:
-	skill_tree.home_camera()
-	end_game_interstitial.visible = false
-	skill_tree.show_skill_tree()
-
-
-func _on_start_game_interstitial_load_game_clicked() -> void:
-	await _power_down()
-	start_game_interstitial.hide_interstitial()
-	load_game_clicked.emit()
-
-
-func _on_start_game_interstitial_new_game_clicked() -> void:
-	await _power_down()
-	start_game_interstitial.hide_interstitial()
-	new_game_clicked.emit()
-
-
-func _on_skill_tree_upgrades_completed() -> void:
-	return_to_outpost_clicked.emit()

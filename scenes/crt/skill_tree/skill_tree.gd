@@ -12,7 +12,6 @@ var root_node: SkillTreeNode = null
 func _ready() -> void:
 	root_node = get_child(0) as SkillTreeNode
 	_connect_skill_node_signals()
-	hide_skill_tree()
 	
 	
 func _connect_skill_node_signals() -> void:
