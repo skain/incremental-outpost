@@ -18,35 +18,37 @@ func _ready() -> void:
 	enemies.connect_hit_handler(_on_enemy_hit)
 		
 		
-func start_game() -> bool:
-	if not game_over:
-		return false
-		
+func start_game() -> void:
 	game_over = false
 	current_score = 0
 	enemies.reset_enemies()	
 	player.reset()
-	arcade_ui.visible = true
+	arcade_ui.show()
 	player.make_camera_current()
 	_update_ui()
+	_play_startup_sound()
+	_start_bg_music()
+
+
+func _start_bg_music() -> void:
+	if not bg_music_player.playing:
+		bg_music_player.play()
+		
+	
+func _play_startup_sound() -> void:	
 	for i in range(6):
 		SfxManager.play_sfx(game_start_sound, global_position)
 		# Start at 0.25s and get smaller as i increases
 		# Using a negative exponent causes the value to shrink
 		var delay := GameMath.get_scaled_value(0.25, i + 1, -1.5)
 		await get_tree().create_timer(delay).timeout
-	if not bg_music_player.playing:
-		bg_music_player.play()
-		
-		
-	return true
-	
-	
+
+
 func _end_game() -> void:
 	game_over = true
 	_update_ui()
 	enemies.disable_enemies()
-	arcade_ui.visible = false
+	arcade_ui.hide()
 	player.die()
 	SfxManager.play_sfx(game_over_sound, global_position)
 	bg_music_player.stop()
