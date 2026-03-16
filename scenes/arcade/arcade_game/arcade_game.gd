@@ -10,17 +10,13 @@ var game_over := true
 @export var game_over_sound: AudioStream
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 @onready var player: Player = %Player
-@onready var enemies: Node2D = %Enemies
+@onready var enemies: EnemiesContainer = %Enemies
 @onready var arcade_ui: CanvasLayer = %ArcadeUI
 
 func _ready() -> void:
 	enemies.disable_enemies()
-	_connect_enemy_hits()
-	
-func _connect_enemy_hits() -> void:
-	for node in enemies.find_children("*", "Enemy"):
-		var enemy := node as Enemy
-		enemy.enemy_hit.connect(_on_enemy_hit)
+	enemies.connect_hit_handler(_on_enemy_hit)
+		
 		
 func start_game() -> bool:
 	if not game_over:
@@ -45,13 +41,6 @@ func start_game() -> bool:
 		
 	return true
 	
-func hide_arcade() -> void:
-	hide()
-	arcade_ui.hide()
-	
-func show_arcade() -> void:
-	show()
-	arcade_ui.show()
 	
 func _end_game() -> void:
 	game_over = true
@@ -64,13 +53,16 @@ func _end_game() -> void:
 	GameManager.set_points(current_score)
 	game_ended.emit()
 
+
 func _update_ui() -> void:
 	arcade_ui.update_ui(current_score, player.health)	
+
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += enemy.enemy_level * BASE_SCORE
 	_update_ui()
 	enemy.enemy_level += 1
+
 
 func _on_player_player_hit() -> void:	
 	player.health -= 1
