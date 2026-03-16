@@ -9,6 +9,7 @@ func update_ui(score: int, player_health: int) -> void:
 	score_value.text = str(score)
 	_set_player_health(player_health)	
 
+
 func _set_player_health(player_health: int) -> void:
 	if player_health > 0:
 		health_1.visible = true
