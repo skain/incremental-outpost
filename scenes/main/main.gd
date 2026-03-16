@@ -52,5 +52,6 @@ func _connect_crt_signals(panel: CRTPanel) -> void:
 func _start_arcade_game() -> void:
 	_switch_game_mode(GameModes.ARCADE)
 
+
 func _on_arcade_game_game_ended() -> void:
 	_switch_game_mode(GameModes.END_GAME)
