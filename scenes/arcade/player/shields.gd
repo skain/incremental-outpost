@@ -34,6 +34,7 @@ func _input(event: InputEvent) -> void:
 			_apply_shield_logic()
 			break
 
+
 func _apply_shield_logic() -> void:
 	var current_shield_direction := ""
 	if not active_inputs.is_empty():
