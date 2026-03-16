@@ -4,9 +4,8 @@ var enemies: Array[Enemy] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for node in get_children():
-		if node is Enemy:
-			enemies.append(node)
+	for node in find_children("*", "Enemy", false, true):
+		enemies.append(node)
 
 
 func reset_enemies() -> void:
