@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cd16n857qi74b" path="res://scenes/crt/skill_tree/skill_tree.gd" id="1_m31mo"]
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.tscn" id="2_vt0yg"]
-[ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/crt_panel/skill_node_info_container.gd" id="4_1c8pd"]
+[ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/skill_tree/skill_node_info_container.gd" id="4_1c8pd"]
 [ext_resource type="Script" uid="uid://cgnpskxfopoqq" path="res://scenes/crt/skill_tree/skill_tree_ui.gd" id="4_1pgdg"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
-[ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/crt_panel/skill_tree_camera.gd" id="6_vt0yg"]
+[ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
 [ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/SkillNodeResource.gd" id="8_snr"]
 

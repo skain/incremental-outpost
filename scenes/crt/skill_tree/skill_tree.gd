@@ -29,14 +29,14 @@ func home_camera() -> void:
 
 func show_skill_tree() -> void:
 	_update_ui()
-	visible = true
+	show()
 	skill_tree_ui.show_skill_tree_ui()
 	if not skill_tree_music.playing:
 		skill_tree_music.play()
 	
 	
 func hide_skill_tree() -> void:
-	visible = false
+	hide()
 	skill_tree_ui.hide_skill_tree_ui()
 	skill_tree_music.stop()
 	
