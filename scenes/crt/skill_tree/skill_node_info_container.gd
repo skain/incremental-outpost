@@ -1,7 +1,6 @@
 class_name SkillNodeInfoContainer extends CenterContainer
 
 signal buy_button_pressed(node: SkillTreeNode)
-#signal close_button_pressed
 
 @onready var skill_name_label: Label = %SkillNameLabel
 @onready var skill_description_label: Label = %SkillDescriptionLabel
