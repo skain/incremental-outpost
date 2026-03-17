@@ -6,7 +6,6 @@ var root_node: SkillTreeNode = null
 
 @onready var skill_tree_camera: Camera2D = %SkillTreeCamera
 @onready var skill_tree_ui: SkillTreeUI = %SkillTreeUI
-@onready var bucks_label: Label = %BucksLabel
 @onready var skill_tree_music: AudioStreamPlayer = %SkillTreeMusic
 
 func _ready() -> void:
@@ -42,14 +41,11 @@ func hide_skill_tree() -> void:
 	
 
 func _update_ui() -> void:
-	#print(GameManager.game_data.current_bucks)
-	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)
+	skill_tree_ui.update_ui()
 	root_node.update_from_game_data(true)	
 	
 	
 func _on_skill_tree_node_clicked(node: SkillTreeNode) -> void:
-	#print(node.name + " clicked")
-	#_show_skill_node_info(node)
 	skill_tree_ui.show_skill_node_info(node)
 
 
@@ -58,6 +54,5 @@ func _on_return_to_outpost_button_pressed() -> void:
 
 
 func _on_skill_tree_ui_buy_skill_node_pressed(node: SkillTreeNode) -> void:
-	#print("skill tree got buy signal")
 	GameManager.process_node_purchase(node)
 	_update_ui()

@@ -3,6 +3,10 @@ class_name SkillTreeUI extends CanvasLayer
 signal buy_skill_node_pressed(node: SkillTreeNode)
 
 @onready var skill_node_info_container: SkillNodeInfoContainer = %SkillNodeInfoContainer
+@onready var bucks_label: Label = %BucksLabel
+
+func update_ui() -> void:
+	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)
 
 
 func show_skill_tree_ui() -> void:
