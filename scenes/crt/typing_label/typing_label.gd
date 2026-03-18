@@ -7,15 +7,9 @@ signal typing_complete
 
 @onready var timer: Timer = %Timer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible_ratio = 0
-	#_test()
-	#
-#func _test() -> void:
-	#start_typing()
-	#await typing_complete
-	#print("complete")
+
 
 func _get_wait_time() -> float:
 	return 1.0 / chars_per_second
@@ -25,12 +19,7 @@ func _type_character() -> void:
 		visible_characters += 1
 	var last_char := text[visible_characters - 1]
 
-	# 1. Pitch Randomization
 	if typing_sound:
-		# Assuming your Sfx singleton can take a pitch_scale parameter
-		# If not, you can adjust the pitch of the AudioStreamPlayer directly
-		#var pitch = randf_range(0.9, 1.1) 
-		#Sfx.play_sfx(typing_sound, global_position, pitch)
 		SfxManager.play_sfx(typing_sound, global_position)
 
 	# 2. Dynamic Timing Logic
@@ -52,15 +41,18 @@ func _type_character() -> void:
 
 	if visible_ratio == 1:
 		finish_typing()
-	
+
+
 func start_typing() -> void:
 	timer.wait_time = _get_wait_time()
 	timer.start()
 	await typing_complete
-	
+
+
 func stop_typing() -> void:
 	timer.stop()
 	visible_ratio = 1
+
 
 # The difference between stop and finish_typing is that finish_typing will still emit
 # the typing_complete signal if there are still chars to type. stop_typing stops the timer and reveals
@@ -73,6 +65,7 @@ func finish_typing() -> void:
 func reset() -> void:
 	timer.stop()
 	visible_ratio = 0
+
 
 func _on_timer_timeout() -> void:
 	_type_character()

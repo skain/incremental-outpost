@@ -114,7 +114,7 @@ func _get_child_lines() -> Array[Line2D]:
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		skill_tree_node_clicked.emit(self)
-		
+
 
 func _validate_skill_node_resource() -> void:
 	assert(skill_node_resource != null)

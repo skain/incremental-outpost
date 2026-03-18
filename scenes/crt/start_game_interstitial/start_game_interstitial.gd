@@ -18,13 +18,13 @@ func _ready() -> void:
 
 
 func show_interstitial() -> void:
-	visible = true
+	show()
 	_pulse_title()
 	audio_stream_player.play()
 	
 
 func hide_interstitial() -> void:
-	visible = false
+	hide()
 	if pulse_tween:
 		pulse_tween.kill()
 	audio_stream_player.stop()
