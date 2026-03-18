@@ -31,6 +31,9 @@ func hide_interstitial() -> void:
 
 	
 func _pulse_title() -> void:
+	if pulse_tween:
+		return
+	
 	title_label.self_modulate = Color.WHITE * pulse_min
 	pulse_tween = get_tree().create_tween().set_loops()
 	pulse_tween.tween_property(title_label, "self_modulate", Color.WHITE * pulse_max, pulse_speed)
