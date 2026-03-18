@@ -35,7 +35,7 @@ func _pulse_title() -> void:
 		return
 	
 	title_label.self_modulate = Color.WHITE * pulse_min
-	pulse_tween = get_tree().create_tween().set_loops()
+	pulse_tween = get_tree().create_tween().set_loops(10000)
 	pulse_tween.tween_property(title_label, "self_modulate", Color.WHITE * pulse_max, pulse_speed)
 	pulse_tween.tween_property(title_label, "self_modulate", Color.WHITE * pulse_min, pulse_speed)
 
