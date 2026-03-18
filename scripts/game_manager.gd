@@ -69,3 +69,6 @@ func get_cannon_cooldown_modifier() -> float:
 			purchased_cannon_nodes.append(node)
 			
 	return _calculated_mods.get_cannon_cooldown(purchased_cannon_nodes)
+
+func is_affordable_bucks(bucks: int) -> bool:
+	return bucks <= game_data.current_bucks

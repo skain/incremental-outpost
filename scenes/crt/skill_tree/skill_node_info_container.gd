@@ -5,6 +5,7 @@ signal buy_button_pressed(node: SkillTreeNode)
 @onready var skill_name_label: Label = %SkillNameLabel
 @onready var skill_description_label: Label = %SkillDescriptionLabel
 @onready var skill_cost_label: Label = %SkillCostLabel
+@onready var buy_button: Button = %BuyButton
 
 var displayed_node: SkillTreeNode
 
@@ -14,6 +15,7 @@ func load_node_info(node: SkillTreeNode) -> void:
 	skill_name_label.text = res.skill_name
 	skill_description_label.text = res.skill_desc
 	skill_cost_label.text = str(res.skill_cost)
+	buy_button.disabled = not GameManager.is_affordable_bucks(res.skill_cost)
 
 
 func _clear_info_and_hide() -> void:

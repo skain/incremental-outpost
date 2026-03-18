@@ -146,6 +146,7 @@ theme_override_constants/separation = 44
 alignment = 1
 
 [node name="BuyButton" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=379915991 instance=ExtResource("5_1pgdg")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Buy"
 
