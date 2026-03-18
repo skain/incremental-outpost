@@ -12,7 +12,6 @@ var new_bucks := 0
 @onready var bucks_conversion_display: TypingLabel = %BucksConversionDisplay
 @onready var conversion_success_message: TypingLabel = %ConversionSuccessMessage
 @onready var conversion_success_message_2: TypingLabel = %ConversionSuccessMessage2
-@onready var interstitial_message_timer: Timer = %InterstitialMessageTimer
 @onready var interstitial_labels_container: VBoxContainer = %InterstitialLabelsContainer
 
 func _ready() -> void:

@@ -84,8 +84,5 @@ theme_override_constants/margin_right = 8
 layout_mode = 2
 text = "Return to Outpost"
 
-[node name="InterstitialMessageTimer" type="Timer" parent="." unique_id=1927472551]
-unique_name_in_owner = true
-
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer2/ReturnButton" to="." method="_on_return_button_pressed"]
