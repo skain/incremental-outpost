@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dri68be65dtg2"
-path="res://.godot/imported/plus.png-784b09568b6b8799f561207d53dcf38f.ctex"
+uid="uid://cfd78mrm2le72"
+path="res://.godot/imported/base-skill-tree-icon.png-f139a7d3470a2396fb4b8e42bc5fb992.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/skill_tree/icons/plus.png"
-dest_files=["res://.godot/imported/plus.png-784b09568b6b8799f561207d53dcf38f.ctex"]
+source_file="res://assets/skill_tree/icons/base-skill-tree-icon.png"
+dest_files=["res://.godot/imported/base-skill-tree-icon.png-f139a7d3470a2396fb4b8e42bc5fb992.ctex"]
 
 [params]
 

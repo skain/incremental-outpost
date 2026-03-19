@@ -4,13 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://bxh7esmyaw302" path="res://scenes/crt/skill_tree/skill_tree_node/skill_tree_node.tscn" id="2_vt0yg"]
 [ext_resource type="Script" uid="uid://bphn7tos0u3qb" path="res://scenes/crt/skill_tree/skill_node_info_container.gd" id="4_1c8pd"]
 [ext_resource type="Script" uid="uid://cgnpskxfopoqq" path="res://scenes/crt/skill_tree/skill_tree_ui.gd" id="4_1pgdg"]
+[ext_resource type="Texture2D" uid="uid://dpjlmre8vxgh6" path="res://assets/skill_tree/icons/cooldown-icon.png" id="4_jlgqv"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
-[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/SkillNodeResource.gd" id="8_snr"]
+[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="8_snr"]
 
 [sub_resource type="Resource" id="Resource_mry14"]
 script = ExtResource("8_snr")
+skill_icon = ExtResource("4_jlgqv")
 skill_name = "Skill1"
 skill_desc = "This is the first skill and the root of the skill tree."
 skill_cost = 1
@@ -55,23 +57,23 @@ position = Vector2(200, 280)
 skill_node_resource = SubResource("Resource_mry14")
 
 [node name="SkillTreeNode2" parent="SkillTreeNode" unique_id=1842658866 instance=ExtResource("2_vt0yg")]
-position = Vector2(184, 0)
+position = Vector2(64, 0)
 skill_node_resource = SubResource("Resource_dp713")
 
 [node name="SkillTreeNode6" parent="SkillTreeNode/SkillTreeNode2" unique_id=647787278 instance=ExtResource("2_vt0yg")]
-position = Vector2(176, 0)
+position = Vector2(56, 0)
 skill_node_resource = SubResource("Resource_1c8pd")
 
 [node name="SkillTreeNode3" parent="SkillTreeNode" unique_id=1002892421 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -200)
+position = Vector2(0, -64)
 skill_node_resource = SubResource("Resource_m35fp")
 
 [node name="SkillTreeNode4" parent="SkillTreeNode" unique_id=1809098976 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 192)
+position = Vector2(0, 64)
 skill_node_resource = SubResource("Resource_1pgdg")
 
 [node name="SkillTreeNode5" parent="SkillTreeNode" unique_id=2112073943 instance=ExtResource("2_vt0yg")]
-position = Vector2(-176, 0)
+position = Vector2(-72, 0)
 skill_node_resource = SubResource("Resource_jlgqv")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]

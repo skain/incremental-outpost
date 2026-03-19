@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwvcaducbrtwn"
-path="res://.godot/imported/question_mark.png-c7d0e3edf3b498285a55df1aa750b9e3.ctex"
+uid="uid://dpjlmre8vxgh6"
+path="res://.godot/imported/cooldown-icon.png-88662095fa90306ef59ae1cb906d97e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/skill_tree/icons/question_mark.png"
-dest_files=["res://.godot/imported/question_mark.png-c7d0e3edf3b498285a55df1aa750b9e3.ctex"]
+source_file="res://assets/skill_tree/icons/cooldown-icon.png"
+dest_files=["res://.godot/imported/cooldown-icon.png-88662095fa90306ef59ae1cb906d97e3.ctex"]
 
 [params]
 
