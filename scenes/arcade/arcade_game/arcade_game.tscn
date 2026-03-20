@@ -52,6 +52,7 @@ stream = ExtResource("5_leafu")
 bus = &"Music"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=467714390]
+visible = false
 color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="ArcadeUI" parent="." unique_id=1381448654 instance=ExtResource("6_7p05h")]

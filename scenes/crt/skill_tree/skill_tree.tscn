@@ -13,41 +13,46 @@
 [sub_resource type="Resource" id="Resource_mry14"]
 script = ExtResource("8_snr")
 skill_icon = ExtResource("4_jlgqv")
-skill_name = "Skill1"
-skill_desc = "This is the first skill and the root of the skill tree."
+skill_name = "Cannon Cooldown 1"
+skill_desc = "Reduces the cooldown time of all cannons by 50%"
 skill_cost = 1
 modifier_type = 1
 modifier_value = 0.5
 
 [sub_resource type="Resource" id="Resource_dp713"]
 script = ExtResource("8_snr")
-skill_name = "Skill5"
-skill_desc = "This is the fifth skill."
-skill_cost = 2
+skill_icon = ExtResource("4_jlgqv")
+skill_name = "Cannon Cooldown 2"
+skill_desc = "Reduce all cannon cooldown times by 25%"
+skill_cost = 50
+modifier_type = 1
+modifier_value = 0.75
 
 [sub_resource type="Resource" id="Resource_1c8pd"]
 script = ExtResource("8_snr")
-skill_name = "Skill5"
-skill_desc = "This is the fifth skill."
-skill_cost = 2
+skill_name = "Cannon Cooldown 3"
+skill_desc = "Reduces all cannon cooldown time by 25%"
+skill_cost = 500
+modifier_type = 1
+modifier_value = 0.75
 
 [sub_resource type="Resource" id="Resource_m35fp"]
 script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
-skill_cost = 2
+skill_cost = 1000
 
 [sub_resource type="Resource" id="Resource_1pgdg"]
 script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
-skill_cost = 2
+skill_cost = 1000
 
 [sub_resource type="Resource" id="Resource_jlgqv"]
 script = ExtResource("8_snr")
 skill_name = "Skill5"
 skill_desc = "This is the fifth skill."
-skill_cost = 2
+skill_cost = 1000
 
 [node name="SkillTree" type="Node2D" unique_id=1865863170]
 script = ExtResource("1_m31mo")
@@ -61,7 +66,8 @@ position = Vector2(64, 0)
 skill_node_resource = SubResource("Resource_dp713")
 
 [node name="SkillTreeNode6" parent="SkillTreeNode/SkillTreeNode2" unique_id=647787278 instance=ExtResource("2_vt0yg")]
-position = Vector2(56, 0)
+position = Vector2(58, 0)
+texture = ExtResource("4_jlgqv")
 skill_node_resource = SubResource("Resource_1c8pd")
 
 [node name="SkillTreeNode3" parent="SkillTreeNode" unique_id=1002892421 instance=ExtResource("2_vt0yg")]
