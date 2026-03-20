@@ -2,8 +2,8 @@ extends Camera2D
 
 var is_dragging: bool = false
 var zoom_step: Vector2 = Vector2(0.1, 0.1)
-var min_zoom: Vector2 = Vector2(0.5, 0.5)
-var max_zoom: Vector2 = Vector2(2.0, 2.0)
+var min_zoom: Vector2 = Vector2(0.25, 0.25)
+var max_zoom: Vector2 = Vector2(3.0, 3.0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

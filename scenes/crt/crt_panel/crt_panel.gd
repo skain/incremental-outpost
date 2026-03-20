@@ -16,6 +16,8 @@ var current_sub_view: Node = null
 func _ready() -> void:
 	# Initial state is usually off/hidden until run_ functions are called
 	_screen_off() 
+	#_power_up()
+	#run_endgame_interstitial()
 
 func _switch_sub_view(next_scene: PackedScene) -> Node:
 	if current_sub_view:

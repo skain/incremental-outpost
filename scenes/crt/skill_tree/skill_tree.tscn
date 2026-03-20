@@ -198,6 +198,7 @@ text = "$ : 0"
 [node name="SkillTreeCamera" type="Camera2D" parent="." unique_id=957935231]
 unique_name_in_owner = true
 visible = false
+zoom = Vector2(2, 2)
 script = ExtResource("6_vt0yg")
 
 [node name="SkillTreeMusic" type="AudioStreamPlayer" parent="." unique_id=1079063395]

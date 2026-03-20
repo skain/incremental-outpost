@@ -22,7 +22,7 @@ func _connect_skill_node_signals() -> void:
 
 func home_camera() -> void:
 	skill_tree_camera.make_current()
-	skill_tree_camera.zoom = Vector2.ONE
+	skill_tree_camera.zoom = Vector2(2.0, 2.0)
 	skill_tree_camera.global_position = root_node.global_position
 	
 
