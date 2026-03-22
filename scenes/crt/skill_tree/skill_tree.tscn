@@ -76,8 +76,8 @@ skill_node_resource = SubResource("Resource_1pgdg")
 position = Vector2(55, 0)
 skill_node_resource = SubResource("Resource_jlgqv")
 
-[node name="CannonCooldown3" parent="CannonCooldown1" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
-position = Vector2(111, 0)
+[node name="CannonCooldown3" parent="CannonCooldown1/CannonCooldown2" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
+position = Vector2(56, 0)
 skill_node_resource = SubResource("Resource_bn5ii")
 
 [node name="SkillTreeNode2" parent="CannonCooldown1" unique_id=849825354 instance=ExtResource("2_vt0yg")]

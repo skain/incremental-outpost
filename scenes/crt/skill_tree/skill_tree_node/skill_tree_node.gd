@@ -37,10 +37,10 @@ func _draw_lines() -> void:
 	for skill_node in _get_child_skill_nodes():			
 		var line := Line2D.new()
 
-		# Vector2.ZERO is (0,0), which is exactly the center of the parent
 		line.add_point(Vector2.ZERO) 
 		line.add_point(skill_node.position)
-		line.z_index = -1
+		
+		line.show_behind_parent = true
 
 		line.default_color = Color(1.0, 1.0, 1.0, 1.0)
 		line.self_modulate = COLOR_MODULATOR_UNREVEALED
@@ -102,20 +102,18 @@ func _register_with_game_manager() -> void:
 
 func _get_child_skill_nodes() -> Array[SkillTreeNode]:
 	var arr: Array[SkillTreeNode] = []
-	for node in find_children("*", "SkillTreeNode", true, false):
+	for node in find_children("*", "SkillTreeNode", false, false):
 		var skill_node := node as SkillTreeNode
 		if skill_node: 
 			arr.append(skill_node)
-		
 	return arr
 	
 func _get_child_lines() -> Array[Line2D]:
 	var arr: Array[Line2D] = []
-	for node in find_children("*", "Line2D", true, false):
+	for node in find_children("*", "Line2D", false, false):
 		var line := node as Line2D
 		if line: 
 			arr.append(line)
-	
 	return arr
 	
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
