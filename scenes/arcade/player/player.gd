@@ -8,15 +8,15 @@ signal player_hit
 @onready var cannons: Node2D = $Cannons
 @onready var player_sprite: Sprite2D = %Player
 
-var max_hull_plating := 3
-var hull_plating := 3
+var max_hull_plating := 0
+var hull_plating := 0
 
 func _ready() -> void:
 	reset()
 
 
 func _process(_delta: float) -> void:
-	if hull_plating > 0:
+	if hull_plating > -1:
 		cannons.handle_firing()
 
 
@@ -34,7 +34,7 @@ func make_camera_current() -> void:
 
 
 func _handle_hit(projectile: EnemyProjectile) -> void:
-	if not hull_plating > 0:
+	if not hull_plating > -1:
 		return
 	player_hit.emit()
 	projectile.handle_hit()
