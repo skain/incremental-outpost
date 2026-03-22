@@ -57,7 +57,7 @@ func _end_game() -> void:
 
 
 func _update_ui() -> void:
-	arcade_ui.update_ui(current_score, player.health)	
+	arcade_ui.update_ui(current_score, player.hull_plating)	
 
 
 func _on_enemy_hit(enemy: Enemy) -> void:
@@ -67,8 +67,8 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 
 
 func _on_player_player_hit() -> void:	
-	player.health -= 1
-	if player.health < 1:
+	player.hull_plating -= 1
+	if player.hull_plating < 1:
 		_end_game()
 		return
 	_update_ui()
