@@ -69,8 +69,14 @@ func get_purchased_nodes() -> Array[SkillTreeNode]:
 	
 	return purchased_nodes
 
-func get_cannon_cooldown_modifier() -> float:
-	return _skill_modifiers.get_cannon_cooldown(get_purchased_nodes())
-
 func is_affordable_bucks(bucks: int) -> bool:
 	return bucks <= game_data.current_bucks
+
+
+# Modifiers
+func get_cannon_cooldown_modifier() -> float:
+	return _skill_modifiers.cannon_cooldown.get_cooldown(get_purchased_nodes())
+
+
+func get_hull_plating_modifier() -> int:
+	return 0

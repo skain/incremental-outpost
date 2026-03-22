@@ -8,7 +8,6 @@ signal player_hit
 @onready var cannons: Node2D = $Cannons
 @onready var player_sprite: Sprite2D = %Player
 
-var max_hull_plating := 0
 var hull_plating := 0
 
 func _ready() -> void:
@@ -25,7 +24,7 @@ func die() -> void:
 
 
 func reset() -> void:
-	hull_plating = max_hull_plating
+	hull_plating = GameManager.get_hull_plating_modifier()
 	cannons.reset_cannons()	
 
 
