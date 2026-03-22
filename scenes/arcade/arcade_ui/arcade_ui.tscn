@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5u0q6cpsel47"]
 
 [ext_resource type="Script" uid="uid://3bgr41d1yv0o" path="res://scenes/arcade/arcade_ui/arcade_ui.gd" id="1_qo35t"]
-[ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/health.png" id="2_2orwx"]
+[ext_resource type="Texture2D" uid="uid://b4wbabadug3ic" path="res://assets/hull-plating.png" id="2_2orwx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aripk"]
 
