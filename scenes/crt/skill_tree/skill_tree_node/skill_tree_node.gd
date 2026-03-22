@@ -57,6 +57,10 @@ func get_modifier_value() -> float:
 	return skill_node_resource.modifier_value
 	
 	
+func get_affected_stat() -> SkillNodeResource.AffectedStat:
+	return skill_node_resource.affected_stat
+	
+	
 func update_from_game_data(recurse: bool) -> void:
 	_set_status_from_game_data()
 	_update_node_appearance()

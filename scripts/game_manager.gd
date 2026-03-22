@@ -5,7 +5,6 @@ const save_data_path = "user://game_data.tres"
 
 var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 #gdscript doesn't support nested typed collections, unfortunately
-#also, check back in later and see if I actually used this anywhere. I might not...
 var _skill_nodes_by_affected_stat: Dictionary = {}
 var _base_points_to_bucks_rate: float = 0.1
 var _skill_modifiers := SkillModifiersManager.new()
@@ -50,11 +49,9 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 
 	
 func process_node_purchase(node: SkillTreeNode) -> void:
-	#print("starting game manager purchase")
 	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= node.get_cost()
-	_skill_modifiers.request_refresh()
-	#print("game manager purchase complete")
+	_skill_modifiers.request_refresh(node.get_affected_stat())
 	
 	
 func is_node_purchased(node: SkillTreeNode) -> bool:
