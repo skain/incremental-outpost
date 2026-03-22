@@ -8,7 +8,7 @@ var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 #also, check back in later and see if I actually used this anywhere. I might not...
 var _skill_nodes_by_affected_stat: Dictionary = {}
 var _base_points_to_bucks_rate: float = 0.1
-var _calculated_mods := CalculatedModifiersCache.new()
+var _skill_modifiers := SkillModifiersManager.new()
 
 
 func _ready() -> void:
@@ -53,22 +53,24 @@ func process_node_purchase(node: SkillTreeNode) -> void:
 	#print("starting game manager purchase")
 	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= node.get_cost()
-	_calculated_mods.request_refresh()
+	_skill_modifiers.request_refresh()
 	#print("game manager purchase complete")
 	
 	
 func is_node_purchased(node: SkillTreeNode) -> bool:
 	return game_data.purchased_node_names.has(node.name)
+	
 
-func get_cannon_cooldown_modifier() -> float:
-	var purchased_cannon_nodes :Array[SkillTreeNode] = []
+func get_purchased_nodes() -> Array[SkillTreeNode]:
+	var purchased_nodes :Array[SkillTreeNode] = []
 	for purchased in game_data.purchased_node_names:
 		assert(_skill_nodes_by_name.has(purchased))
-		var node := _skill_nodes_by_name[purchased]
-		if node.skill_node_resource.affected_stat == SkillNodeResource.AffectedStat.CANNON_COOLDOWN:
-			purchased_cannon_nodes.append(node)
-			
-	return _calculated_mods.get_cannon_cooldown(purchased_cannon_nodes)
+		purchased_nodes.append(_skill_nodes_by_name[purchased])
+	
+	return purchased_nodes
+
+func get_cannon_cooldown_modifier() -> float:
+	return _skill_modifiers.get_cannon_cooldown(get_purchased_nodes())
 
 func is_affordable_bucks(bucks: int) -> bool:
 	return bucks <= game_data.current_bucks
