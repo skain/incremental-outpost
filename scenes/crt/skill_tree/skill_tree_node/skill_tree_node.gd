@@ -75,7 +75,7 @@ func _set_status_from_game_data() -> void:
 	var parent := get_parent() as SkillTreeNode
 	if parent:
 		#this isn't the root node
-		if parent.current_status == SkillNodeStatus.UNREVEALED:
+		if parent.current_status != SkillNodeStatus.PURCHASED:
 			current_status = SkillNodeStatus.UNREVEALED
 			return
 	
@@ -91,8 +91,9 @@ func _update_node_appearance() -> void:
 	
 	
 func _update_lines_appearance() -> void:
+	var line_status := SkillNodeStatus.AFFORDABLE if current_status == SkillNodeStatus.PURCHASED else SkillNodeStatus.UNREVEALED
 	for line in _get_child_lines():
-		line.self_modulate = _status_color_dict[current_status]
+		line.self_modulate = _status_color_dict[line_status]
 	
 	
 func _register_with_game_manager() -> void:

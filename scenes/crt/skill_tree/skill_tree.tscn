@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://cgnpskxfopoqq" path="res://scenes/crt/skill_tree/skill_tree_ui.gd" id="4_1pgdg"]
 [ext_resource type="Texture2D" uid="uid://dpjlmre8vxgh6" path="res://assets/skill_tree/icons/cooldown-icon.png" id="4_jlgqv"]
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
+[ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="5_jlgqv"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
 [ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="8_snr"]
 
-[sub_resource type="Resource" id="Resource_mry14"]
+[sub_resource type="Resource" id="Resource_1pgdg"]
 script = ExtResource("8_snr")
 skill_icon = ExtResource("4_jlgqv")
 skill_name = "Cannon Cooldown 1"
@@ -19,68 +20,77 @@ skill_cost = 1
 modifier_type = 1
 modifier_value = 0.5
 
-[sub_resource type="Resource" id="Resource_dp713"]
+[sub_resource type="Resource" id="Resource_jlgqv"]
 script = ExtResource("8_snr")
 skill_icon = ExtResource("4_jlgqv")
 skill_name = "Cannon Cooldown 2"
-skill_desc = "Reduce all cannon cooldown times by 25%"
-skill_cost = 50
+skill_desc = "Reduces the cooldown time of all cannons by 25%"
+skill_cost = 25
 modifier_type = 1
 modifier_value = 0.75
 
-[sub_resource type="Resource" id="Resource_1c8pd"]
+[sub_resource type="Resource" id="Resource_bn5ii"]
 script = ExtResource("8_snr")
+skill_icon = ExtResource("4_jlgqv")
 skill_name = "Cannon Cooldown 3"
-skill_desc = "Reduces all cannon cooldown time by 25%"
-skill_cost = 500
+skill_desc = "Reduces the cooldown time of all cannons by 25%"
+skill_cost = 100
 modifier_type = 1
 modifier_value = 0.75
 
-[sub_resource type="Resource" id="Resource_m35fp"]
+[sub_resource type="Resource" id="Resource_1q8yp"]
 script = ExtResource("8_snr")
-skill_name = "Skill5"
-skill_desc = "This is the fifth skill."
-skill_cost = 1000
+skill_icon = ExtResource("5_jlgqv")
+skill_name = "Skill Name"
+skill_desc = "Skill Desc"
+skill_cost = 100000
+modifier_type = 1
+modifier_value = 1.0
 
-[sub_resource type="Resource" id="Resource_1pgdg"]
+[sub_resource type="Resource" id="Resource_tnsbc"]
 script = ExtResource("8_snr")
-skill_name = "Skill5"
-skill_desc = "This is the fifth skill."
-skill_cost = 1000
+skill_icon = ExtResource("5_jlgqv")
+skill_name = "Skill Name"
+skill_desc = "Skill Description"
+skill_cost = 100000
+modifier_type = 1
+modifier_value = 1.0
 
-[sub_resource type="Resource" id="Resource_jlgqv"]
+[sub_resource type="Resource" id="Resource_s7fn8"]
 script = ExtResource("8_snr")
-skill_name = "Skill5"
-skill_desc = "This is the fifth skill."
-skill_cost = 1000
+skill_icon = ExtResource("5_jlgqv")
+skill_name = "Skill Name"
+skill_desc = "Skill Description"
+skill_cost = 100000
+modifier_type = 1
+modifier_value = 1.0
 
 [node name="SkillTree" type="Node2D" unique_id=1865863170]
 script = ExtResource("1_m31mo")
 
-[node name="SkillTreeNode" parent="." unique_id=980992063 instance=ExtResource("2_vt0yg")]
-position = Vector2(200, 280)
-skill_node_resource = SubResource("Resource_mry14")
-
-[node name="SkillTreeNode2" parent="SkillTreeNode" unique_id=1842658866 instance=ExtResource("2_vt0yg")]
-position = Vector2(64, 0)
-skill_node_resource = SubResource("Resource_dp713")
-
-[node name="SkillTreeNode6" parent="SkillTreeNode/SkillTreeNode2" unique_id=647787278 instance=ExtResource("2_vt0yg")]
-position = Vector2(58, 0)
-texture = ExtResource("4_jlgqv")
-skill_node_resource = SubResource("Resource_1c8pd")
-
-[node name="SkillTreeNode3" parent="SkillTreeNode" unique_id=1002892421 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -64)
-skill_node_resource = SubResource("Resource_m35fp")
-
-[node name="SkillTreeNode4" parent="SkillTreeNode" unique_id=1809098976 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 64)
+[node name="CannonCooldown1" parent="." unique_id=980992063 instance=ExtResource("2_vt0yg")]
+position = Vector2(625, 304)
 skill_node_resource = SubResource("Resource_1pgdg")
 
-[node name="SkillTreeNode5" parent="SkillTreeNode" unique_id=2112073943 instance=ExtResource("2_vt0yg")]
-position = Vector2(-72, 0)
+[node name="CannonCooldown2" parent="CannonCooldown1" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
+position = Vector2(55, 0)
 skill_node_resource = SubResource("Resource_jlgqv")
+
+[node name="CannonCooldown3" parent="CannonCooldown1" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
+position = Vector2(111, 0)
+skill_node_resource = SubResource("Resource_bn5ii")
+
+[node name="SkillTreeNode2" parent="CannonCooldown1" unique_id=849825354 instance=ExtResource("2_vt0yg")]
+position = Vector2(-1, -56)
+skill_node_resource = SubResource("Resource_1q8yp")
+
+[node name="SkillTreeNode4" parent="CannonCooldown1" unique_id=939400477 instance=ExtResource("2_vt0yg")]
+position = Vector2(-57, 0)
+skill_node_resource = SubResource("Resource_tnsbc")
+
+[node name="SkillTreeNode5" parent="CannonCooldown1" unique_id=541640035 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+skill_node_resource = SubResource("Resource_s7fn8")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
