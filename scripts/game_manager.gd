@@ -1,6 +1,6 @@
 class_name GameManagerAutoload extends Node
 
-const save_data_path = "user://game_data.tres"
+const SAVE_DATA_PATH = "user://game_data.tres"
 @onready var game_data:GameData
 
 var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
@@ -11,12 +11,18 @@ var _skill_modifiers := SkillModifiersManager.new()
 
 
 func _ready() -> void:
-	if ResourceLoader.exists(save_data_path):
-		game_data = load(save_data_path)
+	load_game()
+
+
+func load_game() -> void:
+	if ResourceLoader.exists(SAVE_DATA_PATH):
+		game_data = load(SAVE_DATA_PATH)
 	else:
 		game_data = GameData.new()
 
 
+func save_game() -> void:
+	ResourceSaver.save(game_data, SAVE_DATA_PATH)
 func set_points(new_points: int) -> void:
 	game_data.current_points = new_points
 
