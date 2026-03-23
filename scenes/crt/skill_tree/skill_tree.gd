@@ -1,5 +1,6 @@
 class_name SkillTree extends Node2D
 
+signal save_game_requested
 signal upgrades_completed
 
 var root_node: SkillTreeNode = null
@@ -55,4 +56,5 @@ func _on_return_to_outpost_button_pressed() -> void:
 
 func _on_skill_tree_ui_buy_skill_node_pressed(node: SkillTreeNode) -> void:
 	GameManager.process_node_purchase(node)
+	save_game_requested.emit()
 	_update_ui()

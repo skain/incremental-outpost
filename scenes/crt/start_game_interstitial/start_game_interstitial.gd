@@ -1,7 +1,7 @@
 class_name StartGameInterstitial extends CanvasLayer
 
 signal new_game_clicked
-signal load_game_clicked
+signal continue_game_clicked
 
 @export var pulse_max := 1.25
 @export var pulse_min := 0.85
@@ -9,6 +9,7 @@ signal load_game_clicked
 
 @onready var title_label: Label = %TitleLabel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var continue_button: Button = %ContinueButton
 
 var pulse_tween: Tween
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 
 func show_interstitial() -> void:
+	continue_button.disabled = GameManager.game_data.is_new_game
 	show()
 	_pulse_title()
 	audio_stream_player.play()
@@ -45,4 +47,4 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_continue_button_pressed() -> void:
-	load_game_clicked.emit()
+	continue_game_clicked.emit()
