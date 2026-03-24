@@ -3,6 +3,8 @@ class_name GameManagerAutoload extends Node
 const SAVE_DATA_PATH = "user://game_data.tres"
 @onready var game_data:GameData
 
+const INDENT_ID := "1a4c9433-55c1-4774-bd45-b5275c63ad76"
+
 var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 #gdscript doesn't support nested typed collections, unfortunately
 var _skill_nodes_by_affected_stat: Dictionary = {}

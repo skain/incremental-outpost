@@ -10,6 +10,7 @@ const SAVE_ICON_MAX_MOD = Color.WHITE * Color(1.5, 1.5, 1.5, 1.0)
 @export var start_interstitial_scene: PackedScene = preload("res://scenes/crt/start_game_interstitial/start_game_interstitial.tscn")
 @export var end_interstitial_scene: PackedScene = preload("res://scenes/crt/end_game_interstitial/end_game_interstitial.tscn")
 @export var skill_tree_scene: PackedScene = preload("res://scenes/crt/skill_tree/skill_tree.tscn")
+@export var new_game_interstitial_scene: PackedScene = preload("res://scenes/crt/new_game_interstitial/new_game_interstitial.tscn")
 
 @onready var view_container: Node2D = %ViewContainer
 @onready var crt_shader_mat: ShaderMaterial = %CRTShader.material
@@ -42,6 +43,11 @@ func run_endgame_interstitial() -> void:
 
 	await _power_up() 
 	view.run_interstitial()
+	
+func _run_new_game_interstitial() -> void:
+	var view: NewGameInterstitial = _switch_sub_view(new_game_interstitial_scene) as NewGameInterstitial
+	view.new_game_screen_complete.connect(_on_new_game_screen_complete)
+	view._show_page_1()
 
 
 func _switch_sub_view(next_scene: PackedScene) -> Node:
@@ -50,6 +56,10 @@ func _switch_sub_view(next_scene: PackedScene) -> Node:
 
 	current_sub_view = next_scene.instantiate()
 	view_container.add_child(current_sub_view)
+	if current_sub_view is Control:
+		var vp_size := get_viewport_rect().size
+		current_sub_view.position = Vector2.ZERO
+		current_sub_view.size = vp_size
 	return current_sub_view
 
 
@@ -120,6 +130,10 @@ func _on_save_icon_tween_finished() -> void:
 
 
 func _on_new_game_clicked() -> void:
+	_run_new_game_interstitial()
+
+
+func _on_new_game_screen_complete() -> void:
 	GameManager.game_data.is_new_game = false
 	await _power_down()
 	new_game_clicked.emit()

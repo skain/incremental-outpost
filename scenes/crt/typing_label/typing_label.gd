@@ -8,12 +8,13 @@ signal typing_complete
 @onready var timer: Timer = %Timer
 
 func _ready() -> void:
-	visible_ratio = 0
+	reset_typing()
 
 
 func _get_wait_time() -> float:
 	return 1.0 / chars_per_second
-	
+
+
 func _type_character() -> void:
 	if visible_ratio < 1:
 		visible_characters += 1
@@ -43,7 +44,12 @@ func _type_character() -> void:
 		finish_typing()
 
 
+func reset_typing() -> void:
+	visible_ratio = 0
+
+
 func start_typing() -> void:
+	reset_typing()
 	timer.wait_time = _get_wait_time()
 	timer.start()
 	await typing_complete

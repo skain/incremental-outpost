@@ -36,7 +36,7 @@ layer = 0
 [node name="SaveIcon" type="Sprite2D" parent="CRTUI" unique_id=685946917]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
-position = Vector2(576, 576)
+position = Vector2(69, 574)
 scale = Vector2(2, 2)
 texture = ExtResource("2_yo2w8")
 

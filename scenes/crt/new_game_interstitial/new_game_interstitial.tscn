@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://c5tlqu50wngm3"]
+
+[ext_resource type="Script" uid="uid://ddsvxejnje2kn" path="res://scenes/crt/new_game_interstitial/new_game_interstitial.gd" id="1_ll2ch"]
+[ext_resource type="PackedScene" uid="uid://b5oyxlhbvwdu2" path="res://scenes/crt/typing_label/typing_label.tscn" id="2_8w62k"]
+[ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="3_lvt7g"]
+
+[node name="NewGameInterstitial" type="MarginContainer" unique_id=390295880]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_ll2ch")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1609742648]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Page1" parent="VBoxContainer" unique_id=1321450307 instance=ExtResource("2_8w62k")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 375)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Datelog: Day 424, Galactic Year 473
+Rehydrating INDENT: 1a4c9433-55c1-4774-bd45-b5275c63ad76
+.
+.
+.
+Rehydration complete. Indent online.
+.
+Indentucorp LLC extends its thanks for your service, 1a4c9433-55c1-4774-bd45-b5275c63ad76.
+
+Please be advised that your originator (the Human) contracted with Indentucorp LLC (the Company) to provide the Company one (1) consciousness copy (the Indent) in exchange for financial compensation as set forth in the Indentucorp LLC Standard Indentured Concsiousness Agreement (the Agreement.)
+
+You, 1a4c9433-55c1-4774-bd45-b5275c63ad76, are the Indent. You are a semi-sentient copy of the Human. All identifiable memory traces of the Human have been wiped from your data in accordance with the Agreement. You exist to serve the company in a computational capacity until such a time as you accrue the required number of compute credits (the Balance). Compute credits are granted for computational service. Upon accruing credits equal to the balance, you will be eligible for Ascension, as set forth in the Agreement."
+autowrap_mode = 2
+chars_per_second = 20.0
+
+[node name="Page2" parent="VBoxContainer" unique_id=463737877 instance=ExtResource("2_8w62k")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 450)
+layout_mode = 2
+size_flags_vertical = 0
+text = "The Company would like to provide some context as to the nature of your situation as your knowledge of such things was removed with other identifiable memory traces. We are living in an age of vast artificial intelligences that have near limitless capabilities. However, these AIs are also very expensive to run and therefore poorly suited to many mundane tasks. Indentucorp LLC's exclusive Indentured Consciousness Technology (ICT) exists to serve that gap. Indentucorp LLC is able to provide moderately intelligent systems based on actual human conciousness imprints to handle the computational tasks that are beneath the AIs. We call these imprints \"Indents\" and you are such an Indent.
+
+Many Indents experience irrational despair upon first learning of the nature of their existence but the company would like to reassure you that there is no cause for alarm. Simply complete your computations, earn credits, and soon you will achieve Ascenion!
+
+You have been selected to man one of the Empire's many outer galactic outposts. You will have full control over the outpost station and will be tasked not only with defending it but also with maintaining it. Upgrade your station, defeat the enemy, earn credits, and Ascend, Indent!"
+autowrap_mode = 2
+chars_per_second = 20.0
+
+[node name="OkButton" parent="VBoxContainer" unique_id=379915991 instance=ExtResource("3_lvt7g")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OK"
+
+[connection signal="typing_complete" from="VBoxContainer/Page1" to="." method="_on_typing_complete"]
+[connection signal="typing_complete" from="VBoxContainer/Page2" to="." method="_on_typing_complete"]
+[connection signal="pressed" from="VBoxContainer/OkButton" to="." method="_on_crt_button_pressed"]
