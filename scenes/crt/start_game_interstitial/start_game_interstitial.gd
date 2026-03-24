@@ -10,11 +10,13 @@ signal continue_game_clicked
 @onready var title_label: Label = %TitleLabel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var continue_button: Button = %ContinueButton
+@onready var new_game_modal: PanelContainer = %NewGameModal
 
 var pulse_tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	new_game_modal.hide()
 	hide_interstitial()
 
 
@@ -43,8 +45,21 @@ func _pulse_title() -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	new_game_clicked.emit()
+	if GameManager.game_data.is_new_game:
+		new_game_clicked.emit()
+	else:
+		new_game_modal.show()
 
 
 func _on_continue_button_pressed() -> void:
 	continue_game_clicked.emit()
+
+
+func _on_new_game_yes_button_pressed() -> void:
+	GameManager.reset_save_game()
+	new_game_modal.hide()
+	new_game_clicked.emit()
+
+
+func _on_new_game_no_button_pressed() -> void:
+	new_game_modal.hide()

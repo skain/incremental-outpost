@@ -16,13 +16,15 @@ func _ready() -> void:
 
 func load_game() -> void:
 	if ResourceLoader.exists(SAVE_DATA_PATH):
-		game_data = load(SAVE_DATA_PATH)
+		game_data = ResourceLoader.load(SAVE_DATA_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		game_data = GameData.new()
 
 
 func save_game() -> void:
 	ResourceSaver.save(game_data, SAVE_DATA_PATH)
+	
+	
 func set_points(new_points: int) -> void:
 	game_data.current_points = new_points
 
@@ -75,6 +77,14 @@ func get_purchased_nodes() -> Array[SkillTreeNode]:
 func is_affordable_bucks(bucks: int) -> bool:
 	return bucks <= game_data.current_bucks
 
+
+func reset_save_game() -> void:
+	_delete_save_game()
+	load_game()
+
+func _delete_save_game() -> void:
+	if ResourceLoader.exists(SAVE_DATA_PATH):
+		DirAccess.remove_absolute(SAVE_DATA_PATH)
 
 # Modifiers
 func get_cannon_cooldown_modifier() -> float:
