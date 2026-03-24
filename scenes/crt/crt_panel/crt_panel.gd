@@ -127,6 +127,10 @@ func _on_new_game_clicked() -> void:
 	
 func _on_continue_game_clicked() -> void:
 	await _power_down()
+	# need to load the skill tree once to populate nodes 
+	# in game manager
+	# lame, but works for now at least
+	_switch_sub_view(skill_tree_scene)
 	continue_game_clicked.emit()
 
 func _on_return_requested() -> void:
