@@ -1,4 +1,4 @@
-extends Node2D
+class_name ShieldsManager extends Node2D
 
 @onready var top_shield: Area2D = $TopShield
 @onready var right_shield: Area2D = $RightShield
@@ -6,9 +6,13 @@ extends Node2D
 @onready var left_shield: Area2D = $LeftShield
 
 var active_inputs: Array[String] = []
+var shields_enabled := false
 
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
+
+func reset() -> void:
+	shields_enabled = GameManager.get_shields_enabled_modifier()
 
 func _input(event: InputEvent) -> void:
 	# Quick exit: if the event isn't a shield action, don't loop
@@ -36,6 +40,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _apply_shield_logic() -> void:
+	if shields_enabled == false:
+		return
+	
 	var current_shield_direction := ""
 	if not active_inputs.is_empty():
 		current_shield_direction = active_inputs.back().replace("shield_", "")

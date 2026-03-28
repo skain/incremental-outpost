@@ -34,6 +34,7 @@ position = Vector2(0.33333334, -0.33333397)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Shields" type="Node2D" parent="." unique_id=1734988738]
+unique_name_in_owner = true
 script = ExtResource("3_7ow0l")
 
 [node name="TopShield" parent="Shields" unique_id=2144481525 instance=ExtResource("3_qhqgy")]

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
 [ext_resource type="Texture2D" uid="uid://cnr3th53tmw4q" path="res://assets/skill_tree/icons/hull-plating-icon.png" id="5_bn5ii"]
 [ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="5_jlgqv"]
+[ext_resource type="Texture2D" uid="uid://dgq4rf7ogdqyb" path="res://assets/skill_tree/icons/shields-enabled-icon.png" id="6_1q8yp"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
 [ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="8_snr"]
@@ -68,11 +69,11 @@ modifier_value = 1.0
 
 [sub_resource type="Resource" id="Resource_tnsbc"]
 script = ExtResource("8_snr")
-skill_icon = ExtResource("5_jlgqv")
-skill_name = "Skill Name"
-skill_desc = "Skill Description"
-skill_cost = 100000
-modifier_type = 1
+skill_icon = ExtResource("6_1q8yp")
+skill_name = "Shields"
+skill_desc = "Purchase shields for your outpost. Use WASD to control them."
+skill_cost = 10
+affected_stat = 2
 modifier_value = 1.0
 
 [sub_resource type="Resource" id="Resource_s7fn8"]
@@ -111,7 +112,7 @@ skill_node_resource = SubResource("Resource_2mml3")
 position = Vector2(1, -56)
 skill_node_resource = SubResource("Resource_fprye")
 
-[node name="SkillTreeNode4" parent="CannonCooldown1" unique_id=939400477 instance=ExtResource("2_vt0yg")]
+[node name="ShieldsEnabled" parent="CannonCooldown1" unique_id=939400477 instance=ExtResource("2_vt0yg")]
 position = Vector2(-57, 0)
 skill_node_resource = SubResource("Resource_tnsbc")
 

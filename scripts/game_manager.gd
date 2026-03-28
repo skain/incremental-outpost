@@ -95,3 +95,6 @@ func get_cannon_cooldown_modifier() -> float:
 
 func get_hull_plating_modifier() -> int:
 	return _skill_modifiers.hull_plating.get_hull_plating_amount(get_purchased_nodes())
+	
+func get_shields_enabled_modifier() -> bool:
+	return _skill_modifiers.shields_enabled.get_shields_enabled(get_purchased_nodes())

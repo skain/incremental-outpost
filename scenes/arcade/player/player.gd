@@ -7,6 +7,7 @@ signal player_hit
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var cannons: Node2D = $Cannons
 @onready var player_sprite: Sprite2D = %Player
+@onready var shields: ShieldsManager = %Shields
 
 var hull_plating := 0
 
@@ -26,6 +27,7 @@ func die() -> void:
 func reset() -> void:
 	hull_plating = GameManager.get_hull_plating_modifier()
 	cannons.reset_cannons()	
+	shields.reset()
 
 
 func make_camera_current() -> void:

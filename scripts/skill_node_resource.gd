@@ -1,6 +1,6 @@
 class_name SkillNodeResource extends Resource
 
-enum AffectedStat { CANNON_COOLDOWN, HULL_PLATING}
+enum AffectedStat { CANNON_COOLDOWN, HULL_PLATING, SHIELDS_ENABLED}
 enum ModifierType { ADD, MULTIPLY, ENABLE }
 
 @export var skill_icon: Texture2D
