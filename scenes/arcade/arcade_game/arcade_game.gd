@@ -6,6 +6,8 @@ const BASE_SCORE := 10
 var current_score := 0
 var game_over := true
 
+const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tscn")
+
 @export var game_start_sound: AudioStream
 @export var game_over_sound: AudioStream
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
@@ -61,7 +63,15 @@ func _update_ui() -> void:
 
 
 func _on_enemy_hit(enemy: Enemy) -> void:
-	current_score += enemy.enemy_level * BASE_SCORE
+	var points := enemy.enemy_level * BASE_SCORE
+	current_score += points
+	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
+	get_tree().current_scene.add_child(text_popup)
+	text_popup.text = str(points)
+	var top_right := Vector2(640.0, 0.0)
+	var direction := top_right - enemy.global_position
+	text_popup.travel_distance = direction
+	text_popup.start(str(100), enemy.global_position)
 	_update_ui()
 	enemy.enemy_level += 1
 

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cuttylm8rbj26"]
+
+[ext_resource type="Script" uid="uid://8i3lew7rh6uk" path="res://scenes/arcade/poof_label/poof_label.gd" id="1_5volw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5volw"]
+font_size = 32
+
+[node name="PoofLabel" type="Label" unique_id=204693009]
+offset_right = 40.0
+offset_bottom = 12.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "100"
+label_settings = SubResource("LabelSettings_5volw")
+script = ExtResource("1_5volw")
+travel_distance = Vector2(100, -200)
+duration = 2.0
