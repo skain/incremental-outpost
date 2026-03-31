@@ -65,7 +65,6 @@ func _on_revive_timer_timeout() -> void:
 	
 
 func _on_area_entered(area: Area2D) -> void:
-	#print('hit')
 	_handle_hit(area)
 	
 	
