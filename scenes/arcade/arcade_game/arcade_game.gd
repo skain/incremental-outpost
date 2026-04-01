@@ -81,6 +81,7 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.text = str(points)
 	var top_right := Vector2(640.0, 0.0)
 	var direction := top_right - enemy.global_position
+	print(direction)
 	text_popup.travel_distance = direction
 	text_popup.start(str(100), enemy.global_position)
 	_update_ui()
