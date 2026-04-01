@@ -5,6 +5,8 @@ signal game_ended
 const BASE_SCORE := 10
 var current_score := 0
 var game_over := true
+var num_enemies_per_wave := 12
+var num_enemies_left_in_current_wave := 0
 
 const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tscn")
 
@@ -13,7 +15,7 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 @onready var player: Player = %Player
 @onready var enemies: EnemiesContainer = %Enemies
-@onready var arcade_ui: CanvasLayer = %ArcadeUI
+@onready var arcade_ui: ArcadeUI = %ArcadeUI
 
 func _ready() -> void:
 	enemies.disable_enemies()
@@ -23,13 +25,21 @@ func _ready() -> void:
 func start_game() -> void:
 	game_over = false
 	current_score = 0
+	_start_new_enemy_wave()
 	enemies.reset_enemies()	
 	player.reset()
 	arcade_ui.show()
 	player.make_camera_current()
+	_start_new_enemy_wave()
 	_update_ui()
 	_play_startup_sound()
 	_start_bg_music()
+
+
+func _start_new_enemy_wave() -> void:
+	num_enemies_left_in_current_wave = num_enemies_per_wave
+	var cur_wave := GameManager.increment_current_enemy_wave_level()
+	arcade_ui.show_new_wave_message(cur_wave)
 
 
 func _start_bg_music() -> void:
@@ -63,6 +73,7 @@ func _update_ui() -> void:
 
 
 func _on_enemy_hit(enemy: Enemy) -> void:
+	_decrement_and_manage_enemy_wave()
 	var points := enemy.enemy_level * BASE_SCORE
 	current_score += points
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
@@ -73,7 +84,11 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.travel_distance = direction
 	text_popup.start(str(100), enemy.global_position)
 	_update_ui()
-	enemy.enemy_level += 1
+
+func _decrement_and_manage_enemy_wave() -> void:
+	num_enemies_left_in_current_wave -= 1
+	if num_enemies_left_in_current_wave <= 0:
+		_start_new_enemy_wave()
 
 
 func _on_player_player_hit() -> void:	

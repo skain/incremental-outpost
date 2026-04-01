@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	
 func reset() -> void:
-	enemy_level = 1
+	enemy_level = GameManager.get_current_enemy_wave_level()
 	disable(true)
 	_start_shoot_timer()
 	

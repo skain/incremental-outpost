@@ -10,6 +10,7 @@ var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 var _skill_nodes_by_affected_stat: Dictionary = {}
 var _base_points_to_bucks_rate: float = 0.1
 var _skill_modifiers := SkillModifiersManager.new()
+var _current_enemy_wave_level := 0
 
 
 func _ready() -> void:
@@ -76,6 +77,7 @@ func get_purchased_nodes() -> Array[SkillTreeNode]:
 	
 	return purchased_nodes
 
+
 func is_affordable_bucks(bucks: int) -> bool:
 	return bucks <= game_data.current_bucks
 
@@ -84,9 +86,24 @@ func reset_save_game() -> void:
 	_delete_save_game()
 	load_game()
 
+
 func _delete_save_game() -> void:
 	if ResourceLoader.exists(SAVE_DATA_PATH):
 		DirAccess.remove_absolute(SAVE_DATA_PATH)
+
+
+func get_current_enemy_wave_level() -> int:
+	return _current_enemy_wave_level
+	
+
+func _set_current_enemy_wave_level(new_level: int) -> void:
+	_current_enemy_wave_level = new_level
+
+
+func increment_current_enemy_wave_level() -> int:
+	_set_current_enemy_wave_level(_current_enemy_wave_level + 1)
+	return get_current_enemy_wave_level()
+	
 
 # Modifiers
 func get_cannon_cooldown_modifier() -> float:
@@ -95,6 +112,7 @@ func get_cannon_cooldown_modifier() -> float:
 
 func get_hull_plating_modifier() -> int:
 	return _skill_modifiers.hull_plating.get_hull_plating_amount(get_purchased_nodes())
-	
+
+
 func get_shields_enabled_modifier() -> bool:
 	return _skill_modifiers.shields_enabled.get_shields_enabled(get_purchased_nodes())
