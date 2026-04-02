@@ -7,6 +7,9 @@ class_name ShieldsManager extends Node2D
 
 var active_inputs: Array[String] = []
 var shields_enabled := false
+var shields_active := false
+var shield_energy_max: int
+var cur_shield_energy: int
 
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
