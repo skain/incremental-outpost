@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dgq4rf7ogdqyb" path="res://assets/skill_tree/icons/shields-enabled-icon.png" id="6_1q8yp"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
-[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/skill_node_resource.gd" id="8_snr"]
+[ext_resource type="Script" uid="uid://ds1j4u8mamvw1" path="res://scripts/resources/skill_node_resource.gd" id="8_snr"]
 
 [sub_resource type="Resource" id="Resource_1pgdg"]
 script = ExtResource("8_snr")
