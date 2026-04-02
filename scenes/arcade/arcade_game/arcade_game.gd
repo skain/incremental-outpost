@@ -25,6 +25,7 @@ func _ready() -> void:
 func start_game() -> void:
 	game_over = false
 	current_score = 0
+	GameManager._set_current_enemy_wave_level(0)
 	_start_new_enemy_wave()
 	enemies.reset_enemies()	
 	player.reset()
@@ -78,12 +79,12 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	current_score += points
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
 	get_tree().current_scene.add_child(text_popup)
-	text_popup.text = str(points)
-	var top_right := Vector2(640.0, 0.0)
-	var direction := top_right - enemy.global_position
+	var middle := Vector2(320.0, 320.0)
+	var direction := middle - enemy.global_position
+	print("position: " + str(enemy.global_position))
 	print(direction)
 	text_popup.travel_distance = direction
-	text_popup.start(str(100), enemy.global_position)
+	text_popup.start(str(points), enemy.global_position)
 	_update_ui()
 
 func _decrement_and_manage_enemy_wave() -> void:
