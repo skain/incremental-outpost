@@ -15,7 +15,7 @@ func start(value: String, start_pos: Vector2) -> void:
 	var tween := create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	# 1. Animate Position
-	tween.tween_property(self, "global_position", global_position + (move_direction / 2.0), duration)
+	tween.tween_property(self, "global_position", global_position + move_direction, duration)
 	
 	# 2. Animate Scale (Scale down to 0)
 	tween.tween_property(self, "scale", Vector2.ZERO, duration)
