@@ -31,7 +31,6 @@ func start_game() -> void:
 	player.reset()
 	arcade_ui.show()
 	player.make_camera_current()
-	_start_new_enemy_wave()
 	_update_ui()
 	_play_startup_sound()
 	_start_bg_music()

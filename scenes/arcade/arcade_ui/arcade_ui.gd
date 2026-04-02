@@ -31,9 +31,13 @@ func _set_player_hull_plating(player_hull_plating: int) -> void:
 
 
 func show_new_wave_message(wave_number: int) -> void:
-	new_wave_label.text = new_wave_label.text.replace("%num%", str(wave_number))	
+	var new_message := "WAVE " + str(wave_number) + "\rINCOMING"
+	new_wave_label.text = new_message
 	new_wave_label.self_modulate = Color.WHITE
 	new_wave_label.show()
+	
+	if new_wave_label_tween:
+		new_wave_label_tween.kill()
 	
 	new_wave_label_tween = create_tween()
 	new_wave_label_tween.tween_property(new_wave_label, "self_modulate", Color(1.0, 1.0, 1.0, 0.0), 2.0)

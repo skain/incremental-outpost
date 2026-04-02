@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	
 func reset() -> void:
-	enemy_level = GameManager.get_current_enemy_wave_level()
+	_update_level_from_manager()
 	disable(true)
 	_start_shoot_timer()
 	
@@ -40,6 +40,7 @@ func _start_shoot_timer() -> void:
 
 
 func _enable() -> void:
+	_update_level_from_manager()
 	visible = true
 	can_shoot = true
 	collision_shape_2d.set_deferred("disabled", false)
@@ -104,3 +105,6 @@ func _on_shoot_timer_timeout() -> void:
 			_fire_projectile() 
 			#print(name + " fired")
 	_start_shoot_timer()
+
+func _update_level_from_manager() -> void:
+	enemy_level = GameManager.get_current_enemy_wave_level()
