@@ -80,6 +80,7 @@ bus = &"SoundFx"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=653930879]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="shield_energy_updated" from="Shields" to="." method="_on_shields_shield_energy_updated"]
 [connection signal="cannon_hit" from="Cannons/TopCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Cannons/RightCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Cannons/BottomCannon" to="." method="_on_cannon_hit"]

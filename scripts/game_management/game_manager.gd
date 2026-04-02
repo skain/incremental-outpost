@@ -118,5 +118,5 @@ func get_shields_enabled_modifier() -> bool:
 	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELDS_ENABLED].get_shields_enabled(get_purchased_nodes())
 
 
-func get_shield_max_energy_modifier() -> int:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_MAX_ENERGY].get_shield_max_energy()
+func get_shield_max_energy_modifier() -> float:
+	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_MAX_ENERGY].get_shield_max_energy(get_purchased_nodes())

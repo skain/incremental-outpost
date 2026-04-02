@@ -5,12 +5,26 @@ class_name ArcadeUI extends CanvasLayer
 @onready var hull_plating_2: TextureRect = %HullPlating2
 @onready var hull_plating_3: TextureRect = %HullPlating3
 @onready var new_wave_label: Label = %NewWaveLabel
+@onready var shield_energy_label: Label = %ShieldEnergyLabel
+@onready var shield_energy_h_box_container: HBoxContainer = %ShieldEnergyHBoxContainer
 
 var new_wave_label_tween: Tween
-	
+
+
+func _ready() -> void:
+	if GameManager.get_shields_enabled_modifier():
+		shield_energy_h_box_container.show()
+	else:
+		shield_energy_h_box_container.hide()
+
+
 func update_ui(score: int, player_hull_plating: int) -> void:
 	score_value.text = str(score)
 	_set_player_hull_plating(player_hull_plating)	
+
+
+func update_shield_energy(cur_shield_energy: float) -> void:
+	shield_energy_label.text = str(cur_shield_energy)
 
 
 func _set_player_hull_plating(player_hull_plating: int) -> void:

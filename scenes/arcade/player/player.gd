@@ -2,6 +2,7 @@ extends Area2D
 class_name Player
 
 signal player_hit
+signal shield_energy_ui_update_requested(cur_shield_energy: float)
 
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var camera_2d: Camera2D = $Camera2D
@@ -10,9 +11,6 @@ signal player_hit
 @onready var shields: ShieldsManager = %Shields
 
 var hull_plating := 0
-
-func _ready() -> void:
-	reset()
 
 
 func _process(_delta: float) -> void:
@@ -72,3 +70,7 @@ func _on_cannon_hit(_cannon_direction: Vector2) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	_handle_hit(area)
+
+
+func _on_shields_shield_energy_updated(cur_shield_energy: float) -> void:
+	shield_energy_ui_update_requested.emit(cur_shield_energy)

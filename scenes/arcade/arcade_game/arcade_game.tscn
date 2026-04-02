@@ -59,3 +59,4 @@ color = Color(0.6, 0.6, 0.6, 1)
 unique_name_in_owner = true
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
+[connection signal="shield_energy_ui_update_requested" from="Player" to="." method="_on_player_shield_energy_ui_update_requested"]

@@ -97,4 +97,6 @@ func _on_player_player_hit() -> void:
 		return
 	_update_ui()
 
-	
+
+func _on_player_shield_energy_ui_update_requested(cur_shield_energy: float) -> void:
+	arcade_ui.update_shield_energy(cur_shield_energy)
