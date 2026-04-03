@@ -26,11 +26,9 @@ func update_ui(score: int, player_hull_plating: int) -> void:
 
 
 func update_shield_energy(cur_shield_energy: float, cur_max_shield_energy: float) -> void:
-	print(cur_shield_energy)
 	shield_progress_bar.max_value = cur_max_shield_energy
 	shield_progress_bar.value = cur_shield_energy
 	var percent := remap(cur_max_shield_energy, 10.0, 100.0, 10.0, 100.0)
-	print("percent: " + str(percent))
 	shield_progress_bar.custom_minimum_size.x = 640 * (percent / 100)
 
 
