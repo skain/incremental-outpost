@@ -1,6 +1,6 @@
 class_name ShieldsManager extends Node2D
 
-signal shield_energy_updated(cur_shield_energy: float)
+signal shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: float)
 
 @onready var top_shield: Shield = $TopShield
 @onready var right_shield: Shield = $RightShield
@@ -55,7 +55,7 @@ func reset() -> void:
 	cur_shield_drain_rate = base_shield_drain_rate
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max
-		shield_energy_updated.emit(cur_shield_energy)
+		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 	
 
 
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 	
 	cur_shield_energy = clamp(cur_shield_energy, 0, cur_shield_energy_max)
 	
-	shield_energy_updated.emit(cur_shield_energy)
+	shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 
 func _apply_shield_logic() -> void:
 	is_shield_on = false

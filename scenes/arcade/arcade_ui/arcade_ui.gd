@@ -1,12 +1,14 @@
 class_name ArcadeUI extends CanvasLayer
 
+const TOTAL_MAX_SHIELD_ENERGY := 300.0
+
 @onready var score_value: Label = %ScoreValue
 @onready var hull_plating_1: TextureRect = %HullPlating1
 @onready var hull_plating_2: TextureRect = %HullPlating2
 @onready var hull_plating_3: TextureRect = %HullPlating3
 @onready var new_wave_label: Label = %NewWaveLabel
-@onready var shield_energy_label: Label = %ShieldEnergyLabel
 @onready var shield_energy_h_box_container: HBoxContainer = %ShieldEnergyHBoxContainer
+@onready var shield_progress_bar: ProgressBar = %ShieldProgressBar
 
 var new_wave_label_tween: Tween
 
@@ -23,8 +25,13 @@ func update_ui(score: int, player_hull_plating: int) -> void:
 	_set_player_hull_plating(player_hull_plating)	
 
 
-func update_shield_energy(cur_shield_energy: float) -> void:
-	shield_energy_label.text = str(cur_shield_energy)
+func update_shield_energy(cur_shield_energy: float, cur_max_shield_energy: float) -> void:
+	print(cur_shield_energy)
+	shield_progress_bar.max_value = cur_max_shield_energy
+	shield_progress_bar.value = cur_shield_energy
+	var percent := remap(cur_max_shield_energy, 10.0, 100.0, 10.0, 100.0)
+	print("percent: " + str(percent))
+	shield_progress_bar.custom_minimum_size.x = 640 * (percent / 100)
 
 
 func _set_player_hull_plating(player_hull_plating: int) -> void:

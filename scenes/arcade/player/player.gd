@@ -2,7 +2,7 @@ extends Area2D
 class_name Player
 
 signal player_hit
-signal shield_energy_ui_update_requested(cur_shield_energy: float)
+signal shield_energy_ui_update_requested(cur_shield_energy: float, cur_max_shield_energy: float)
 
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var camera_2d: Camera2D = $Camera2D
@@ -72,5 +72,5 @@ func _on_area_entered(area: Area2D) -> void:
 	_handle_hit(area)
 
 
-func _on_shields_shield_energy_updated(cur_shield_energy: float) -> void:
-	shield_energy_ui_update_requested.emit(cur_shield_energy)
+func _on_shields_shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: float) -> void:
+	shield_energy_ui_update_requested.emit(cur_shield_energy, cur_shield_energy_max)

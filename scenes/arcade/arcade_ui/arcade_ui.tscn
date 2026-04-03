@@ -5,6 +5,21 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aripk"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sr6r4"]
+bg_color = Color(0.05, 0.05, 0.05, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.24, 0.24, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo35t"]
+bg_color = Color(0.2392, 0.6817201, 0.92, 1)
+
 [node name="ArcadeUI" type="CanvasLayer" unique_id=1381448654]
 script = ExtResource("1_qo35t")
 
@@ -45,15 +60,22 @@ stretch_mode = 2
 [node name="ShieldEnergyHBoxContainer" type="HBoxContainer" parent="Panel/UpperLeftVBoxContainer" unique_id=1498333379]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Panel/UpperLeftVBoxContainer/ShieldEnergyHBoxContainer" unique_id=1206430846]
 layout_mode = 2
 text = "SHIELD:"
 
-[node name="ShieldEnergyLabel" type="Label" parent="Panel/UpperLeftVBoxContainer/ShieldEnergyHBoxContainer" unique_id=1890281774]
+[node name="ShieldProgressBar" type="ProgressBar" parent="Panel/UpperLeftVBoxContainer/ShieldEnergyHBoxContainer" unique_id=279635885]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 12)
 layout_mode = 2
-text = "0"
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_sr6r4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qo35t")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [node name="ScoreHBoxContainer" type="HBoxContainer" parent="Panel" unique_id=301256690]
 layout_mode = 1
