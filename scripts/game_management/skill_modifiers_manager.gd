@@ -7,7 +7,9 @@ var modifiers := {
 	SkillNodeResource.AffectedStat.SHIELDS_ENABLED:
 		ShieldsEnabledModifier.new(),
 	SkillNodeResource.AffectedStat.SHIELD_MAX_ENERGY:
-		ShieldMaxEnergyModifier.new()	
+		ShieldMaxEnergyModifier.new(),
+	SkillNodeResource.AffectedStat.SHIELD_DRAIN_RATE:
+		ShieldDrainRateModifier.new()
 }
 
 

@@ -50,9 +50,11 @@ func _input(event: InputEvent) -> void:
 
 func reset() -> void:
 	shields_enabled = GameManager.get_shields_enabled_modifier()
-	cur_shield_energy_max = GameManager.get_shield_max_energy_modifier() * base_shield_energy_max
+	var max_energy_mod := GameManager.get_shield_max_energy_modifier()
+	cur_shield_energy_max = max_energy_mod * base_shield_energy_max
 	cur_shield_charge_rate = base_shield_charge_rate
-	cur_shield_drain_rate = base_shield_drain_rate
+	var drain_rate_mod := GameManager.get_shield_drain_rate_modifier()
+	cur_shield_drain_rate = drain_rate_mod * base_shield_drain_rate
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max
 		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
