@@ -92,7 +92,7 @@ func _decrement_and_manage_enemy_wave() -> void:
 
 func _on_player_player_hit() -> void:	
 	player.hull_plating -= 1
-	if player.hull_plating < 1:
+	if player.hull_plating < 0:
 		_end_game()
 		return
 	_update_ui()

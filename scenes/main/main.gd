@@ -79,5 +79,4 @@ func _on_arcade_game_game_ended() -> void:
 
 
 func _on_resume_button_pressed() -> void:
-	print("pressed")
 	_toggle_pause()

@@ -17,6 +17,7 @@ func _refresh_cache(owned_nodes: Array[SkillTreeNode]) -> void:
 func get_cached_value(owned_nodes: Array[SkillTreeNode]) -> float:
 	if _refresh_requested:
 		_refresh_cache(owned_nodes)
+		_refresh_requested = false
 	return _cached_value
 	
 
