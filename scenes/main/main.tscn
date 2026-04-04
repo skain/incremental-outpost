@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scenes/main/main.gd" id="1_dooaf"]
 [ext_resource type="Environment" uid="uid://dvkbg3qcvg8lo" path="res://resources/main_world_environment.tres" id="4_4iaaq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuonh"]
+bg_color = Color(0, 0, 0, 0.9529412)
+
 [node name="Main" type="Node2D" unique_id=42505495]
 process_mode = 3
 script = ExtResource("1_dooaf")
@@ -22,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iuonh")
 
 [node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Panel" unique_id=1581336417]
 layout_mode = 1

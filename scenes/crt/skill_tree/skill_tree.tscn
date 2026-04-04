@@ -147,6 +147,18 @@ affected_stat = 3
 modifier_type = 1
 modifier_value = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnsbc"]
+bg_color = Color(0, 0, 0, 0.98039216)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
 [node name="SkillTree" type="Node2D" unique_id=1865863170]
 script = ExtResource("1_m31mo")
 
@@ -207,7 +219,6 @@ skill_node_resource = SubResource("Resource_s7fn8")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("4_1pgdg")
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]
@@ -222,6 +233,7 @@ script = ExtResource("4_1c8pd")
 [node name="Panel" type="Panel" parent="SkillTreeUI/SkillNodeInfoContainer" unique_id=1797741399]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tnsbc")
 
 [node name="MarginContainer" type="MarginContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel" unique_id=899102875]
 layout_mode = 1
