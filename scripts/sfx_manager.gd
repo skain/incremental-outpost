@@ -7,6 +7,7 @@ func play_sfx(stream: AudioStream, position: Vector2 = Vector2.ZERO) -> void:
 	var player := AudioStreamPlayer2D.new()
 	player.stream = stream
 	player.position = position
+	player.bus = "SoundFx"
 	
 	# Randomize pitch slightly so it doesn't get "machine-gun" fatigue
 	player.pitch_scale = randf_range(0.9, 1.1)
