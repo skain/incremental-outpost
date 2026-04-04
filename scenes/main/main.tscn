@@ -4,7 +4,58 @@
 [ext_resource type="Environment" uid="uid://dvkbg3qcvg8lo" path="res://resources/main_world_environment.tres" id="4_4iaaq"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
+process_mode = 3
 script = ExtResource("1_dooaf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1950625691]
 environment = ExtResource("4_4iaaq")
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=544247123]
+unique_name_in_owner = true
+process_mode = 3
+layer = 10
+visible = false
+
+[node name="Panel" type="Panel" parent="PauseMenu" unique_id=171789646]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Panel" unique_id=1581336417]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.5
+offset_right = 20.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="Label" type="Label" parent="PauseMenu/Panel/MarginContainer" unique_id=1311199644]
+layout_mode = 2
+theme_override_font_sizes/font_size = 102
+text = "PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel" unique_id=1193709675]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Panel/VBoxContainer" unique_id=293686657]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RESUME"
+
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

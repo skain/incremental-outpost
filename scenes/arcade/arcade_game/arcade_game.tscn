@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="6_7p05h"]
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
+process_mode = 1
 script = ExtResource("1_jp8dw")
 game_start_sound = ExtResource("2_i5osn")
 game_over_sound = ExtResource("3_leafu")

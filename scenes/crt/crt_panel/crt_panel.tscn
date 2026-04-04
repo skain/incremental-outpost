@@ -12,6 +12,7 @@ shader_parameter/noise_amount = 0.010000000475
 shader_parameter/power_on = 1.0
 
 [node name="CRTPanel" type="Node2D" unique_id=1981789528]
+process_mode = 1
 script = ExtResource("1_8xoaq")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1247727966]
