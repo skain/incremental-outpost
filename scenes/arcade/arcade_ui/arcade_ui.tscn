@@ -37,6 +37,7 @@ offset_right = 104.0
 offset_bottom = 40.0
 
 [node name="HullPlatingHBoxContainer" type="HBoxContainer" parent="Panel/UpperLeftVBoxContainer" unique_id=848925730]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 
 [node name="HullPlating1" type="TextureRect" parent="Panel/UpperLeftVBoxContainer/HullPlatingHBoxContainer" unique_id=1410261432]
