@@ -8,7 +8,7 @@ signal shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: fl
 @onready var left_shield: Shield = $LeftShield
 
 @export var base_shield_energy_max := 10.0
-@export var base_shield_drain_rate := 2.0
+@export var base_shield_drain_rate := 30.0
 @export var base_shield_charge_rate := 2.0
 
 var active_inputs: Array[String] = []

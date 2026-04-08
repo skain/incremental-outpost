@@ -29,6 +29,5 @@ func _on_skill_node_info_container_close_button_pressed() -> void:
 
 
 func _on_skill_node_info_container_buy_button_pressed(node: SkillTreeNode) -> void:
-	#print("skill tree ui got buy signal")
 	buy_skill_node_pressed.emit(node)
 	skill_node_info_container.hide()

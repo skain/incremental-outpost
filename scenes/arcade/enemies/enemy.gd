@@ -34,7 +34,6 @@ func reset() -> void:
 	
 func _start_shoot_timer() -> void:
 	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, -1.1)
-	#print(name + " starting shoot timer: " + str(cur_delay))
 	var rand_delay: float = cur_delay + randf_range(.2, 1.2)
 	shoot_timer.start(rand_delay)
 
@@ -87,16 +86,13 @@ func _hit_flash() -> void:
 	
 	
 func _fire_projectile() -> void:
-	#print("enemy position: ", position)
 	var projectile: EnemyProjectile = PROJECTILE_SCENE.instantiate()
 	get_parent().add_child(projectile)
-	#print(start_position)
 	projectile.global_position =  global_position
 	#negative transform.y is the direction the sprite is facing
 	projectile.setup(-transform.y.round())
 	shoot_player.play()
 	muzzle_flash.emit_flash()
-	#print("enemy fired")
 
 func _on_shoot_timer_timeout() -> void:
 	if visible and can_shoot:		
