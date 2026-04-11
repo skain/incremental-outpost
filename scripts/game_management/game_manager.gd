@@ -124,3 +124,7 @@ func get_shield_max_energy_modifier() -> float:
 
 func get_shield_drain_rate_modifier() -> float:
 	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_DRAIN_RATE].get_shield_drain_rate(get_purchased_nodes())
+
+
+func get_shield_chrage_rate_modifier() -> float:
+	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_CHARGE_RATE].get_shield_charge_rate(get_purchased_nodes())

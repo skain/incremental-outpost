@@ -148,7 +148,7 @@ skill_desc = "Increase Shield Energy Recharge Rate by 100%"
 skill_cost = 100
 affected_stat = 5
 modifier_type = 1
-modifier_value = 2.0
+modifier_value = 3.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2mml3"]
 load_path = "res://.godot/imported/shield-energy-recharge-icon.png-7e9f7ba423e908a429e2a9f975ff1882.ctex"
@@ -177,7 +177,7 @@ modifier_type = 1
 modifier_value = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnsbc"]
-bg_color = Color(0, 0, 0, 0.98039216)
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -193,65 +193,82 @@ script = ExtResource("1_m31mo")
 
 [node name="CannonCooldown1" parent="." unique_id=980992063 instance=ExtResource("2_vt0yg")]
 position = Vector2(625, 304)
+texture = ExtResource("4_jlgqv")
 skill_node_resource = SubResource("Resource_1pgdg")
 
 [node name="CannonCooldown2" parent="CannonCooldown1" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
 position = Vector2(55, 0)
+texture = ExtResource("4_jlgqv")
 skill_node_resource = SubResource("Resource_jlgqv")
 
 [node name="CannonCooldown3" parent="CannonCooldown1/CannonCooldown2" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
 position = Vector2(56, 0)
+texture = ExtResource("4_jlgqv")
 skill_node_resource = SubResource("Resource_bn5ii")
 
 [node name="HullPlating1" parent="CannonCooldown1" unique_id=849825354 instance=ExtResource("2_vt0yg")]
 position = Vector2(-1, -56)
+texture = ExtResource("5_bn5ii")
 skill_node_resource = SubResource("Resource_1q8yp")
 
 [node name="HullPlating2" parent="CannonCooldown1/HullPlating1" unique_id=170604591 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
+texture = ExtResource("5_bn5ii")
 skill_node_resource = SubResource("Resource_2mml3")
 
 [node name="HullPlating3" parent="CannonCooldown1/HullPlating1/HullPlating2" unique_id=1891755021 instance=ExtResource("2_vt0yg")]
 position = Vector2(1, -56)
+texture = ExtResource("5_bn5ii")
 skill_node_resource = SubResource("Resource_fprye")
 
 [node name="ShieldsEnabled" parent="CannonCooldown1" unique_id=939400477 instance=ExtResource("2_vt0yg")]
 position = Vector2(-57, 0)
+texture = ExtResource("6_1q8yp")
 skill_node_resource = SubResource("Resource_tnsbc")
 
 [node name="ShieldEnergy1" parent="CannonCooldown1/ShieldsEnabled" unique_id=1069266598 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
+texture = ExtResource("7_1q8yp")
 skill_node_resource = SubResource("Resource_frlcx")
 
 [node name="ShieldEnergy2" parent="CannonCooldown1/ShieldsEnabled/ShieldEnergy1" unique_id=1285090980 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
+texture = ExtResource("7_1q8yp")
 skill_node_resource = SubResource("Resource_sdl0q")
 
 [node name="ShieldEnergy3" parent="CannonCooldown1/ShieldsEnabled/ShieldEnergy1/ShieldEnergy2" unique_id=1844469160 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
+texture = ExtResource("7_1q8yp")
 skill_node_resource = SubResource("Resource_8btny")
 
 [node name="ShieldDrain1" parent="CannonCooldown1/ShieldsEnabled" unique_id=1433790815 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
+texture = ExtResource("8_tnsbc")
 skill_node_resource = SubResource("Resource_irvd2")
 
 [node name="ShieldDrain2" parent="CannonCooldown1/ShieldsEnabled/ShieldDrain1" unique_id=1955643440 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_tnsbc")
 skill_node_resource = SubResource("Resource_lomdq")
 
 [node name="ShieldDrain3" parent="CannonCooldown1/ShieldsEnabled/ShieldDrain1/ShieldDrain2" unique_id=737031854 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
+texture = ExtResource("8_tnsbc")
 skill_node_resource = SubResource("Resource_6fh4m")
 
 [node name="ShieldRecharge1" parent="CannonCooldown1/ShieldsEnabled" unique_id=923428058 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
+texture = SubResource("CompressedTexture2D_tnsbc")
 skill_node_resource = SubResource("Resource_s7fn8")
 
 [node name="ShieldRecharge2" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1" unique_id=426104042 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
+texture = SubResource("CompressedTexture2D_2mml3")
 skill_node_resource = SubResource("Resource_d7ytc")
 
 [node name="ShieldRecharge3" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2100923162 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
+texture = SubResource("CompressedTexture2D_ngrj7")
 skill_node_resource = SubResource("Resource_ktcxh")
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]

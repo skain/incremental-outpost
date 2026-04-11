@@ -9,7 +9,7 @@ signal shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: fl
 
 @export var base_shield_energy_max := 10.0
 @export var base_shield_drain_rate := 30.0
-@export var base_shield_charge_rate := 2.0
+@export var base_shield_charge_rate := 0.25
 
 var active_inputs: Array[String] = []
 var shields_enabled := false
@@ -52,7 +52,10 @@ func reset() -> void:
 	shields_enabled = GameManager.get_shields_enabled_modifier()
 	var max_energy_mod := GameManager.get_shield_max_energy_modifier()
 	cur_shield_energy_max = max_energy_mod * base_shield_energy_max
-	cur_shield_charge_rate = base_shield_charge_rate
+	var charge_rate_mod := GameManager.get_shield_chrage_rate_modifier()
+	cur_shield_charge_rate = charge_rate_mod * base_shield_charge_rate
+	print("base: %f" % base_shield_charge_rate)
+	print("cur: %f" % cur_shield_charge_rate)
 	var drain_rate_mod := GameManager.get_shield_drain_rate_modifier()
 	cur_shield_drain_rate = drain_rate_mod * base_shield_drain_rate
 	if shields_enabled:
@@ -71,10 +74,20 @@ func _process(delta: float) -> void:
 	
 	cur_shield_energy = clamp(cur_shield_energy, 0, cur_shield_energy_max)
 	
+	if cur_shield_energy <= 0:
+		_shut_down_shields()
+	
 	shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 
-func _apply_shield_logic() -> void:
+
+func _shut_down_shields() -> void:
 	is_shield_on = false
+	top_shield.shield_off()
+	right_shield.shield_off()
+	bottom_shield.shield_off()
+	left_shield.shield_off()
+
+func _apply_shield_logic() -> void:
 	if shields_enabled == false:
 		return
 	
@@ -82,10 +95,7 @@ func _apply_shield_logic() -> void:
 	if not active_inputs.is_empty():
 		current_shield_direction = active_inputs.back().replace("shield_", "")
 	
-	top_shield.shield_off()
-	right_shield.shield_off()
-	bottom_shield.shield_off()
-	left_shield.shield_off()
+	_shut_down_shields()
 	
 	if cur_shield_energy <= 0.0:
 		return

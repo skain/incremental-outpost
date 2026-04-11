@@ -1,3 +1,4 @@
+@tool
 class_name SkillTreeNode extends Sprite2D
 
 enum SkillNodeStatus {UNREVEALED, UNAFFORDABLE, AFFORDABLE, PURCHASED}
@@ -22,10 +23,13 @@ var _status_color_dict := {
 
 
 func _ready() -> void:
-	_validate_skill_node_resource()
-	_register_with_game_manager()
 	_load_data_from_resource()
-	_draw_lines()
+	if Engine.is_editor_hint():
+		pass
+	else:
+		_validate_skill_node_resource()
+		_register_with_game_manager()
+		_draw_lines()
 
 
 func _load_data_from_resource() -> void:
