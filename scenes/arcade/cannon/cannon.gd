@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func _set_fire_cooldown() -> void:
-	var mod := GameManager.get_cannon_cooldown_modifier()
+	var mod := GameManager.get_modifier_value(SkillNodeResource.AffectedStat.CANNON_COOLDOWN)
 	if mod == 0.0:
 		mod = 1.0
 	var cooldown: float = mod * fire_cooldown_base

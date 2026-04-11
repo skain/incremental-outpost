@@ -3,6 +3,7 @@ class_name GameManagerAutoload extends Node
 const SAVE_DATA_PATH = "user://game_data.tres"
 @onready var game_data:GameData
 
+# INDENT_ID is just a random value that is used to refer to the character in the story
 const INDENT_ID := "1a4c9433-55c1-4774-bd45-b5275c63ad76"
 
 var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
@@ -103,28 +104,7 @@ func _set_current_enemy_wave_level(new_level: int) -> void:
 func increment_current_enemy_wave_level() -> int:
 	_set_current_enemy_wave_level(_current_enemy_wave_level + 1)
 	return get_current_enemy_wave_level()
-	
-
-# Modifiers
-func get_cannon_cooldown_modifier() -> float:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.CANNON_COOLDOWN].get_cooldown(get_purchased_nodes())
 
 
-func get_hull_plating_modifier() -> int:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.HULL_PLATING].get_hull_plating_amount(get_purchased_nodes())
-
-
-func get_shields_enabled_modifier() -> bool:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELDS_ENABLED].get_shields_enabled(get_purchased_nodes())
-
-
-func get_shield_max_energy_modifier() -> float:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_MAX_ENERGY].get_shield_max_energy(get_purchased_nodes())
-
-
-func get_shield_drain_rate_modifier() -> float:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_DRAIN_RATE].get_shield_drain_rate(get_purchased_nodes())
-
-
-func get_shield_chrage_rate_modifier() -> float:
-	return _skill_modifiers.modifiers[SkillNodeResource.AffectedStat.SHIELD_CHARGE_RATE].get_shield_charge_rate(get_purchased_nodes())
+func get_modifier_value(stat: SkillNodeResource.AffectedStat) -> float:
+	return _skill_modifiers.get_modifier_value(stat, get_purchased_nodes())

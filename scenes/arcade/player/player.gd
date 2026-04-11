@@ -23,7 +23,7 @@ func die() -> void:
 
 
 func reset() -> void:
-	hull_plating = GameManager.get_hull_plating_modifier()
+	hull_plating = int(GameManager.get_modifier_value(SkillNodeResource.AffectedStat.HULL_PLATING))
 	cannons.reset_cannons()	
 	shields.reset()
 

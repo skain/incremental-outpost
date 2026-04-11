@@ -14,7 +14,7 @@ var new_wave_label_tween: Tween
 
 
 func _ready() -> void:
-	if GameManager.get_shields_enabled_modifier():
+	if GameManager.get_modifier_value(SkillNodeResource.AffectedStat.SHIELDS_ENABLED):
 		shield_energy_h_box_container.show()
 	else:
 		shield_energy_h_box_container.hide()

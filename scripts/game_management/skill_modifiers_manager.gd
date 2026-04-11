@@ -17,3 +17,7 @@ var modifiers := {
 
 func request_refresh(affected_stat: SkillNodeResource.AffectedStat) -> void:
 	modifiers[affected_stat].request_refresh()
+
+
+func get_modifier_value(stat: SkillNodeResource.AffectedStat, purchased_nodes: Array[SkillTreeNode]) -> float:
+	return modifiers[stat].get_value(purchased_nodes)
