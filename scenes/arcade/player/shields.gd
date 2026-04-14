@@ -49,12 +49,12 @@ func _input(event: InputEvent) -> void:
 			break
 
 func reset() -> void:
-	shields_enabled = GameManager.get_modifier_value(SkillNodeResource.AffectedStat.SHIELDS_ENABLED)
-	var max_energy_mod := GameManager.get_modifier_value(SkillNodeResource.AffectedStat.SHIELD_MAX_ENERGY)
+	shields_enabled = GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED)
+	var max_energy_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
 	cur_shield_energy_max = max_energy_mod * base_shield_energy_max
-	var charge_rate_mod := GameManager.get_modifier_value(SkillNodeResource.AffectedStat.SHIELD_CHARGE_RATE)
+	var charge_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
 	cur_shield_charge_rate = charge_rate_mod * base_shield_charge_rate
-	var drain_rate_mod := GameManager.get_modifier_value(SkillNodeResource.AffectedStat.SHIELD_DRAIN_RATE)
+	var drain_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
 	cur_shield_drain_rate = drain_rate_mod * base_shield_drain_rate
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max

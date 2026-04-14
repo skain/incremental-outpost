@@ -11,11 +11,10 @@ var displayed_node: SkillTreeNode
 
 func load_node_info(node: SkillTreeNode) -> void:
 	displayed_node = node
-	var res := node.skill_node_resource
-	skill_name_label.text = res.skill_name
-	skill_description_label.text = res.skill_desc
-	skill_cost_label.text = str(res.skill_cost)
-	buy_button.disabled = not GameManager.is_affordable_bucks(res.skill_cost)
+	skill_name_label.text = node.skill_name
+	skill_description_label.text = node.skill_desc
+	skill_cost_label.text = str(node.skill_cost)
+	buy_button.disabled = not GameManager.is_affordable_bucks(node.skill_cost)
 
 
 func _clear_info_and_hide() -> void:

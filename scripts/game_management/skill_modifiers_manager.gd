@@ -1,23 +1,23 @@
 class_name SkillModifiersManager extends Node
 
 var modifiers := {
-	SkillNodeResource.AffectedStat.CANNON_COOLDOWN:  CannonCooldownModifier.new(),
-	SkillNodeResource.AffectedStat.HULL_PLATING:
+	SkillTreeNode.AffectedStat.CANNON_COOLDOWN:  CannonCooldownModifier.new(),
+	SkillTreeNode.AffectedStat.HULL_PLATING:
 		HullPlatingModifier.new(),
-	SkillNodeResource.AffectedStat.SHIELDS_ENABLED:
+	SkillTreeNode.AffectedStat.SHIELDS_ENABLED:
 		ShieldsEnabledModifier.new(),
-	SkillNodeResource.AffectedStat.SHIELD_MAX_ENERGY:
+	SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY:
 		ShieldMaxEnergyModifier.new(),
-	SkillNodeResource.AffectedStat.SHIELD_DRAIN_RATE:
+	SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE:
 		ShieldDrainRateModifier.new(),
-	SkillNodeResource.AffectedStat.SHIELD_CHARGE_RATE:
+	SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE:
 		ShieldChargeRateModifier.new(),
 }
 
 
-func request_refresh(affected_stat: SkillNodeResource.AffectedStat) -> void:
+func request_refresh(affected_stat: SkillTreeNode.AffectedStat) -> void:
 	modifiers[affected_stat].request_refresh()
 
 
-func get_modifier_value(stat: SkillNodeResource.AffectedStat, purchased_nodes: Array[SkillTreeNode]) -> float:
+func get_modifier_value(stat: SkillTreeNode.AffectedStat, purchased_nodes: Array[SkillTreeNode]) -> float:
 	return modifiers[stat].get_value(purchased_nodes)

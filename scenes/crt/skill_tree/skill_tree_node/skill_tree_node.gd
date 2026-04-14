@@ -1,11 +1,20 @@
-@tool
 class_name SkillTreeNode extends Sprite2D
 
 enum SkillNodeStatus {UNREVEALED, UNAFFORDABLE, AFFORDABLE, PURCHASED}
+enum AffectedStat { CANNON_COOLDOWN, HULL_PLATING, SHIELDS_ENABLED, SHIELD_MAX_ENERGY, SHIELD_DRAIN_RATE, SHIELD_CHARGE_RATE}
+enum ModifierType { ADD, MULTIPLY, ENABLE }
+
 
 signal skill_tree_node_clicked(node: SkillTreeNode)
 
-@export var skill_node_resource: SkillNodeResource
+#@export var skill_node_resource: SkillNodeResource
+
+@export var skill_name: String
+@export var skill_desc: String
+@export var skill_cost: int
+@export var affected_stat: AffectedStat
+@export var modifier_type: ModifierType
+@export var modifier_value: float
 
 const COLOR_MODULATOR_UNREVEALED := Color(1.0, 1.0, 1.0, 0.0)
 const COLOR_MODULATOR_UNAFFORDABLE := Color(0.75, 0.75, 0.75, 1.0)
@@ -23,18 +32,8 @@ var _status_color_dict := {
 
 
 func _ready() -> void:
-	_load_data_from_resource()
-	if Engine.is_editor_hint():
-		pass
-	else:
-		_validate_skill_node_resource()
-		_register_with_game_manager()
-		_draw_lines()
-
-
-func _load_data_from_resource() -> void:
-	if skill_node_resource.skill_icon:
-		texture = skill_node_resource.skill_icon
+	_register_with_game_manager()
+	_draw_lines()
 
 
 func _draw_lines() -> void:
@@ -52,18 +51,6 @@ func _draw_lines() -> void:
 
 		add_child(line)
 
-
-func get_cost() -> int:
-	return skill_node_resource.skill_cost
-	
-	
-func get_modifier_value() -> float:
-	return skill_node_resource.modifier_value
-	
-	
-func get_affected_stat() -> SkillNodeResource.AffectedStat:
-	return skill_node_resource.affected_stat
-	
 	
 func update_from_game_data(recurse: bool) -> void:
 	_set_status_from_game_data()
@@ -87,7 +74,7 @@ func _set_status_from_game_data() -> void:
 			current_status = SkillNodeStatus.UNREVEALED
 			return
 	
-	if get_cost() <= GameManager.game_data.current_bucks:
+	if skill_cost <= GameManager.game_data.current_bucks:
 		current_status = SkillNodeStatus.AFFORDABLE
 	else:
 		current_status = SkillNodeStatus.UNAFFORDABLE
@@ -127,8 +114,3 @@ func _get_child_lines() -> Array[Line2D]:
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		skill_tree_node_clicked.emit(self)
-
-
-func _validate_skill_node_resource() -> void:
-	assert(skill_node_resource != null)
-	assert(skill_node_resource.skill_name != null and skill_node_resource.skill_name != "")

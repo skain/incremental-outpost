@@ -47,10 +47,10 @@ func convert_points_to_bucks() -> int:
 	
 func register_skill_node(node: SkillTreeNode) -> void:
 	_skill_nodes_by_name[node.name] = node
-	if not _skill_nodes_by_affected_stat.has(node.skill_node_resource.affected_stat):
-		_skill_nodes_by_affected_stat[node.skill_node_resource.affected_stat] = []
+	if not _skill_nodes_by_affected_stat.has(node.affected_stat):
+		_skill_nodes_by_affected_stat[node.affected_stat] = []
 	
-	var array: Array = _skill_nodes_by_affected_stat[node.skill_node_resource.affected_stat]
+	var array: Array = _skill_nodes_by_affected_stat[node.affected_stat]
 	
 	if not node in array:
 		array.append(node)
@@ -63,7 +63,7 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 func process_node_purchase(node: SkillTreeNode) -> void:
 	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= node.get_cost()
-	_skill_modifiers.request_refresh(node.get_affected_stat())
+	_skill_modifiers.request_refresh(node.affected_stat)
 	
 	
 func is_node_purchased(node: SkillTreeNode) -> bool:
@@ -106,5 +106,5 @@ func increment_current_enemy_wave_level() -> int:
 	return get_current_enemy_wave_level()
 
 
-func get_modifier_value(stat: SkillNodeResource.AffectedStat) -> float:
+func get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
 	return _skill_modifiers.get_modifier_value(stat, get_purchased_nodes())
