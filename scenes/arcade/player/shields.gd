@@ -63,19 +63,25 @@ func reset() -> void:
 
 
 func _process(delta: float) -> void:
-	if is_shield_on and cur_shield_energy > 0:
-		cur_shield_energy -= cur_shield_drain_rate * delta
+	var new_shield_energy := 0.0
+	if is_shield_on:
+		if cur_shield_energy > 0.0:
+			new_shield_energy = cur_shield_energy - (cur_shield_drain_rate * delta)
+			#cur_shield_energy -= cur_shield_drain_rate * delta
 	elif cur_shield_energy < cur_shield_energy_max:
-		cur_shield_energy += cur_shield_charge_rate * delta
-	else:
-		return
+		new_shield_energy = cur_shield_energy + (cur_shield_charge_rate * delta)
+		#cur_shield_energy += cur_shield_charge_rate * delta
+	#else:
+		#return
 	
-	cur_shield_energy = clamp(cur_shield_energy, 0, cur_shield_energy_max)
+	if new_shield_energy != 0.0:
+		print(new_shield_energy)
+		cur_shield_energy = clamp(new_shield_energy, 0, cur_shield_energy_max)
+		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 	
-	if cur_shield_energy <= 0:
+	if cur_shield_energy <= 0.0:
 		_shut_down_shields()
 	
-	shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 
 
 func _shut_down_shields() -> void:

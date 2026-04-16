@@ -12,6 +12,8 @@ var modifiers := {
 		ShieldDrainRateModifier.new(),
 	SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE:
 		ShieldChargeRateModifier.new(),
+	SkillTreeNode.AffectedStat.SHIELD_TIMEOUT:
+		ShieldTimeoutModifier.new()
 }
 
 

@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="Texture2D" uid="uid://cyj56aagtb85r" path="res://assets/skill_tree/icons/shield-energy-max-icon.png" id="7_1q8yp"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
+[ext_resource type="Texture2D" uid="uid://dap3gbbjhkp5w" path="res://assets/skill_tree/icons/shield-timeout-icon.png" id="8_s7fn8"]
 [ext_resource type="Texture2D" uid="uid://vdwnqeg6jjbo" path="res://assets/skill_tree/icons/shield-energy-drain-icon.png" id="8_tnsbc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
@@ -189,6 +190,36 @@ skill_cost = 10000
 affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
+
+[node name="ShieldTimeout1" parent="CannonCooldown1/ShieldsEnabled" unique_id=602870779 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, -56)
+texture = ExtResource("8_s7fn8")
+skill_name = "Shield Timeout 1"
+skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
+skill_cost = 100
+affected_stat = 6
+modifier_type = 1
+modifier_value = 0.5
+
+[node name="ShieldTimeout2" parent="CannonCooldown1/ShieldsEnabled/ShieldTimeout1" unique_id=1047249010 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("8_s7fn8")
+skill_name = "Shield Timeout 2"
+skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
+skill_cost = 1000
+affected_stat = 6
+modifier_type = 1
+modifier_value = 0.5
+
+[node name="ShieldTimeout3" parent="CannonCooldown1/ShieldsEnabled/ShieldTimeout1/ShieldTimeout2" unique_id=1071680828 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("8_s7fn8")
+skill_name = "Shield Timeout 1"
+skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
+skill_cost = 10000
+affected_stat = 6
+modifier_type = 1
+modifier_value = 0.5
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
