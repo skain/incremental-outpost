@@ -62,7 +62,7 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 	
 func process_node_purchase(node: SkillTreeNode) -> void:
 	game_data.purchased_node_names.append(node.name)
-	game_data.current_bucks -= node.modifier_value
+	game_data.current_bucks -= int(node.modifier_value)
 	_skill_modifiers.request_refresh(node.affected_stat)
 	
 	

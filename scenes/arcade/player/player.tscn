@@ -52,6 +52,10 @@ rotation = 3.1415927
 position = Vector2(-80, 0)
 rotation = 4.712389
 
+[node name="ShieldTimeoutTimer" type="Timer" parent="Shields" unique_id=358220838]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="Cannons" type="Node2D" parent="." unique_id=1725042301]
 unique_name_in_owner = true
 script = ExtResource("5_7ow0l")
@@ -81,6 +85,7 @@ bus = &"SoundFx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="shield_energy_updated" from="Shields" to="." method="_on_shields_shield_energy_updated"]
+[connection signal="timeout" from="Shields/ShieldTimeoutTimer" to="Shields" method="_on_shield_timeout_timer_timeout"]
 [connection signal="cannon_hit" from="Cannons/TopCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Cannons/RightCannon" to="." method="_on_cannon_hit"]
 [connection signal="cannon_hit" from="Cannons/BottomCannon" to="." method="_on_cannon_hit"]

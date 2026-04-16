@@ -6,10 +6,12 @@ signal shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: fl
 @onready var right_shield: Shield = $RightShield
 @onready var bottom_shield: Shield = $BottomShield
 @onready var left_shield: Shield = $LeftShield
+@onready var shield_timeout_timer: Timer = %ShieldTimeoutTimer
 
 @export var base_shield_energy_max := 10.0
 @export var base_shield_drain_rate := 30.0
 @export var base_shield_charge_rate := 0.25
+@export var base_shield_timeout := 5.0
 
 var active_inputs: Array[String] = []
 var shields_enabled := false
@@ -19,6 +21,7 @@ var cur_shield_energy: float
 var is_shield_on := false
 var cur_shield_drain_rate: float
 var cur_shield_charge_rate: float
+var is_shield_charge_available := true
 
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
@@ -50,37 +53,46 @@ func _input(event: InputEvent) -> void:
 
 func reset() -> void:
 	shields_enabled = GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED)
+	
 	var max_energy_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
 	cur_shield_energy_max = max_energy_mod * base_shield_energy_max
+	
 	var charge_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
 	cur_shield_charge_rate = charge_rate_mod * base_shield_charge_rate
+	
 	var drain_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
 	cur_shield_drain_rate = drain_rate_mod * base_shield_drain_rate
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max
 		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 	
+	var shield_timeout_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
+	shield_timeout_timer.wait_time = shield_timeout_mod * base_shield_timeout
+	print(shield_timeout_timer.wait_time)
+	
 
 
 func _process(delta: float) -> void:
-	var new_shield_energy := 0.0
+	var new_shield_energy := cur_shield_energy
+	var energy_changed := false
+
 	if is_shield_on:
 		if cur_shield_energy > 0.0:
 			new_shield_energy = cur_shield_energy - (cur_shield_drain_rate * delta)
-			#cur_shield_energy -= cur_shield_drain_rate * delta
-	elif cur_shield_energy < cur_shield_energy_max:
-		new_shield_energy = cur_shield_energy + (cur_shield_charge_rate * delta)
-		#cur_shield_energy += cur_shield_charge_rate * delta
-	#else:
-		#return
-	
-	if new_shield_energy != 0.0:
-		print(new_shield_energy)
+			energy_changed = true
+	else:
+		if is_shield_charge_available and cur_shield_energy < cur_shield_energy_max:
+			new_shield_energy = cur_shield_energy + (cur_shield_charge_rate * delta)
+			energy_changed = true
+
+	if energy_changed:
 		cur_shield_energy = clamp(new_shield_energy, 0, cur_shield_energy_max)
 		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
-	
-	if cur_shield_energy <= 0.0:
+
+	if is_shield_on and cur_shield_energy <= 0.0:
 		_shut_down_shields()
+		is_shield_charge_available = false
+		shield_timeout_timer.start()
 	
 
 
@@ -117,3 +129,8 @@ func _apply_shield_logic() -> void:
 		"left":
 			left_shield.shield_on()
 			is_shield_on = true
+
+
+func _on_shield_timeout_timer_timeout() -> void:
+	print("timeout")
+	is_shield_charge_available = true
