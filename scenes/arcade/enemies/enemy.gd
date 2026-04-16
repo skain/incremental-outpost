@@ -99,7 +99,6 @@ func _on_shoot_timer_timeout() -> void:
 		var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
 		if GameMath.chance_check(cur_chance):
 			_fire_projectile() 
-			#print(name + " fired")
 	_start_shoot_timer()
 
 func _update_level_from_manager() -> void:

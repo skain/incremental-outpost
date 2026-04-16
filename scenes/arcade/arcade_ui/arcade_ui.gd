@@ -9,11 +9,13 @@ const TOTAL_MAX_SHIELD_ENERGY := 300.0
 @onready var new_wave_label: Label = %NewWaveLabel
 @onready var shield_energy_h_box_container: HBoxContainer = %ShieldEnergyHBoxContainer
 @onready var shield_progress_bar: ProgressBar = %ShieldProgressBar
+@onready var shield_cooldown_progress_bar: TextureProgressBar = %ShieldCooldownProgressBar
 
 var new_wave_label_tween: Tween
 
 
 func _ready() -> void:
+	shield_cooldown_progress_bar.hide()
 	if GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED):
 		shield_energy_h_box_container.show()
 	else:
@@ -22,7 +24,7 @@ func _ready() -> void:
 
 func update_ui(score: int, player_hull_plating: int) -> void:
 	score_value.text = str(score)
-	_set_player_hull_plating(player_hull_plating)	
+	_set_player_hull_plating(player_hull_plating)
 
 
 func update_shield_energy(cur_shield_energy: float, cur_max_shield_energy: float) -> void:
@@ -30,6 +32,13 @@ func update_shield_energy(cur_shield_energy: float, cur_max_shield_energy: float
 	shield_progress_bar.value = cur_shield_energy
 	var percent := remap(cur_max_shield_energy, 10.0, 100.0, 10.0, 100.0)
 	shield_progress_bar.custom_minimum_size.x = 640 * (percent / 100)
+
+func update_shield_cooldown(shield_cooldown_max: float, shield_cooldown_cur_value: float) -> void:
+	shield_cooldown_progress_bar.hide()
+	if shield_cooldown_cur_value > 0.0:
+		shield_cooldown_progress_bar.max_value = shield_cooldown_max
+		shield_cooldown_progress_bar.value = shield_cooldown_max - shield_cooldown_cur_value
+		shield_cooldown_progress_bar.show()
 
 
 func _set_player_hull_plating(player_hull_plating: int) -> void:

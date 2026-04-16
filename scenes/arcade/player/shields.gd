@@ -1,6 +1,7 @@
 class_name ShieldsManager extends Node2D
 
 signal shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: float)
+signal shield_cooldown_updated(shield_cooldown_max: float, shield_cooldown_cur_value: float)
 
 @onready var top_shield: Shield = $TopShield
 @onready var right_shield: Shield = $RightShield
@@ -68,8 +69,6 @@ func reset() -> void:
 	
 	var shield_timeout_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
 	shield_timeout_timer.wait_time = shield_timeout_mod * base_shield_timeout
-	print(shield_timeout_timer.wait_time)
-	
 
 
 func _process(delta: float) -> void:
@@ -93,6 +92,9 @@ func _process(delta: float) -> void:
 		_shut_down_shields()
 		is_shield_charge_available = false
 		shield_timeout_timer.start()
+	
+	if not is_shield_charge_available:
+		shield_cooldown_updated.emit(shield_timeout_timer.wait_time, shield_timeout_timer.time_left)
 	
 
 
@@ -132,5 +134,5 @@ func _apply_shield_logic() -> void:
 
 
 func _on_shield_timeout_timer_timeout() -> void:
-	print("timeout")
 	is_shield_charge_available = true
+	shield_cooldown_updated.emit(shield_timeout_timer.wait_time, 0)
