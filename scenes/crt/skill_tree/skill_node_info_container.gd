@@ -6,11 +6,13 @@ signal buy_button_pressed(node: SkillTreeNode)
 @onready var skill_description_label: Label = %SkillDescriptionLabel
 @onready var skill_cost_label: Label = %SkillCostLabel
 @onready var buy_button: Button = %BuyButton
+@onready var skill_icon_texture_rect: TextureRect = %SkillIconTextureRect
 
 var displayed_node: SkillTreeNode
 
 func load_node_info(node: SkillTreeNode) -> void:
 	displayed_node = node
+	skill_icon_texture_rect.texture = node.texture
 	skill_name_label.text = node.skill_name
 	skill_description_label.text = node.skill_desc
 	skill_cost_label.text = str(node.skill_cost)

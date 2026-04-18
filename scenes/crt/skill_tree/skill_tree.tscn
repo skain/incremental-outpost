@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
 [ext_resource type="Texture2D" uid="uid://dap3gbbjhkp5w" path="res://assets/skill_tree/icons/shield-timeout-icon.png" id="8_s7fn8"]
 [ext_resource type="Texture2D" uid="uid://vdwnqeg6jjbo" path="res://assets/skill_tree/icons/shield-energy-drain-icon.png" id="8_tnsbc"]
+[ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="11_s7fn8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
 load_path = "res://.godot/imported/shield-energy-recharge-icon.png-7e9f7ba423e908a429e2a9f975ff1882.ctex"
@@ -223,7 +224,6 @@ modifier_value = 0.5
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("4_1pgdg")
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]
@@ -255,12 +255,25 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer" unique_id=1848673948]
 layout_mode = 2
 
-[node name="SkillNameLabel" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=429456265]
+[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=234868680]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="SkillIconTextureRect" type="TextureRect" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1880402673]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("11_s7fn8")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=536463907]
+layout_mode = 2
+
+[node name="SkillNameLabel" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=429456265]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Skill Name"
 
-[node name="SkillDescriptionLabel" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=950875275]
+[node name="SkillDescriptionLabel" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=950875275]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
@@ -269,36 +282,32 @@ autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=614895496]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1675841598]
+[node name="Label" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=417307616]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
-bbcode_enabled = true
-text = "Cost:  [img=baseline,6x12]res://assets/BucksSymbol.png[/img]"
-fit_content = true
-autowrap_mode = 0
+theme_override_font_sizes/font_size = 28
+text = "Cost: $"
 
 [node name="SkillCostLabel" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=867567619]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "0"
 
-[node name="Spacer" type="Label" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=732840449]
+[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer" unique_id=58514173]
 layout_mode = 2
-size_flags_vertical = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer" unique_id=58514173]
-layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 44
 alignment = 1
 
-[node name="BuyButton" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=379915991 instance=ExtResource("5_1pgdg")]
+[node name="BuyButton" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/HBoxContainer" unique_id=379915991 instance=ExtResource("5_1pgdg")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Buy"
 
-[node name="CloseButton" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=914146644 instance=ExtResource("5_1pgdg")]
+[node name="CloseButton" parent="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/HBoxContainer" unique_id=914146644 instance=ExtResource("5_1pgdg")]
 layout_mode = 2
 text = "Close"
 
@@ -353,6 +362,6 @@ stream = ExtResource("7_dp713")
 
 [connection signal="buy_skill_node_pressed" from="SkillTreeUI" to="." method="_on_skill_tree_ui_buy_skill_node_pressed"]
 [connection signal="buy_button_pressed" from="SkillTreeUI/SkillNodeInfoContainer" to="SkillTreeUI" method="_on_skill_node_info_container_buy_button_pressed"]
-[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/BuyButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
-[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_close_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/HBoxContainer/BuyButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/Panel/MarginContainer/HBoxContainer/CloseButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/MarginContainer/HBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]
