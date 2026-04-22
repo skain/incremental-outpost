@@ -39,13 +39,13 @@ chars_per_second = 15.0
 [node name="ConversionMessage" parent="MarginContainer/InterstitialLabelsContainer" unique_id=14615020 instance=ExtResource("2_5qkvq")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Converting %points% points to Bucks (1p/%bucks_per%B)."
+text = "Converting %points% points to Bucks (1 Point/%bucks_per% $)."
 chars_per_second = 15.0
 
 [node name="BucksConversionDisplay" parent="MarginContainer/InterstitialLabelsContainer" unique_id=1498565309 instance=ExtResource("2_5qkvq")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "B: 0"
+text = "$: 0"
 chars_per_second = 15.0
 
 [node name="ConversionSuccessMessage" parent="MarginContainer/InterstitialLabelsContainer" unique_id=1793089740 instance=ExtResource("2_5qkvq")]

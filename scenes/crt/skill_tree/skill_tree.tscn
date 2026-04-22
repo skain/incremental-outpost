@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
 [ext_resource type="Texture2D" uid="uid://dap3gbbjhkp5w" path="res://assets/skill_tree/icons/shield-timeout-icon.png" id="8_s7fn8"]
 [ext_resource type="Texture2D" uid="uid://vdwnqeg6jjbo" path="res://assets/skill_tree/icons/shield-energy-drain-icon.png" id="8_tnsbc"]
+[ext_resource type="Texture2D" uid="uid://bcfhbhus6xgay" path="res://assets/skill_tree/icons/bucks-icon.png" id="9_2mml3"]
 [ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="11_s7fn8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
@@ -222,8 +223,39 @@ affected_stat = 6
 modifier_type = 1
 modifier_value = 0.5
 
+[node name="BucksConversion1" parent="CannonCooldown1" unique_id=231219548 instance=ExtResource("2_vt0yg")]
+position = Vector2(-1, 56)
+texture = ExtResource("9_2mml3")
+skill_name = "Bucks Conversion Rate 1"
+skill_desc = "Increase the rate at which Points are converted into $ucks by 100%"
+skill_cost = 50
+affected_stat = 7
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="BucksConversion2" parent="CannonCooldown1/BucksConversion1" unique_id=634828567 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("9_2mml3")
+skill_name = "Bucks Conversion Rate 1"
+skill_desc = "Increase the rate at which Points are converted into $ucks by 50%"
+skill_cost = 150
+affected_stat = 7
+modifier_type = 1
+modifier_value = 1.5
+
+[node name="BucksConversion3" parent="CannonCooldown1/BucksConversion1/BucksConversion2" unique_id=1255003658 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("9_2mml3")
+skill_name = "Bucks Conversion Rate 1"
+skill_desc = "Increase the rate at which Points are converted into $ucks by 100%"
+skill_cost = 1000
+affected_stat = 7
+modifier_type = 1
+modifier_value = 1.5
+
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("4_1pgdg")
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]

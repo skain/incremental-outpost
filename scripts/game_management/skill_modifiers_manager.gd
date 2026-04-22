@@ -13,7 +13,9 @@ var modifiers := {
 	SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE:
 		ShieldChargeRateModifier.new(),
 	SkillTreeNode.AffectedStat.SHIELD_TIMEOUT:
-		ShieldTimeoutModifier.new()
+		ShieldTimeoutModifier.new(),
+	SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE:
+		BucksConversionRateModifier.new()
 }
 
 

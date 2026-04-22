@@ -35,7 +35,7 @@ func set_points(new_points: int) -> void:
 	
 func get_points_to_bucks_rate() -> float:
 	#logic to handle upgrades to conversion rate will go here
-	return _base_points_to_bucks_rate
+	return _base_points_to_bucks_rate * get_modifier_value(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
 
 	
 func convert_points_to_bucks() -> int:
