@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/skill-tree - Bells.ogg-cb8e83c4ec862e0c6d2f67
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/arcade - lead.ogg-ec7aef51eb31e8f0ab7ff0e4b1d
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
