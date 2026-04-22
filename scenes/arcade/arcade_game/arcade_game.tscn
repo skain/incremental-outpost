@@ -49,6 +49,7 @@ scale = Vector2(2, 2)
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1272531663]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("5_leafu")
 bus = &"Music"
 

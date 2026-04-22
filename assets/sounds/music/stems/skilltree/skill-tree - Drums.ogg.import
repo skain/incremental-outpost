@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://yk1e4khk7b42"
+path="res://.godot/imported/skill-tree - Drums.ogg-7dd852c56f7de3f642da3aa190907eed.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/skilltree/skill-tree - Drums.ogg"
+dest_files=["res://.godot/imported/skill-tree - Drums.ogg-7dd852c56f7de3f642da3aa190907eed.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

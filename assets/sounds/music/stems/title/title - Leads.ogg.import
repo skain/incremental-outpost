@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://w7m71yfwiohg"
+path="res://.godot/imported/title - Leads.ogg-5f02adeca6bf4e840027efe9d973a562.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/title/title - Leads.ogg"
+dest_files=["res://.godot/imported/title - Leads.ogg-5f02adeca6bf4e840027efe9d973a562.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

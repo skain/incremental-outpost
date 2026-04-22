@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ck2468mrf8paj"
+path="res://.godot/imported/arcade - lead.ogg-ec7aef51eb31e8f0ab7ff0e4b1d6aa02.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/arcade/arcade - lead.ogg"
+dest_files=["res://.godot/imported/arcade - lead.ogg-ec7aef51eb31e8f0ab7ff0e4b1d6aa02.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

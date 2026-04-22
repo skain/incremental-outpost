@@ -358,6 +358,7 @@ script = ExtResource("6_vt0yg")
 
 [node name="SkillTreeMusic" type="AudioStreamPlayer" parent="." unique_id=1079063395]
 unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("7_dp713")
 bus = &"Music"
 

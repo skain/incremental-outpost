@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bnyg8t8mefaq"
+path="res://.godot/imported/title - Drums.ogg-a9437c103bbf77aa9a253e995dbf29a5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/title/title - Drums.ogg"
+dest_files=["res://.godot/imported/title - Drums.ogg-a9437c103bbf77aa9a253e995dbf29a5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

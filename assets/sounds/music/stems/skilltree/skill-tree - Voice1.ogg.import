@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://k547c70mljke"
+path="res://.godot/imported/skill-tree - Voice1.ogg-c606d74a7b230bb6323b83f28282c80e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/skilltree/skill-tree - Voice1.ogg"
+dest_files=["res://.godot/imported/skill-tree - Voice1.ogg-c606d74a7b230bb6323b83f28282c80e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

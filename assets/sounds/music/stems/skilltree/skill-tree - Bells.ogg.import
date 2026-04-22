@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpgm78cxcmrdk"
+path="res://.godot/imported/skill-tree - Bells.ogg-cb8e83c4ec862e0c6d2f67d3c7bbddae.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/skilltree/skill-tree - Bells.ogg"
+dest_files=["res://.godot/imported/skill-tree - Bells.ogg-cb8e83c4ec862e0c6d2f67d3c7bbddae.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

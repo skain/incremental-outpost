@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://risfbwsom35c"
+path="res://.godot/imported/skill-tree - Pad.ogg-652f305d43f0694fb484b7300a4c068e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/stems/skilltree/skill-tree - Pad.ogg"
+dest_files=["res://.godot/imported/skill-tree - Pad.ogg-652f305d43f0694fb484b7300a4c068e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

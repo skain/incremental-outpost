@@ -87,6 +87,7 @@ theme_override_font_sizes/font_size = 44
 text = "Continue"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=735659905]
+process_mode = 3
 stream = ExtResource("3_6nvb1")
 bus = &"Music"
 
