@@ -35,9 +35,16 @@ func _get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
 	return modifiers[stat].get_value(purchased_nodes)
 
 
+func _calc_multiplicative(base: float, stat: SkillTreeNode.AffectedStat) -> float:
+	var mod := _get_modifier_value(stat)
+	if mod == 0.0:
+		mod = 1.0
+	var val: float = mod * base
+	return val
+
+
 func get_points_to_bucks_conversion_rate() -> float:
-	var mod := _get_modifier_value(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
-	var rate := BASE_POINTS_TO_BUCKS_RATE * mod
+	var rate := _calc_multiplicative(BASE_POINTS_TO_BUCKS_RATE, SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
 	return rate
 
 
@@ -46,34 +53,27 @@ func get_shields_enabled() -> bool:
 
 
 func get_cannon_cooldown() -> float:
-	var mod := _get_modifier_value(SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
-	if mod == 0.0:
-		mod = 1.0
-	var cooldown: float = mod * CANNON_COOLDOWN_BASE
+	var cooldown := _calc_multiplicative(CANNON_COOLDOWN_BASE, SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
 	return cooldown
 
 
 func get_shield_max_energy() -> float:
-	var max_energy_mod := _get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
-	var cur_shield_energy_max := max_energy_mod * BASE_SHIELD_ENERGY_MAX
-	return cur_shield_energy_max
+	var max_energy := _calc_multiplicative(BASE_SHIELD_ENERGY_MAX, SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
+	return max_energy
 
 
 func get_shield_charge_rate() -> float:
-	var charge_rate_mod := _get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
-	var cur_shield_charge_rate := charge_rate_mod * BASE_SHIELD_CHARGE_RATE
+	var cur_shield_charge_rate := _calc_multiplicative(BASE_SHIELD_CHARGE_RATE, SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
 	return cur_shield_charge_rate
 
 
 func get_shield_drain_rate() -> float:
-	var drain_rate_mod := _get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
-	var cur_shield_drain_rate := drain_rate_mod * BASE_SHIELD_DRAIN_RATE
+	var cur_shield_drain_rate := _calc_multiplicative(BASE_SHIELD_DRAIN_RATE, SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
 	return cur_shield_drain_rate
 
 
 func get_shield_timeout() -> float:
-	var timeout_mod := _get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
-	var shield_timeout := timeout_mod * BASE_SHIELD_TIMEOUT
+	var shield_timeout := _calc_multiplicative(BASE_SHIELD_TIMEOUT, SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
 	return shield_timeout
 
 
