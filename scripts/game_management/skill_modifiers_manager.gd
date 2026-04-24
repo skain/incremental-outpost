@@ -23,5 +23,9 @@ func request_refresh(affected_stat: SkillTreeNode.AffectedStat) -> void:
 	modifiers[affected_stat].request_refresh()
 
 
-func get_modifier_value(stat: SkillTreeNode.AffectedStat, purchased_nodes: Array[SkillTreeNode]) -> float:
+#func get_modifier_value(stat: SkillTreeNode.AffectedStat, purchased_nodes: Array[SkillTreeNode]) -> float:
+	#return modifiers[stat].get_value(purchased_nodes)
+
+func get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
+	var purchased_nodes := GameManager.get_purchased_nodes()
 	return modifiers[stat].get_value(purchased_nodes)

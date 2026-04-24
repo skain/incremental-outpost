@@ -10,7 +10,7 @@ var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 #gdscript doesn't support nested typed collections, unfortunately
 var _skill_nodes_by_affected_stat: Dictionary = {}
 var _base_points_to_bucks_rate: float = 0.1
-var _skill_modifiers := SkillModifiersManager.new()
+var skill_modifiers := SkillModifiersManager.new()
 var _current_enemy_wave_level := 0
 
 
@@ -63,7 +63,7 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 func process_node_purchase(node: SkillTreeNode) -> void:
 	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= int(node.modifier_value)
-	_skill_modifiers.request_refresh(node.affected_stat)
+	skill_modifiers.request_refresh(node.affected_stat)
 	
 	
 func is_node_purchased(node: SkillTreeNode) -> bool:
@@ -107,4 +107,4 @@ func increment_current_enemy_wave_level() -> int:
 
 
 func get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
-	return _skill_modifiers.get_modifier_value(stat, get_purchased_nodes())
+	return skill_modifiers.get_modifier_value(stat)

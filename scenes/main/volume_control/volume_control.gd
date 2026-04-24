@@ -9,17 +9,19 @@ class_name VolumeControl extends HBoxContainer
 var bus_index: int
 
 func _ready() -> void:
-	# 1. Get the index for the named bus
 	bus_index = AudioServer.get_bus_index(bus_name)
-
-	# 2. Set the Label text to the bus name
 	volume_label.text = bus_name
 
-	# 3. Initialize the slider, checkbox, and the bus itself from the saved game data
-	var volume_db := GameManager.game_data.bus_volumes[bus_name]
-	_set_volume(volume_db)
-	volume_h_slider.value = db_to_linear(volume_db)
+	# 1. Get the linear value (e.g., 0.65)
+	var volume_linear := GameManager.game_data.bus_volumes[bus_name]
 	
+	# 2. Set the audio bus (this function converts it to dB for you)
+	_set_volume(volume_linear)
+	
+	# 3. Set the slider directly using the linear value
+	volume_h_slider.value = volume_linear 
+	
+	# Handle Mute/Enabled
 	var enabled := GameManager.game_data.bus_enableds[bus_name]
 	enabled_check_box.button_pressed = enabled
 	_set_mute(not enabled)
