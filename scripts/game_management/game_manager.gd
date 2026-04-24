@@ -9,8 +9,8 @@ const INDENT_ID := "1a4c9433-55c1-4774-bd45-b5275c63ad76"
 var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
 #gdscript doesn't support nested typed collections, unfortunately
 var _skill_nodes_by_affected_stat: Dictionary = {}
-var _base_points_to_bucks_rate: float = 0.1
-var skill_modifiers := SkillModifiersManager.new()
+#var _base_points_to_bucks_rate: float = 0.1
+var skills_manager := SkillsManager.new()
 var _current_enemy_wave_level := 0
 
 
@@ -33,13 +33,13 @@ func set_points(new_points: int) -> void:
 	game_data.current_points = new_points
 
 	
-func get_points_to_bucks_rate() -> float:
+#func get_points_to_bucks_rate() -> float:
 	#logic to handle upgrades to conversion rate will go here
-	return _base_points_to_bucks_rate * get_modifier_value(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
+	#return _base_points_to_bucks_rate * get_modifier_value(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
 
 	
 func convert_points_to_bucks() -> int:
-	var new_bucks:int = floor(game_data.current_points * get_points_to_bucks_rate())
+	var new_bucks:int = floor(game_data.current_points * skills_manager.get_points_to_bucks_conversion_rate())
 	set_points(0)
 	game_data.current_bucks += new_bucks
 	return new_bucks
@@ -63,7 +63,7 @@ func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
 func process_node_purchase(node: SkillTreeNode) -> void:
 	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= int(node.modifier_value)
-	skill_modifiers.request_refresh(node.affected_stat)
+	skills_manager.request_refresh(node.affected_stat)
 	
 	
 func is_node_purchased(node: SkillTreeNode) -> bool:
@@ -104,7 +104,3 @@ func _set_current_enemy_wave_level(new_level: int) -> void:
 func increment_current_enemy_wave_level() -> int:
 	_set_current_enemy_wave_level(_current_enemy_wave_level + 1)
 	return get_current_enemy_wave_level()
-
-
-func get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
-	return skill_modifiers.get_modifier_value(stat)

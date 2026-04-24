@@ -24,10 +24,11 @@ func _ready() -> void:
 
 
 func _set_fire_cooldown() -> void:
-	var mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
-	if mod == 0.0:
-		mod = 1.0
-	var cooldown: float = mod * fire_cooldown_base
+	#var mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
+	#if mod == 0.0:
+		#mod = 1.0
+	#var cooldown: float = mod * fire_cooldown_base
+	var cooldown := GameManager.skills_manager.get_cannon_cooldown()
 	radial_cooldown.cooldown_duration = cooldown
 	
 	

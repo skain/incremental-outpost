@@ -43,7 +43,7 @@ func run_interstitial() -> void:
 	var game_data := GameManager.game_data
 	var points_to_convert := game_data.current_points
 	new_bucks = GameManager.convert_points_to_bucks()
-	conversion_message.text = conversion_message.text.replace("%points%", str(points_to_convert)).replace("%bucks_per%", str(GameManager.get_points_to_bucks_rate()))
+	conversion_message.text = conversion_message.text.replace("%points%", str(points_to_convert)).replace("%bucks_per%", str(GameManager.skills_manager.get_points_to_bucks_conversion_rate()))
 	conversion_success_message.text = conversion_success_message.text.replace("%points%", str(points_to_convert)).replace("%bucks%", str(new_bucks))
 	
 	await message_1.start_typing()

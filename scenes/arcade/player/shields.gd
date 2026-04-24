@@ -9,10 +9,10 @@ signal shield_cooldown_updated(shield_cooldown_max: float, shield_cooldown_cur_v
 @onready var left_shield: Shield = $LeftShield
 @onready var shield_timeout_timer: Timer = %ShieldTimeoutTimer
 
-@export var base_shield_energy_max := 10.0
-@export var base_shield_drain_rate := 30.0
-@export var base_shield_charge_rate := 0.25
-@export var base_shield_timeout := 5.0
+#@export var base_shield_energy_max := 10.0
+#@export var base_shield_drain_rate := 30.0
+#@export var base_shield_charge_rate := 0.25
+#@export var base_shield_timeout := 5.0
 
 var active_inputs: Array[String] = []
 var shields_enabled := false
@@ -53,22 +53,27 @@ func _input(event: InputEvent) -> void:
 			break
 
 func reset() -> void:
-	shields_enabled = GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED)
+	#shields_enabled = GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED)
+	shields_enabled = GameManager.skills_manager.get_shields_enabled()
 	
-	var max_energy_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
-	cur_shield_energy_max = max_energy_mod * base_shield_energy_max
+	#var max_energy_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
+	#cur_shield_energy_max = max_energy_mod * base_shield_energy_max
+	cur_shield_energy_max = GameManager.skills_manager.get_shield_max_energy()
 	
-	var charge_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
-	cur_shield_charge_rate = charge_rate_mod * base_shield_charge_rate
+	#var charge_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
+	#cur_shield_charge_rate = charge_rate_mod * base_shield_charge_rate
+	cur_shield_charge_rate = GameManager.skills_manager.get_shield_charge_rate()
 	
-	var drain_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
-	cur_shield_drain_rate = drain_rate_mod * base_shield_drain_rate
+	#var drain_rate_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
+	#cur_shield_drain_rate = drain_rate_mod * base_shield_drain_rate
+	cur_shield_drain_rate = GameManager.skills_manager.get_shield_drain_rate()
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max
 		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 	
-	var shield_timeout_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
-	shield_timeout_timer.wait_time = shield_timeout_mod * base_shield_timeout
+	#var shield_timeout_mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
+	#shield_timeout_timer.wait_time = shield_timeout_mod * base_shield_timeout
+	shield_timeout_timer.wait_time = GameManager.skills_manager.get_shield_timeout()
 
 
 func _process(delta: float) -> void:

@@ -16,7 +16,9 @@ var new_wave_label_tween: Tween
 
 func _ready() -> void:
 	shield_cooldown_progress_bar.hide()
-	if GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED):
+	#if GameManager.get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED):
+	var enabled := GameManager.skills_manager.get_shields_enabled()
+	if enabled:
 		shield_energy_h_box_container.show()
 	else:
 		shield_energy_h_box_container.hide()
