@@ -6,7 +6,7 @@ const SAVE_DATA_PATH = "user://game_data.tres"
 # INDENT_ID is just a random value that is used to refer to the character in the story
 const INDENT_ID := "1a4c9433-55c1-4774-bd45-b5275c63ad76"
 
-var _skill_nodes_by_name: Dictionary[String, SkillTreeNode] = {}
+var _skill_nodes_by_name: Dictionary[String, SkillNodeData] = {}
 #gdscript doesn't support nested typed collections, unfortunately
 var _skill_nodes_by_affected_stat: Dictionary = {}
 #var _base_points_to_bucks_rate: float = 0.1
@@ -46,7 +46,7 @@ func convert_points_to_bucks() -> int:
 
 	
 func register_skill_node(node: SkillTreeNode) -> void:
-	_skill_nodes_by_name[node.name] = node
+	_skill_nodes_by_name[node.name] = SkillNodeData.new(node)
 	if not _skill_nodes_by_affected_stat.has(node.affected_stat):
 		_skill_nodes_by_affected_stat[node.affected_stat] = []
 	
@@ -56,7 +56,7 @@ func register_skill_node(node: SkillTreeNode) -> void:
 		array.append(node)
 
 	
-func get_skill_node_by_name(node_name: String) -> SkillTreeNode:
+func get_skill_node_data_by_name(node_name: String) -> SkillNodeData:
 	return _skill_nodes_by_name[node_name]
 
 	
@@ -70,8 +70,8 @@ func is_node_purchased(node: SkillTreeNode) -> bool:
 	return game_data.purchased_node_names.has(node.name)
 	
 
-func get_purchased_nodes() -> Array[SkillTreeNode]:
-	var purchased_nodes :Array[SkillTreeNode] = []
+func get_purchased_nodes() -> Array[SkillNodeData]:
+	var purchased_nodes :Array[SkillNodeData] = []
 	for purchased in game_data.purchased_node_names:
 		assert(_skill_nodes_by_name.has(purchased))
 		purchased_nodes.append(_skill_nodes_by_name[purchased])
