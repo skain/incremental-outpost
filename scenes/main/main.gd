@@ -26,11 +26,8 @@ func _toggle_pause() -> void:
 
 	if new_pause_state:
 		pause_menu.show()
-		# Optional: Capture mouse if needed
-		# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		pause_menu.hide()
-		# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _switch_game_mode(mode: GameModes) -> void:
@@ -78,5 +75,5 @@ func _on_arcade_game_game_ended() -> void:
 	_switch_game_mode(GameModes.END_GAME)
 
 
-func _on_resume_button_pressed() -> void:
+func _on_pause_menu_resume_pressed() -> void:	
 	_toggle_pause()

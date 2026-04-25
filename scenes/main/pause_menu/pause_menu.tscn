@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://cjfpvjaldg8ca"]
+
+[ext_resource type="PackedScene" uid="uid://buc8xvx4qxbbc" path="res://scenes/main/volume_control/volume_control.tscn" id="1_bhy54"]
+[ext_resource type="Script" uid="uid://cvlf5d7u8yu1s" path="res://scenes/main/pause_menu/pause_menu.gd" id="1_lrots"]
+[ext_resource type="StyleBox" uid="uid://b7hgkk2xidlsx" path="res://styles/popup_panel_style_box_flat.tres" id="2_bqnv7"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1479776521]
+process_mode = 3
+layer = 10
+script = ExtResource("1_lrots")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=643967241]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -135.5
+offset_right = 164.0
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_bqnv7")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1754553116]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1196197652]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1797990261]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 102
+text = "PAUSED"
+
+[node name="MasterVolumeControl" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1965369423 instance=ExtResource("1_bhy54")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SfxVolumeControl" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1766082613 instance=ExtResource("1_bhy54")]
+layout_mode = 2
+size_flags_vertical = 3
+bus_name = "SoundFx"
+
+[node name="MusicVolumeControl" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=150972682 instance=ExtResource("1_bhy54")]
+layout_mode = 2
+size_flags_vertical = 3
+bus_name = "Music"
+
+[node name="StatsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1836772458]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Show Stats"
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1188347587]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RESUME"
+
+[node name="StatsPanel" type="PanelContainer" parent="." unique_id=1512535114]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -20.0
+offset_right = 85.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_bqnv7")
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsPanel" unique_id=816888754]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPanel/MarginContainer" unique_id=1480763511]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=1924560623]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Modification Statistics"
+
+[node name="GridContainer" type="GridContainer" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=1638455276]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=639617219]
+layout_mode = 2
+text = "Shields Enabled"
+
+[node name="ShieldsEnabledCheckBox" type="CheckBox" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1019651021]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+button_pressed = true
+
+[node name="Label2" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1125966594]
+layout_mode = 2
+text = "Hull Plating Level"
+
+[node name="HullPlatingLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1745135309]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+
+[node name="Label3" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=936966683]
+layout_mode = 2
+text = "Cannon Cooldown"
+
+[node name="CannonCooldownLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=552469323]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2.0 sec"
+
+[node name="Label4" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1646863958]
+layout_mode = 2
+text = "Shields Max Energy"
+
+[node name="ShieldsMaxLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1449030091]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10.0"
+
+[node name="Label5" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1722266975]
+layout_mode = 2
+text = "Shields Drain Rate"
+
+[node name="ShieldsDrainLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1512394373]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2.0/sec"
+
+[node name="Label6" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1820526159]
+layout_mode = 2
+text = "Shields Charge Rate"
+
+[node name="ShieldsChargeLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1653137936]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2.0/sec"
+
+[node name="Label7" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=361970548]
+layout_mode = 2
+text = "Shields Charge Timeout"
+
+[node name="ShieldsTimeoutLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1792600916]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2.0/sec"
+
+[node name="Label8" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=443693431]
+layout_mode = 2
+text = "Points to Bucks Conversion Rate"
+
+[node name="BucksRateLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=494064402]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0.1"
+
+[node name="CloseButton" type="Button" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=837600574]
+layout_mode = 2
+text = "Close"
+
+[node name="NoDataContainer" type="PanelContainer" parent="." unique_id=267889574]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_bqnv7")
+
+[node name="MarginContainer" type="MarginContainer" parent="NoDataContainer" unique_id=1930362929]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NoDataContainer/MarginContainer" unique_id=429033941]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NoDataContainer/MarginContainer/VBoxContainer" unique_id=1426912918]
+layout_mode = 2
+text = "No Save Data Loaded"
+
+[node name="CloseNoDataButton" type="Button" parent="NoDataContainer/MarginContainer/VBoxContainer" unique_id=1825658549]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="StatsPanel/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="NoDataContainer/MarginContainer/VBoxContainer/CloseNoDataButton" to="." method="_on_close_no_data_button_pressed"]

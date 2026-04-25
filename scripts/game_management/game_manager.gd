@@ -87,6 +87,9 @@ func reset_save_game() -> void:
 	_delete_save_game()
 	load_game()
 
+func has_nodes_registered() -> bool:
+	return not _skill_nodes_by_name.is_empty()
+
 
 func _delete_save_game() -> void:
 	if ResourceLoader.exists(SAVE_DATA_PATH):
