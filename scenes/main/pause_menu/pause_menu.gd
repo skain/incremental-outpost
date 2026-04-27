@@ -13,6 +13,7 @@ signal resume_pressed
 @onready var shields_timeout_label: Label = %ShieldsTimeoutLabel
 @onready var bucks_rate_label: Label = %BucksRateLabel
 @onready var no_data_container: PanelContainer = %NoDataContainer
+@onready var points_mult_label: Label = %PointsMultLabel
 
 func _ready() -> void:
 	stats_panel.hide()
@@ -28,6 +29,7 @@ func _load_stats() -> void:
 	var shields_charge := GameManager.skills_manager.get_shield_charge_rate()
 	var shields_timeout := GameManager.skills_manager.get_shield_timeout()
 	var bucks_rate := GameManager.skills_manager.get_points_to_bucks_conversion_rate()
+	var points_mult := GameManager.skills_manager.get_points_multiplier()
 	
 	shields_enabled_check_box.button_pressed = shields_enabled
 	hull_plating_label.text = str(hull_plating)
@@ -37,6 +39,7 @@ func _load_stats() -> void:
 	shields_charge_label.text = "%f /ec" % shields_charge
 	shields_timeout_label.text = "%f sec" % shields_timeout
 	bucks_rate_label.text = str(bucks_rate)
+	points_mult_label.text = "x%f" % points_mult
 	
 
 

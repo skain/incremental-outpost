@@ -2,7 +2,6 @@ class_name ArcadeGame extends Node2D
 
 signal game_ended
 
-const BASE_SCORE := 10
 var current_score := 0
 var game_over := true
 var num_enemies_per_wave := 12
@@ -74,7 +73,7 @@ func _update_ui() -> void:
 
 func _on_enemy_hit(enemy: Enemy) -> void:
 	_decrement_and_manage_enemy_wave()
-	var points := enemy.enemy_level * BASE_SCORE
+	var points := enemy.get_points_value()
 	current_score += points
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
 	get_tree().current_scene.add_child(text_popup)

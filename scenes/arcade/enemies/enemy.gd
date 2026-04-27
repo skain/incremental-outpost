@@ -5,6 +5,8 @@ signal enemy_hit(enemy:Enemy)
 
 const PROJECTILE_SCENE = preload("res://scenes/arcade/enemy_projectile/enemy_projectile.tscn")
 
+const BASE_SCORE := 10
+
 @export var base_shoot_delay: float = 1
 @export var base_shoot_chance: float = 50
 @export var base_revive_delay: float = 5
@@ -21,6 +23,7 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/enemy_projectile/enemy_pro
 var enemy_level := 1
 var disable_decay_factor := .9
 var can_shoot := true
+var cur_score := BASE_SCORE
 
 func _ready() -> void:
 	reset()
@@ -28,6 +31,7 @@ func _ready() -> void:
 	
 func reset() -> void:
 	_update_level_from_manager()
+	_update_cur_score_from_manager()
 	disable(true)
 	_start_shoot_timer()
 	
@@ -40,6 +44,7 @@ func _start_shoot_timer() -> void:
 
 func _enable() -> void:
 	_update_level_from_manager()
+	_update_cur_score_from_manager()
 	visible = true
 	can_shoot = true
 	collision_shape_2d.set_deferred("disabled", false)
@@ -59,7 +64,12 @@ func disable(is_temporary: bool = true) -> void:
 		shoot_timer.stop()
 		revive_timer.stop()
 		
-	
+
+
+func get_points_value() -> int:
+	return enemy_level * BASE_SCORE
+
+
 func _on_revive_timer_timeout() -> void:
 	_enable()
 	
@@ -101,5 +111,11 @@ func _on_shoot_timer_timeout() -> void:
 			_fire_projectile() 
 	_start_shoot_timer()
 
+
 func _update_level_from_manager() -> void:
 	enemy_level = GameManager.get_current_enemy_wave_level()
+
+
+func _update_cur_score_from_manager() -> void:
+	var cur_mult := GameManager.skills_manager.get_points_multiplier()
+	cur_score = enemy_level * cur_mult * BASE_SCORE

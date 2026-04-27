@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="Texture2D" uid="uid://cyj56aagtb85r" path="res://assets/skill_tree/icons/shield-energy-max-icon.png" id="7_1q8yp"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
+[ext_resource type="Texture2D" uid="uid://b23l6n4c528fe" path="res://assets/skill_tree/icons/points-icon.png" id="8_fprye"]
 [ext_resource type="Texture2D" uid="uid://dap3gbbjhkp5w" path="res://assets/skill_tree/icons/shield-timeout-icon.png" id="8_s7fn8"]
 [ext_resource type="Texture2D" uid="uid://vdwnqeg6jjbo" path="res://assets/skill_tree/icons/shield-energy-drain-icon.png" id="8_tnsbc"]
 [ext_resource type="Texture2D" uid="uid://bcfhbhus6xgay" path="res://assets/skill_tree/icons/bucks-icon.png" id="9_2mml3"]
@@ -190,6 +191,36 @@ skill_name = "Shield Energy Recharge Rate 3"
 skill_desc = "Increase Shield Energy Recharge Rate by 100%"
 skill_cost = 10000
 affected_stat = 5
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="PointsMult1" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1" unique_id=1545074385 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_fprye")
+skill_name = "Points Multiplier 1"
+skill_desc = "Increase the points gained from destroying enemies by  100%"
+skill_cost = 100
+affected_stat = 8
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="PointsMult2" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=1232149700 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_fprye")
+skill_name = "Points Multiplier 2"
+skill_desc = "Increase the points gained from destroying enemies by  100%"
+skill_cost = 1000
+affected_stat = 8
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="PointsMult3" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=755153265 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 112)
+texture = ExtResource("8_fprye")
+skill_name = "Points Multiplier 3"
+skill_desc = "Increase the points gained from destroying enemies by  100%"
+skill_cost = 10000
+affected_stat = 8
 modifier_type = 1
 modifier_value = 2.0
 
