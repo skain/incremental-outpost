@@ -72,7 +72,6 @@ func _update_ui() -> void:
 
 
 func _on_enemy_hit(enemy: Enemy) -> void:
-	_decrement_and_manage_enemy_wave()
 	var points := enemy.get_points_value()
 	current_score += points
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
@@ -82,6 +81,7 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.travel_distance = direction
 	text_popup.start(str(points), enemy.global_position)
 	_update_ui()
+	_decrement_and_manage_enemy_wave()
 
 func _decrement_and_manage_enemy_wave() -> void:
 	num_enemies_left_in_current_wave -= 1
