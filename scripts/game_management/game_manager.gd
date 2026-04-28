@@ -1,4 +1,4 @@
-class_name GameManagerAutoload extends Node
+extends Node
 
 const SAVE_DATA_PATH = "user://game_data.tres"
 @onready var game_data:GameData
