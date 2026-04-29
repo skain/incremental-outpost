@@ -35,7 +35,8 @@ func request_refresh(affected_stat: SkillTreeNode.AffectedStat) -> void:
 
 func _get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
 	var purchased_nodes := GameManager.get_purchased_nodes()
-	return modifiers[stat].get_value(purchased_nodes)
+	var value :float = modifiers[stat].get_value(purchased_nodes)
+	return value
 
 
 func _calc_multiplicative(base: float, stat: SkillTreeNode.AffectedStat) -> float:
