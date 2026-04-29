@@ -15,7 +15,7 @@ func reset_enemies() -> void:
 
 func disable_enemies() -> void:
 	for enemy in enemies:
-		enemy.disable(false)
+		enemy.current_state = Enemy.State.DISABLED
 
 
 func connect_hit_handler(handler: Callable) -> void:

@@ -72,7 +72,7 @@ func _update_ui() -> void:
 
 
 func _on_enemy_hit(enemy: Enemy) -> void:
-	var points := enemy.get_points_value()
+	var points := enemy.cur_points
 	current_score += points
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
 	get_tree().current_scene.add_child(text_popup)
