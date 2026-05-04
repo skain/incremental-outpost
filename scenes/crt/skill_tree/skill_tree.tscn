@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ct8l5cchi7u0p" path="res://scenes/crt/crt_button/crt_button.tscn" id="5_1pgdg"]
 [ext_resource type="Texture2D" uid="uid://cnr3th53tmw4q" path="res://assets/skill_tree/icons/hull-plating-icon.png" id="5_bn5ii"]
 [ext_resource type="Texture2D" uid="uid://dgq4rf7ogdqyb" path="res://assets/skill_tree/icons/shields-enabled-icon.png" id="6_1q8yp"]
+[ext_resource type="PackedScene" uid="uid://04cb7f1hlml3" path="res://scenes/crt/skill_tree/story_skill_tree_node/story_skill_tree_node.tscn" id="6_frlcx"]
 [ext_resource type="Script" uid="uid://cuo5qw6v66cdu" path="res://scenes/crt/skill_tree/skill_tree_camera.gd" id="6_vt0yg"]
 [ext_resource type="Texture2D" uid="uid://cyj56aagtb85r" path="res://assets/skill_tree/icons/shield-energy-max-icon.png" id="7_1q8yp"]
 [ext_resource type="AudioStream" uid="uid://b678ep80at0ax" path="res://assets/sounds/music/incremental-outpost-skilltree.wav" id="7_dp713"]
@@ -89,149 +90,6 @@ skill_desc = "Add 1 Level of Hull Plating"
 affected_stat = 1
 modifier_value = 1.0
 
-[node name="ShieldsEnabled" parent="CannonCooldown1" unique_id=939400477 instance=ExtResource("2_vt0yg")]
-position = Vector2(-57, 0)
-texture = ExtResource("6_1q8yp")
-skill_name = "Shields"
-skill_desc = "Purchase shields for your outpost. Use WASD to control them."
-affected_stat = 2
-modifier_value = 1.0
-
-[node name="ShieldEnergy1" parent="CannonCooldown1/ShieldsEnabled" unique_id=1069266598 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("7_1q8yp")
-skill_name = "Shield Max Energy 1"
-skill_desc = "Increase Shield Max Energy x2"
-affected_stat = 3
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="ShieldEnergy2" parent="CannonCooldown1/ShieldsEnabled/ShieldEnergy1" unique_id=1285090980 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("7_1q8yp")
-skill_name = "Shield Max Energy 2"
-skill_desc = "Increase Shield Max Energy x2"
-affected_stat = 3
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="ShieldEnergy3" parent="CannonCooldown1/ShieldsEnabled/ShieldEnergy1/ShieldEnergy2" unique_id=1844469160 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("7_1q8yp")
-skill_name = "Shield Max Energy 3"
-skill_desc = "Increase Shield Max Energy x2"
-affected_stat = 3
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="ShieldDrain1" parent="CannonCooldown1/ShieldsEnabled" unique_id=1433790815 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 56)
-texture = ExtResource("8_tnsbc")
-skill_name = "Shield Energy Drain 1"
-skill_desc = "Reduce Shield Energy Drain Rate by 25%"
-affected_stat = 4
-modifier_type = 1
-modifier_value = 0.75
-
-[node name="ShieldDrain2" parent="CannonCooldown1/ShieldsEnabled/ShieldDrain1" unique_id=1955643440 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 56)
-texture = ExtResource("8_tnsbc")
-skill_name = "Shield Energy Drain 2"
-skill_desc = "Reduce Shield Energy Drain Rate by 25%"
-affected_stat = 4
-modifier_type = 1
-modifier_value = 0.75
-
-[node name="ShieldDrain3" parent="CannonCooldown1/ShieldsEnabled/ShieldDrain1/ShieldDrain2" unique_id=737031854 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 56)
-texture = ExtResource("8_tnsbc")
-skill_name = "Shield Energy Drain 3"
-skill_desc = "Reduce Shield Energy Drain Rate by 25%"
-affected_stat = 4
-modifier_type = 1
-modifier_value = 0.75
-
-[node name="ShieldRecharge1" parent="CannonCooldown1/ShieldsEnabled" unique_id=923428058 instance=ExtResource("2_vt0yg")]
-position = Vector2(-56, 0)
-texture = SubResource("CompressedTexture2D_tnsbc")
-skill_name = "Shield Energy Recharge Rate 1"
-skill_desc = "Increase Shield Energy Recharge Rate by 100%"
-affected_stat = 5
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="ShieldRecharge2" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1" unique_id=426104042 instance=ExtResource("2_vt0yg")]
-position = Vector2(-56, 0)
-texture = SubResource("CompressedTexture2D_2mml3")
-skill_name = "Shield Energy Recharge Rate 2"
-skill_desc = "Increase Shield Energy Recharge Rate by 100%"
-affected_stat = 5
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="ShieldRecharge3" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2100923162 instance=ExtResource("2_vt0yg")]
-position = Vector2(-56, 0)
-texture = SubResource("CompressedTexture2D_ngrj7")
-skill_name = "Shield Energy Recharge Rate 3"
-skill_desc = "Increase Shield Energy Recharge Rate by 100%"
-affected_stat = 5
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="PointsMult1" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1" unique_id=1545074385 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 56)
-texture = ExtResource("8_fprye")
-skill_name = "Points Multiplier 1"
-skill_desc = "Increase the points gained from destroying enemies by  100%"
-affected_stat = 8
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="PointsMult2" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=1232149700 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 56)
-texture = ExtResource("8_fprye")
-skill_name = "Points Multiplier 2"
-skill_desc = "Increase the points gained from destroying enemies by  100%"
-affected_stat = 8
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="PointsMult3" parent="CannonCooldown1/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=755153265 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, 112)
-texture = ExtResource("8_fprye")
-skill_name = "Points Multiplier 3"
-skill_desc = "Increase the points gained from destroying enemies by  100%"
-affected_stat = 8
-modifier_type = 1
-modifier_value = 2.0
-
-[node name="ShieldTimeout1" parent="CannonCooldown1/ShieldsEnabled" unique_id=602870779 instance=ExtResource("2_vt0yg")]
-position = Vector2(-56, -56)
-texture = ExtResource("8_s7fn8")
-skill_name = "Shield Timeout 1"
-skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
-affected_stat = 6
-modifier_type = 1
-modifier_value = 0.5
-
-[node name="ShieldTimeout2" parent="CannonCooldown1/ShieldsEnabled/ShieldTimeout1" unique_id=1047249010 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("8_s7fn8")
-skill_name = "Shield Timeout 2"
-skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
-affected_stat = 6
-modifier_type = 1
-modifier_value = 0.5
-
-[node name="ShieldTimeout3" parent="CannonCooldown1/ShieldsEnabled/ShieldTimeout1/ShieldTimeout2" unique_id=1071680828 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("8_s7fn8")
-skill_name = "Shield Timeout 1"
-skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
-affected_stat = 6
-modifier_type = 1
-modifier_value = 0.5
-
 [node name="BucksConversion1" parent="CannonCooldown1" unique_id=231219548 instance=ExtResource("2_vt0yg")]
 position = Vector2(-1, 56)
 texture = ExtResource("9_2mml3")
@@ -258,6 +116,155 @@ skill_desc = "Increase the rate at which Points are converted into $ucks by 100%
 affected_stat = 7
 modifier_type = 1
 modifier_value = 1.5
+
+[node name="StorySkillTreeNode" parent="CannonCooldown1" unique_id=1402027240 instance=ExtResource("6_frlcx")]
+position = Vector2(-57, 0)
+story_subject = "I've found a way to leave notes..."
+story_text = "If you're reading this, you are me!"
+skill_cost = null
+
+[node name="ShieldsEnabled" parent="CannonCooldown1/StorySkillTreeNode" unique_id=939400477 instance=ExtResource("2_vt0yg")]
+position = Vector2(-57, 0)
+texture = ExtResource("6_1q8yp")
+skill_name = "Shields"
+skill_desc = "Purchase shields for your outpost. Use WASD to control them."
+affected_stat = 2
+modifier_value = 1.0
+
+[node name="ShieldEnergy1" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled" unique_id=1069266598 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("7_1q8yp")
+skill_name = "Shield Max Energy 1"
+skill_desc = "Increase Shield Max Energy x2"
+affected_stat = 3
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="ShieldEnergy2" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldEnergy1" unique_id=1285090980 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("7_1q8yp")
+skill_name = "Shield Max Energy 2"
+skill_desc = "Increase Shield Max Energy x2"
+affected_stat = 3
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="ShieldEnergy3" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldEnergy1/ShieldEnergy2" unique_id=1844469160 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("7_1q8yp")
+skill_name = "Shield Max Energy 3"
+skill_desc = "Increase Shield Max Energy x2"
+affected_stat = 3
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="ShieldDrain1" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled" unique_id=1433790815 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_tnsbc")
+skill_name = "Shield Energy Drain 1"
+skill_desc = "Reduce Shield Energy Drain Rate by 25%"
+affected_stat = 4
+modifier_type = 1
+modifier_value = 0.75
+
+[node name="ShieldDrain2" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldDrain1" unique_id=1955643440 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_tnsbc")
+skill_name = "Shield Energy Drain 2"
+skill_desc = "Reduce Shield Energy Drain Rate by 25%"
+affected_stat = 4
+modifier_type = 1
+modifier_value = 0.75
+
+[node name="ShieldDrain3" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldDrain1/ShieldDrain2" unique_id=737031854 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_tnsbc")
+skill_name = "Shield Energy Drain 3"
+skill_desc = "Reduce Shield Energy Drain Rate by 25%"
+affected_stat = 4
+modifier_type = 1
+modifier_value = 0.75
+
+[node name="ShieldRecharge1" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled" unique_id=923428058 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, 0)
+texture = SubResource("CompressedTexture2D_tnsbc")
+skill_name = "Shield Energy Recharge Rate 1"
+skill_desc = "Increase Shield Energy Recharge Rate by 100%"
+affected_stat = 5
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="ShieldRecharge2" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldRecharge1" unique_id=426104042 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, 0)
+texture = SubResource("CompressedTexture2D_2mml3")
+skill_name = "Shield Energy Recharge Rate 2"
+skill_desc = "Increase Shield Energy Recharge Rate by 100%"
+affected_stat = 5
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="ShieldRecharge3" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2100923162 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, 0)
+texture = SubResource("CompressedTexture2D_ngrj7")
+skill_name = "Shield Energy Recharge Rate 3"
+skill_desc = "Increase Shield Energy Recharge Rate by 100%"
+affected_stat = 5
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="PointsMult1" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldRecharge1" unique_id=1545074385 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_fprye")
+skill_name = "Points Multiplier 1"
+skill_desc = "Increase the points gained from destroying enemies by  100%"
+affected_stat = 8
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="PointsMult2" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=1232149700 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("8_fprye")
+skill_name = "Points Multiplier 2"
+skill_desc = "Increase the points gained from destroying enemies by  100%"
+affected_stat = 8
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="PointsMult3" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=755153265 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 112)
+texture = ExtResource("8_fprye")
+skill_name = "Points Multiplier 3"
+skill_desc = "Increase the points gained from destroying enemies by  100%"
+affected_stat = 8
+modifier_type = 1
+modifier_value = 2.0
+
+[node name="ShieldTimeout1" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled" unique_id=602870779 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, -56)
+texture = ExtResource("8_s7fn8")
+skill_name = "Shield Timeout 1"
+skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
+affected_stat = 6
+modifier_type = 1
+modifier_value = 0.5
+
+[node name="ShieldTimeout2" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldTimeout1" unique_id=1047249010 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("8_s7fn8")
+skill_name = "Shield Timeout 2"
+skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
+affected_stat = 6
+modifier_type = 1
+modifier_value = 0.5
+
+[node name="ShieldTimeout3" parent="CannonCooldown1/StorySkillTreeNode/ShieldsEnabled/ShieldTimeout1/ShieldTimeout2" unique_id=1071680828 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("8_s7fn8")
+skill_name = "Shield Timeout 1"
+skill_desc = "Decrease the timeout before the shields start to recharge when empty by 50%"
+affected_stat = 6
+modifier_type = 1
+modifier_value = 0.5
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true

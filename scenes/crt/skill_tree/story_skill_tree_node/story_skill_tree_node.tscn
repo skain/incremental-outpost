@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://04cb7f1hlml3"]
+
+[ext_resource type="Script" uid="uid://wgvfb31vvmwv" path="res://scenes/crt/skill_tree/story_skill_tree_node/story_skill_tree_node.gd" id="1_7q2qr"]
+[ext_resource type="Texture2D" uid="uid://cmehiu6k2cuo" path="res://assets/skill_tree/icons/story-node-icon.png" id="1_57xax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ut0"]
+size = Vector2(32, 32)
+
+[node name="StorySkillTreeNode" type="Sprite2D" unique_id=1402027240]
+texture = ExtResource("1_57xax")
+script = ExtResource("1_7q2qr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=480006724]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=677241857]
+shape = SubResource("RectangleShape2D_j7ut0")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

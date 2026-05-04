@@ -1,4 +1,4 @@
-class_name SkillTreeNodeBase extends Sprite2D
+@abstract class_name SkillTreeNodeBase extends Sprite2D
 
 enum SkillNodeStatus {
 	UNREVEALED, UNAFFORDABLE, AFFORDABLE, PURCHASED
@@ -37,23 +37,8 @@ func update_from_game_data(recurse: bool) -> void:
 		for child_skill in _get_child_skill_nodes():
 			child_skill.update_from_game_data(true)
 
-func _set_status_from_game_data() -> void:
-	if GameManager.is_node_purchased(self):
-		current_status = SkillNodeStatus.PURCHASED
-		return
-		
-	var parent := get_parent() as SkillTreeNode
-	if parent:
-		#this isn't the root node
-		if parent.current_status != SkillNodeStatus.PURCHASED:
-			current_status = SkillNodeStatus.UNREVEALED
-			return
-	
-	if skill_cost <= GameManager.game_data.current_bucks:
-		current_status = SkillNodeStatus.AFFORDABLE
-	else:
-		current_status = SkillNodeStatus.UNAFFORDABLE
-		
+
+@abstract func _set_status_from_game_data() -> void
 
 
 func _update_node_appearance() -> void:
