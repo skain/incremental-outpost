@@ -66,7 +66,7 @@ func process_node_purchase(node: SkillTreeNode) -> void:
 	skills_manager.request_refresh(node.affected_stat)
 	
 	
-func is_node_purchased(node: SkillTreeNode) -> bool:
+func is_node_purchased(node: SkillTreeNodeBase) -> bool:
 	return game_data.purchased_node_names.has(node.name)
 	
 

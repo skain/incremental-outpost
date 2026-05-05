@@ -22,11 +22,8 @@ var save_icon_tween: Tween = null
 func _ready() -> void:
 	# Initial state is usually off/hidden until run_ functions are called
 	_screen_off() 
-	#await _power_up()
-	#_show_save_icon()
-	#run_endgame_interstitial()
 
-# Called by main.gd
+
 func run_startgame_interstitial() -> void:
 	var view := _switch_sub_view(start_interstitial_scene)
 	view.continue_game_clicked.connect(_on_continue_game_clicked)
@@ -35,7 +32,7 @@ func run_startgame_interstitial() -> void:
 	await _power_up() 
 	view.show_interstitial()
 
-# Called by main.gd
+
 func run_endgame_interstitial() -> void:
 	var view := _switch_sub_view(end_interstitial_scene)
 	view.return_to_outpost_clicked.connect(_on_return_requested)
@@ -43,7 +40,16 @@ func run_endgame_interstitial() -> void:
 
 	await _power_up() 
 	view.run_interstitial()
-	
+
+
+func run_skill_tree() -> void:
+	var tree: SkillTree = _switch_sub_view(skill_tree_scene)
+	tree.upgrades_completed.connect(_on_return_requested)
+	tree.save_game_requested.connect(_save_game)
+	tree.home_camera()
+	tree.show_skill_tree()
+
+
 func _run_new_game_interstitial() -> void:
 	var view: NewGameInterstitial = _switch_sub_view(new_game_interstitial_scene) as NewGameInterstitial
 	view.new_game_screen_complete.connect(_on_new_game_screen_complete)
@@ -140,12 +146,7 @@ func _on_new_game_screen_complete() -> void:
 	
 	
 func _on_continue_game_clicked() -> void:
-	await _power_down()
-	# need to load the skill tree once to populate nodes 
-	# in game manager
-	# lame, but works for now at least
-	_switch_sub_view(skill_tree_scene)
-	continue_game_clicked.emit()
+	run_skill_tree()
 
 func _on_return_requested() -> void:
 	_save_game()
@@ -154,8 +155,4 @@ func _on_return_requested() -> void:
 
 func _on_upgrade_clicked() -> void:
 	_save_game()
-	var tree: SkillTree = _switch_sub_view(skill_tree_scene)
-	tree.upgrades_completed.connect(_on_return_requested)
-	tree.save_game_requested.connect(_save_game)
-	tree.home_camera()
-	tree.show_skill_tree()
+	run_skill_tree()
