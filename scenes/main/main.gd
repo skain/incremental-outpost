@@ -63,7 +63,6 @@ func _set_crt_as_current_view() -> CRTPanel:
 
 func _connect_crt_signals(panel: CRTPanel) -> void:
 	panel.return_to_outpost_clicked.connect(_start_arcade_game)
-	panel.continue_game_clicked.connect(_start_arcade_game)
 	panel.new_game_clicked.connect(_start_arcade_game)
 
 

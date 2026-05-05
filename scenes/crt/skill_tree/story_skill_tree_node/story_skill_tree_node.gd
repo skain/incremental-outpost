@@ -1,7 +1,5 @@
 class_name StorySkillTreeNode extends SkillTreeNodeBase
 
-signal story_skill_tree_node_clicked(node: StorySkillTreeNode)
-
 @export var story_subject: String
 @export var story_text: String
 
@@ -27,6 +25,7 @@ func _set_status_from_game_data() -> void:
 		current_status = SkillNodeStatus.UNAFFORDABLE
 
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		story_skill_tree_node_clicked.emit(self)
+		print("emitting")
+		skill_tree_node_clicked.emit(self)

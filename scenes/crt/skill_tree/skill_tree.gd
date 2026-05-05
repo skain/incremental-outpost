@@ -15,8 +15,8 @@ func _ready() -> void:
 	
 	
 func _connect_skill_node_signals() -> void:
-	for node in find_children("*", "SkillTreeNode", true, false):
-		var skill_node := node as SkillTreeNode
+	for node in find_children("*", "SkillTreeNodeBase", true, false):
+		var skill_node := node as SkillTreeNodeBase
 		if skill_node:
 			skill_node.skill_tree_node_clicked.connect(_on_skill_tree_node_clicked)
 			
@@ -46,7 +46,7 @@ func _update_ui() -> void:
 	root_node.update_from_game_data(true)	
 	
 	
-func _on_skill_tree_node_clicked(node: SkillTreeNode) -> void:
+func _on_skill_tree_node_clicked(node: SkillTreeNodeBase) -> void:
 	skill_tree_ui.show_skill_node_info(node)
 
 

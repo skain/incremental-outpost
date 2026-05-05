@@ -8,8 +8,6 @@ enum AffectedStat {
 enum ModifierType { ADD, MULTIPLY, ENABLE }
 
 
-signal skill_tree_node_clicked(node: SkillTreeNode)
-
 @export var skill_name: String
 @export var skill_desc: String
 @export var affected_stat: AffectedStat

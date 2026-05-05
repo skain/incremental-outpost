@@ -1,7 +1,6 @@
 class_name CRTPanel extends Node2D
 
 signal return_to_outpost_clicked
-signal continue_game_clicked
 signal new_game_clicked
 
 const SAVE_ICON_MIN_MOD = Color.WHITE * Color(1.0, 1.0, 1.0, 0.25)

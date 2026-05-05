@@ -1,5 +1,7 @@
 @abstract class_name SkillTreeNodeBase extends Sprite2D
 
+signal skill_tree_node_clicked(node: SkillTreeNodeBase)
+
 enum SkillNodeStatus {
 	UNREVEALED, UNAFFORDABLE, AFFORDABLE, PURCHASED
 }
