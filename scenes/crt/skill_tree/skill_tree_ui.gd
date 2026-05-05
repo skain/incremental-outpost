@@ -1,6 +1,6 @@
 class_name SkillTreeUI extends CanvasLayer
 
-signal buy_skill_node_pressed(node: SkillTreeNode)
+signal buy_skill_node_pressed(node: SkillTreeNodeBase)
 
 @onready var skill_node_info_container: SkillNodeInfoContainer = %SkillNodeInfoContainer
 @onready var bucks_label: Label = %BucksLabel

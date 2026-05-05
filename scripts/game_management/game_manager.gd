@@ -60,10 +60,13 @@ func get_skill_node_data_by_name(node_name: String) -> SkillNodeData:
 	return _skill_nodes_by_name[node_name]
 
 	
-func process_node_purchase(node: SkillTreeNode) -> void:
+func process_node_purchase(node: SkillTreeNodeBase) -> void:
+	assert(not game_data.purchased_node_names.has(node.name))
 	game_data.purchased_node_names.append(node.name)
 	game_data.current_bucks -= int(node.skill_cost)
-	skills_manager.request_refresh(node.affected_stat)
+	var skill_node := node as SkillTreeNode
+	if skill_node:
+		skills_manager.request_refresh(node.affected_stat)
 	
 	
 func is_node_purchased(node: SkillTreeNodeBase) -> bool:

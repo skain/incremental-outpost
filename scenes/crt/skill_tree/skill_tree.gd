@@ -54,7 +54,7 @@ func _on_return_to_outpost_button_pressed() -> void:
 	upgrades_completed.emit()
 
 
-func _on_skill_tree_ui_buy_skill_node_pressed(node: SkillTreeNode) -> void:
+func _on_skill_tree_ui_buy_skill_node_pressed(node: SkillTreeNodeBase) -> void:
 	GameManager.process_node_purchase(node)
 	save_game_requested.emit()
 	_update_ui()
