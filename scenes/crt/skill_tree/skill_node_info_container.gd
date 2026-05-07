@@ -38,7 +38,10 @@ func _clear_info_and_hide() -> void:
 
 func _on_buy_button_pressed() -> void:
 	assert(displayed_node)
-	buy_button_pressed.emit(displayed_node)
+	if displayed_node.current_status != SkillTreeNodeBase.SkillNodeStatus.PURCHASED:
+		buy_button_pressed.emit(displayed_node)
+	else:
+		_clear_info_and_hide()
 
 
 func _on_close_button_pressed() -> void:

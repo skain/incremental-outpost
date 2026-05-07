@@ -1,5 +1,6 @@
 @abstract class_name SkillTreeNodeBase extends Sprite2D
 
+@warning_ignore("unused_signal")
 signal skill_tree_node_clicked(node: SkillTreeNodeBase)
 
 enum SkillNodeStatus {
@@ -26,8 +27,13 @@ var _status_color_dict := {
 }
 
 
-func _ready() -> void:
+func _ready() -> void:	
+	_register_with_game_manager()
 	_draw_lines()
+
+
+func _register_with_game_manager() -> void:
+	GameManager.register_skill_node(self)
 
 
 func update_from_game_data(recurse: bool) -> void:
@@ -38,9 +44,6 @@ func update_from_game_data(recurse: bool) -> void:
 	if recurse:
 		for child_skill in _get_child_skill_nodes():
 			child_skill.update_from_game_data(true)
-
-
-@abstract func _set_status_from_game_data() -> void
 
 
 func _update_node_appearance() -> void:
@@ -69,12 +72,10 @@ func _draw_lines() -> void:
 		add_child(line)
 
 
-func _get_child_skill_nodes() -> Array[SkillTreeNode]:
-	var arr: Array[SkillTreeNode] = []
+func _get_child_skill_nodes() -> Array[SkillTreeNodeBase]:
+	var arr: Array[SkillTreeNodeBase] = []
 	for node in find_children("*", "SkillTreeNodeBase", false, false):
-		var skill_node := node as SkillTreeNode
-		if skill_node: 
-			arr.append(skill_node)
+		arr.append(node)
 	return arr
 
 
@@ -85,3 +86,21 @@ func _get_child_lines() -> Array[Line2D]:
 		if line: 
 			arr.append(line)
 	return arr
+
+
+func _set_status_from_game_data() -> void:
+	if GameManager.is_node_purchased(self):
+		current_status = SkillNodeStatus.PURCHASED
+		return
+		
+	var parent := get_parent() as SkillTreeNode
+	if parent:
+		#this isn't the root node
+		if parent.current_status != SkillNodeStatus.PURCHASED:
+			current_status = SkillNodeStatus.UNREVEALED
+			return
+	
+	if skill_cost <= GameManager.game_data.current_bucks:
+		current_status = SkillNodeStatus.AFFORDABLE
+	else:
+		current_status = SkillNodeStatus.UNAFFORDABLE

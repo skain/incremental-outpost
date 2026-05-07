@@ -45,15 +45,18 @@ func convert_points_to_bucks() -> int:
 	return new_bucks
 
 	
-func register_skill_node(node: SkillTreeNode) -> void:
+func register_skill_node(node: SkillTreeNodeBase) -> void:
 	_skill_nodes_by_name[node.name] = SkillNodeData.new(node)
-	if not _skill_nodes_by_affected_stat.has(node.affected_stat):
-		_skill_nodes_by_affected_stat[node.affected_stat] = []
 	
-	var array: Array = _skill_nodes_by_affected_stat[node.affected_stat]
-	
-	if not node in array:
-		array.append(node)
+	if node is SkillTreeNode:
+		# StorySkillTreeNodes don't have affected stats...
+		if not _skill_nodes_by_affected_stat.has(node.affected_stat):
+			_skill_nodes_by_affected_stat[node.affected_stat] = []
+		
+		var array: Array = _skill_nodes_by_affected_stat[node.affected_stat]
+		
+		if not node in array:
+			array.append(node)
 
 	
 func get_skill_node_data_by_name(node_name: String) -> SkillNodeData:
@@ -75,7 +78,9 @@ func is_node_purchased(node: SkillTreeNodeBase) -> bool:
 
 func get_purchased_nodes() -> Array[SkillNodeData]:
 	var purchased_nodes :Array[SkillNodeData] = []
-	for purchased in game_data.purchased_node_names:
+	for purchased :String in game_data.purchased_node_names:
+		if purchased.begins_with("StorySkillTreeNode"):
+			pass
 		assert(_skill_nodes_by_name.has(purchased))
 		purchased_nodes.append(_skill_nodes_by_name[purchased])
 	
