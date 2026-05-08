@@ -55,6 +55,14 @@ bus = &"SoundFx"
 position = Vector2(0, -30)
 flash_color = Color(0.9764706, 0.34117648, 0.21960784, 1)
 
+[node name="DebugLabel" type="Label" parent="." unique_id=945270362]
+unique_name_in_owner = true
+offset_left = 13.333334
+offset_top = -27.333334
+offset_right = 53.333336
+offset_bottom = -15.333334
+text = "1"
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="ReviveTimer" to="." method="_on_revive_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -19,6 +19,7 @@ var current_state: State = State.DISABLED: set = set_state
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
 @onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var debug_label: Label = %DebugLabel
 
 var enemy_level := 1
 var cur_points := BASE_POINTS
@@ -50,6 +51,7 @@ func set_state(new_state: State) -> void:
 func reset() -> void:
 	_update_stats()
 	self.current_state = State.RECHARGING
+	debug_label.text = str(enemy_level)
 
 func _update_stats() -> void:
 	enemy_level = GameManager.get_current_enemy_wave_level()

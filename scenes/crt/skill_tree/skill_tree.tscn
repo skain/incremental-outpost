@@ -268,7 +268,7 @@ skill_desc = "Decrease the timeout before the shields start to recharge when emp
 affected_stat = 6
 modifier_type = 1
 modifier_value = 0.5
-skill_cost = 1000
+skill_cost = 50
 
 [node name="ShieldTimeout2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1" unique_id=1047249010 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
