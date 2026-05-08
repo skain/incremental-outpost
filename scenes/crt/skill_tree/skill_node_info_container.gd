@@ -9,6 +9,7 @@ signal buy_button_pressed(node: SkillTreeNodeBase)
 @onready var skill_icon_texture_rect: TextureRect = %SkillIconTextureRect
 @onready var skill_buttons_container: HBoxContainer = %SkillButtonsContainer
 @onready var story_buttons_container: HBoxContainer = %StoryButtonsContainer
+@onready var cost_container: HBoxContainer = %CostContainer
 
 var displayed_node: SkillTreeNodeBase
 
@@ -21,12 +22,14 @@ func load_node_info(node: SkillTreeNodeBase) -> void:
 	if story_node:
 		skill_name_label.text = story_node.story_subject
 		skill_description_label.text = story_node.story_text
+		cost_container.hide()
 		skill_buttons_container.hide()
 		story_buttons_container.show()
 	else:
 		skill_name_label.text = node.skill_name
 		skill_description_label.text = node.skill_desc
 		skill_cost_label.text = str(node.skill_cost)
+		cost_container.show()
 		skill_buttons_container.show()
 		story_buttons_container.hide()
 		
