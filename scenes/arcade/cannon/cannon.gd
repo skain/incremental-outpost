@@ -1,6 +1,8 @@
 extends Area2D
 class_name Cannon
 
+enum CannonStates { READY_TO_FIRE, RECHARGING, DESTROYED }
+
 signal cannon_hit(cannon_direction: Vector2)
 
 const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_projectile.tscn")
@@ -15,7 +17,8 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_p
 @export var fire_cooldown_base: float = 10.0
 
 var fire_direction: Vector2
-var can_fire := true
+#var can_fire := true
+var cur_state := CannonStates.READY_TO_FIRE
 
 func _ready() -> void:
 	fire_direction = _get_fire_direction()
@@ -24,10 +27,6 @@ func _ready() -> void:
 
 
 func _set_fire_cooldown() -> void:
-	#var mod := GameManager.get_modifier_value(SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
-	#if mod == 0.0:
-		#mod = 1.0
-	#var cooldown: float = mod * fire_cooldown_base
 	var cooldown := GameManager.skills_manager.get_cannon_cooldown()
 	radial_cooldown.cooldown_duration = cooldown
 	
@@ -35,7 +34,8 @@ func _set_fire_cooldown() -> void:
 func _handle_hit() -> void:		
 	collision_shape_2d.set_deferred("disabled", true)
 	cannon.frame = 1
-	can_fire = false
+	#can_fire = false
+	cur_state = CannonStates.DESTROYED
 	cannon_hit.emit(fire_direction)
 	hit_audio_player.play()
 	_hit_flash()
@@ -50,7 +50,7 @@ func _get_fire_direction() -> Vector2:
 	
 	
 func fire_projectile(projectile_owner: Node) -> void:
-	if not can_fire:
+	if not cur_state == CannonStates.READY_TO_FIRE:
 		return
 		
 	var projectile: PlayerProjectile = PROJECTILE_SCENE.instantiate()
@@ -60,7 +60,7 @@ func fire_projectile(projectile_owner: Node) -> void:
 	fire_audio_player.play()
 	muzzle_flash.emit_flash()
 
-	can_fire = false  # Prevent further firing
+	cur_state = CannonStates.RECHARGING
 	radial_cooldown.start_cooldown()	
 
 
@@ -70,13 +70,14 @@ func add_flash_to_tween(tween: Tween) -> void:
 	
 func reset() -> void:
 	cannon.frame = 0
-	can_fire = true
+	#can_fire = true
+	cur_state = CannonStates.READY_TO_FIRE
 	collision_shape_2d.set_deferred("disabled", false)
 	_set_fire_cooldown()
 	
 	
-func disable() -> void:
-	can_fire = false
+#func disable() -> void:
+	#can_fire = false
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -88,4 +89,6 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_radial_cooldown_cooldown_complete() -> void:
-	can_fire = true
+	if cur_state == CannonStates.RECHARGING:
+		cur_state = CannonStates.READY_TO_FIRE
+	#can_fire = true
