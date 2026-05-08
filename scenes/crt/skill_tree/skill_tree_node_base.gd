@@ -93,7 +93,7 @@ func _set_status_from_game_data() -> void:
 		current_status = SkillNodeStatus.PURCHASED
 		return
 		
-	var parent := get_parent() as SkillTreeNode
+	var parent := get_parent() as SkillTreeNodeBase
 	if parent:
 		#this isn't the root node
 		if parent.current_status != SkillNodeStatus.PURCHASED:

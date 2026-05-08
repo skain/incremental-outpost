@@ -49,6 +49,7 @@ skill_name = "Cannon Cooldown 1"
 skill_desc = "Reduces the cooldown time of all cannons by 50%"
 modifier_type = 1
 modifier_value = 0.5
+skill_cost = 4
 
 [node name="CannonCooldown2" parent="CannonCooldown1" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
 position = Vector2(55, 0)
@@ -57,6 +58,7 @@ skill_name = "Cannon Cooldown 2"
 skill_desc = "Reduces the cooldown time of all cannons by 25%"
 modifier_type = 1
 modifier_value = 0.75
+skill_cost = 1000
 
 [node name="CannonCooldown3" parent="CannonCooldown1/CannonCooldown2" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
 position = Vector2(56, 0)
@@ -65,6 +67,7 @@ skill_name = "Cannon Cooldown 3"
 skill_desc = "Reduces the cooldown time of all cannons by 25%"
 modifier_type = 1
 modifier_value = 0.75
+skill_cost = 1000
 
 [node name="HullPlating1" parent="CannonCooldown1" unique_id=849825354 instance=ExtResource("2_vt0yg")]
 position = Vector2(-1, -56)
@@ -73,6 +76,7 @@ skill_name = "Hull Plating 1"
 skill_desc = "Add 1 Level of Hull Plating"
 affected_stat = 1
 modifier_value = 1.0
+skill_cost = 1000
 
 [node name="HullPlating2" parent="CannonCooldown1/HullPlating1" unique_id=170604591 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
@@ -81,6 +85,7 @@ skill_name = "Hull Plating 2"
 skill_desc = "Add 1 Level of Hull Plating"
 affected_stat = 1
 modifier_value = 1.0
+skill_cost = 1000
 
 [node name="HullPlating3" parent="CannonCooldown1/HullPlating1/HullPlating2" unique_id=1891755021 instance=ExtResource("2_vt0yg")]
 position = Vector2(1, -56)
@@ -89,6 +94,7 @@ skill_name = "Hull Plating 3"
 skill_desc = "Add 1 Level of Hull Plating"
 affected_stat = 1
 modifier_value = 1.0
+skill_cost = 1000
 
 [node name="BucksConversion1" parent="CannonCooldown1" unique_id=231219548 instance=ExtResource("2_vt0yg")]
 position = Vector2(-1, 56)
@@ -98,6 +104,7 @@ skill_desc = "Increase the rate at which Points are converted into $ucks by 100%
 affected_stat = 7
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="BucksConversion2" parent="CannonCooldown1/BucksConversion1" unique_id=634828567 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -107,6 +114,7 @@ skill_desc = "Increase the rate at which Points are converted into $ucks by 50%"
 affected_stat = 7
 modifier_type = 1
 modifier_value = 1.5
+skill_cost = 1000
 
 [node name="BucksConversion3" parent="CannonCooldown1/BucksConversion1/BucksConversion2" unique_id=1255003658 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -116,6 +124,7 @@ skill_desc = "Increase the rate at which Points are converted into $ucks by 100%
 affected_stat = 7
 modifier_type = 1
 modifier_value = 1.5
+skill_cost = 1000
 
 [node name="StorySkillTreeNode1" parent="CannonCooldown1" unique_id=1402027240 instance=ExtResource("6_frlcx")]
 position = Vector2(-57, 0)
@@ -129,6 +138,7 @@ skill_name = "Shields"
 skill_desc = "Purchase shields for your outpost. Use WASD to control them."
 affected_stat = 2
 modifier_value = 1.0
+skill_cost = 1000
 
 [node name="ShieldEnergy1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled" unique_id=1069266598 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
@@ -138,6 +148,7 @@ skill_desc = "Increase Shield Max Energy x2"
 affected_stat = 3
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="ShieldEnergy2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldEnergy1" unique_id=1285090980 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
@@ -147,6 +158,7 @@ skill_desc = "Increase Shield Max Energy x2"
 affected_stat = 3
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="ShieldEnergy3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldEnergy1/ShieldEnergy2" unique_id=1844469160 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
@@ -156,6 +168,7 @@ skill_desc = "Increase Shield Max Energy x2"
 affected_stat = 3
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="ShieldDrain1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled" unique_id=1433790815 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -165,6 +178,7 @@ skill_desc = "Reduce Shield Energy Drain Rate by 25%"
 affected_stat = 4
 modifier_type = 1
 modifier_value = 0.75
+skill_cost = 1000
 
 [node name="ShieldDrain2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldDrain1" unique_id=1955643440 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -174,6 +188,7 @@ skill_desc = "Reduce Shield Energy Drain Rate by 25%"
 affected_stat = 4
 modifier_type = 1
 modifier_value = 0.75
+skill_cost = 1000
 
 [node name="ShieldDrain3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldDrain1/ShieldDrain2" unique_id=737031854 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -183,6 +198,7 @@ skill_desc = "Reduce Shield Energy Drain Rate by 25%"
 affected_stat = 4
 modifier_type = 1
 modifier_value = 0.75
+skill_cost = 1000
 
 [node name="ShieldRecharge1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled" unique_id=923428058 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
@@ -192,6 +208,7 @@ skill_desc = "Increase Shield Energy Recharge Rate by 100%"
 affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="ShieldRecharge2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1" unique_id=426104042 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
@@ -201,6 +218,7 @@ skill_desc = "Increase Shield Energy Recharge Rate by 100%"
 affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="ShieldRecharge3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2100923162 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
@@ -210,6 +228,7 @@ skill_desc = "Increase Shield Energy Recharge Rate by 100%"
 affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="PointsMult1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1" unique_id=1545074385 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -219,6 +238,7 @@ skill_desc = "Increase the points gained from destroying enemies by  100%"
 affected_stat = 8
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="PointsMult2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=1232149700 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
@@ -228,6 +248,7 @@ skill_desc = "Increase the points gained from destroying enemies by  100%"
 affected_stat = 8
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="PointsMult3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/PointsMult1" unique_id=755153265 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 112)
@@ -237,6 +258,7 @@ skill_desc = "Increase the points gained from destroying enemies by  100%"
 affected_stat = 8
 modifier_type = 1
 modifier_value = 2.0
+skill_cost = 1000
 
 [node name="ShieldTimeout1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled" unique_id=602870779 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, -56)
@@ -246,6 +268,7 @@ skill_desc = "Decrease the timeout before the shields start to recharge when emp
 affected_stat = 6
 modifier_type = 1
 modifier_value = 0.5
+skill_cost = 1000
 
 [node name="ShieldTimeout2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1" unique_id=1047249010 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
@@ -255,6 +278,7 @@ skill_desc = "Decrease the timeout before the shields start to recharge when emp
 affected_stat = 6
 modifier_type = 1
 modifier_value = 0.5
+skill_cost = 1000
 
 [node name="ShieldTimeout3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1/ShieldTimeout2" unique_id=1071680828 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
@@ -264,6 +288,7 @@ skill_desc = "Decrease the timeout before the shields start to recharge when emp
 affected_stat = 6
 modifier_type = 1
 modifier_value = 0.5
+skill_cost = 1000
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true

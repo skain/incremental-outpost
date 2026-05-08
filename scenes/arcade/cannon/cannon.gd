@@ -17,7 +17,6 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_p
 @export var fire_cooldown_base: float = 10.0
 
 var fire_direction: Vector2
-#var can_fire := true
 var cur_state := CannonStates.READY_TO_FIRE
 
 func _ready() -> void:
@@ -34,7 +33,6 @@ func _set_fire_cooldown() -> void:
 func _handle_hit() -> void:		
 	collision_shape_2d.set_deferred("disabled", true)
 	cannon.frame = 1
-	#can_fire = false
 	cur_state = CannonStates.DESTROYED
 	cannon_hit.emit(fire_direction)
 	hit_audio_player.play()
@@ -70,14 +68,13 @@ func add_flash_to_tween(tween: Tween) -> void:
 	
 func reset() -> void:
 	cannon.frame = 0
-	#can_fire = true
 	cur_state = CannonStates.READY_TO_FIRE
 	collision_shape_2d.set_deferred("disabled", false)
 	_set_fire_cooldown()
 	
 	
-#func disable() -> void:
-	#can_fire = false
+func disable() -> void:
+	cur_state = CannonStates.DESTROYED
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -91,4 +88,3 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_radial_cooldown_cooldown_complete() -> void:
 	if cur_state == CannonStates.RECHARGING:
 		cur_state = CannonStates.READY_TO_FIRE
-	#can_fire = true
