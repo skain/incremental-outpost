@@ -4,8 +4,6 @@ signal game_ended
 
 var current_score := 0
 var game_over := true
-var num_enemies_per_wave := 12
-var num_enemies_left_in_current_wave := 0
 
 const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tscn")
 
@@ -24,21 +22,13 @@ func _ready() -> void:
 func start_game() -> void:
 	game_over = false
 	current_score = 0
-	GameManager._set_current_enemy_wave_level(0)
-	_start_new_enemy_wave()
-	enemies.reset_enemies()	
+	enemies.start_new_game()
 	player.reset()
 	arcade_ui.show()
 	player.make_camera_current()
 	_update_ui()
 	_play_startup_sound()
 	_start_bg_music()
-
-
-func _start_new_enemy_wave() -> void:
-	num_enemies_left_in_current_wave = num_enemies_per_wave
-	var cur_wave := GameManager.increment_current_enemy_wave_level()
-	arcade_ui.show_new_wave_message(cur_wave)
 
 
 func _start_bg_music() -> void:
@@ -81,12 +71,7 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.travel_distance = direction
 	text_popup.start(str(points), enemy.global_position)
 	_update_ui()
-	_decrement_and_manage_enemy_wave()
-
-func _decrement_and_manage_enemy_wave() -> void:
-	num_enemies_left_in_current_wave -= 1
-	if num_enemies_left_in_current_wave <= 0:
-		_start_new_enemy_wave()
+	enemies.decrement_and_manage_enemy_wave()
 
 
 func _on_player_player_hit() -> void:	
@@ -103,3 +88,7 @@ func _on_player_shield_energy_ui_update_requested(cur_shield_energy: float, cur_
 
 func _on_player_shield_cooldown_ui_update_requested(shield_cooldown_max: float, shield_cooldown_cur_value: float) -> void:
 	arcade_ui.update_shield_cooldown(shield_cooldown_max, shield_cooldown_cur_value)
+
+
+func _on_enemies_new_enemy_wave_started(wave_number: int) -> void:
+	arcade_ui.show_new_wave_message(wave_number)

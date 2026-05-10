@@ -48,13 +48,13 @@ func set_state(new_state: State) -> void:
 
 ## --- Lifecycle & Actions ---
 
-func reset() -> void:
+func reset(cur_wave_number: int) -> void:
+	enemy_level = cur_wave_number
 	_update_stats()
 	self.current_state = State.RECHARGING
 	debug_label.text = str(enemy_level)
 
 func _update_stats() -> void:
-	enemy_level = GameManager.get_current_enemy_wave_level()
 	var cur_mult := GameManager.skills_manager.get_points_multiplier()
 	cur_points = round(enemy_level * cur_mult * BASE_POINTS)
 

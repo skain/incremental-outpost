@@ -102,19 +102,3 @@ func has_nodes_registered() -> bool:
 func _delete_save_game() -> void:
 	if ResourceLoader.exists(SAVE_DATA_PATH):
 		DirAccess.remove_absolute(SAVE_DATA_PATH)
-
-#region EnemyWaveManagement
-# Note: Enemy wave management is in game manager rather than arcade game because enemies need 
-# easy access to it.
-func get_current_enemy_wave_level() -> int:
-	return _current_enemy_wave_level
-	
-
-func _set_current_enemy_wave_level(new_level: int) -> void:
-	_current_enemy_wave_level = new_level
-
-
-func increment_current_enemy_wave_level() -> int:
-	_set_current_enemy_wave_level(_current_enemy_wave_level + 1)
-	return get_current_enemy_wave_level()
-#endregion
