@@ -35,12 +35,16 @@ func start_new_game() -> void:
 	start_new_enemy_wave()
 
 
-func decrement_and_manage_enemy_wave() -> void:
+func _decrement_and_manage_enemy_wave() -> void:
 	num_enemies_left_in_current_wave -= 1
 	if num_enemies_left_in_current_wave <= 0:
 		start_new_enemy_wave()
 
 
-func connect_hit_handler(handler: Callable) -> void:
-	for enemy in _enemies:
-		enemy.enemy_hit.connect(handler)
+#func connect_hit_handler(handler: Callable) -> void:
+	#for enemy in _enemies:
+		#enemy.enemy_hit.connect(handler)
+
+
+func _on_enemy_hit(enemy: Enemy) -> void:
+	_decrement_and_manage_enemy_wave()

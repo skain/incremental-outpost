@@ -16,7 +16,7 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 
 func _ready() -> void:
 	enemies.disable_enemies()
-	enemies.connect_hit_handler(_on_enemy_hit)
+	#enemies.connect_hit_handler(_on_enemy_hit)
 		
 		
 func start_game() -> void:
@@ -71,7 +71,7 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.travel_distance = direction
 	text_popup.start(str(points), enemy.global_position)
 	_update_ui()
-	enemies.decrement_and_manage_enemy_wave()
+	#enemies.decrement_and_manage_enemy_wave()
 
 
 func _on_player_player_hit() -> void:	
