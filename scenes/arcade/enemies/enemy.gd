@@ -59,11 +59,11 @@ func _update_stats() -> void:
 	cur_points = round(enemy_level * cur_mult * BASE_POINTS)
 
 func _start_shoot_timer() -> void:
-	var cur_delay: float = GameMath.get_scaled_value(base_shoot_delay, enemy_level, -1.1)
+	var cur_delay: float = GameMath.get_exponential_decay(base_shoot_delay, enemy_level, 0.9)
 	shoot_timer.start(cur_delay + randf_range(.2, 1.2))
 
 func _start_revive_timer() -> void:
-	var delay: float = GameMath.get_scaled_value(base_revive_delay + randf_range(0, 5), enemy_level, -1.1)
+	var delay: float = GameMath.get_exponential_decay(base_revive_delay + randf_range(0, 5), enemy_level, 0.9)
 	revive_timer.start(delay)
 
 func _fire_projectile() -> void:

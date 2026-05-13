@@ -3,7 +3,7 @@ class_name EnemiesContainer extends Node2D
 signal new_enemy_wave_started(wave_number: int)
 
 var cur_wave := 0
-var num_enemies_per_wave := 12
+var num_enemies_per_wave := 6
 var num_enemies_left_in_current_wave := 0
 var _enemies: Array[Enemy] = []
 
