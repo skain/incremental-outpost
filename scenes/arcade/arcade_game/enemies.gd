@@ -13,21 +13,38 @@ func _ready() -> void:
 		_enemies.append(node)
 
 
-func reset_enemies() -> void:
+func _reset_enemies() -> void:
 	for enemy in _enemies:
 		enemy.reset(cur_wave)
 
 
 func disable_enemies() -> void:
 	for enemy in _enemies:
-		enemy.current_state = Enemy.State.DISABLED
+		enemy.disable()
+
+
+func _disable_enemy_spawning() -> void:
+	for enemy in _enemies:
+		enemy.disable_spawning()
 
 
 func start_new_enemy_wave() -> void:
 	num_enemies_left_in_current_wave = num_enemies_per_wave
 	cur_wave += 1
-	reset_enemies()
+	#_reset_enemies()
+	_disable_enemy_spawning()
+	
+	# This is a lame work around to keeping track of live enemies
+	if cur_wave > 1:
+		await get_tree().create_timer(5).timeout
+	
+	_reset_enemies()
 	new_enemy_wave_started.emit(cur_wave)
+
+
+func _check_enemies_exist() -> bool:
+	var enemy := get_tree().get_first_node_in_group("Enemy")
+	return true if enemy else false
 
 
 func start_new_game() -> void:

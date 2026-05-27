@@ -17,7 +17,7 @@ shader_parameter/flash_color = Color(1.6938539, 1.6938539, 1.6938539, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(63.66667, 10.333334)
 
-[node name="Enemy" type="Area2D" unique_id=579912282]
+[node name="Enemy" type="Area2D" unique_id=579912282 groups=["Enemy"]]
 scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 8

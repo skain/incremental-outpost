@@ -38,6 +38,13 @@ window/size/viewport_width=640
 window/size/viewport_height=640
 window/stretch/mode="viewport"
 
+[global_group]
+
+Enemy=""
+Player=""
+EnemyProjectile=""
+PlayerProjectile=""
+
 [gui]
 
 theme/custom_font="uid://bpm8ad1220rhq"

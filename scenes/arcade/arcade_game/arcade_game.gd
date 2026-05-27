@@ -71,7 +71,6 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.travel_distance = direction
 	text_popup.start(str(points), enemy.global_position)
 	_update_ui()
-	#enemies.decrement_and_manage_enemy_wave()
 
 
 func _on_player_player_hit() -> void:	
