@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxij3"]
 size = Vector2(64, 64)
 
-[node name="PlayerProjectile" type="Area2D" unique_id=123665237]
+[node name="PlayerProjectile" type="Area2D" unique_id=123665237 groups=["PlayerProjectile"]]
 show_behind_parent = true
 collision_layer = 8
 script = ExtResource("1_8fsl8")

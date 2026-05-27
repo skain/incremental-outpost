@@ -52,8 +52,8 @@ func _set_arcade_as_current_view() -> ArcadeGame:
 	current_view.game_ended.connect(_on_arcade_game_game_ended)
 	add_child(current_view)
 	return current_view as ArcadeGame
-	
-	
+
+
 func _set_crt_as_current_view() -> CRTPanel:
 	current_view = crt_scene.instantiate()
 	_connect_crt_signals(current_view)

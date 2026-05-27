@@ -1,9 +1,9 @@
-extends Area2D
-class_name Player
+class_name Player extends Area2D
 
 signal player_hit
 signal shield_energy_ui_update_requested(cur_shield_energy: float, cur_max_shield_energy: float)
 signal shield_cooldown_ui_update_requested(shield_cooldown_max: float, shield_cooldown_cur_value: float)
+signal smart_bomb_triggered
 
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
 @onready var camera_2d: Camera2D = $Camera2D
@@ -16,15 +16,23 @@ var hull_plating := 0
 
 func _process(_delta: float) -> void:
 	if hull_plating > -1:
-		cannons.handle_firing()
+		if not _handle_smart_bomb():
+			cannons.handle_firing()
 
 
 func die() -> void:
-	cannons.disable_cannons()	
+	cannons.disable_cannons()
+
+
+func _handle_smart_bomb() -> bool:
+	if Input.is_action_just_pressed("smart_bomb"):
+		smart_bomb_triggered.emit()
+		return true
+	else:
+		return false
 
 
 func reset() -> void:
-	#hull_plating = int(GameManager.get_modifier_value(SkillTreeNode.AffectedStat.HULL_PLATING))
 	hull_plating = GameManager.skills_manager.get_hull_plating()
 	cannons.reset_cannons()	
 	shields.reset()

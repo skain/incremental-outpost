@@ -52,6 +52,7 @@ func _input(event: InputEvent) -> void:
 			_apply_shield_logic()
 			break
 
+
 func reset() -> void:
 	shields_enabled = GameManager.skills_manager.get_shields_enabled()
 	cur_shield_energy_max = GameManager.skills_manager.get_shield_max_energy()
@@ -88,7 +89,6 @@ func _process(delta: float) -> void:
 	
 	if not is_shield_charge_available:
 		shield_cooldown_updated.emit(shield_timeout_timer.wait_time, shield_timeout_timer.time_left)
-	
 
 
 func _shut_down_shields() -> void:
@@ -97,6 +97,7 @@ func _shut_down_shields() -> void:
 	right_shield.shield_off()
 	bottom_shield.shield_off()
 	left_shield.shield_off()
+
 
 func _apply_shield_logic() -> void:
 	if shields_enabled == false:

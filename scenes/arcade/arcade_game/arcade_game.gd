@@ -16,7 +16,6 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 
 func _ready() -> void:
 	enemies.disable_enemies()
-	#enemies.connect_hit_handler(_on_enemy_hit)
 		
 		
 func start_game() -> void:
@@ -34,8 +33,8 @@ func start_game() -> void:
 func _start_bg_music() -> void:
 	if not bg_music_player.playing:
 		bg_music_player.play()
-		
-	
+
+
 func _play_startup_sound() -> void:	
 	for i in range(6):
 		SfxManager.play_sfx(game_start_sound, global_position)
@@ -61,6 +60,30 @@ func _update_ui() -> void:
 	arcade_ui.update_ui(current_score, player.hull_plating)	
 
 
+func _handle_smart_bomb() -> void:
+	_destroy_all_projectiles()
+	_smart_bomb_all_enemies()
+	await get_tree().create_timer(3).timeout
+	enemies.reset_enemies()
+
+
+func _smart_bomb_all_enemies() -> void:
+	var enemies : Array[Enemy] = []
+	enemies.assign(get_tree().get_nodes_in_group("Enemy"))
+	
+	for e in enemies:
+		e.process_smart_bomb_hit()
+
+
+func _destroy_all_projectiles() -> void:
+	var projectiles := get_tree().get_nodes_in_group("PlayerProjectile")
+	projectiles.append(get_tree().get_nodes_in_group("EnemyProjectile"))
+	
+	for p in projectiles:
+		p.call_deferred("queue_free")
+
+
+# Signal Handlers
 func _on_enemy_hit(enemy: Enemy) -> void:
 	var points := enemy.cur_points
 	current_score += points
@@ -91,3 +114,7 @@ func _on_player_shield_cooldown_ui_update_requested(shield_cooldown_max: float, 
 
 func _on_enemies_new_enemy_wave_started(wave_number: int) -> void:
 	arcade_ui.show_new_wave_message(wave_number)
+
+
+func _on_player_smart_bomb_triggered() -> void:
+	_handle_smart_bomb()

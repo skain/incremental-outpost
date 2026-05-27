@@ -39,6 +39,7 @@ func reset(cur_wave_number: int) -> void:
 	
 	debug_label.text = str(enemy_level)
 
+
 func disable() -> void:
 	visible = false
 	collision_shape_2d.set_deferred("disabled", true)
@@ -50,6 +51,11 @@ func disable() -> void:
 func disable_spawning() -> void:
 	revive_timer.stop()
 	self._current_state = State.SPAWN_DISABLED
+
+
+func process_smart_bomb_hit() -> void:
+	enemy_hit.emit(self)
+	disable()
 
 
 func _update_stats() -> void:
