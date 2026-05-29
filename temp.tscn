@@ -1,26 +1,14 @@
 [gd_scene format=3 uid="uid://ion13oa2cn05"]
 
-[ext_resource type="Shader" uid="uid://cun25hv62rgas" path="res://shaders/smart_bomb.gdshader" id="1_pippe"]
+[ext_resource type="Script" uid="uid://bfovtj31oahho" path="res://temp.gd" id="1_k81e3"]
 [ext_resource type="Texture2D" uid="uid://cla8b7wp3ab71" path="res://assets/enemy1.png" id="1_ufh25"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufh25"]
-shader = ExtResource("1_pippe")
-shader_parameter/active = false
-shader_parameter/use_negative = false
-shader_parameter/use_black_and_white = false
+[ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="3_f68d1"]
 
 [node name="Node2D" type="Node2D" unique_id=644554449]
+script = ExtResource("1_k81e3")
 
 [node name="Enemy1" type="Sprite2D" parent="." unique_id=1097788030]
 position = Vector2(151, 207)
 texture = ExtResource("1_ufh25")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835690506]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=100491166]
-material = SubResource("ShaderMaterial_ufh25")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SmartBombScreenEffect" parent="." unique_id=1293995340 instance=ExtResource("3_f68d1")]

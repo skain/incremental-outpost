@@ -8,10 +8,12 @@ var root_node: SkillTreeNode = null
 @onready var skill_tree_camera: Camera2D = %SkillTreeCamera
 @onready var skill_tree_ui: SkillTreeUI = %SkillTreeUI
 @onready var skill_tree_music: AudioStreamPlayer = %SkillTreeMusic
+@onready var return_to_outpost_button: Button = %ReturnToOutpostButton
 
 func _ready() -> void:
 	root_node = get_child(0) as SkillTreeNode
 	_connect_skill_node_signals()
+	return_to_outpost_button.grab_focus()
 	
 	
 func _connect_skill_node_signals() -> void:

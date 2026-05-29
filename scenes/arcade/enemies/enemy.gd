@@ -54,8 +54,9 @@ func disable_spawning() -> void:
 
 
 func process_smart_bomb_hit() -> void:
-	enemy_hit.emit(self)
-	disable()
+	if _current_state == State.SPAWNED:
+		enemy_hit.emit(self)
+		disable()
 
 
 func _update_stats() -> void:

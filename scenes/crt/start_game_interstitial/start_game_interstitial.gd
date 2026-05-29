@@ -9,6 +9,7 @@ signal continue_game_clicked
 
 @onready var title_label: Label = %TitleLabel
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var new_game_button: Button = %NewGameButton
 @onready var continue_button: Button = %ContinueButton
 @onready var new_game_modal: PanelContainer = %NewGameModal
 
@@ -22,6 +23,10 @@ func _ready() -> void:
 
 func show_interstitial() -> void:
 	continue_button.disabled = GameManager.game_data.is_new_game
+	if continue_button.disabled:
+		new_game_button.grab_focus()
+	else:
+		continue_button.grab_focus()
 	show()
 	_pulse_title()
 	audio_stream_player.play()

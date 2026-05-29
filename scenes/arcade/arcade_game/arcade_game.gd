@@ -13,6 +13,7 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 @onready var player: Player = %Player
 @onready var enemies: EnemiesContainer = %Enemies
 @onready var arcade_ui: ArcadeUI = %ArcadeUI
+@onready var smart_bomb_screen_effect: SmartBombScreenEffect = %SmartBombScreenEffect
 
 func _ready() -> void:
 	enemies.disable_enemies()
@@ -61,6 +62,9 @@ func _update_ui() -> void:
 
 
 func _handle_smart_bomb() -> void:
+	get_tree().paused = true
+	await smart_bomb_screen_effect.trigger()
+	get_tree().paused = false
 	_destroy_all_projectiles()
 	_smart_bomb_all_enemies()
 	await get_tree().create_timer(3).timeout
@@ -77,7 +81,7 @@ func _smart_bomb_all_enemies() -> void:
 
 func _destroy_all_projectiles() -> void:
 	var projectiles := get_tree().get_nodes_in_group("PlayerProjectile")
-	projectiles.append(get_tree().get_nodes_in_group("EnemyProjectile"))
+	projectiles.append_array(get_tree().get_nodes_in_group("EnemyProjectile"))
 	
 	for p in projectiles:
 		p.call_deferred("queue_free")

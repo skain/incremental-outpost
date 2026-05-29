@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/arcade/enemies/enemy1.tscn" id="4_i5osn"]
 [ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="5_leafu"]
 [ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="6_7p05h"]
+[ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="9_leafu"]
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
 process_mode = 1
@@ -56,6 +57,9 @@ bus = &"Music"
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=467714390]
 visible = false
 color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="SmartBombScreenEffect" parent="." unique_id=1293995340 instance=ExtResource("9_leafu")]
+unique_name_in_owner = true
 
 [node name="ArcadeUI" parent="." unique_id=1381448654 instance=ExtResource("6_7p05h")]
 unique_name_in_owner = true
