@@ -7,6 +7,7 @@
 shader = ExtResource("1_elaqb")
 shader_parameter/use_negative = false
 shader_parameter/use_black_and_white = false
+shader_parameter/preserve_blacks = true
 
 [node name="SmartBombScreenEffect" type="CanvasLayer" unique_id=1293995340]
 process_mode = 3
