@@ -15,12 +15,18 @@ var new_wave_label_tween: Tween
 
 
 func _ready() -> void:
+	_connect_signals()
 	shield_cooldown_progress_bar.hide()
 	var enabled := GameManager.skills_manager.get_shields_enabled()
 	if enabled:
 		shield_energy_h_box_container.show()
 	else:
 		shield_energy_h_box_container.hide()
+
+
+func _connect_signals() -> void:
+	SignalBus.shield_cooldown_updated.connect(update_shield_cooldown)
+	SignalBus.shield_energy_updated.connect(update_shield_energy)
 
 
 func update_ui(score: int, player_hull_plating: int) -> void:

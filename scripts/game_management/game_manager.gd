@@ -33,11 +33,6 @@ func set_points(new_points: int) -> void:
 	game_data.current_points = new_points
 
 	
-#func get_points_to_bucks_rate() -> float:
-	#logic to handle upgrades to conversion rate will go here
-	#return _base_points_to_bucks_rate * get_modifier_value(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
-
-	
 func convert_points_to_bucks() -> int:
 	var new_bucks:int = floor(game_data.current_points * skills_manager.get_points_to_bucks_conversion_rate())
 	set_points(0)

@@ -108,14 +108,6 @@ func _on_player_player_hit() -> void:
 	_update_ui()
 
 
-func _on_player_shield_energy_ui_update_requested(cur_shield_energy: float, cur_shield_energy_max: float) -> void:
-	arcade_ui.update_shield_energy(cur_shield_energy, cur_shield_energy_max)
-
-
-func _on_player_shield_cooldown_ui_update_requested(shield_cooldown_max: float, shield_cooldown_cur_value: float) -> void:
-	arcade_ui.update_shield_cooldown(shield_cooldown_max, shield_cooldown_cur_value)
-
-
 func _on_enemies_new_enemy_wave_started(wave_number: int) -> void:
 	arcade_ui.show_new_wave_message(wave_number)
 

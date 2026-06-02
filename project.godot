@@ -27,6 +27,7 @@ buses/default_bus_layout="uid://bifferrg6qgy1"
 
 GameManager="*uid://cdiidqaiwcbef"
 SfxManager="*uid://b0ijv4ulsrdui"
+SignalBus="*uid://clwkay8xbtwrr"
 
 [debug]
 

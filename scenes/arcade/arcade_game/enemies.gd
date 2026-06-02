@@ -31,7 +31,6 @@ func _disable_enemy_spawning() -> void:
 func start_new_enemy_wave() -> void:
 	num_enemies_left_in_current_wave = num_enemies_per_wave
 	cur_wave += 1
-	#reset_enemies()
 	_disable_enemy_spawning()
 	
 	# This is a lame work around to keeping track of live enemies
