@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://vdwnqeg6jjbo" path="res://assets/skill_tree/icons/shield-energy-drain-icon.png" id="8_tnsbc"]
 [ext_resource type="Texture2D" uid="uid://bcfhbhus6xgay" path="res://assets/skill_tree/icons/bucks-icon.png" id="9_2mml3"]
 [ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="11_s7fn8"]
+[ext_resource type="Texture2D" uid="uid://c21e5rnev3e4x" path="res://assets/skill_tree/icons/smart-bomb-icon.png" id="12_sdl0q"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
 load_path = "res://.godot/imported/shield-energy-recharge-icon.png-7e9f7ba423e908a429e2a9f975ff1882.ctex"
@@ -288,6 +289,33 @@ skill_desc = "Decrease the timeout before the shields start to recharge when emp
 affected_stat = 6
 modifier_type = 1
 modifier_value = 0.5
+skill_cost = 1000
+
+[node name="SmartBomb1" parent="CannonCooldown1/StorySkillTreeNode1" unique_id=1325372915 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("12_sdl0q")
+skill_name = "Smart Bomb Enabled"
+skill_desc = "Adds a single-use smart bomb to your arsenal Deploy with Space bar to instantly elminate all enemies and projectiles on-screen."
+affected_stat = 9
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="SmartBomb2" parent="CannonCooldown1/StorySkillTreeNode1/SmartBomb1" unique_id=59450812 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("12_sdl0q")
+skill_name = "Add 2 Smart Bombs"
+skill_desc = "Adds two more smart bombs to your arsenal."
+affected_stat = 9
+modifier_value = 2.0
+skill_cost = 100
+
+[node name="SmartBomb3" parent="CannonCooldown1/StorySkillTreeNode1/SmartBomb1/SmartBomb2" unique_id=1419088507 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("12_sdl0q")
+skill_name = "Add 3 More Smart Bombs"
+skill_desc = "Adds3 more smart bombs."
+affected_stat = 9
+modifier_value = 3.0
 skill_cost = 1000
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
