@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://ion13oa2cn05"]
 
 [ext_resource type="Script" uid="uid://bfovtj31oahho" path="res://temp.gd" id="1_k81e3"]
-[ext_resource type="Texture2D" uid="uid://cla8b7wp3ab71" path="res://assets/enemy1.png" id="1_ufh25"]
-[ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="3_f68d1"]
+[ext_resource type="Texture2D" uid="uid://npeeevesdgsd" path="res://assets/smart-bomb-ui-icon.png" id="2_ufh25"]
 
 [node name="Node2D" type="Node2D" unique_id=644554449]
 script = ExtResource("1_k81e3")
 
-[node name="Enemy1" type="Sprite2D" parent="." unique_id=1097788030]
-position = Vector2(151, 207)
-texture = ExtResource("1_ufh25")
-
-[node name="SmartBombScreenEffect" parent="." unique_id=1293995340 instance=ExtResource("3_f68d1")]
+[node name="SmartBombUiIcon" type="Sprite2D" parent="." unique_id=788225489]
+modulate = Color(0.47058824, 0.47058824, 0.47058824, 1)
+position = Vector2(274, 223)
+texture = ExtResource("2_ufh25")

@@ -1,5 +1,6 @@
 class_name ArcadeUI extends CanvasLayer
 
+const SMART_BOMB_UI_ICON : Texture2D = preload("uid://npeeevesdgsd")
 const TOTAL_MAX_SHIELD_ENERGY := 300.0
 
 @onready var score_value: Label = %ScoreValue
@@ -10,6 +11,7 @@ const TOTAL_MAX_SHIELD_ENERGY := 300.0
 @onready var shield_energy_h_box_container: HBoxContainer = %ShieldEnergyHBoxContainer
 @onready var shield_progress_bar: ProgressBar = %ShieldProgressBar
 @onready var shield_cooldown_progress_bar: TextureProgressBar = %ShieldCooldownProgressBar
+@onready var smart_bombs_h_box_container: HBoxContainer = %SmartBombsHBoxContainer
 
 var new_wave_label_tween: Tween
 
@@ -27,6 +29,7 @@ func _ready() -> void:
 func _connect_signals() -> void:
 	SignalBus.shield_cooldown_updated.connect(update_shield_cooldown)
 	SignalBus.shield_energy_updated.connect(update_shield_energy)
+	SignalBus.smart_bombs_updated.connect(update_smart_bombs)
 
 
 func update_ui(score: int, player_hull_plating: int) -> void:
@@ -46,6 +49,24 @@ func update_shield_cooldown(shield_cooldown_max: float, shield_cooldown_cur_valu
 		shield_cooldown_progress_bar.max_value = shield_cooldown_max
 		shield_cooldown_progress_bar.value = shield_cooldown_max - shield_cooldown_cur_value
 		shield_cooldown_progress_bar.show()
+
+
+func update_smart_bombs(smart_bombs_max: int, smart_bombs_left: int) -> void:
+	#delete all children
+	for c in smart_bombs_h_box_container.get_children():
+		c.queue_free()
+	#add new texturerects for each bomb
+	#modulate used bomb color
+	for i in range(smart_bombs_max):
+		var t := TextureRect.new()
+		t.texture = SMART_BOMB_UI_ICON
+		
+		if (i + 1) > smart_bombs_left:
+			t.modulate = Color(0.471, 0.471, 0.471)
+		else:
+			pass
+		
+		smart_bombs_h_box_container.add_child(t)
 
 
 func _set_player_hull_plating(player_hull_plating: int) -> void:

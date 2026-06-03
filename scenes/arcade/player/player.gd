@@ -10,6 +10,9 @@ signal smart_bomb_triggered
 @onready var shields: ShieldsManager = %Shields
 
 var hull_plating := 0
+var smart_bombs_max := 0
+var smart_bombs_left := 0
+var is_dead := false
 
 
 func _process(_delta: float) -> void:
@@ -19,19 +22,27 @@ func _process(_delta: float) -> void:
 
 
 func die() -> void:
+	is_dead = true
 	cannons.disable_cannons()
 
 
 func _handle_smart_bomb() -> bool:
-	if Input.is_action_just_pressed("smart_bomb"):
+	if Input.is_action_just_pressed("smart_bomb") and not is_dead and smart_bombs_left > 0:
+		smart_bombs_left -= 1
+		_update_smart_bombs_ui()
 		smart_bomb_triggered.emit()
+		_shake_camera(15.0, 0.25)
 		return true
 	else:
 		return false
 
 
 func reset() -> void:
+	is_dead = false
 	hull_plating = GameManager.skills_manager.get_hull_plating()
+	smart_bombs_max = GameManager.skills_manager.get_num_smart_bombs()
+	smart_bombs_left = smart_bombs_max
+	_update_smart_bombs_ui()
 	cannons.reset_cannons()	
 	shields.reset()
 
@@ -65,11 +76,14 @@ func _hit_flash() -> void:
 func _shake_camera(intensity: float, duration: float) -> void:
 	var shake_tween := create_tween()
 
-	# We use TRANS_SINE or TRANS_QUAD for a "snappy" feel
 	for i in range(5):
 		var offset := Vector2(randf_range(-1, 1), randf_range(-1, 1)) * intensity
 		shake_tween.tween_property(camera_2d, "offset", offset, duration / 10.0).set_trans(Tween.TRANS_SINE)
 		shake_tween.tween_property(camera_2d, "offset", Vector2.ZERO, duration / 10.0).set_trans(Tween.TRANS_SINE)
+
+
+func _update_smart_bombs_ui() -> void:
+	SignalBus.smart_bombs_updated.emit(smart_bombs_max, smart_bombs_left)
 
 
 func _on_cannon_hit(_cannon_direction: Vector2) -> void:
