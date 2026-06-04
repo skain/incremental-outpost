@@ -25,7 +25,9 @@ var modifiers := {
 	SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE:
 		BucksConversionRateModifier.new(),
 	SkillTreeNode.AffectedStat.POINTS_MULTIPLIER:
-		PointsMultiplierModifier.new()
+		PointsMultiplierModifier.new(),
+	SkillTreeNode.AffectedStat.NUM_SMART_BOMBS:
+		SmartBombsModifier.new()
 }
 
 
@@ -100,3 +102,8 @@ func get_hull_plating() -> int:
 func get_points_multiplier() -> float:
 	var pm := _get_modifier_value(SkillTreeNode.AffectedStat.POINTS_MULTIPLIER)
 	return pm
+
+
+func get_num_smart_bombs() -> int:
+	var smart_bombs := int(_get_modifier_value(SkillTreeNode.AffectedStat.NUM_SMART_BOMBS))
+	return smart_bombs

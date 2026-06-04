@@ -1,18 +1,10 @@
 class_name ShieldsManager extends Node2D
 
-signal shield_energy_updated(cur_shield_energy: float, cur_shield_energy_max: float)
-signal shield_cooldown_updated(shield_cooldown_max: float, shield_cooldown_cur_value: float)
-
 @onready var top_shield: Shield = $TopShield
 @onready var right_shield: Shield = $RightShield
 @onready var bottom_shield: Shield = $BottomShield
 @onready var left_shield: Shield = $LeftShield
 @onready var shield_timeout_timer: Timer = %ShieldTimeoutTimer
-
-#@export var base_shield_energy_max := 10.0
-#@export var base_shield_drain_rate := 30.0
-#@export var base_shield_charge_rate := 0.25
-#@export var base_shield_timeout := 5.0
 
 var active_inputs: Array[String] = []
 var shields_enabled := false
@@ -62,7 +54,7 @@ func reset() -> void:
 	
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max
-		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
+		SignalBus.shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 
 
 func _process(delta: float) -> void:
@@ -80,7 +72,7 @@ func _process(delta: float) -> void:
 
 	if energy_changed:
 		cur_shield_energy = clamp(new_shield_energy, 0, cur_shield_energy_max)
-		shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
+		SignalBus.shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 
 	if is_shield_on and cur_shield_energy <= 0.0:
 		_shut_down_shields()
@@ -88,7 +80,7 @@ func _process(delta: float) -> void:
 		shield_timeout_timer.start()
 	
 	if not is_shield_charge_available:
-		shield_cooldown_updated.emit(shield_timeout_timer.wait_time, shield_timeout_timer.time_left)
+		SignalBus.shield_cooldown_updated.emit(shield_timeout_timer.wait_time, shield_timeout_timer.time_left)
 
 
 func _shut_down_shields() -> void:
@@ -129,4 +121,4 @@ func _apply_shield_logic() -> void:
 
 func _on_shield_timeout_timer_timeout() -> void:
 	is_shield_charge_available = true
-	shield_cooldown_updated.emit(shield_timeout_timer.wait_time, 0)
+	SignalBus.shield_cooldown_updated.emit(shield_timeout_timer.wait_time, 0)

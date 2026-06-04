@@ -3,7 +3,7 @@ class_name SkillTreeNode extends SkillTreeNodeBase
 
 enum AffectedStat { 
 	CANNON_COOLDOWN, HULL_PLATING, SHIELDS_ENABLED, SHIELD_MAX_ENERGY, SHIELD_DRAIN_RATE, SHIELD_CHARGE_RATE, SHIELD_TIMEOUT,
-	BUCKS_CONVERSION_RATE, POINTS_MULTIPLIER
+	BUCKS_CONVERSION_RATE, POINTS_MULTIPLIER, NUM_SMART_BOMBS
 }
 enum ModifierType { ADD, MULTIPLY, ENABLE }
 
@@ -13,10 +13,6 @@ enum ModifierType { ADD, MULTIPLY, ENABLE }
 @export var affected_stat: AffectedStat
 @export var modifier_type: ModifierType
 @export var modifier_value: float
-
-
-
-
 
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

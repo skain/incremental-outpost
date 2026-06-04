@@ -65,8 +65,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
-[connection signal="shield_cooldown_ui_update_requested" from="Player" to="." method="_on_player_shield_cooldown_ui_update_requested"]
-[connection signal="shield_energy_ui_update_requested" from="Player" to="." method="_on_player_shield_energy_ui_update_requested"]
 [connection signal="smart_bomb_triggered" from="Player" to="." method="_on_player_smart_bomb_triggered"]
 [connection signal="new_enemy_wave_started" from="Enemies" to="." method="_on_enemies_new_enemy_wave_started"]
 [connection signal="enemy_hit" from="Enemies/EnemyLeft" to="." method="_on_enemy_hit"]
