@@ -1,6 +1,9 @@
 @tool
 class_name SmartBombScreenEffect extends CanvasLayer
 
+@onready var whoosh_player: AudioStreamPlayer = %WhooshPlayer
+@onready var explosion_player: AudioStreamPlayer = %ExplosionPlayer
+
 @onready var color_rect: ColorRect = $ColorRect
 @onready var mat := color_rect.material as ShaderMaterial
 
@@ -29,19 +32,31 @@ func _ready() -> void:
 		hide()
 
 func trigger() -> void:
+	whoosh_player.play()
 	show()
 	var tween := create_tween()
 	
 	for i in range(0,1):
+		_add_explosion_sound(tween)
 		_add_negative_preserve_blacks(tween, 0.15)
+		_add_explosion_sound(tween)
 		_add_negative(tween, 0.01)
+		_add_explosion_sound(tween)
 		_add_negative_bw_preserve_blacks(tween, 0.15)
+		_add_explosion_sound(tween)
 		_add_bw(tween, 0.15)
+		_add_explosion_sound(tween)
 		_add_normal(tween, 0.10)
+		_add_explosion_sound(tween)
 		_add_negative_bw_preserve_blacks(tween, 0.25)
 	
 	await tween.finished
 	hide()
+
+
+func _add_explosion_sound(tween: Tween) -> void:
+	if not Engine.is_editor_hint():
+		tween.parallel().tween_callback(explosion_player.play)
 
 
 func _add_negative(tween: Tween, length: float) -> void:
@@ -74,11 +89,11 @@ func _add_negative_bw_preserve_blacks(tween: Tween, length: float) -> void:
 	tween.tween_interval(length)
 
 
-func _add_set_mode(tween: Tween, neg: bool, bw: bool, preserve_blaks: bool = false) -> void:
-	tween.tween_callback(func() -> void: _set_mode(neg, bw, preserve_blacks))
+func _add_set_mode(tween: Tween, neg: bool, bw: bool, blacks: bool = false) -> void:
+	tween.tween_callback(func() -> void: _set_mode(neg, bw, blacks))
 
 
-func _set_mode(neg: bool, bw: bool, preserve_blacks: bool) -> void:
+func _set_mode(neg: bool, bw: bool, blacks: bool) -> void:
 	mat.set_shader_parameter("use_negative", neg)
 	mat.set_shader_parameter("use_black_and_white", bw)
-	mat.set_shader_parameter("preserve_blacks", preserve_blacks)
+	mat.set_shader_parameter("preserve_blacks", blacks)

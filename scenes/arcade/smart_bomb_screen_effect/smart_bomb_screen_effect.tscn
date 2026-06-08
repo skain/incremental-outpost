@@ -2,6 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://cun25hv62rgas" path="res://shaders/smart_bomb.gdshader" id="1_elaqb"]
 [ext_resource type="Script" uid="uid://setphimadq4j" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.gd" id="1_ufoff"]
+[ext_resource type="AudioStream" uid="uid://otcr76os42aq" path="res://assets/sounds/smart-bomb.wav" id="2_kre04"]
+[ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets/sounds/8-bit Sound Library/Explosion_03.wav" id="3_t33w3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ufh25"]
 shader = ExtResource("1_elaqb")
@@ -20,3 +22,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="WhooshPlayer" type="AudioStreamPlayer" parent="." unique_id=1610729766]
+unique_name_in_owner = true
+stream = ExtResource("2_kre04")
+
+[node name="ExplosionPlayer" type="AudioStreamPlayer" parent="." unique_id=1167359932]
+unique_name_in_owner = true
+stream = ExtResource("3_t33w3")
