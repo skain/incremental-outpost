@@ -5,28 +5,28 @@ signal new_enemy_wave_started(wave_number: int)
 var cur_wave := 0
 var num_enemies_per_wave := 6
 var num_enemies_left_in_current_wave := 0
-var _enemies: Array[Enemy] = []
+var _enemy_spawners: Array[Enemy] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.enemy_hit.connect(_on_enemy_hit)
 	for node in find_children("*", "Enemy", false, true):
-		_enemies.append(node)
+		_enemy_spawners.append(node)
 
 
 func reset_enemies() -> void:
-	for enemy in _enemies:
-		enemy.reset(cur_wave)
+	for _enemy_spawner in _enemy_spawners:
+		_enemy_spawner.reset(cur_wave)
 
 
 func disable_enemies() -> void:
-	for enemy in _enemies:
-		enemy.disable()
+	for _enemy_spawner in _enemy_spawners:
+		_enemy_spawner.disable()
 
 
 func _disable_enemy_spawning() -> void:
-	for enemy in _enemies:
-		enemy.disable_spawning()
+	for _enemy_spawner in _enemy_spawners:
+		_enemy_spawner.disable_spawning()
 
 
 func start_new_enemy_wave() -> void:
@@ -43,8 +43,8 @@ func start_new_enemy_wave() -> void:
 
 
 func _check_enemies_exist() -> bool:
-	var enemy := get_tree().get_first_node_in_group("Enemy")
-	return true if enemy else false
+	var _enemy_spawner := get_tree().get_first_node_in_group("Enemy")
+	return true if _enemy_spawner else false
 
 
 func start_new_game() -> void:
@@ -58,5 +58,5 @@ func _decrement_and_manage_enemy_wave() -> void:
 		start_new_enemy_wave()
 
 
-func _on_enemy_hit(enemy: Enemy) -> void:
+func _on_enemy_hit(_enemy_spawner: Enemy) -> void:
 	_decrement_and_manage_enemy_wave()

@@ -11,7 +11,7 @@ const ENEMY_3_SCENE = preload("uid://c645kldb4mfr3")
 
 @export var base_revive_delay: float = 5
 
-var _current_state: State = State.SPAWN_DISABLED
+var _current_state: State = State.SPAWN_ENABLED
 var _cur_wave_number := 1
 
 func _ready() -> void:
@@ -52,6 +52,7 @@ func _get_new_enemy_instance() -> Enemy:
 
 
 func _on_revive_timer_timeout() -> void:
+	print("revive timer timeout")
 	_spawn_new_enemy()
 
 
