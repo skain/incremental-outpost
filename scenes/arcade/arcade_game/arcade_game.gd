@@ -23,6 +23,7 @@ func start_game() -> void:
 	game_over = false
 	current_score = 0
 	enemies.start_new_game()
+	SignalBus.enemy_hit.connect(_on_enemy_hit)
 	player.reset()
 	arcade_ui.show()
 	player.make_camera_current()

@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/arcade/player/player.tscn" id="2_jp8dw"]
 [ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/arcade/arcade_game/enemies.gd" id="3_g57us"]
 [ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_leafu"]
-[ext_resource type="PackedScene" uid="uid://cmc3ik5tigjec" path="res://scenes/arcade/enemies/enemy1.tscn" id="4_i5osn"]
 [ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="5_leafu"]
 [ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="6_7p05h"]
+[ext_resource type="PackedScene" uid="uid://updng07iakhi" path="res://scenes/arcade/enemy_spawner/enemy_spawner.tscn" id="8_7p05h"]
 [ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="9_leafu"]
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
@@ -29,22 +29,22 @@ scale = Vector2(1.25, 1.25)
 unique_name_in_owner = true
 script = ExtResource("3_g57us")
 
-[node name="EnemyLeft" parent="Enemies" unique_id=579912282 instance=ExtResource("4_i5osn")]
+[node name="EnemySpawnerLeft" parent="Enemies" unique_id=1889170751 instance=ExtResource("8_7p05h")]
 position = Vector2(32, 320)
 rotation = 1.5707964
 scale = Vector2(2, 2)
 
-[node name="EnemyTop" parent="Enemies" unique_id=1420555113 instance=ExtResource("4_i5osn")]
+[node name="EnemySpawnerTop" parent="Enemies" unique_id=1268377353 instance=ExtResource("8_7p05h")]
 position = Vector2(320, 32)
 rotation = 3.1415927
 scale = Vector2(2, 2)
 
-[node name="EnemyRight" parent="Enemies" unique_id=1296224430 instance=ExtResource("4_i5osn")]
+[node name="EnemySpawnerRight" parent="Enemies" unique_id=1372424076 instance=ExtResource("8_7p05h")]
 position = Vector2(608, 320)
 rotation = 4.712389
 scale = Vector2(2, 2)
 
-[node name="EnemyBottom" parent="Enemies" unique_id=429286059 instance=ExtResource("4_i5osn")]
+[node name="EnemySpawnerBottom" parent="Enemies" unique_id=1518396717 instance=ExtResource("8_7p05h")]
 position = Vector2(320, 608)
 scale = Vector2(2, 2)
 
@@ -67,11 +67,3 @@ unique_name_in_owner = true
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="smart_bomb_triggered" from="Player" to="." method="_on_player_smart_bomb_triggered"]
 [connection signal="new_enemy_wave_started" from="Enemies" to="." method="_on_enemies_new_enemy_wave_started"]
-[connection signal="enemy_hit" from="Enemies/EnemyLeft" to="." method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyLeft" to="Enemies" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyTop" to="." method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyTop" to="Enemies" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyRight" to="." method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyRight" to="Enemies" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyBottom" to="." method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="Enemies/EnemyBottom" to="Enemies" method="_on_enemy_hit"]

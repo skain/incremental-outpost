@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://updng07iakhi"]
 
+[ext_resource type="Script" uid="uid://cgo4dh5t1o1rf" path="res://scenes/arcade/enemy_spawner/enemy_spawner.gd" id="1_pihh8"]
+[ext_resource type="Texture2D" uid="uid://cla8b7wp3ab71" path="res://assets/enemy1.png" id="2_wg6nm"]
+
 [node name="EnemySpawner" type="Node2D" unique_id=1889170751]
+script = ExtResource("1_pihh8")
+
+[node name="PlaceholderSprite2D" type="Sprite2D" parent="." unique_id=1856087086]
+unique_name_in_owner = true
+texture = ExtResource("2_wg6nm")
+
+[node name="ReviveTimer" type="Timer" parent="." unique_id=1126365104]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="ReviveTimer" to="." method="_on_revive_timer_timeout"]

@@ -41,6 +41,8 @@ func _start_revive_timer() -> void:
 func _spawn_new_enemy() -> void:
 	var enemy := _get_new_enemy_instance()
 	add_child(enemy)
+	enemy.enemy_hit.connect(_on_enemy_hit)
+	enemy.spawn(_cur_wave_number)
 
 
 func _get_new_enemy_instance() -> Enemy:
@@ -51,3 +53,7 @@ func _get_new_enemy_instance() -> Enemy:
 
 func _on_revive_timer_timeout() -> void:
 	_spawn_new_enemy()
+
+
+func _on_enemy_hit(_enemy: Enemy) -> void:
+	pass

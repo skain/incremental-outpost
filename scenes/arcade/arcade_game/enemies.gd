@@ -9,6 +9,7 @@ var _enemies: Array[Enemy] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.enemy_hit.connect(_on_enemy_hit)
 	for node in find_children("*", "Enemy", false, true):
 		_enemies.append(node)
 
