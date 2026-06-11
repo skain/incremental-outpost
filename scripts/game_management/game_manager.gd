@@ -11,7 +11,6 @@ var _skill_nodes_by_name: Dictionary[String, SkillNodeData] = {}
 var _skill_nodes_by_affected_stat: Dictionary = {}
 #var _base_points_to_bucks_rate: float = 0.1
 var skills_manager := SkillsManager.new()
-var _current_enemy_wave_level := 0
 
 
 func _ready() -> void:

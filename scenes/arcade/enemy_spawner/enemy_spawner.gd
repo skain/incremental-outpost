@@ -20,6 +20,7 @@ func _ready() -> void:
 
 
 func reset(cur_wave_number: int) -> void:
+	print("cur wave set to:", cur_wave_number)
 	_cur_wave_number = cur_wave_number	
 	self._current_state = State.SPAWN_ENABLED
 	_start_revive_timer()
@@ -41,7 +42,6 @@ func _start_revive_timer() -> void:
 func _spawn_new_enemy() -> void:
 	var enemy := _get_new_enemy_instance()
 	add_child(enemy)
-	enemy.enemy_hit.connect(_on_enemy_hit)
 	enemy.spawn(_cur_wave_number)
 
 

@@ -11,18 +11,14 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 @export var game_over_sound: AudioStream
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 @onready var player: Player = %Player
-@onready var enemies: EnemiesContainer = %Enemies
+@onready var enemies_container: EnemiesContainer = %Enemies
 @onready var arcade_ui: ArcadeUI = %ArcadeUI
 @onready var smart_bomb_screen_effect: SmartBombScreenEffect = %SmartBombScreenEffect
 
-func _ready() -> void:
-	enemies.disable_enemies()
-		
-		
 func start_game() -> void:
 	game_over = false
 	current_score = 0
-	enemies.start_new_game()
+	enemies_container.start_new_game()
 	SignalBus.enemy_hit.connect(_on_enemy_hit)
 	player.reset()
 	arcade_ui.show()
@@ -49,7 +45,7 @@ func _play_startup_sound() -> void:
 func _end_game() -> void:
 	game_over = true
 	_update_ui()
-	enemies.disable_enemies()
+	enemies_container._disable_enemy_spawning()
 	arcade_ui.hide()
 	player.die()
 	SfxManager.play_sfx(game_over_sound, global_position)
@@ -69,7 +65,7 @@ func _handle_smart_bomb() -> void:
 	_destroy_all_projectiles()
 	_smart_bomb_all_enemies()
 	await get_tree().create_timer(3).timeout
-	enemies.reset_enemies()
+	enemies_container.reset_enemies()
 
 
 func _smart_bomb_all_enemies() -> void:
