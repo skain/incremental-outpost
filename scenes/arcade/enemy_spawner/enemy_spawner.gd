@@ -15,12 +15,10 @@ var _current_state: State = State.SPAWN_ENABLED
 var _cur_wave_number := 1
 
 func _ready() -> void:
-	# placeholder is just for in-editor placement help
 	placeholder_sprite_2d.hide()
 
 
 func reset(cur_wave_number: int) -> void:
-	print("cur wave set to:", cur_wave_number)
 	_cur_wave_number = cur_wave_number	
 	self._current_state = State.SPAWN_ENABLED
 	_start_revive_timer()
@@ -52,9 +50,4 @@ func _get_new_enemy_instance() -> Enemy:
 
 
 func _on_revive_timer_timeout() -> void:
-	print("revive timer timeout")
 	_spawn_new_enemy()
-
-
-func _on_enemy_hit(_enemy: Enemy) -> void:
-	pass

@@ -17,15 +17,16 @@ const BASE_POINTS := 10
 var enemy_level := 1
 var cur_points := BASE_POINTS
 
-func disable() -> void:
-	visible = false
-	collision_shape_2d.set_deferred("disabled", true)
-	shoot_timer.stop()
+#func disable() -> void:
+	#visible = false
+	#collision_shape_2d.set_deferred("disabled", true)
+	#shoot_timer.stop()
 
 
 func process_smart_bomb_hit() -> void:
 	SignalBus.enemy_hit.emit(self)
-	disable()
+	call_deferred("queue_free")
+	#disable()
 
 
 func _update_stats() -> void:
@@ -54,6 +55,14 @@ func spawn(level: int) -> void:
 	_start_shoot_timer()
 	$RevivePlayer.play()
 
+
+
+func _try_shoot() -> void:
+	var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
+	if GameMath.chance_check(cur_chance):
+		_fire_projectile()
+
+
 ## --- Signal Handlers ---
 
 func _on_area_entered(projectile: PlayerProjectile) -> void:
@@ -72,9 +81,7 @@ func _on_area_entered(projectile: PlayerProjectile) -> void:
 
 
 func _on_shoot_timer_timeout() -> void:
-	var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
-	if GameMath.chance_check(cur_chance):
-		_fire_projectile() 
+	_try_shoot() 
 	_start_shoot_timer()
 
 
