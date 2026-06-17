@@ -41,6 +41,7 @@ func _spawn_new_enemy() -> void:
 	var enemy := _get_new_enemy_instance()
 	add_child(enemy)
 	enemy.spawn(_cur_wave_number)
+	SignalBus.enemy_spawned.emit()
 
 
 func _get_new_enemy_instance() -> Enemy:

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cq4qgmrxagqfo" path="res://scenes/arcade/arcade_game/arcade_game.gd" id="1_jp8dw"]
 [ext_resource type="AudioStream" uid="uid://c6nqyyr7inav1" path="res://assets/sounds/8-bit Sound Library/Pickup_03.wav" id="2_i5osn"]
 [ext_resource type="PackedScene" uid="uid://dxvtbudu80b4f" path="res://scenes/arcade/player/player.tscn" id="2_jp8dw"]
-[ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/arcade/arcade_game/enemies.gd" id="3_g57us"]
+[ext_resource type="Script" uid="uid://d1aod3vqtp5fn" path="res://scenes/arcade/arcade_game/enemies_container.gd" id="3_g57us"]
 [ext_resource type="AudioStream" uid="uid://bnxk1kk7ms3qd" path="res://assets/sounds/8-bit Sound Library/Hero_Death_00.wav" id="3_leafu"]
 [ext_resource type="AudioStream" uid="uid://bxrytk1e2bol3" path="res://assets/sounds/music/incremental-outpost-music.wav" id="5_leafu"]
 [ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="6_7p05h"]
@@ -25,23 +25,23 @@ unique_name_in_owner = true
 position = Vector2(320, 320)
 scale = Vector2(1.25, 1.25)
 
-[node name="Enemies" type="Node2D" parent="." unique_id=1968370946]
+[node name="EnemiesContainer" type="Node2D" parent="." unique_id=1968370946]
 unique_name_in_owner = true
 script = ExtResource("3_g57us")
 
-[node name="EnemySpawnerLeft" parent="Enemies" unique_id=1889170751 instance=ExtResource("8_7p05h")]
+[node name="EnemySpawnerLeft" parent="EnemiesContainer" unique_id=1889170751 instance=ExtResource("8_7p05h")]
 position = Vector2(32, 320)
 rotation = 1.5707964
 
-[node name="EnemySpawnerTop" parent="Enemies" unique_id=1268377353 instance=ExtResource("8_7p05h")]
+[node name="EnemySpawnerTop" parent="EnemiesContainer" unique_id=1268377353 instance=ExtResource("8_7p05h")]
 position = Vector2(320, 32)
 rotation = 3.1415927
 
-[node name="EnemySpawnerRight" parent="Enemies" unique_id=1372424076 instance=ExtResource("8_7p05h")]
+[node name="EnemySpawnerRight" parent="EnemiesContainer" unique_id=1372424076 instance=ExtResource("8_7p05h")]
 position = Vector2(608, 320)
 rotation = 4.712389
 
-[node name="EnemySpawnerBottom" parent="Enemies" unique_id=1518396717 instance=ExtResource("8_7p05h")]
+[node name="EnemySpawnerBottom" parent="EnemiesContainer" unique_id=1518396717 instance=ExtResource("8_7p05h")]
 position = Vector2(320, 608)
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1272531663]
@@ -62,4 +62,4 @@ unique_name_in_owner = true
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="smart_bomb_triggered" from="Player" to="." method="_on_player_smart_bomb_triggered"]
-[connection signal="new_enemy_wave_started" from="Enemies" to="." method="_on_enemies_new_enemy_wave_started"]
+[connection signal="new_enemy_wave_started" from="EnemiesContainer" to="." method="_on_enemies_new_enemy_wave_started"]

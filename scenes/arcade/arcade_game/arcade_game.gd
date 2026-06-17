@@ -11,9 +11,9 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 @export var game_over_sound: AudioStream
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 @onready var player: Player = %Player
-@onready var enemies_container: EnemiesContainer = %Enemies
 @onready var arcade_ui: ArcadeUI = %ArcadeUI
 @onready var smart_bomb_screen_effect: SmartBombScreenEffect = %SmartBombScreenEffect
+@onready var enemies_container: EnemiesContainer = %EnemiesContainer
 
 func start_game() -> void:
 	game_over = false

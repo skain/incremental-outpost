@@ -9,7 +9,7 @@ var _enemy_spawners: Array[EnemySpawner] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.enemy_hit.connect(_on_enemy_hit)
+	SignalBus.enemy_spawned.connect(_on_enemy_spawned)
 	for node in find_children("*", "EnemySpawner", false, true):
 		_enemy_spawners.append(node)
 
@@ -29,10 +29,11 @@ func start_new_enemy_wave() -> void:
 	cur_wave += 1
 	_disable_enemy_spawning()
 	
-	# This is a lame work around to keeping track of live enemies
+	# Don't wait for enemies to drain for first wave
 	if cur_wave > 1:
-		await get_tree().create_timer(5).timeout
-	
+		# Wait until there are no previous wave enemies left
+		if _check_enemies_exist():
+			await get_tree().physics_frame
 	reset_enemies()
 	new_enemy_wave_started.emit(cur_wave)
 
@@ -53,5 +54,5 @@ func _decrement_and_manage_enemy_wave() -> void:
 		start_new_enemy_wave()
 
 
-func _on_enemy_hit(_enemy_spawner: Enemy) -> void:
+func _on_enemy_spawned() -> void:
 	_decrement_and_manage_enemy_wave()
