@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bcfhbhus6xgay" path="res://assets/skill_tree/icons/bucks-icon.png" id="9_2mml3"]
 [ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="11_s7fn8"]
 [ext_resource type="Texture2D" uid="uid://c21e5rnev3e4x" path="res://assets/skill_tree/icons/smart-bomb-icon.png" id="12_sdl0q"]
+[ext_resource type="Texture2D" uid="uid://ephu28nmcx1h" path="res://assets/skill_tree/icons/respec-icon.png" id="13_8btny"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
 load_path = "res://.godot/imported/shield-energy-recharge-icon.png-7e9f7ba423e908a429e2a9f975ff1882.ctex"
@@ -51,24 +52,6 @@ skill_desc = "Reduces the cooldown time of all cannons by 50%"
 modifier_type = 1
 modifier_value = 0.5
 skill_cost = 4
-
-[node name="CannonCooldown2" parent="CannonCooldown1" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
-position = Vector2(55, 0)
-texture = ExtResource("4_jlgqv")
-skill_name = "Cannon Cooldown 2"
-skill_desc = "Reduces the cooldown time of all cannons by 25%"
-modifier_type = 1
-modifier_value = 0.75
-skill_cost = 100
-
-[node name="CannonCooldown3" parent="CannonCooldown1/CannonCooldown2" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
-position = Vector2(56, 0)
-texture = ExtResource("4_jlgqv")
-skill_name = "Cannon Cooldown 3"
-skill_desc = "Reduces the cooldown time of all cannons by 25%"
-modifier_type = 1
-modifier_value = 0.75
-skill_cost = 1000
 
 [node name="HullPlating1" parent="CannonCooldown1" unique_id=849825354 instance=ExtResource("2_vt0yg")]
 position = Vector2(-1, -56)
@@ -318,13 +301,40 @@ affected_stat = 9
 modifier_value = 3.0
 skill_cost = 1000
 
+[node name="RespecEnabled" parent="CannonCooldown1" unique_id=106656199 instance=ExtResource("2_vt0yg")]
+position = Vector2(111, 0)
+texture = ExtResource("13_8btny")
+skill_name = "Enable Respec Button"
+skill_desc = "Enabled a button on the skill tree that refunds all bucks spent."
+affected_stat = 10
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="CannonCooldown2" parent="CannonCooldown1/RespecEnabled" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, 0)
+texture = ExtResource("4_jlgqv")
+skill_name = "Cannon Cooldown 2"
+skill_desc = "Reduces the cooldown time of all cannons by 25%"
+modifier_type = 1
+modifier_value = 0.75
+skill_cost = 100
+
+[node name="CannonCooldown3" parent="CannonCooldown1/RespecEnabled" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
+position = Vector2(56, 0)
+texture = ExtResource("4_jlgqv")
+skill_name = "Cannon Cooldown 3"
+skill_desc = "Reduces the cooldown time of all cannons by 25%"
+modifier_type = 1
+modifier_value = 0.75
+skill_cost = 1000
+
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("4_1pgdg")
 
 [node name="SkillNodeInfoContainer" type="CenterContainer" parent="SkillTreeUI" unique_id=1312325578]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -416,6 +426,52 @@ alignment = 1
 layout_mode = 2
 text = "OK"
 
+[node name="RespecConfirmationDialog" type="CenterContainer" parent="SkillTreeUI" unique_id=251293718]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_1c8pd")
+
+[node name="PanelContainer" type="PanelContainer" parent="SkillTreeUI/RespecConfirmationDialog" unique_id=2119541685]
+custom_minimum_size = Vector2(300, 175)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tnsbc")
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillTreeUI/RespecConfirmationDialog/PanelContainer" unique_id=1546953512]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer" unique_id=1569210574]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer/VBoxContainer" unique_id=424593389]
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+text = "Are you sure you want to respec?
+Clicking the Yes button below will refund all of your Bucks and reset all of your skill purchases."
+autowrap_mode = 2
+
+[node name="ConfirmationContainer" type="HBoxContainer" parent="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer" unique_id=2012016019]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="YesRespecButton" parent="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer/ConfirmationContainer" unique_id=1781621754 instance=ExtResource("5_1pgdg")]
+layout_mode = 2
+text = "Yes, Respec"
+
+[node name="NoRespecButton" parent="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer/ConfirmationContainer" unique_id=689723209 instance=ExtResource("5_1pgdg")]
+layout_mode = 2
+text = "Cancel"
+
 [node name="MarginContainer" type="MarginContainer" parent="SkillTreeUI" unique_id=1228764120]
 anchors_preset = 3
 anchor_left = 1.0
@@ -429,13 +485,20 @@ grow_vertical = 0
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SkillTreeUI/MarginContainer" unique_id=1257810734]
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillTreeUI/MarginContainer" unique_id=1921088713]
 layout_mode = 2
+theme_override_constants/separation = 9
 
-[node name="ReturnToOutpostButton" parent="SkillTreeUI/MarginContainer/HBoxContainer" unique_id=70878235 instance=ExtResource("5_1pgdg")]
+[node name="ReturnToOutpostButton" parent="SkillTreeUI/MarginContainer/VBoxContainer" unique_id=70878235 instance=ExtResource("5_1pgdg")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Return to Outpost"
+
+[node name="RespecButton" parent="SkillTreeUI/MarginContainer/VBoxContainer" unique_id=2132127810 instance=ExtResource("5_1pgdg")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Respec"
 
 [node name="MarginContainer2" type="MarginContainer" parent="SkillTreeUI" unique_id=870735799]
 anchors_preset = 1
@@ -473,4 +536,8 @@ bus = &"Music"
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/PanelContainer/MarginContainer/SkillButtonsContainer/BuyButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/PanelContainer/MarginContainer/SkillButtonsContainer/CloseButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SkillTreeUI/SkillNodeInfoContainer/PanelContainer/MarginContainer/StoryButtonsContainer/OkButton" to="SkillTreeUI/SkillNodeInfoContainer" method="_on_buy_button_pressed"]
-[connection signal="pressed" from="SkillTreeUI/MarginContainer/HBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]
+[connection signal="buy_button_pressed" from="SkillTreeUI/RespecConfirmationDialog" to="SkillTreeUI" method="_on_skill_node_info_container_buy_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer/ConfirmationContainer/YesRespecButton" to="SkillTreeUI" method="_on_yes_respec_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/RespecConfirmationDialog/PanelContainer/MarginContainer/ConfirmationContainer/NoRespecButton" to="SkillTreeUI" method="_on_no_respec_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/MarginContainer/VBoxContainer/ReturnToOutpostButton" to="." method="_on_return_to_outpost_button_pressed"]
+[connection signal="pressed" from="SkillTreeUI/MarginContainer/VBoxContainer/RespecButton" to="SkillTreeUI" method="_on_respec_pressed"]

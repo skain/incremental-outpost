@@ -93,6 +93,10 @@ func has_nodes_registered() -> bool:
 	return not _skill_nodes_by_name.is_empty()
 
 
+func respec() -> void:
+	pass
+
+
 func _delete_save_game() -> void:
 	if ResourceLoader.exists(SAVE_DATA_PATH):
 		DirAccess.remove_absolute(SAVE_DATA_PATH)

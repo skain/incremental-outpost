@@ -14,3 +14,7 @@ signal smart_bombs_updated(smart_bombs_max: int, smart_bombs_left: int)
 signal enemy_hit(enemy: Enemy)
 signal enemy_spawned()
 #endregion
+
+#region skill tree signals
+signal respec_requested()
+#endregion

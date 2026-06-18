@@ -19,6 +19,7 @@ var current_sub_view: Node = null
 var save_icon_tween: Tween = null
 
 func _ready() -> void:
+	SignalBus.respec_requested.connect(_on_respec_requested)
 	# Initial state is usually off/hidden until run_ functions are called
 	_screen_off() 
 
@@ -78,7 +79,7 @@ func _save_game() -> void:
 	#await end_game_interstitial.run_interstitial()
 	#await get_tree().create_timer(2.0).timeout
 	#await _power_down()
-	
+
 
 func _show_save_icon() -> void:
 	if save_icon_tween:
@@ -103,19 +104,23 @@ func _show_save_icon() -> void:
 	
 	save_icon_tween.finished.connect(_on_save_icon_tween_finished)
 
+
 func _power_up() -> void:
 	await _animate_power(0.0, 1.0)
-	
-	
+
+
 func _power_down() -> void:
 	await _animate_power(1.0, 0.0)
-	
+
+
 func _screen_off() -> void:
 	crt_shader_mat.set_shader_parameter("power_on", 0.0)
-	
+
+
 func _animate_power(from: float, to: float) -> void:
 	# Create a Tween to animate it turning on
 	var tween := create_tween()
+
 
 	# We use tween_property with the "shader_parameter/" prefix.
 	# .from(0.0) forces it to start completely black every time!
@@ -127,6 +132,7 @@ func _animate_power(from: float, to: float) -> void:
 	).from(from).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	
 	await tween.finished
+
 
 #signal handlers	
 func _on_save_icon_tween_finished() -> void:
@@ -142,16 +148,25 @@ func _on_new_game_screen_complete() -> void:
 	GameManager.game_data.is_new_game = false
 	await _power_down()
 	new_game_clicked.emit()
-	
-	
+
+
 func _on_continue_game_clicked() -> void:
 	run_skill_tree()
+
 
 func _on_return_requested() -> void:
 	_save_game()
 	await _power_down() 
 	return_to_outpost_clicked.emit()
 
+
 func _on_upgrade_clicked() -> void:
 	_save_game()
 	run_skill_tree()
+
+
+func _on_respec_requested() -> void:
+	await _power_down()
+	GameManager.respec()
+	run_skill_tree()
+	await _power_up()

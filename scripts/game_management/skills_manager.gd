@@ -27,7 +27,9 @@ var modifiers := {
 	SkillTreeNode.AffectedStat.POINTS_MULTIPLIER:
 		PointsMultiplierModifier.new(),
 	SkillTreeNode.AffectedStat.NUM_SMART_BOMBS:
-		SmartBombsModifier.new()
+		SmartBombsModifier.new(),
+	SkillTreeNode.AffectedStat.RESPEC_ENABLED:
+		RespecEnabledModifier.new()
 }
 
 
@@ -104,6 +106,12 @@ func get_points_multiplier() -> float:
 	return pm
 
 
+# Max number of smart bombs available
 func get_num_smart_bombs() -> int:
 	var smart_bombs := int(_get_modifier_value(SkillTreeNode.AffectedStat.NUM_SMART_BOMBS))
 	return smart_bombs
+
+
+# Controls whether the skill tree respec button is available for use.
+func get_respec_enabled() -> bool:
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RESPEC_ENABLED))
