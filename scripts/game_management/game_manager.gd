@@ -94,7 +94,21 @@ func has_nodes_registered() -> bool:
 
 
 func respec() -> void:
-	pass
+	var story_node_names :Array[String] = []
+	for purchased :String in game_data.purchased_node_names:
+		if purchased.begins_with("StorySkillTreeNode"):
+			# save node to add back to purchased
+			story_node_names.append(purchased)
+		else:
+			# refund bucks spent on node
+			var node_data := _skill_nodes_by_name[purchased]
+			game_data.current_bucks += node_data.skill_cost
+			pass
+	
+	#rebuild game_data.purchased_node_names with just story nodes
+	game_data.purchased_node_names = story_node_names
+	
+	save_game()
 
 
 func _delete_save_game() -> void:
