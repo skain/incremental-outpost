@@ -52,6 +52,9 @@ func _fire_projectile() -> void:
 func spawn(level: int) -> void:
 	enemy_level = level
 	_update_stats()
+	var tween := create_tween()
+	tween.tween_property(sprite_2d, "frame", 2, 0.3)
+	await tween.finished
 	_start_shoot_timer()
 	$RevivePlayer.play()
 
