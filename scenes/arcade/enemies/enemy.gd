@@ -3,6 +3,9 @@ class_name Enemy
 
 const PROJECTILE_SCENE = preload("res://scenes/arcade/enemy_projectile/enemy_projectile.tscn")
 const BASE_POINTS := 10
+const HIT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Explosion_00.wav")
+const SPAWN_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Hit_01.wav")
+const SHOOT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Shoot_01.wav")
 
 @export var base_shoot_delay: float = 1
 @export var base_shoot_chance: float = 50
@@ -16,11 +19,6 @@ const BASE_POINTS := 10
 
 var enemy_level := 1
 var cur_points := BASE_POINTS
-
-#func disable() -> void:
-	#visible = false
-	#collision_shape_2d.set_deferred("disabled", true)
-	#shoot_timer.stop()
 
 
 func process_smart_bomb_hit() -> void:
@@ -45,7 +43,7 @@ func _fire_projectile() -> void:
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position
 	projectile.setup(-transform.y.round())
-	$ShootPlayer.play()
+	SfxManager.play_sfx(SHOOT_AUDIO, global_position)
 	muzzle_flash.emit_flash()
 
 
@@ -56,7 +54,7 @@ func spawn(level: int) -> void:
 	tween.tween_property(sprite_2d, "frame", 2, 0.3)
 	await tween.finished
 	_start_shoot_timer()
-	$RevivePlayer.play()
+	SfxManager.play_sfx(SPAWN_AUDIO, global_position)
 
 
 
@@ -74,7 +72,7 @@ func _on_area_entered(projectile: PlayerProjectile) -> void:
 	
 	await _hit_flash()
 	
-	$HitPlayer.play()
+	SfxManager.play_sfx(HIT_AUDIO, global_position)
 	
 	if is_instance_valid(projectile):
 		projectile.handle_hit()
