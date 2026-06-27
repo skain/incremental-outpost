@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bmmew1pv6s56h" path="res://scenes/arcade/radial_cooldown/radial_cooldown.gd" id="3_ipnot"]
 
 [node name="RadialCooldown" type="TextureProgressBar" unique_id=1715744450]
-self_modulate = Color(2.1331975, 2.1331975, 2.1331975, 1)
 custom_minimum_size = Vector2(16, 16)
 offset_right = 16.0
 offset_bottom = 16.0

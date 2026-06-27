@@ -2,14 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dqacofiwf6daw" path="res://scenes/main/main.gd" id="1_dooaf"]
 [ext_resource type="PackedScene" uid="uid://cjfpvjaldg8ca" path="res://scenes/main/pause_menu/pause_menu.tscn" id="3_k2fmo"]
-[ext_resource type="Environment" uid="uid://dvkbg3qcvg8lo" path="res://resources/main_world_environment.tres" id="4_4iaaq"]
 
 [node name="Main" type="Node2D" unique_id=42505495]
 process_mode = 3
 script = ExtResource("1_dooaf")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1950625691]
-environment = ExtResource("4_4iaaq")
 
 [node name="PauseMenu" parent="." unique_id=1479776521 instance=ExtResource("3_k2fmo")]
 unique_name_in_owner = true
