@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c5u0q6cpsel47" path="res://scenes/arcade/arcade_ui/arcade_ui.tscn" id="6_7p05h"]
 [ext_resource type="PackedScene" uid="uid://updng07iakhi" path="res://scenes/arcade/enemy_spawner/enemy_spawner.tscn" id="8_7p05h"]
 [ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="9_leafu"]
+[ext_resource type="Shader" uid="uid://dlhm2ihkk25o6" path="res://scenes/arcade/arcade_game/arcade_overlay.gdshader" id="11_7p05h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvx6h"]
+shader = ExtResource("11_7p05h")
+shader_parameter/intensity = 0.44800002128
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
 process_mode = 1
@@ -59,6 +64,23 @@ unique_name_in_owner = true
 
 [node name="ArcadeUI" parent="." unique_id=1381448654 instance=ExtResource("6_7p05h")]
 unique_name_in_owner = true
+
+[node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=1729168327]
+unique_name_in_owner = true
+layer = 10
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CRTOverlay" unique_id=932508745]
+copy_mode = 2
+
+[node name="CRTShader" type="ColorRect" parent="CRTOverlay" unique_id=1560392445]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_xvx6h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="smart_bomb_triggered" from="Player" to="." method="_on_player_smart_bomb_triggered"]

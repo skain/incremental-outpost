@@ -23,7 +23,7 @@ func create_star(screen_size: Vector2) -> void:
 
 	# Instead of just opacity, we boost the RGB channels
 	# 1.0 is standard white. 4.0 will be "Super White" that triggers the glow.
-	var glow_intensity := randf_range(1.5, 4.0)
+	var glow_intensity := randf_range(0.75, 1.0)
 
 	# Use Color(r, g, b, a). We set RGB to our intensity.
 	# Note: We keep Alpha at 1.0 because the "faintness" is now handled 
