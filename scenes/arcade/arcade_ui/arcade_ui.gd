@@ -96,4 +96,4 @@ func show_new_wave_message(wave_number: int) -> void:
 		new_wave_label_tween.kill()
 	
 	new_wave_label_tween = create_tween()
-	new_wave_label_tween.tween_property(new_wave_label, "self_modulate", Color(1.0, 1.0, 1.0, 0.0), 2.0)
+	new_wave_label_tween.tween_property(new_wave_label, "self_modulate:a", 0.0, 2.0)

@@ -14,7 +14,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvx6h"]
 shader = ExtResource("11_7p05h")
-shader_parameter/intensity = 0.44800002128
+shader_parameter/intensity = 0.43200002052
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
 process_mode = 1

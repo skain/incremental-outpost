@@ -4,7 +4,7 @@ signal return_to_outpost_clicked
 signal new_game_clicked
 
 const SAVE_ICON_MIN_MOD = Color.WHITE * Color(1.0, 1.0, 1.0, 0.25)
-const SAVE_ICON_MAX_MOD = Color.WHITE * Color(1.5, 1.5, 1.5, 1.0)
+const SAVE_ICON_MAX_MOD = Color.WHITE * Color(1.25, 1.25, 1.25, 1.0)
 
 @export var start_interstitial_scene: PackedScene = preload("res://scenes/crt/start_game_interstitial/start_game_interstitial.tscn")
 @export var end_interstitial_scene: PackedScene = preload("res://scenes/crt/end_game_interstitial/end_game_interstitial.tscn")

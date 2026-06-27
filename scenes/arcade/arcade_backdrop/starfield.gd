@@ -21,26 +21,19 @@ func create_star(screen_size: Vector2) -> void:
 	var pos := Vector2(randf() * screen_size.x, randf() * screen_size.y)
 	star.position = pos.floor() 
 
-	# Instead of just opacity, we boost the RGB channels
-	# 1.0 is standard white. 4.0 will be "Super White" that triggers the glow.
-	var glow_intensity := randf_range(0.75, 1.0)
+	var start_intensity := randf_range(0.75, 1.0)
 
-	# Use Color(r, g, b, a). We set RGB to our intensity.
-	# Note: We keep Alpha at 1.0 because the "faintness" is now handled 
-	# by how much glow/light the pixel emits.
-	star.modulate = Color(glow_intensity, glow_intensity, glow_intensity, 1.0)
+	star.modulate = Color(start_intensity, start_intensity, start_intensity, 1.0)
 
 	add_child(star)
 
 	if randf() > 0.7:
-		animate_twinkle(star, glow_intensity)
+		animate_twinkle(star, start_intensity)
 
 func animate_twinkle(star: ColorRect, original_glow: float) -> void:
 	var tween := create_tween().set_loops()
 	var duration := randf_range(twinkle_speed_min, twinkle_speed_max)
 
-	# We tween the modulate property. To make it "twinkle" effectively in HDR, 
-	# we fade the glow intensity down to 0 and back up.
 	var off_color := Color(0, 0, 0, 1)
 	var on_color := Color(original_glow, original_glow, original_glow, 1)
 

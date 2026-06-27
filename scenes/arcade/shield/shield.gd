@@ -3,7 +3,7 @@ class_name Shield extends Area2D
 var pulse_tween: Tween
 
 @export var pulse_speed := 0.2
-@export var pulse_max_amount := 1.5
+@export var pulse_max_amount := 1.25
 @export var pulse_min_amount := 0.75
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
