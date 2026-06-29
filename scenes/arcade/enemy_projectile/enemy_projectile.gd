@@ -20,6 +20,10 @@ func setup(starting_direction: Vector2) -> void:
 func handle_hit() -> void:
 	queue_free()
 
+
+func handle_bounce() -> void:
+	pass
+
 func _on_area_entered(area: Area2D) -> void:
 	area.queue_free()
 	SfxManager.play_sfx(projectile_collision_sound, global_position)

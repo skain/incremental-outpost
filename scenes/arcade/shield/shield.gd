@@ -1,5 +1,8 @@
 class_name Shield extends Area2D
 
+const HIT_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Library/Hit_00.wav")
+const BOUNCE_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Library/Shoot_02.wav")
+
 var _pulse_tween: Tween
 var _shield_bounce_enabled := false
 
@@ -8,7 +11,6 @@ var _shield_bounce_enabled := false
 @export var pulse_min_amount := 0.75
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
-@onready var hit_player: AudioStreamPlayer2D = %HitPlayer
 @onready var shield_on_player: AudioStreamPlayer2D = %ShieldOnPlayer
 @onready var sprite_2d: Sprite2D = %Sprite2D
 
@@ -70,7 +72,7 @@ func _set_bounce_enabled() -> void:
 func _handle_hit(enemy_projectile: EnemyProjectile) -> void:
 	if enemy_projectile:
 		enemy_projectile.handle_hit()
-		hit_player.play()
+		SfxManager.play_sfx(HIT_AUDIO, global_position)
 
 func _on_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile
