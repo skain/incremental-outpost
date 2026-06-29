@@ -1,6 +1,7 @@
 class_name Shield extends Area2D
 
-var pulse_tween: Tween
+var _pulse_tween: Tween
+var _shield_bounce_enabled := false
 
 @export var pulse_speed := 0.2
 @export var pulse_max_amount := 1.25
@@ -15,6 +16,7 @@ var pulse_tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	shield_off()
+	_set_bounce_enabled()
 
 func shield_on() -> void:
 	collision_shape_2d.set_deferred("disabled", false)
@@ -37,17 +39,33 @@ func shield_off() -> void:
 		
 func _start_pulse_tween() -> void:
 	# 1. Kill the previous tween if it exists and is active
-	if pulse_tween and pulse_tween.is_running():
-		pulse_tween.kill()
+	if _pulse_tween and _pulse_tween.is_running():
+		_pulse_tween.kill()
 	
 	# 2. Create the new tween
-	pulse_tween = create_tween().set_loops()
-	pulse_tween.tween_property(sprite_2d, "self_modulate", Color(pulse_max_amount, pulse_max_amount, pulse_max_amount, 1), pulse_speed).from(Color(pulse_min_amount, pulse_min_amount, pulse_min_amount, 1)).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	pulse_tween.tween_property(sprite_2d, "self_modulate", Color(pulse_min_amount, pulse_min_amount, pulse_min_amount, 1), pulse_speed).set_trans(Tween.TRANS_SINE)
+	_pulse_tween = create_tween().set_loops()
+	_pulse_tween.tween_property(sprite_2d, "self_modulate", Color(pulse_max_amount, pulse_max_amount, pulse_max_amount, 1), pulse_speed).from(Color(pulse_min_amount, pulse_min_amount, pulse_min_amount, 1)).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_pulse_tween.tween_property(sprite_2d, "self_modulate", Color(pulse_min_amount, pulse_min_amount, pulse_min_amount, 1), pulse_speed).set_trans(Tween.TRANS_SINE)
 	
 func _stop_pulse_tween() -> void:
-	if pulse_tween:
-		pulse_tween.kill()
+	if _pulse_tween:
+		_pulse_tween.kill()
+		
+func _set_bounce_enabled() -> void:
+	match rotation_degrees:
+		0.0:
+			_shield_bounce_enabled = GameManager.skills_manager.get_top_shield_bounce_enabled()
+		90.0:
+			_shield_bounce_enabled = GameManager.skills_manager.get_right_shield_bounce_enabled()
+		180.0:
+			_shield_bounce_enabled = GameManager.skills_manager.get_bottom_shield_bounce_enabled()
+		270.0:
+			_shield_bounce_enabled = GameManager.skills_manager.get_left_shield_bounce_enabled()
+		_:
+			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
+
+
+#region event handlers
 	
 func _handle_hit(enemy_projectile: EnemyProjectile) -> void:
 	if enemy_projectile:
@@ -57,3 +75,5 @@ func _handle_hit(enemy_projectile: EnemyProjectile) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile
 	_handle_hit(projectile)
+
+#endregion

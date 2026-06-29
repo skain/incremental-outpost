@@ -106,6 +106,22 @@ func get_points_multiplier() -> float:
 	return pm
 
 
+func get_top_shield_bounce_enabled() -> bool:
+	return true
+
+
+func get_right_shield_bounce_enabled() -> bool:
+	return true
+
+
+func get_bottom_shield_bounce_enabled() -> bool:
+	return true
+
+
+func get_left_shield_bounce_enabled() -> bool:
+	return true
+
+
 # Max number of smart bombs available
 func get_num_smart_bombs() -> int:
 	var smart_bombs := int(_get_modifier_value(SkillTreeNode.AffectedStat.NUM_SMART_BOMBS))
