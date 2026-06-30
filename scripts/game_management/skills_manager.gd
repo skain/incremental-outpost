@@ -9,7 +9,8 @@ const BASE_SHIELD_TIMEOUT := 5.0
 const BASE_POINTS_MULTIPLIER := 1.0
 
 var modifiers := {
-	SkillTreeNode.AffectedStat.CANNON_COOLDOWN:  CannonCooldownModifier.new(),
+	SkillTreeNode.AffectedStat.CANNON_COOLDOWN:
+		CannonCooldownModifier.new(),
 	SkillTreeNode.AffectedStat.HULL_PLATING:
 		HullPlatingModifier.new(),
 	SkillTreeNode.AffectedStat.SHIELDS_ENABLED:
@@ -29,7 +30,15 @@ var modifiers := {
 	SkillTreeNode.AffectedStat.NUM_SMART_BOMBS:
 		SmartBombsModifier.new(),
 	SkillTreeNode.AffectedStat.RESPEC_ENABLED:
-		RespecEnabledModifier.new()
+		RespecEnabledModifier.new(),
+	SkillTreeNode.AffectedStat.TOP_SHIELD_BOUNCE:
+		ShieldBounceModifier.new(Enums.OutpostArms.TOP),
+	SkillTreeNode.AffectedStat.RIGHT_SHIELD_BOUNCE:
+		ShieldBounceModifier.new(Enums.OutpostArms.RIGHT),
+	SkillTreeNode.AffectedStat.BOTTOM_SHIELD_BOUNCE:
+		ShieldBounceModifier.new(Enums.OutpostArms.BOTTOM),
+	SkillTreeNode.AffectedStat.LEFT_SHIELD_BOUNCE:
+		ShieldBounceModifier.new(Enums.OutpostArms.LEFT),
 }
 
 
@@ -106,21 +115,6 @@ func get_points_multiplier() -> float:
 	return pm
 
 
-func get_top_shield_bounce_enabled() -> bool:
-	return true
-
-
-func get_right_shield_bounce_enabled() -> bool:
-	return true
-
-
-func get_bottom_shield_bounce_enabled() -> bool:
-	return true
-
-
-func get_left_shield_bounce_enabled() -> bool:
-	return true
-
 
 # Max number of smart bombs available
 func get_num_smart_bombs() -> int:
@@ -131,3 +125,19 @@ func get_num_smart_bombs() -> int:
 # Controls whether the skill tree respec button is available for use.
 func get_respec_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RESPEC_ENABLED))
+
+
+func get_top_shield_bounce_enabled() -> bool:
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.TOP_SHIELD_BOUNCE))
+
+
+func get_right_shield_bounce_enabled() -> bool:
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RIGHT_SHIELD_BOUNCE))
+
+
+func get_bottom_shield_bounce_enabled() -> bool:
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.BOTTOM_SHIELD_BOUNCE))
+
+
+func get_left_shield_bounce_enabled() -> bool:
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.LEFT_SHIELD_BOUNCE))

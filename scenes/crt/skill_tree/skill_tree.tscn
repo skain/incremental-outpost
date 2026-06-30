@@ -16,9 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://dap3gbbjhkp5w" path="res://assets/skill_tree/icons/shield-timeout-icon.png" id="8_s7fn8"]
 [ext_resource type="Texture2D" uid="uid://vdwnqeg6jjbo" path="res://assets/skill_tree/icons/shield-energy-drain-icon.png" id="8_tnsbc"]
 [ext_resource type="Texture2D" uid="uid://bcfhbhus6xgay" path="res://assets/skill_tree/icons/bucks-icon.png" id="9_2mml3"]
+[ext_resource type="Texture2D" uid="uid://b6hucei414smp" path="res://assets/skill_tree/icons/top-shield-bounce-icon.png" id="10_d7ytc"]
+[ext_resource type="Texture2D" uid="uid://dhn6r1bmlf0nw" path="res://assets/skill_tree/icons/right-shield-bounce-icon.png" id="11_ngrj7"]
 [ext_resource type="Texture2D" uid="uid://cfd78mrm2le72" path="res://assets/skill_tree/icons/base-skill-tree-icon.png" id="11_s7fn8"]
+[ext_resource type="Texture2D" uid="uid://b4hedh7jjqn6q" path="res://assets/skill_tree/icons/bottom-shield-bounce-icon.png" id="12_ktcxh"]
 [ext_resource type="Texture2D" uid="uid://c21e5rnev3e4x" path="res://assets/skill_tree/icons/smart-bomb-icon.png" id="12_sdl0q"]
 [ext_resource type="Texture2D" uid="uid://ephu28nmcx1h" path="res://assets/skill_tree/icons/respec-icon.png" id="13_8btny"]
+[ext_resource type="Texture2D" uid="uid://clggx52o8wq1a" path="res://assets/skill_tree/icons/left-shield-bounce-icon.png" id="13_w61no"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
 load_path = "res://.godot/imported/shield-energy-recharge-icon.png-7e9f7ba423e908a429e2a9f975ff1882.ctex"
@@ -45,7 +49,7 @@ corner_detail = 1
 script = ExtResource("1_m31mo")
 
 [node name="CannonCooldown1" parent="." unique_id=980992063 instance=ExtResource("2_vt0yg")]
-position = Vector2(625, 304)
+position = Vector2(632, 304)
 texture = ExtResource("4_jlgqv")
 skill_name = "Cannon Cooldown 1"
 skill_desc = "Reduces the cooldown time of all cannons by 50%"
@@ -111,12 +115,12 @@ modifier_value = 1.5
 skill_cost = 1000
 
 [node name="StorySkillTreeNode1" parent="CannonCooldown1" unique_id=1402027240 instance=ExtResource("6_frlcx")]
-position = Vector2(-57, 0)
+position = Vector2(-56, 0)
 story_subject = "I've found a way to leave notes..."
 story_text = "If you're reading this, you are me!"
 
 [node name="ShieldsEnabled" parent="CannonCooldown1/StorySkillTreeNode1" unique_id=939400477 instance=ExtResource("2_vt0yg")]
-position = Vector2(-57, 0)
+position = Vector2(-56, 0)
 texture = ExtResource("6_1q8yp")
 skill_name = "Shields"
 skill_desc = "Purchase shields for your outpost. Use WASD to control them."
@@ -203,6 +207,42 @@ affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
 skill_cost = 1000
+
+[node name="TopShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2136795269 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("10_d7ytc")
+skill_name = "Kinetic Reflector - Top"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 11
+modifier_value = 1.0
+skill_cost = 50
+
+[node name="RightShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/TopShieldBounce" unique_id=1704250887 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("11_ngrj7")
+skill_name = "Kinetic Reflector - Right"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 12
+modifier_value = 1.0
+skill_cost = 250
+
+[node name="BottomShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/TopShieldBounce/RightShieldBounce" unique_id=1240612122 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("12_ktcxh")
+skill_name = "Kinetic Reflector - Bottom"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 13
+modifier_value = 1.0
+skill_cost = 1000
+
+[node name="LeftShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/TopShieldBounce/RightShieldBounce/BottomShieldBounce" unique_id=1701974833 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("13_w61no")
+skill_name = "Kinetic Reflector - Left"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 14
+modifier_value = 1.0
+skill_cost = 5000
 
 [node name="ShieldRecharge3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2100923162 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
