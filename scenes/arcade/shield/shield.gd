@@ -65,6 +65,9 @@ func _set_bounce_enabled() -> void:
 			_shield_bounce_enabled = GameManager.skills_manager.get_left_shield_bounce_enabled()
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
+	
+	if _shield_bounce_enabled:
+		sprite_2d.self_modulate = Color.YELLOW
 
 
 #region event handlers
