@@ -14,6 +14,9 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 @onready var arcade_ui: ArcadeUI = %ArcadeUI
 @onready var smart_bomb_screen_effect: SmartBombScreenEffect = %SmartBombScreenEffect
 @onready var enemies_container: EnemiesContainer = %EnemiesContainer
+@onready var fade_out_shader: ColorRect = %FadeOutShader
+@onready var fade_out_material := fade_out_shader.material
+@onready var fade_out_overlay: CanvasLayer = %FadeOutOverlay
 
 func start_game() -> void:
 	game_over = false
@@ -21,6 +24,7 @@ func start_game() -> void:
 	enemies_container.start_new_game()
 	SignalBus.enemy_hit.connect(_on_enemy_hit)
 	player.reset()
+	fade_out_overlay.hide()
 	arcade_ui.show()
 	player.make_camera_current()
 	_update_ui()
@@ -46,6 +50,9 @@ func _end_game() -> void:
 	game_over = true
 	_update_ui()
 	enemies_container._disable_enemy_spawning()
+	
+	await _do_fade_out()
+	
 	arcade_ui.hide()
 	player.die()
 	SfxManager.play_sfx(game_over_sound, global_position)
@@ -53,6 +60,16 @@ func _end_game() -> void:
 	GameManager.set_points(current_score)
 	game_ended.emit()
 
+func _do_fade_out() -> void:
+	fade_out_overlay.show()
+	var tween := create_tween()
+	
+	# Transition from 0 (clear) to 1 (max pixels) over 1.5 seconds
+	tween.tween_property(fade_out_material, "shader_parameter/pixel_size", 1.0, 1.5)\
+		.set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_IN)
+	
+	await tween.finished
 
 func _update_ui() -> void:
 	arcade_ui.update_ui(current_score, player.hull_plating)	

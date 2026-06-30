@@ -11,10 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://updng07iakhi" path="res://scenes/arcade/enemy_spawner/enemy_spawner.tscn" id="8_7p05h"]
 [ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="9_leafu"]
 [ext_resource type="Shader" uid="uid://dlhm2ihkk25o6" path="res://scenes/arcade/arcade_game/arcade_overlay.gdshader" id="11_7p05h"]
+[ext_resource type="Shader" uid="uid://dhk0jr35jdqff" path="res://shaders/pixel_fade_out.gdshader" id="12_8pd1k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvx6h"]
 shader = ExtResource("11_7p05h")
 shader_parameter/intensity = 0.43200002052
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r56om"]
+shader = ExtResource("12_8pd1k")
+shader_parameter/pixel_size = 0.0
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
 process_mode = 1
@@ -81,6 +86,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="FadeOutOverlay" type="CanvasLayer" parent="." unique_id=1509654236]
+unique_name_in_owner = true
+layer = 11
+
+[node name="FadeOutShader" type="ColorRect" parent="FadeOutOverlay" unique_id=712758880]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r56om")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="smart_bomb_triggered" from="Player" to="." method="_on_player_smart_bomb_triggered"]
