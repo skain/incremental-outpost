@@ -9,6 +9,7 @@ var _shield_bounce_enabled := false
 @export var pulse_speed := 0.2
 @export var pulse_max_amount := 1.25
 @export var pulse_min_amount := 0.75
+@export var bounce_color := Color("c1ff7a")
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var shield_on_player: AudioStreamPlayer2D = %ShieldOnPlayer
@@ -67,7 +68,7 @@ func _set_bounce_enabled() -> void:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
 	
 	if _shield_bounce_enabled:
-		sprite_2d.self_modulate = Color.YELLOW
+		modulate = bounce_color
 
 
 #region event handlers
