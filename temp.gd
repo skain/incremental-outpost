@@ -4,4 +4,3 @@ extends Node2D
 
 func _ready() -> void:
 	await smart_bomb_screen_effect.trigger()
-	print("done")

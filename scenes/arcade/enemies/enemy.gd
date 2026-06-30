@@ -66,7 +66,7 @@ func _try_shoot() -> void:
 
 ## --- Signal Handlers ---
 
-func _on_area_entered(projectile: PlayerProjectile) -> void:
+func _on_area_entered(projectile: Node2D) -> void:
 	if not is_instance_valid(projectile):
 		return
 	

@@ -71,8 +71,12 @@ func _set_bounce_enabled() -> void:
 	
 func _handle_hit(enemy_projectile: EnemyProjectile) -> void:
 	if enemy_projectile:
-		enemy_projectile.handle_hit()
-		SfxManager.play_sfx(HIT_AUDIO, global_position)
+		if _shield_bounce_enabled:
+			enemy_projectile.handle_bounce()
+			SfxManager.play_sfx(BOUNCE_AUDIO, global_position)
+		else:
+			enemy_projectile.handle_hit()
+			SfxManager.play_sfx(HIT_AUDIO, global_position)
 
 func _on_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile

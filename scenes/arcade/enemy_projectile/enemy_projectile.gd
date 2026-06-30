@@ -1,5 +1,4 @@
-extends Area2D
-class_name EnemyProjectile
+class_name EnemyProjectile extends Area2D
 
 @export var speed: float = 400
 @export var projectile_collision_sound: AudioStream
@@ -22,6 +21,11 @@ func handle_hit() -> void:
 
 
 func handle_bounce() -> void:
+	direction = -direction
+	velocity = direction * speed
+	rotation = direction.angle()	
+	
+	set_collision_layer_value(4, true)
 	pass
 
 func _on_area_entered(area: Area2D) -> void:
