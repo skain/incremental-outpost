@@ -65,14 +65,14 @@ unique_name_in_owner = true
 [node name="ArcadeUI" parent="." unique_id=1381448654 instance=ExtResource("6_7p05h")]
 unique_name_in_owner = true
 
-[node name="CRTOverlay" type="CanvasLayer" parent="." unique_id=1729168327]
+[node name="BloomOverlay" type="CanvasLayer" parent="." unique_id=1729168327]
 unique_name_in_owner = true
 layer = 10
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="CRTOverlay" unique_id=932508745]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="BloomOverlay" unique_id=932508745]
 copy_mode = 2
 
-[node name="CRTShader" type="ColorRect" parent="CRTOverlay" unique_id=1560392445]
+[node name="CRTShader" type="ColorRect" parent="BloomOverlay" unique_id=1560392445]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_xvx6h")
 anchors_preset = 15
