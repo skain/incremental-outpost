@@ -126,7 +126,7 @@ func get_num_smart_bombs() -> int:
 func get_respec_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RESPEC_ENABLED))
 
-
+#region shield bounce
 func get_top_shield_bounce_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.TOP_SHIELD_BOUNCE))
 
@@ -141,3 +141,23 @@ func get_bottom_shield_bounce_enabled() -> bool:
 
 func get_left_shield_bounce_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.LEFT_SHIELD_BOUNCE))
+#endregion
+
+#region autofire
+func get_top_cannon_autofire_enabled() -> bool:
+	return true
+
+
+func get_right_cannon_autofire_enabled() -> bool:
+	return true
+
+
+func get_bottom_cannon_autofire_enabled() -> bool:
+	return true
+
+
+func get_left_cannon_autofire_enabled() -> bool:
+	return true
+
+
+#endregion
