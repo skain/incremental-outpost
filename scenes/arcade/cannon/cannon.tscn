@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://7wadnnpadmh6" path="res://scenes/arcade/radial_cooldown/radial_cooldown.tscn" id="7_d1hnl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvx6h"]
-size = Vector2(2, 51)
+size = Vector2(2, 320)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d1hnl"]
 resource_local_to_scene = true
@@ -23,20 +23,24 @@ size = Vector2(14, 2)
 [node name="Cannon" type="Area2D" unique_id=1914894468]
 collision_mask = 16
 script = ExtResource("1_kguej")
-fire_cooldown_base = null
+autofire_not_detected_color = Color(1, 0, 0, 0.4392157)
+autofire_detected_color = Color(1, 0, 0, 0.78431374)
 
 [node name="Autofire" type="Node2D" parent="." unique_id=1337263560]
 
 [node name="AutofireLine2D" type="Line2D" parent="Autofire" unique_id=1122248025]
 unique_name_in_owner = true
-points = PackedVector2Array(0, -18, 0, -120)
+points = PackedVector2Array(0, -18, 0, -225)
 width = 1.0
 default_color = Color(1, 0, 0, 0.45490196)
 
 [node name="AutofireArea2D" type="Area2D" parent="Autofire" unique_id=645787295]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Autofire/AutofireArea2D" unique_id=624448958]
-position = Vector2(0, -42.5)
+position = Vector2(0, -68.5)
 shape = SubResource("RectangleShape2D_xvx6h")
 
 [node name="Cannon" type="Sprite2D" parent="." unique_id=646691869]
@@ -71,4 +75,5 @@ offset_bottom = -13.0
 scale = Vector2(0.75, 0.75)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Autofire/AutofireArea2D" to="." method="_on_autofire_area_2d_area_entered"]
 [connection signal="cooldown_complete" from="RadialCooldown" to="." method="_on_radial_cooldown_cooldown_complete"]

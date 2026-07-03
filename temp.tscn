@@ -1,12 +1,6 @@
 [gd_scene format=3 uid="uid://ion13oa2cn05"]
 
 [ext_resource type="Script" uid="uid://bfovtj31oahho" path="res://temp.gd" id="1_k81e3"]
-[ext_resource type="Texture2D" uid="uid://npeeevesdgsd" path="res://assets/smart-bomb-ui-icon.png" id="2_ufh25"]
 
 [node name="Node2D" type="Node2D" unique_id=644554449]
 script = ExtResource("1_k81e3")
-
-[node name="SmartBombUiIcon" type="Sprite2D" parent="." unique_id=788225489]
-modulate = Color(0.47058824, 0.47058824, 0.47058824, 1)
-position = Vector2(274, 223)
-texture = ExtResource("2_ufh25")
