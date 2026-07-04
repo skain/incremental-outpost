@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c21e5rnev3e4x" path="res://assets/skill_tree/icons/smart-bomb-icon.png" id="12_sdl0q"]
 [ext_resource type="Texture2D" uid="uid://ephu28nmcx1h" path="res://assets/skill_tree/icons/respec-icon.png" id="13_8btny"]
 [ext_resource type="Texture2D" uid="uid://clggx52o8wq1a" path="res://assets/skill_tree/icons/left-shield-bounce-icon.png" id="13_w61no"]
+[ext_resource type="Texture2D" uid="uid://bwhighnm77fhe" path="res://assets/skill_tree/icons/autofire-icon.png" id="18_ngrj7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
 load_path = "res://.godot/imported/shield-energy-recharge-icon.png-7e9f7ba423e908a429e2a9f975ff1882.ctex"
@@ -341,17 +342,8 @@ affected_stat = 9
 modifier_value = 3.0
 skill_cost = 1000
 
-[node name="RespecEnabled" parent="CannonCooldown1" unique_id=106656199 instance=ExtResource("2_vt0yg")]
-position = Vector2(111, 0)
-texture = ExtResource("13_8btny")
-skill_name = "Enable Respec Button"
-skill_desc = "Enabled a button on the skill tree that refunds all bucks spent."
-affected_stat = 10
-modifier_value = 1.0
-skill_cost = 10
-
-[node name="CannonCooldown2" parent="CannonCooldown1/RespecEnabled" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
-position = Vector2(-56, 0)
+[node name="CannonCooldown2" parent="CannonCooldown1" unique_id=1535088692 instance=ExtResource("2_vt0yg")]
+position = Vector2(55, 0)
 texture = ExtResource("4_jlgqv")
 skill_name = "Cannon Cooldown 2"
 skill_desc = "Reduces the cooldown time of all cannons by 25%"
@@ -359,7 +351,16 @@ modifier_type = 1
 modifier_value = 0.75
 skill_cost = 100
 
-[node name="CannonCooldown3" parent="CannonCooldown1/RespecEnabled" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
+[node name="RespecEnabled" parent="CannonCooldown1/CannonCooldown2" unique_id=106656199 instance=ExtResource("2_vt0yg")]
+position = Vector2(56, 0)
+texture = ExtResource("13_8btny")
+skill_name = "Enable Respec Button"
+skill_desc = "Enabled a button on the skill tree that refunds all bucks spent."
+affected_stat = 10
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="CannonCooldown3" parent="CannonCooldown1/CannonCooldown2/RespecEnabled" unique_id=1526718075 instance=ExtResource("2_vt0yg")]
 position = Vector2(56, 0)
 texture = ExtResource("4_jlgqv")
 skill_name = "Cannon Cooldown 3"
@@ -367,6 +368,45 @@ skill_desc = "Reduces the cooldown time of all cannons by 25%"
 modifier_type = 1
 modifier_value = 0.75
 skill_cost = 1000
+
+[node name="AutofireUp" parent="CannonCooldown1" unique_id=1899247229 instance=ExtResource("2_vt0yg")]
+position = Vector2(96, 192)
+texture = ExtResource("18_ngrj7")
+skill_name = "Autofire - Top Cannon"
+skill_desc = "Advanced laser targetting allows cannons to automatically trigger when enemies are detected!"
+affected_stat = 15
+modifier_value = 1.0
+skill_cost = 100
+
+[node name="AutofireRight" parent="CannonCooldown1/AutofireUp" unique_id=11638799 instance=ExtResource("2_vt0yg")]
+position = Vector2(48, 56)
+rotation = 1.5707964
+texture = ExtResource("18_ngrj7")
+skill_name = "Autofire - Right Cannon"
+skill_desc = "Advanced laser targetting allows cannons to automatically trigger when enemies are detected!"
+affected_stat = 16
+modifier_value = 1.0
+skill_cost = 100
+
+[node name="AutofireBottom" parent="CannonCooldown1/AutofireUp/AutofireRight" unique_id=1654851916 instance=ExtResource("2_vt0yg")]
+position = Vector2(56.000004, 48)
+rotation = -4.712389
+texture = ExtResource("18_ngrj7")
+skill_name = "Autofire - Bottom Cannon"
+skill_desc = "Advanced laser targetting allows cannons to automatically trigger when enemies are detected!"
+affected_stat = 17
+modifier_value = 1.0
+skill_cost = 100
+
+[node name="AutofireLeft" parent="CannonCooldown1/AutofireUp/AutofireRight/AutofireBottom" unique_id=2108731629 instance=ExtResource("2_vt0yg")]
+position = Vector2(48, 56)
+rotation = 1.5707964
+texture = ExtResource("18_ngrj7")
+skill_name = "Autofire - Top Cannon"
+skill_desc = "Advanced laser targetting allows cannons to automatically trigger when enemies are detected!"
+affected_stat = 15
+modifier_value = 1.0
+skill_cost = 100
 
 [node name="SkillTreeUI" type="CanvasLayer" parent="." unique_id=1019413769]
 unique_name_in_owner = true

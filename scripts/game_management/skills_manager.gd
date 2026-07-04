@@ -39,6 +39,14 @@ var modifiers := {
 		ShieldBounceModifier.new(Enums.OutpostArms.BOTTOM),
 	SkillTreeNode.AffectedStat.LEFT_SHIELD_BOUNCE:
 		ShieldBounceModifier.new(Enums.OutpostArms.LEFT),
+	SkillTreeNode.AffectedStat.AUTOFIRE_TOP:
+		AutofireModifier.new(Enums.OutpostArms.TOP),
+	SkillTreeNode.AffectedStat.AUTOFIRE_RIGHT:
+		AutofireModifier.new(Enums.OutpostArms.RIGHT),
+	SkillTreeNode.AffectedStat.AUTOFIRE_BOTTOM:
+		AutofireModifier.new(Enums.OutpostArms.BOTTOM),
+	SkillTreeNode.AffectedStat.AUTOFIRE_LEFT:
+		AutofireModifier.new(Enums.OutpostArms.LEFT),
 }
 
 
@@ -145,19 +153,19 @@ func get_left_shield_bounce_enabled() -> bool:
 
 #region autofire
 func get_top_cannon_autofire_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_TOP))
 
 
 func get_right_cannon_autofire_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_RIGHT))
+
 
 
 func get_bottom_cannon_autofire_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_BOTTOM))
 
 
 func get_left_cannon_autofire_enabled() -> bool:
-	return true
-
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_LEFT))
 
 #endregion
