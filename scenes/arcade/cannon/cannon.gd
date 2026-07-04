@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 		var alpha_ripple := 0.7 + (sin(time) * cos(time * 1.6) * 0.3)
 		
 		autofire_line_2d.default_color = base_color
-		autofire_line_2d.default_color.a *= clamp(alpha_ripple, 0.2, 1.0)
+		autofire_line_2d.default_color.a *= clamp(alpha_ripple, 0.5, 1.0)
 		
 		# Option B: Decoupled Width Jitter (If using this along with Opacity)
 		# var time_width = (Time.get_ticks_msec() * 0.04) + _flicker_phase_offset
