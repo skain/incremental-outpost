@@ -44,7 +44,8 @@ collision_mask = 20
 position = Vector2(0, -68.5)
 shape = SubResource("RectangleShape2D_xvx6h")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Autofire" unique_id=1329265156]
+[node name="AutofireCPUParticles" type="CPUParticles2D" parent="Autofire" unique_id=1329265156]
+unique_name_in_owner = true
 lifetime = 2.8099999999999996
 randomness = 0.67
 direction = Vector2(0, -1)
@@ -89,4 +90,5 @@ scale = Vector2(0.75, 0.75)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="Autofire/AutofireArea2D" to="." method="_on_autofire_area_2d_area_entered"]
+[connection signal="area_exited" from="Autofire/AutofireArea2D" to="." method="_on_autofire_area_2d_area_exited"]
 [connection signal="cooldown_complete" from="RadialCooldown" to="." method="_on_radial_cooldown_cooldown_complete"]

@@ -19,6 +19,7 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_p
 @export var autofire_not_detected_color : Color
 @export var laser_base_width: float = 2.0
 @export var autofire_detected_color : Color
+@onready var autofire_cpu_particles: CPUParticles2D = %AutofireCPUParticles
 
 var fire_direction: Vector2
 var cur_state := CannonStates.READY_TO_FIRE
@@ -36,20 +37,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _autofire_enabled:
 		_evaluate_autofire()
-		
-		# --- CHOOSE AN EFFECT CONFIGURATION ---
-		
-		# Option A: Decoupled Opacity Jitter
-		var base_color := autofire_detected_color if _has_targets_in_zone() else autofire_not_detected_color
-		var time := (Time.get_ticks_msec() * 0.05) + _flicker_phase_offset
-		var alpha_ripple := 0.7 + (sin(time) * cos(time * 1.6) * 0.3)
-		
-		autofire_line_2d.default_color = base_color
-		autofire_line_2d.default_color.a *= clamp(alpha_ripple, 0.5, 1.0)
-		
-		# Option B: Decoupled Width Jitter (If using this along with Opacity)
-		# var time_width = (Time.get_ticks_msec() * 0.04) + _flicker_phase_offset
-		# autofire_line_2d.width = laser_base_width + (sin(time_width) * cos(time_width * 1.7) * 0.
 
 
 func _setup_autofire() -> void:
@@ -68,6 +55,7 @@ func _setup_autofire() -> void:
 	
 	autofire_line_2d.visible = _autofire_enabled
 	autofire_area_2d.set_deferred("monitoring", _autofire_enabled)
+	autofire_cpu_particles.emitting = _autofire_enabled
 	
 
 func _set_fire_cooldown() -> void:
@@ -162,7 +150,9 @@ func _on_radial_cooldown_cooldown_complete() -> void:
 
 
 func _on_autofire_area_2d_area_entered(area: Area2D) -> void:
-	if _autofire_enabled:
-		_evaluate_autofire()
+	_evaluate_autofire()
 
+
+func _on_autofire_area_2d_area_exited(area: Area2D) -> void:
+	_evaluate_autofire()
 #endregion

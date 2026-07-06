@@ -369,7 +369,7 @@ modifier_type = 1
 modifier_value = 0.75
 skill_cost = 1000
 
-[node name="AutofireUp" parent="CannonCooldown1" unique_id=1899247229 instance=ExtResource("2_vt0yg")]
+[node name="AutofireTop" parent="CannonCooldown1" unique_id=1899247229 instance=ExtResource("2_vt0yg")]
 position = Vector2(96, 192)
 texture = ExtResource("18_ngrj7")
 skill_name = "Autofire - Top Cannon"
@@ -378,7 +378,7 @@ affected_stat = 15
 modifier_value = 1.0
 skill_cost = 100
 
-[node name="AutofireRight" parent="CannonCooldown1/AutofireUp" unique_id=11638799 instance=ExtResource("2_vt0yg")]
+[node name="AutofireRight" parent="CannonCooldown1/AutofireTop" unique_id=11638799 instance=ExtResource("2_vt0yg")]
 position = Vector2(48, 56)
 rotation = 1.5707964
 texture = ExtResource("18_ngrj7")
@@ -388,7 +388,7 @@ affected_stat = 16
 modifier_value = 1.0
 skill_cost = 100
 
-[node name="AutofireBottom" parent="CannonCooldown1/AutofireUp/AutofireRight" unique_id=1654851916 instance=ExtResource("2_vt0yg")]
+[node name="AutofireBottom" parent="CannonCooldown1/AutofireTop/AutofireRight" unique_id=1654851916 instance=ExtResource("2_vt0yg")]
 position = Vector2(56.000004, 48)
 rotation = -4.712389
 texture = ExtResource("18_ngrj7")
@@ -398,13 +398,13 @@ affected_stat = 17
 modifier_value = 1.0
 skill_cost = 100
 
-[node name="AutofireLeft" parent="CannonCooldown1/AutofireUp/AutofireRight/AutofireBottom" unique_id=2108731629 instance=ExtResource("2_vt0yg")]
+[node name="AutofireLeft" parent="CannonCooldown1/AutofireTop/AutofireRight/AutofireBottom" unique_id=2108731629 instance=ExtResource("2_vt0yg")]
 position = Vector2(48, 56)
 rotation = 1.5707964
 texture = ExtResource("18_ngrj7")
-skill_name = "Autofire - Top Cannon"
+skill_name = "Autofire - Left Cannon"
 skill_desc = "Advanced laser targetting allows cannons to automatically trigger when enemies are detected!"
-affected_stat = 15
+affected_stat = 18
 modifier_value = 1.0
 skill_cost = 100
 
