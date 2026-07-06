@@ -123,7 +123,7 @@ func _evaluate_autofire() -> void:
 		autofire_line_2d.default_color = autofire_detected_color
 		
 		if cur_state == CannonStates.READY_TO_FIRE:
-			fire_projectile(get_parent())
+			call_deferred("fire_projectile", get_parent())
 
 
 func _has_targets_in_zone() -> bool:
@@ -149,10 +149,10 @@ func _on_radial_cooldown_cooldown_complete() -> void:
 	_evaluate_autofire()
 
 
-func _on_autofire_area_2d_area_entered(area: Area2D) -> void:
+func _on_autofire_area_2d_area_entered(_area: Area2D) -> void:
 	_evaluate_autofire()
 
 
-func _on_autofire_area_2d_area_exited(area: Area2D) -> void:
+func _on_autofire_area_2d_area_exited(_area: Area2D) -> void:
 	_evaluate_autofire()
 #endregion
