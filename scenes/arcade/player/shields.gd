@@ -15,6 +15,7 @@ var is_shield_on := false
 var cur_shield_drain_rate: float
 var cur_shield_charge_rate: float
 var is_shield_charge_available := true
+var multi_shield_enabled := false
 
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
@@ -51,6 +52,7 @@ func reset() -> void:
 	cur_shield_charge_rate = GameManager.skills_manager.get_shield_charge_rate()
 	cur_shield_drain_rate = GameManager.skills_manager.get_shield_drain_rate()
 	shield_timeout_timer.wait_time = GameManager.skills_manager.get_shield_timeout()
+	multi_shield_enabled = GameManager.skills_manager.get_multishield_enabled()
 	
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max
@@ -92,31 +94,31 @@ func _shut_down_shields() -> void:
 
 
 func _apply_shield_logic() -> void:
-	if shields_enabled == false:
+	if not shields_enabled:
 		return
-	
-	var current_shield_direction := ""
-	if not active_inputs.is_empty():
-		current_shield_direction = active_inputs.back().replace("shield_", "")
 	
 	_shut_down_shields()
 	
 	if cur_shield_energy <= 0.0:
 		return
-	
-	match current_shield_direction:
-		"up":
-			top_shield.shield_on()
-			is_shield_on = true
-		"right":
-			right_shield.shield_on()
-			is_shield_on = true
-		"down":
-			bottom_shield.shield_on()
-			is_shield_on = true
-		"left":
-			left_shield.shield_on()
-			is_shield_on = true
+
+	# If powerup is NOT owned, keep original behavior (only one shield)
+	if not multi_shield_enabled:
+		if not active_inputs.is_empty():
+			_activate_shield(active_inputs.back().replace("shield_", ""))
+	else:
+		# Multi-shield: activate all in the stack
+		for input in active_inputs:
+			_activate_shield(input.replace("shield_", ""))
+
+
+func _activate_shield(direction: String) -> void:
+	match direction:
+		"up": top_shield.shield_on()
+		"right": right_shield.shield_on()
+		"down": bottom_shield.shield_on()
+		"left": left_shield.shield_on()
+	is_shield_on = true
 
 
 func _on_shield_timeout_timer_timeout() -> void:

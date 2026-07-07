@@ -134,6 +134,11 @@ func get_num_smart_bombs() -> int:
 func get_respec_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RESPEC_ENABLED))
 
+
+func get_multishield_enabled() -> bool:
+	return true
+
+
 #region shield bounce
 func get_top_shield_bounce_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.TOP_SHIELD_BOUNCE))
