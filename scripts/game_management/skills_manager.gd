@@ -47,6 +47,8 @@ var modifiers := {
 		AutofireModifier.new(Enums.OutpostArms.BOTTOM),
 	SkillTreeNode.AffectedStat.AUTOFIRE_LEFT:
 		AutofireModifier.new(Enums.OutpostArms.LEFT),
+	SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED:
+		MultiShieldEnabledModifier.new()
 }
 
 
@@ -136,7 +138,7 @@ func get_respec_enabled() -> bool:
 
 
 func get_multishield_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED))
 
 
 #region shield bounce

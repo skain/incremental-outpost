@@ -1,0 +1,6 @@
+class_name MultiShieldEnabledModifier extends ModifierBase
+
+func get_value(purchased_nodes: Array[SkillNodeData]) -> bool:
+	var stat_nodes := find_nodes_by_affected_stat(SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED, purchased_nodes)
+	var val := get_cached_value(stat_nodes)
+	return bool(val)

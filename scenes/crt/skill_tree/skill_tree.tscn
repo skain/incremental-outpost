@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c21e5rnev3e4x" path="res://assets/skill_tree/icons/smart-bomb-icon.png" id="12_sdl0q"]
 [ext_resource type="Texture2D" uid="uid://ephu28nmcx1h" path="res://assets/skill_tree/icons/respec-icon.png" id="13_8btny"]
 [ext_resource type="Texture2D" uid="uid://clggx52o8wq1a" path="res://assets/skill_tree/icons/left-shield-bounce-icon.png" id="13_w61no"]
+[ext_resource type="Texture2D" uid="uid://b5h5qtpj6acpk" path="res://assets/skill_tree/icons/multishield-enabled-icon.png" id="14_ktcxh"]
 [ext_resource type="Texture2D" uid="uid://bwhighnm77fhe" path="res://assets/skill_tree/icons/autofire-icon.png" id="18_ngrj7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
@@ -207,43 +208,7 @@ skill_desc = "Increase Shield Energy Recharge Rate by 100%"
 affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
-skill_cost = 1000
-
-[node name="TopShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2136795269 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("10_d7ytc")
-skill_name = "Kinetic Reflector - Top"
-skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
-affected_stat = 11
-modifier_value = 1.0
-skill_cost = 50
-
-[node name="RightShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/TopShieldBounce" unique_id=1704250887 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("11_ngrj7")
-skill_name = "Kinetic Reflector - Right"
-skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
-affected_stat = 12
-modifier_value = 1.0
-skill_cost = 250
-
-[node name="BottomShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/TopShieldBounce/RightShieldBounce" unique_id=1240612122 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("12_ktcxh")
-skill_name = "Kinetic Reflector - Bottom"
-skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
-affected_stat = 13
-modifier_value = 1.0
-skill_cost = 1000
-
-[node name="LeftShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/TopShieldBounce/RightShieldBounce/BottomShieldBounce" unique_id=1701974833 instance=ExtResource("2_vt0yg")]
-position = Vector2(0, -56)
-texture = ExtResource("13_w61no")
-skill_name = "Kinetic Reflector - Left"
-skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
-affected_stat = 14
-modifier_value = 1.0
-skill_cost = 5000
+skill_cost = 100
 
 [node name="ShieldRecharge3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=2100923162 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
@@ -254,6 +219,51 @@ affected_stat = 5
 modifier_type = 1
 modifier_value = 2.0
 skill_cost = 1000
+
+[node name="BottomShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=1240612122 instance=ExtResource("2_vt0yg")]
+position = Vector2(-144, -144)
+texture = ExtResource("12_ktcxh")
+skill_name = "Kinetic Reflector - Bottom"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 13
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="LeftShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/BottomShieldBounce" unique_id=1701974833 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, -56)
+texture = ExtResource("13_w61no")
+skill_name = "Kinetic Reflector - Left"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 14
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="TopShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/BottomShieldBounce/LeftShieldBounce" unique_id=2136795269 instance=ExtResource("2_vt0yg")]
+position = Vector2(56, -48)
+texture = ExtResource("10_d7ytc")
+skill_name = "Kinetic Reflector - Top"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 11
+modifier_value = 1.0
+skill_cost = 50
+
+[node name="RightShieldBounce" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/BottomShieldBounce/LeftShieldBounce/TopShieldBounce" unique_id=1704250887 instance=ExtResource("2_vt0yg")]
+position = Vector2(48, 48)
+texture = ExtResource("11_ngrj7")
+skill_name = "Kinetic Reflector - Right"
+skill_desc = "Kinetic reflection is a fascinating technological development. It enables an outpost shield to reflect a projectile right back at the enemy!"
+affected_stat = 12
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="MultishieldEnabled" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2" unique_id=1465178252 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, 56)
+texture = ExtResource("14_ktcxh")
+skill_name = "Shield Generator Upgrade - Multishield"
+skill_desc = "This upgrade for your shield generator enables multiple shields to be active at once. Note that shield energy use is commensurate with number of shields active."
+affected_stat = 19
+modifier_value = 1.0
+skill_cost = 10
 
 [node name="PointsMult1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1" unique_id=1545074385 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, 56)
