@@ -9,6 +9,7 @@ const BOUNCE_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Libr
 var _pulse_tween: Tween
 var _shield_bounce_enabled := false
 var _autoshield_enabled := false
+var _autoshield_anim_name := "scan"
 
 @export var pulse_speed := 0.2
 @export var pulse_max_amount := 1.25
@@ -62,21 +63,22 @@ func _stop_pulse_tween() -> void:
 		_pulse_tween.kill()
 		
 func _set_shield_upgrades() -> void:
-	match rotation_degrees:
-		0.0:
+	var angle := roundi(rotation_degrees)
+	match angle:
+		0:
 			_shield_bounce_enabled = GameManager.skills_manager.get_top_shield_bounce_enabled()
 			_autoshield_enabled = GameManager.skills_manager.get_top_autoshield_enabled()
-		90.0:
+		90:
 			_shield_bounce_enabled = GameManager.skills_manager.get_right_shield_bounce_enabled()
 			_autoshield_enabled = GameManager.skills_manager.get_right_autoshield_enabled()
-			autoshield_animation_player.speed_scale = -1.0
-		180.0:
+			_autoshield_anim_name = "reverse_scan"
+		180:
 			_shield_bounce_enabled = GameManager.skills_manager.get_bottom_shield_bounce_enabled()
-			_autoshield_enabled = GameManager.skills_manager.get_bottom_cannon_autofire_enabled()
-		270.0:
+			_autoshield_enabled = GameManager.skills_manager.get_bottom_autoshield_enabled()
+		270:
 			_shield_bounce_enabled = GameManager.skills_manager.get_left_shield_bounce_enabled()
 			_autoshield_enabled = GameManager.skills_manager.get_left_autoshield_enabled()
-			autoshield_animation_player.speed_scale = -1.0
+			_autoshield_anim_name = "reverse_scan"
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
 	
@@ -95,7 +97,7 @@ func _disable_autoshield() -> void:
 func _enable_autoshield() -> void:
 	autoshield_area_2d.monitoring = true
 	autoshield_container.show()
-	autoshield_animation_player.play("scan")
+	autoshield_animation_player.play(_autoshield_anim_name)
 
 
 
@@ -117,11 +119,11 @@ func _on_area_entered(area: Area2D) -> void:
 #endregion
 
 
-func _on_autoshield_area_2d_area_entered(area: Area2D) -> void:
+func _on_autoshield_area_2d_area_entered(_area: Area2D) -> void:
 	autoshield_engaged.emit()
 	shield_on()
 
 
-func _on_autoshield_area_2d_area_exited(area: Area2D) -> void:
+func _on_autoshield_area_2d_area_exited(_area: Area2D) -> void:
 	autoshield_disengaged.emit()
 	shield_off()

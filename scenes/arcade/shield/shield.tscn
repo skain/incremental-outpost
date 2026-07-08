@@ -20,13 +20,14 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_qgwv8"]
-resource_name = "scan"
-length = 0.6
+resource_name = "reverse_scan"
+length = 0.59
 loop_mode = 1
+step = 0.066
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,20 +35,39 @@ tracks/0/path = NodePath("ShieldEye:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.060000006, 0.09333334, 0.12000001, 0.15333335, 0.18, 0.21333334, 0.24000002, 0.27333337, 0.3066667, 0.34000003, 0.36, 0.39333335, 0.42000005, 0.45333338, 0.48000005, 0.5133334, 0.54),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1, 0, 0]
+"values": [4, 3, 2, 1, 0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_4wc22"]
+resource_name = "scan"
+length = 0.59
+loop_mode = 1
+step = 0.066
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldEye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3, 2, 1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r50rr"]
 _data = {
 &"RESET": SubResource("Animation_ff7fb"),
-&"scan": SubResource("Animation_qgwv8")
+&"reverse_scan": SubResource("Animation_qgwv8"),
+&"scan": SubResource("Animation_4wc22")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvx6h"]
-size = Vector2(20, 103)
+size = Vector2(20, 46)
 
 [node name="Shield" type="Area2D" unique_id=1500789752]
 collision_layer = 0
@@ -77,6 +97,7 @@ position = Vector2(-29, -23)
 texture = ExtResource("4_4wc22")
 centered = false
 hframes = 5
+frame = 1
 
 [node name="AutoshieldAnimationPlayer" type="AnimationPlayer" parent="AutoshieldContainer" unique_id=194372126]
 unique_name_in_owner = true
@@ -88,7 +109,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoshieldContainer/AutoshieldArea2D" unique_id=1417975037]
-position = Vector2(0, -64.5)
+position = Vector2(0, -36)
 shape = SubResource("RectangleShape2D_xvx6h")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

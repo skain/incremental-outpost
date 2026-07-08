@@ -16,6 +16,7 @@ var cur_shield_drain_rate: float
 var cur_shield_charge_rate: float
 var is_shield_charge_available := true
 var multi_shield_enabled := false
+var active_shield_count := 0
 
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
@@ -68,11 +69,14 @@ func _process(delta: float) -> void:
 	var new_shield_energy := cur_shield_energy
 	var energy_changed := false
 
-	if is_shield_on:
+	if is_shield_on and active_shield_count > 0:
 		if cur_shield_energy > 0.0:
-			new_shield_energy = cur_shield_energy - (cur_shield_drain_rate * delta)
+			# Use the counter for scaling drain
+			var total_drain := cur_shield_drain_rate * active_shield_count
+			new_shield_energy = cur_shield_energy - (total_drain * delta)
 			energy_changed = true
 	else:
+		# Recharge logic
 		if is_shield_charge_available and cur_shield_energy < cur_shield_energy_max:
 			new_shield_energy = cur_shield_energy + (cur_shield_charge_rate * delta)
 			energy_changed = true
@@ -132,8 +136,11 @@ func _on_shield_timeout_timer_timeout() -> void:
 
 
 func _on_autoshield_engaged() -> void:
-	print("engaged")
+	active_shield_count += 1
+	is_shield_on = true
 
 
 func _on_autoshield_disengaged() -> void:
-	print("disengaged")
+	active_shield_count = max(0, active_shield_count - 1)
+	if active_shield_count == 0:
+		is_shield_on = false
