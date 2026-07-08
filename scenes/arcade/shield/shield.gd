@@ -5,6 +5,7 @@ const BOUNCE_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Libr
 
 var _pulse_tween: Tween
 var _shield_bounce_enabled := false
+var _autoshield_enabled := false
 
 @export var pulse_speed := 0.2
 @export var pulse_max_amount := 1.25
@@ -14,17 +15,19 @@ var _shield_bounce_enabled := false
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var shield_on_player: AudioStreamPlayer2D = %ShieldOnPlayer
 @onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var autoshield_animation_player: AnimationPlayer = %AutoshieldAnimationPlayer
+@onready var autoshield_container: Node2D = %AutoshieldContainer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	shield_off()
-	_set_bounce_enabled()
+	_set_shield_upgrades()
 
 func shield_on() -> void:
 	collision_shape_2d.set_deferred("disabled", false)
 	_start_pulse_tween()
-	visible = true
+	sprite_2d.show()
 	if not shield_on_player.playing:
 		var tween := create_tween()
 		shield_on_player.volume_db = -80
@@ -33,7 +36,7 @@ func shield_on() -> void:
 	
 func shield_off() -> void:
 	collision_shape_2d.set_deferred("disabled", true)
-	visible = false
+	sprite_2d.hide()
 	_stop_pulse_tween()
 	if shield_on_player.playing:
 		var tween := create_tween()
@@ -54,21 +57,37 @@ func _stop_pulse_tween() -> void:
 	if _pulse_tween:
 		_pulse_tween.kill()
 		
-func _set_bounce_enabled() -> void:
+func _set_shield_upgrades() -> void:
 	match rotation_degrees:
 		0.0:
 			_shield_bounce_enabled = GameManager.skills_manager.get_top_shield_bounce_enabled()
+			_autoshield_enabled = GameManager.skills_manager.get_top_autoshield_enabled()
 		90.0:
 			_shield_bounce_enabled = GameManager.skills_manager.get_right_shield_bounce_enabled()
+			_autoshield_enabled = GameManager.skills_manager.get_right_autoshield_enabled()
+			autoshield_animation_player.speed_scale = -1.0
 		180.0:
 			_shield_bounce_enabled = GameManager.skills_manager.get_bottom_shield_bounce_enabled()
+			_autoshield_enabled = GameManager.skills_manager.get_bottom_cannon_autofire_enabled()
 		270.0:
 			_shield_bounce_enabled = GameManager.skills_manager.get_left_shield_bounce_enabled()
+			_autoshield_enabled = GameManager.skills_manager.get_left_autoshield_enabled()
+			autoshield_animation_player.speed_scale = -1.0
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
 	
 	if _shield_bounce_enabled:
 		modulate = bounce_color
+	
+	autoshield_container.hide()
+	if _autoshield_enabled:
+		_enable_autoshield()
+
+
+func _enable_autoshield() -> void:
+	autoshield_container.show()
+	autoshield_animation_player.play("scan")
+
 
 
 #region event handlers

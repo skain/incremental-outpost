@@ -176,3 +176,21 @@ func get_left_cannon_autofire_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_LEFT))
 
 #endregion
+
+#region autoshields
+func get_top_autoshield_enabled() -> bool:
+	return true
+
+
+func get_right_autoshield_enabled() -> bool:
+	return true
+
+
+func get_bottom_autoshield_enabled() -> bool:
+	return true
+
+
+func get_left_autoshield_enabled() -> bool:
+	return true
+
+#endregion

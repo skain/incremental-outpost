@@ -3,9 +3,48 @@
 [ext_resource type="Script" uid="uid://b0j1xq1rfccbx" path="res://scenes/arcade/shield/shield.gd" id="1_4ldry"]
 [ext_resource type="Texture2D" uid="uid://dsccarl3md46n" path="res://assets/shield.png" id="2_4wc22"]
 [ext_resource type="AudioStream" uid="uid://b51k07kmg5p46" path="res://assets/sounds/8-bit Sound Library/Climb_Rope_Loop_00.wav" id="3_hg65h"]
+[ext_resource type="Texture2D" uid="uid://c66d0l2qn3bqr" path="res://assets/shield-eye.png" id="4_4wc22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohv3a"]
 size = Vector2(54, 5)
+
+[sub_resource type="Animation" id="Animation_ff7fb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldEye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qgwv8"]
+resource_name = "scan"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldEye:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.060000006, 0.09333334, 0.12000001, 0.15333335, 0.18, 0.21333334, 0.24000002, 0.27333337, 0.3066667, 0.34000003, 0.36, 0.39333335, 0.42000005, 0.45333338, 0.48000005, 0.5133334, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1, 0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r50rr"]
+_data = {
+&"RESET": SubResource("Animation_ff7fb"),
+&"scan": SubResource("Animation_qgwv8")
+}
 
 [node name="Shield" type="Area2D" unique_id=1500789752]
 collision_layer = 0
@@ -26,5 +65,18 @@ texture = ExtResource("2_4wc22")
 unique_name_in_owner = true
 stream = ExtResource("3_hg65h")
 bus = &"SoundFx"
+
+[node name="AutoshieldContainer" type="Node2D" parent="." unique_id=1447905431]
+unique_name_in_owner = true
+
+[node name="ShieldEye" type="Sprite2D" parent="AutoshieldContainer" unique_id=298389851]
+position = Vector2(-29, -23)
+texture = ExtResource("4_4wc22")
+centered = false
+hframes = 5
+
+[node name="AutoshieldAnimationPlayer" type="AnimationPlayer" parent="AutoshieldContainer" unique_id=194372126]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_r50rr")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
