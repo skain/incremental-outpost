@@ -20,6 +20,11 @@ var multi_shield_enabled := false
 # Cache the actions for performance
 const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
 
+func _ready() -> void:
+	for s: Shield in find_children("*", "Shield", false, false):
+		s.autoshield_engaged.connect(_on_autoshield_engaged)
+		s.autoshield_disengaged.connect(_on_autoshield_disengaged)
+
 
 func _input(event: InputEvent) -> void:
 	# Quick exit: if the event isn't a shield action, don't loop
@@ -120,7 +125,15 @@ func _activate_shield(direction: String) -> void:
 		"left": left_shield.shield_on()
 	is_shield_on = true
 
-
+# signal handlers
 func _on_shield_timeout_timer_timeout() -> void:
 	is_shield_charge_available = true
 	SignalBus.shield_cooldown_updated.emit(shield_timeout_timer.wait_time, 0)
+
+
+func _on_autoshield_engaged() -> void:
+	print("engaged")
+
+
+func _on_autoshield_disengaged() -> void:
+	print("disengaged")

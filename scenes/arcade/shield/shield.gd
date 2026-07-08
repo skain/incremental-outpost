@@ -1,5 +1,8 @@
 class_name Shield extends Area2D
 
+signal autoshield_engaged
+signal autoshield_disengaged
+
 const HIT_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Library/Hit_00.wav")
 const BOUNCE_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Library/Shoot_02.wav")
 
@@ -17,6 +20,7 @@ var _autoshield_enabled := false
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var autoshield_animation_player: AnimationPlayer = %AutoshieldAnimationPlayer
 @onready var autoshield_container: Node2D = %AutoshieldContainer
+@onready var autoshield_area_2d: Area2D = %AutoshieldArea2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -79,12 +83,17 @@ func _set_shield_upgrades() -> void:
 	if _shield_bounce_enabled:
 		modulate = bounce_color
 	
-	autoshield_container.hide()
+	
 	if _autoshield_enabled:
 		_enable_autoshield()
 
 
+func _disable_autoshield() -> void:
+	autoshield_container.hide()
+	autoshield_area_2d.monitoring = false
+
 func _enable_autoshield() -> void:
+	autoshield_area_2d.monitoring = true
 	autoshield_container.show()
 	autoshield_animation_player.play("scan")
 
@@ -106,3 +115,13 @@ func _on_area_entered(area: Area2D) -> void:
 	_handle_hit(projectile)
 
 #endregion
+
+
+func _on_autoshield_area_2d_area_entered(area: Area2D) -> void:
+	autoshield_engaged.emit()
+	shield_on()
+
+
+func _on_autoshield_area_2d_area_exited(area: Area2D) -> void:
+	autoshield_disengaged.emit()
+	shield_off()
