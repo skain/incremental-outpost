@@ -93,6 +93,7 @@ bus = &"SoundFx"
 unique_name_in_owner = true
 
 [node name="ShieldEye" type="Sprite2D" parent="AutoshieldContainer" unique_id=298389851]
+unique_name_in_owner = true
 position = Vector2(-29, -23)
 texture = ExtResource("4_4wc22")
 centered = false

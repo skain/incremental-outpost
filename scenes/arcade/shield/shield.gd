@@ -22,6 +22,7 @@ var _autoshield_anim_name := "scan"
 @onready var autoshield_animation_player: AnimationPlayer = %AutoshieldAnimationPlayer
 @onready var autoshield_container: Node2D = %AutoshieldContainer
 @onready var autoshield_area_2d: Area2D = %AutoshieldArea2D
+@onready var shield_eye: Sprite2D = %ShieldEye
 
 
 # Called when the node enters the scene tree for the first time.
@@ -121,9 +122,11 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_autoshield_area_2d_area_entered(_area: Area2D) -> void:
 	autoshield_engaged.emit()
+	shield_eye.modulate = Color.RED
 	shield_on()
 
 
 func _on_autoshield_area_2d_area_exited(_area: Area2D) -> void:
 	autoshield_disengaged.emit()
+	shield_eye.modulate = Color.WHITE
 	shield_off()
