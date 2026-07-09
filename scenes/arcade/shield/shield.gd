@@ -86,7 +86,7 @@ func _set_shield_upgrades() -> void:
 	if _shield_bounce_enabled:
 		modulate = bounce_color
 	
-	
+	_disable_autoshield()
 	if _autoshield_enabled:
 		_enable_autoshield()
 

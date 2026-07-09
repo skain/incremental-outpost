@@ -24,6 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://ephu28nmcx1h" path="res://assets/skill_tree/icons/respec-icon.png" id="13_8btny"]
 [ext_resource type="Texture2D" uid="uid://clggx52o8wq1a" path="res://assets/skill_tree/icons/left-shield-bounce-icon.png" id="13_w61no"]
 [ext_resource type="Texture2D" uid="uid://b5h5qtpj6acpk" path="res://assets/skill_tree/icons/multishield-enabled-icon.png" id="14_ktcxh"]
+[ext_resource type="Texture2D" uid="uid://hsmxquck76a7" path="res://assets/skill_tree/icons/autoshield-top-icon.png" id="15_w61no"]
+[ext_resource type="Texture2D" uid="uid://dehdo4inkagmm" path="res://assets/skill_tree/icons/autoshield-right-icon.png" id="16_rw7va"]
+[ext_resource type="Texture2D" uid="uid://rh5iy1kb3p62" path="res://assets/skill_tree/icons/autoshield-bottom-icon.png" id="17_3y7yp"]
+[ext_resource type="Texture2D" uid="uid://b57ytujt8ysj" path="res://assets/skill_tree/icons/autoshield-left-icon.png" id="18_0yx1q"]
 [ext_resource type="Texture2D" uid="uid://bwhighnm77fhe" path="res://assets/skill_tree/icons/autofire-icon.png" id="18_ngrj7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnsbc"]
@@ -262,6 +266,42 @@ texture = ExtResource("14_ktcxh")
 skill_name = "Shield Generator Upgrade - Multishield"
 skill_desc = "This upgrade for your shield generator enables multiple shields to be active at once. Note that shield energy use is commensurate with number of shields active."
 affected_stat = 19
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="AutoshieldTop" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/MultishieldEnabled" unique_id=669106831 instance=ExtResource("2_vt0yg")]
+position = Vector2(-144, 88)
+texture = ExtResource("15_w61no")
+skill_name = "Autoshields - Top"
+skill_desc = "Adds an \"electric eye\" to your shields for auto-triggering when enemy projectiles are detected."
+affected_stat = 20
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="AutoshieldRight" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/MultishieldEnabled/AutoshieldTop" unique_id=1606725233 instance=ExtResource("2_vt0yg")]
+position = Vector2(56, 48)
+texture = ExtResource("16_rw7va")
+skill_name = "Autoshields - Right"
+skill_desc = "Adds an \"electric eye\" to your shields for auto-triggering when enemy projectiles are detected."
+affected_stat = 21
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="AutoshieldBottom" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/MultishieldEnabled/AutoshieldTop/AutoshieldRight" unique_id=803820390 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, 56)
+texture = ExtResource("17_3y7yp")
+skill_name = "Autoshields - Bottom"
+skill_desc = "Adds an \"electric eye\" to your shields for auto-triggering when enemy projectiles are detected."
+affected_stat = 22
+modifier_value = 1.0
+skill_cost = 10
+
+[node name="AutoshieldLeft" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldRecharge1/ShieldRecharge2/MultishieldEnabled/AutoshieldTop/AutoshieldRight/AutoshieldBottom" unique_id=850277849 instance=ExtResource("2_vt0yg")]
+position = Vector2(-56, -56)
+texture = ExtResource("18_0yx1q")
+skill_name = "Autoshields - Left"
+skill_desc = "Adds an \"electric eye\" to your shields for auto-triggering when enemy projectiles are detected."
+affected_stat = 23
 modifier_value = 1.0
 skill_cost = 10
 

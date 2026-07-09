@@ -48,7 +48,15 @@ var modifiers := {
 	SkillTreeNode.AffectedStat.AUTOFIRE_LEFT:
 		AutofireModifier.new(Enums.OutpostArms.LEFT),
 	SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED:
-		MultiShieldEnabledModifier.new()
+		MultiShieldEnabledModifier.new(),
+	SkillTreeNode.AffectedStat.AUTOSHIELD_TOP:
+		AutoshieldsModifier.new(Enums.OutpostArms.TOP),
+	SkillTreeNode.AffectedStat.AUTOSHIELD_RIGHT:
+		AutoshieldsModifier.new(Enums.OutpostArms.RIGHT),
+	SkillTreeNode.AffectedStat.AUTOSHIELD_BOTTOM:
+		AutoshieldsModifier.new(Enums.OutpostArms.BOTTOM),
+	SkillTreeNode.AffectedStat.AUTOSHIELD_LEFT:
+		AutoshieldsModifier.new(Enums.OutpostArms.LEFT),
 }
 
 
@@ -179,18 +187,18 @@ func get_left_cannon_autofire_enabled() -> bool:
 
 #region autoshields
 func get_top_autoshield_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_TOP))
 
 
 func get_right_autoshield_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_RIGHT))
 
 
 func get_bottom_autoshield_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_BOTTOM))
 
 
 func get_left_autoshield_enabled() -> bool:
-	return true
+	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_LEFT))
 
 #endregion
