@@ -9,7 +9,7 @@ const BOUNCE_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Libr
 var _pulse_tween: Tween
 var _shield_bounce_enabled := false
 var _autoshield_enabled := false
-var _autoshield_anim_name := "scan"
+var _reverse_shield_eye_anim := false
 
 @export var pulse_speed := 0.2
 @export var pulse_max_amount := 1.25
@@ -72,14 +72,14 @@ func _set_shield_upgrades() -> void:
 		90:
 			_shield_bounce_enabled = GameManager.skills_manager.get_right_shield_bounce_enabled()
 			_autoshield_enabled = GameManager.skills_manager.get_right_autoshield_enabled()
-			_autoshield_anim_name = "reverse_scan"
+			_reverse_shield_eye_anim = true
 		180:
 			_shield_bounce_enabled = GameManager.skills_manager.get_bottom_shield_bounce_enabled()
 			_autoshield_enabled = GameManager.skills_manager.get_bottom_autoshield_enabled()
 		270:
 			_shield_bounce_enabled = GameManager.skills_manager.get_left_shield_bounce_enabled()
 			_autoshield_enabled = GameManager.skills_manager.get_left_autoshield_enabled()
-			_autoshield_anim_name = "reverse_scan"
+			_reverse_shield_eye_anim = true
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
 	
@@ -98,7 +98,9 @@ func _disable_autoshield() -> void:
 func _enable_autoshield() -> void:
 	autoshield_area_2d.monitoring = true
 	autoshield_container.show()
-	autoshield_animation_player.play(_autoshield_anim_name)
+	autoshield_animation_player.play("scan")
+	if _reverse_shield_eye_anim:
+		shield_eye.flip_h = true
 
 
 
