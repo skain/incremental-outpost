@@ -5,6 +5,7 @@ enum CannonStates { READY_TO_FIRE, RECHARGING, DESTROYED }
 signal cannon_hit(cannon_direction: Vector2)
 
 const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_projectile.tscn")
+const MAX_CANNON_LIGHT_ENERGY = 7.0
 
 @onready var cannon: Sprite2D = %Cannon
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -14,12 +15,13 @@ const PROJECTILE_SCENE = preload("res://scenes/arcade/player_projectile/player_p
 @onready var radial_cooldown: RadialCooldown = %RadialCooldown
 @onready var autofire_line_2d: Line2D = %AutofireLine2D
 @onready var autofire_area_2d: Area2D = %AutofireArea2D
+@onready var autofire_cpu_particles: CPUParticles2D = %AutofireCPUParticles
+@onready var cannon_point_light_2d: PointLight2D = %CannonPointLight2D
 
 @export var fire_cooldown_base: float = 10.0
 @export var autofire_not_detected_color : Color
 @export var laser_base_width: float = 2.0
 @export var autofire_detected_color : Color
-@onready var autofire_cpu_particles: CPUParticles2D = %AutofireCPUParticles
 
 var fire_direction: Vector2
 var cur_state := CannonStates.READY_TO_FIRE
@@ -37,6 +39,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _autofire_enabled:
 		_evaluate_autofire()
+	
+	_set_cannon_light_energy()
+
+
+func _set_cannon_light_energy() -> void:
+	if radial_cooldown.cooldown_timer.is_stopped():
+		cannon_point_light_2d.energy = MAX_CANNON_LIGHT_ENERGY
+	else:
+		cannon_point_light_2d.energy = MAX_CANNON_LIGHT_ENERGY - (radial_cooldown.normalized_percent_duration_left * MAX_CANNON_LIGHT_ENERGY)
 
 
 func _setup_autofire() -> void:

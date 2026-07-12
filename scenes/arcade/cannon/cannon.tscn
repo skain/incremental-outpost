@@ -17,6 +17,17 @@ shader = ExtResource("2_yg2xj")
 shader_parameter/flash_modifier = 0.0
 shader_parameter/flash_color = Color(1.6938539, 1.6938539, 1.6938539, 1)
 
+[sub_resource type="Gradient" id="Gradient_r56om"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xvx6h"]
+gradient = SubResource("Gradient_r56om")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxhkx"]
 size = Vector2(14, 2)
 
@@ -27,6 +38,7 @@ autofire_not_detected_color = Color(1, 0, 0, 0.4392157)
 autofire_detected_color = Color(1, 0, 0, 0.78431374)
 
 [node name="Autofire" type="Node2D" parent="." unique_id=1337263560]
+visible = false
 
 [node name="AutofireLine2D" type="Line2D" parent="Autofire" unique_id=1122248025]
 unique_name_in_owner = true
@@ -66,23 +78,35 @@ scale = Vector2(0.86, 0.86)
 texture = ExtResource("5_lb0lo")
 hframes = 2
 
+[node name="CannonPointLight2D" type="PointLight2D" parent="." unique_id=933640567]
+unique_name_in_owner = true
+position = Vector2(0, -15)
+color = Color(1, 0.22000003, 0.22000003, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_xvx6h")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047179144]
+visible = false
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_pxhkx")
 
 [node name="FireAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2099081052]
+visible = false
 stream = ExtResource("2_kguej")
 bus = &"SoundFx"
 
 [node name="HitAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=36513656]
+visible = false
 stream = ExtResource("3_fq1eg")
 bus = &"SoundFx"
 
 [node name="MuzzleFlash" parent="." unique_id=2020624600 instance=ExtResource("4_hrred")]
+visible = false
 flash_color = Color(0.95686275, 0.827451, 0.36862746, 1)
 
 [node name="RadialCooldown" parent="." unique_id=1715744450 instance=ExtResource("7_d1hnl")]
 unique_name_in_owner = true
+visible = false
 offset_left = 5.0
 offset_top = -29.0
 offset_right = 21.0

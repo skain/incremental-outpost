@@ -6,6 +6,10 @@ signal cooldown_complete
 
 @onready var cooldown_timer: Timer = %CooldownTimer
 
+var normalized_percent_duration_left: float :
+	get:
+		return cooldown_timer.time_left / cooldown_timer.wait_time
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rotation = get_parent().rotation * -1
