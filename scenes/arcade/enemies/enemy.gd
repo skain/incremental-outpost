@@ -6,6 +6,8 @@ const BASE_POINTS := 10
 const HIT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Explosion_00.wav")
 const SPAWN_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Hit_01.wav")
 const SHOOT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Shoot_01.wav")
+const MIN_CANNON_LIGHT_ENERGY := 0.2
+const MAX_CANNON_LIGHT_ENERGY := 2.0
 
 @export var base_shoot_delay: float = 1
 @export var base_shoot_chance: float = 50
@@ -16,6 +18,7 @@ const SHOOT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Shoot_01.w
 @onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var debug_label: Label = %DebugLabel
+@onready var cannon_point_light_2d: PointLight2D = %CannonPointLight2D
 
 var enemy_level := 1
 var cur_points := BASE_POINTS
@@ -50,13 +53,27 @@ func _fire_projectile() -> void:
 func spawn(level: int) -> void:
 	enemy_level = level
 	_update_stats()
-	var tween := create_tween()
-	tween.tween_property(sprite_2d, "frame", 2, 0.3)
-	await tween.finished
+	
+	await _tween_spawn_in()
+	
+	_start_cannon_light_tween()
+	
 	_start_shoot_timer()
 	SfxManager.play_sfx(SPAWN_AUDIO, global_position)
 
 
+func _start_cannon_light_tween() -> void:
+	cannon_point_light_2d.energy = MIN_CANNON_LIGHT_ENERGY
+	var tween := create_tween()
+	tween.set_loops()
+	tween.tween_property(cannon_point_light_2d, "energy", MAX_CANNON_LIGHT_ENERGY, 0.5).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(cannon_point_light_2d, "energy", MIN_CANNON_LIGHT_ENERGY, 0.5).set_ease(Tween.EASE_IN_OUT)
+
+func _tween_spawn_in() -> void:
+	sprite_2d.frame = 0
+	var tween := create_tween()
+	tween.tween_property(sprite_2d, "frame", 2, 0.3)
+	await tween.finished
 
 func _try_shoot() -> void:
 	var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
