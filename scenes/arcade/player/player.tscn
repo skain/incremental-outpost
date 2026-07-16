@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xute0hqlqdqy" path="res://scenes/arcade/cannon/cannon.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cmo2t14e770kl" path="res://scenes/arcade/player/cannons.gd" id="5_7ow0l"]
 [ext_resource type="AudioStream" uid="uid://cwtsm6n4d0r5d" path="res://assets/sounds/8-bit Sound Library/Explosion_03.wav" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://d0pdk4u55eyji" path="res://scenes/arcade/quantum_tesla_cannon/quantum_tesla_cannon.tscn" id="9_l18vc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l18vc"]
 resource_local_to_scene = true
@@ -82,6 +83,11 @@ stream = ExtResource("5_qlg0r")
 bus = &"SoundFx"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=653930879]
+
+[node name="QuantumTeslaCannon" parent="." unique_id=1649087425 node_paths=PackedStringArray("player") instance=ExtResource("9_l18vc")]
+position = Vector2(-66.25553, 7.392518)
+player = NodePath("..")
+speed = 0.25
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Shields/ShieldTimeoutTimer" to="Shields" method="_on_shield_timeout_timer_timeout"]

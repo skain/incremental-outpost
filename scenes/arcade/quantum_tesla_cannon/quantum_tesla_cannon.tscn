@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d0pdk4u55eyji"]
+
+[ext_resource type="Script" uid="uid://c6bhra07ncykh" path="res://scenes/arcade/quantum_tesla_cannon/quantum_tesla_cannon.gd" id="1_82ihv"]
+
+[sub_resource type="Gradient" id="Gradient_5jsqs"]
+offsets = PackedFloat32Array(0, 0.24846625, 0.37116563)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xvx6h"]
+gradient = SubResource("Gradient_5jsqs")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="QuantumTeslaCannon" type="Sprite2D" unique_id=1649087425]
+texture = SubResource("GradientTexture2D_xvx6h")
+script = ExtResource("1_82ihv")
