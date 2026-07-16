@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0pdk4u55eyji"]
 
 [ext_resource type="Script" uid="uid://c6bhra07ncykh" path="res://scenes/arcade/quantum_tesla_cannon/quantum_tesla_cannon.gd" id="1_82ihv"]
+[ext_resource type="PackedScene" uid="uid://7wadnnpadmh6" path="res://scenes/arcade/radial_cooldown/radial_cooldown.tscn" id="2_o8ebp"]
 
 [sub_resource type="Gradient" id="Gradient_5jsqs"]
 offsets = PackedFloat32Array(0, 0.24846625, 0.37116563)
@@ -30,8 +31,11 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0.39, 0.39, 0.39, 1, 1, 1, 1, 
 z_index = 1
 texture = SubResource("GradientTexture2D_xvx6h")
 script = ExtResource("1_82ihv")
+radius = null
+speed = null
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1358076381]
+unique_name_in_owner = true
 emitting = false
 texture = SubResource("GradientTexture2D_63hc2")
 lifetime = 3.0
@@ -41,3 +45,21 @@ emission_shape = 3
 emission_rect_extents = Vector2(10, 10)
 gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_82ihv")
+
+[node name="RadialCooldown" parent="." unique_id=1715744450 instance=ExtResource("2_o8ebp")]
+unique_name_in_owner = true
+offset_left = 3.0
+offset_top = -20.0
+offset_right = 19.0
+offset_bottom = -4.0
+tint_under = Color(0.81, 0, 0, 0.7058824)
+tint_progress = Color(0.82, 0, 0, 0.7058824)
+cooldown_duration = 10.0
+
+[node name="ScanTimer" type="Timer" parent="." unique_id=630408773]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[connection signal="cooldown_complete" from="RadialCooldown" to="." method="_on_radial_cooldown_cooldown_complete"]
+[connection signal="timeout" from="ScanTimer" to="." method="_on_scan_timer_timeout"]

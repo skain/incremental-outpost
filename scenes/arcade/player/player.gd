@@ -8,6 +8,7 @@ signal smart_bomb_triggered
 @onready var cannons: Node2D = $Cannons
 @onready var player_sprite: Sprite2D = %Player
 @onready var shields: ShieldsManager = %Shields
+@onready var qtc: QuantumTeslaCannon = %QuantumTeslaCannon
 
 var hull_plating := 0
 var smart_bombs_max := 0
@@ -45,6 +46,7 @@ func reset() -> void:
 	_update_smart_bombs_ui()
 	cannons.reset_cannons()	
 	shields.reset()
+	qtc.reset()
 
 
 func make_camera_current() -> void:

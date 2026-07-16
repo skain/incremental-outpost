@@ -202,3 +202,9 @@ func get_left_autoshield_enabled() -> bool:
 	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_LEFT))
 
 #endregion
+
+#region QTC
+func get_qtc_cooldown() -> float:
+	return 2.0
+
+#endregion
