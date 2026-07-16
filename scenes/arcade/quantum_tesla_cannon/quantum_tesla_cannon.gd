@@ -1,4 +1,3 @@
-@tool
 class_name QuantumTeslaCannon extends Sprite2D
 
 @export var player: Node2D
@@ -6,7 +5,12 @@ class_name QuantumTeslaCannon extends Sprite2D
 @export var radius: float = 200.0
 @export var speed: float = 2.0
 
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+
 var angle: float = 0.0
+
+func _ready() -> void:
+	cpu_particles_2d.emitting = true
 
 func _process(delta: float) -> void:
 	# Safety check: Ensure the player node exists before trying to access it
