@@ -31,7 +31,7 @@ fill_to = Vector2(0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxhkx"]
 size = Vector2(14, 2)
 
-[node name="Cannon" type="Area2D" unique_id=1914894468]
+[node name="Cannon" type="Area2D" unique_id=1914894468 groups=["Player"]]
 collision_mask = 16
 script = ExtResource("1_kguej")
 autofire_not_detected_color = Color(1, 0, 0, 0.4392157)
