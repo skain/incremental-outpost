@@ -14,8 +14,6 @@ z_index = 1
 texture = ExtResource("1_63hc2")
 offset = Vector2(8, 11)
 script = ExtResource("1_82ihv")
-radius = null
-speed = null
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1358076381]
 unique_name_in_owner = true
@@ -45,5 +43,4 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[connection signal="cooldown_complete" from="RadialCooldown" to="." method="_on_radial_cooldown_cooldown_complete"]
 [connection signal="timeout" from="ScanTimer" to="." method="_on_scan_timer_timeout"]

@@ -207,4 +207,8 @@ func get_left_autoshield_enabled() -> bool:
 func get_qtc_cooldown() -> float:
 	return 2.0
 
+
+func get_qtc_chain_count() -> int:
+	return 4
+
 #endregion

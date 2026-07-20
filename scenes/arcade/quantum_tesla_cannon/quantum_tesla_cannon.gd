@@ -65,19 +65,22 @@ func _do_orbit(delta: float) -> void:
 	global_position = player.global_position + offset
 
 
-func _scan_for_enemies() -> void:
+func _scan_for_enemies(visible_enemies: Array[Enemy] = []) -> void:
 	# Don't shoot if the cannon is currently cooling down
 	if radial_cooldown.is_on_cooldown():
 		return
 		
 	if enemies_in_sight.is_empty():
 		return
+	
+	if len(visible_enemies) == 0:
+		visible_enemies = enemies_in_sight
 		
 	var closest_enemy: Enemy = null
 	var min_distance: float = INF
 	
 	# Linear search for the closest validated target in line of sight
-	for enemy in enemies_in_sight:
+	for enemy in visible_enemies:
 		if is_instance_valid(enemy):
 			var dist := global_position.distance_to(enemy.global_position)
 			if dist < min_distance:
@@ -93,12 +96,12 @@ func _shoot_enemy(enemy: Enemy) -> void:
 	radial_cooldown.start_cooldown()
 	
 	_draw_laser_beam(enemy.global_position)
-	print("shooting")
+	
 	#destroy enemy
 
 
 ## Returns an array of enemy nodes that have a clear line of sight
-func _get_visible_enemies() -> Array[Enemy]:
+func _get_visible_enemies(source_pos: Vector2) -> Array[Enemy]:
 	var visible_list: Array[Enemy] = []
 	
 	# Fetch the 2D direct space state for physics queries
@@ -113,7 +116,7 @@ func _get_visible_enemies() -> Array[Enemy]:
 			continue
 			
 		# Configure the raycast query
-		var query := PhysicsRayQueryParameters2D.create(global_position, enemy.global_position)
+		var query := PhysicsRayQueryParameters2D.create(source_pos, enemy.global_position)
 		
 		# Layer 3 is ON, Layer 2 is OFF, Layer 1 is ON (read right to left)
 		query.collision_mask = 0b0101
@@ -158,19 +161,14 @@ func _draw_laser_beam(target_position: Vector2) -> void:
 	var tween := create_tween()
 	
 	# Fades the alpha value to 0 over 0.15 seconds
-	tween.tween_property(laser, "modulate:a", 0.0, 0.15)
+	tween.tween_property(laser, "modulate:a", 0.0, 1.0)
 	
 	# CRITICAL: Automatically free the node from memory once the fade finishes
 	tween.tween_callback(laser.queue_free)
 
 #region event handlers
-func _on_radial_cooldown_cooldown_complete() -> void:
-	# Left blank intentionally. Cooldown loops are handled explicitly via _shoot_enemy()
-	pass
-
-
 func _on_scan_timer_timeout() -> void:
-	enemies_in_sight = _get_visible_enemies()
+	enemies_in_sight = _get_visible_enemies(global_position)
 	scan_timer.start()
 
 #endregion
