@@ -12,6 +12,7 @@ var angle := 0.0
 var cooldown := 10.0
 var enemies_in_sight: Array[Enemy] = []
 var speed_modifier := 0.1
+var chain_count := 0
 
 
 func _ready() -> void:
@@ -26,12 +27,14 @@ func _process(delta: float) -> void:
 		return
 		
 	_do_orbit(delta)
-	_scan_for_enemies()
+	_try_shoot()
 
 
 func reset() -> void:
 	radial_cooldown.set_one_shot(true)
+	chain_count = GameManager.skills_manager.get_qtc_chain_count()	
 	cooldown = GameManager.skills_manager.get_qtc_cooldown()
+	
 	if cooldown == 0.0:
 		disable()
 		return
@@ -40,20 +43,17 @@ func reset() -> void:
 
 
 func disable() -> void:
-		hide()
-		set_process(false)
-		scan_timer.stop()
-		cpu_particles_2d.emitting = false
+	hide()
+	set_process(false)
+	scan_timer.stop()
+	cpu_particles_2d.emitting = false
 
 
 func enable() -> void:
 	set_process(true)
-	
 	radial_cooldown.cooldown_duration = cooldown
 	radial_cooldown.start_cooldown()
-	
 	scan_timer.start()
-	
 	cpu_particles_2d.emitting = true
 
 
@@ -65,46 +65,58 @@ func _do_orbit(delta: float) -> void:
 	global_position = player.global_position + offset
 
 
-func _scan_for_enemies(visible_enemies: Array[Enemy] = []) -> void:
-	# Don't shoot if the cannon is currently cooling down
-	if radial_cooldown.is_on_cooldown():
-		return
-		
-	if enemies_in_sight.is_empty():
-		return
-	
-	if len(visible_enemies) == 0:
-		visible_enemies = enemies_in_sight
-		
+func _try_shoot() -> void:
+	# Only attempt a shot cycle if off cooldown
+	if not radial_cooldown.is_on_cooldown() and not enemies_in_sight.is_empty():
+		var first_target := _find_closest_enemy(global_position, enemies_in_sight)
+		if first_target:
+			# Fire initial shot & start cooldown ONCE here
+			radial_cooldown.start_cooldown()
+			_shoot_enemy(global_position, first_target)
+			_process_chain(first_target)
+
+
+func _find_closest_enemy(origin_pos: Vector2, candidate_enemies: Array[Enemy]) -> Enemy:
 	var closest_enemy: Enemy = null
 	var min_distance: float = INF
 	
-	# Linear search for the closest validated target in line of sight
-	for enemy in visible_enemies:
+	for enemy in candidate_enemies:
 		if is_instance_valid(enemy):
-			var dist := global_position.distance_to(enemy.global_position)
+			var dist := origin_pos.distance_to(enemy.global_position)
 			if dist < min_distance:
 				min_distance = dist
 				closest_enemy = enemy
 				
-	if closest_enemy:
-		_shoot_enemy(closest_enemy)
+	return closest_enemy
 
 
-func _shoot_enemy(enemy: Enemy) -> void:
-	# Trigger the cooldown phase immediately upon firing
-	radial_cooldown.start_cooldown()
+func _process_chain(initial_enemy: Enemy) -> void:
+	var cur_enemy := initial_enemy
+	var hit_enemies: Array[Enemy] = [initial_enemy]
 	
-	_draw_laser_beam(enemy.global_position)
-	
-	#destroy enemy
+	for i in chain_count:
+		# Exclude already hit enemies from line-of-sight checks
+		var visible := _get_visible_enemies(cur_enemy.global_position, hit_enemies)
+		if visible.is_empty():
+			break
+			
+		var next_enemy := _find_closest_enemy(cur_enemy.global_position, visible)
+		if not is_instance_valid(next_enemy):
+			break
+			
+		_shoot_enemy(cur_enemy.global_position, next_enemy)
+		hit_enemies.append(next_enemy)
+		cur_enemy = next_enemy
+
+
+func _shoot_enemy(from_pos: Vector2, enemy: Enemy) -> void:
+	_draw_laser_beam(from_pos, enemy.global_position)
+	enemy.take_damage()
 
 
 ## Returns an array of enemy nodes that have a clear line of sight
-func _get_visible_enemies(source_pos: Vector2) -> Array[Enemy]:
+func _get_visible_enemies(source_pos: Vector2, exclude_list: Array[Enemy] = []) -> Array[Enemy]:
 	var visible_list: Array[Enemy] = []
-	
-	# Fetch the 2D direct space state for physics queries
 	var space_state := get_world_2d().direct_space_state
 	if not space_state:
 		return visible_list
@@ -112,59 +124,44 @@ func _get_visible_enemies(source_pos: Vector2) -> Array[Enemy]:
 	var enemies := get_tree().get_nodes_in_group("Enemy")
 	
 	for enemy in enemies:
-		if not is_instance_valid(enemy) or not enemy is Node2D:
+		if not is_instance_valid(enemy) or not enemy is Node2D or enemy in exclude_list:
 			continue
 			
-		# Configure the raycast query
 		var query := PhysicsRayQueryParameters2D.create(source_pos, enemy.global_position)
-		
-		# Layer 3 is ON, Layer 2 is OFF, Layer 1 is ON (read right to left)
 		query.collision_mask = 0b0101
-		
 		query.collide_with_areas = true
 		
-		# Cast the ray
+		# Pass already hit enemies + self as raycast exceptions so the ray isn't blocked by them
+		var RID_exceptions: Array[RID] = []
+		for hit in exclude_list:
+			if is_instance_valid(hit):
+				RID_exceptions.append(hit.get_rid())
+		query.exclude = RID_exceptions
+		
 		var result := space_state.intersect_ray(query)
 		
-		# Check the result
-		if result:
-			# If the collider we hit is the enemy, the line of sight is clear!
-			if result.collider == enemy:
-				visible_list.append(enemy as Enemy)
-			# If result.collider == player, it hit the player first and gets ignored
+		if result and result.collider == enemy:
+			visible_list.append(enemy as Enemy)
 			
 	return visible_list
 
 
-func _draw_laser_beam(target_position: Vector2) -> void:
-	# 1. Create a new instance of Line2D
+func _draw_laser_beam(from_pos: Vector2, target_position: Vector2) -> void:
 	var laser := Line2D.new()
-	
-	# 2. Configure its visual properties
 	laser.default_color = Color.RED
 	laser.width = 3.0
-	
-	# Anti-aliasing makes the line look much smoother, highly recommended for lasers
 	laser.antialiased = true 
 	
-	# 3. Add the line as a child of the orbiter
-	add_child(laser)
+	# Add to main scene tree root instead of self so local transform math doesn't mess up during orbit
+	get_tree().current_scene.add_child(laser)
 	
-	# 4. Define the local points (starting at center, ending at target)
-	laser.add_point(Vector2.ZERO)
+	laser.add_point(from_pos)
+	laser.add_point(target_position)
 	
-	# Convert the enemy's global position to the local space of this newly added line
-	var local_target_pos := laser.to_local(target_position)
-	laser.add_point(local_target_pos)
-	
-	# 5. Create a dynamic fade-and-destroy sequence using a Tween
 	var tween := create_tween()
-	
-	# Fades the alpha value to 0 over 0.15 seconds
-	tween.tween_property(laser, "modulate:a", 0.0, 1.0)
-	
-	# CRITICAL: Automatically free the node from memory once the fade finishes
+	tween.tween_property(laser, "modulate:a", 0.0, 0.15)
 	tween.tween_callback(laser.queue_free)
+
 
 #region event handlers
 func _on_scan_timer_timeout() -> void:

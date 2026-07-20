@@ -90,7 +90,7 @@ func _smart_bomb_all_enemies() -> void:
 	enemies.assign(get_tree().get_nodes_in_group("Enemy"))
 	
 	for e in enemies:
-		e.process_smart_bomb_hit()
+		e.take_damage()
 
 
 func _destroy_all_projectiles() -> void:

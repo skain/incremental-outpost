@@ -24,10 +24,13 @@ var enemy_level := 1
 var cur_points := BASE_POINTS
 
 
-func process_smart_bomb_hit() -> void:
+func take_damage() -> void:
+	await _hit_flash()
+	
+	SfxManager.play_sfx(HIT_AUDIO, global_position)
+	
 	SignalBus.enemy_hit.emit(self)
-	call_deferred("queue_free")
-	#disable()
+	self.call_deferred("queue_free")
 
 
 func _update_stats() -> void:
@@ -69,11 +72,13 @@ func _start_cannon_light_tween() -> void:
 	tween.tween_property(cannon_point_light_2d, "energy", MAX_CANNON_LIGHT_ENERGY, 0.5).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(cannon_point_light_2d, "energy", MIN_CANNON_LIGHT_ENERGY, 0.5).set_ease(Tween.EASE_IN_OUT)
 
+
 func _tween_spawn_in() -> void:
 	sprite_2d.frame = 0
 	var tween := create_tween()
 	tween.tween_property(sprite_2d, "frame", 2, 0.3)
 	await tween.finished
+
 
 func _try_shoot() -> void:
 	var cur_chance: float = GameMath.get_scaled_value(base_shoot_chance, enemy_level, 1.25)
@@ -87,15 +92,10 @@ func _on_area_entered(projectile: Node2D) -> void:
 	if not is_instance_valid(projectile):
 		return
 	
-	await _hit_flash()
-	
-	SfxManager.play_sfx(HIT_AUDIO, global_position)
+	take_damage()	
 	
 	if is_instance_valid(projectile):
 		projectile.handle_hit()
-	
-	SignalBus.enemy_hit.emit(self)
-	self.call_deferred("queue_free")
 
 
 func _on_shoot_timer_timeout() -> void:
