@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0pdk4u55eyji"]
 
-[ext_resource type="Texture2D" uid="uid://w7pg18caeyak" path="res://assets/sputnik-pixel-snapper.png" id="1_63hc2"]
 [ext_resource type="Script" uid="uid://c6bhra07ncykh" path="res://scenes/arcade/quantum_tesla_cannon/quantum_tesla_cannon.gd" id="1_82ihv"]
+[ext_resource type="Texture2D" uid="uid://b20fxeox01sal" path="res://assets/qtc.png" id="1_e0tko"]
 [ext_resource type="PackedScene" uid="uid://7wadnnpadmh6" path="res://scenes/arcade/radial_cooldown/radial_cooldown.tscn" id="2_o8ebp"]
 [ext_resource type="Texture2D" uid="uid://cjtklrr03022n" path="res://assets/quanta-particle.png" id="3_e0tko"]
 
@@ -11,7 +11,7 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0.39, 0.39, 0.39, 1, 1, 1, 1, 
 
 [node name="QuantumTeslaCannon" type="Sprite2D" unique_id=1649087425]
 z_index = 1
-texture = ExtResource("1_63hc2")
+texture = ExtResource("1_e0tko")
 offset = Vector2(8, 11)
 script = ExtResource("1_82ihv")
 

@@ -110,7 +110,7 @@ func _process_chain(initial_enemy: Enemy) -> void:
 
 
 func _shoot_enemy(from_pos: Vector2, enemy: Enemy) -> void:
-	_draw_laser_beam(from_pos, enemy.global_position)
+	LightningFX.spawn_lightning(get_tree(), from_pos, enemy.global_position, 0.5)
 	enemy.take_damage()
 
 
@@ -144,23 +144,6 @@ func _get_visible_enemies(source_pos: Vector2, exclude_list: Array[Enemy] = []) 
 			visible_list.append(enemy as Enemy)
 			
 	return visible_list
-
-
-func _draw_laser_beam(from_pos: Vector2, target_position: Vector2) -> void:
-	var laser := Line2D.new()
-	laser.default_color = Color.RED
-	laser.width = 3.0
-	laser.antialiased = true 
-	
-	# Add to main scene tree root instead of self so local transform math doesn't mess up during orbit
-	get_tree().current_scene.add_child(laser)
-	
-	laser.add_point(from_pos)
-	laser.add_point(target_position)
-	
-	var tween := create_tween()
-	tween.tween_property(laser, "modulate:a", 0.0, 0.15)
-	tween.tween_callback(laser.queue_free)
 
 
 #region event handlers
