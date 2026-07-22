@@ -1,4 +1,4 @@
-class_name SkillsManager extends Node
+extends Node
 
 const BASE_POINTS_TO_BUCKS_RATE := 0.1
 const CANNON_COOLDOWN_BASE := 10.0

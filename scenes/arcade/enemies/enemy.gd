@@ -34,7 +34,7 @@ func take_damage() -> void:
 
 
 func _update_stats() -> void:
-	var cur_mult := GameManager.skills_manager.get_points_multiplier()
+	var cur_mult := SkillsManager.get_points_multiplier()
 	cur_points = round(enemy_level * cur_mult * BASE_POINTS)
 	debug_label.text = str(enemy_level)
 

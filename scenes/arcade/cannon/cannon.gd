@@ -54,13 +54,13 @@ func _setup_autofire() -> void:
 	_flicker_phase_offset = randf_range(0.0, 100.0)
 	match rotation_degrees:
 		0.0:
-			_autofire_enabled = GameManager.skills_manager.get_top_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_top_cannon_autofire_enabled()
 		90.0:
-			_autofire_enabled = GameManager.skills_manager.get_right_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_right_cannon_autofire_enabled()
 		180.0:
-			_autofire_enabled = GameManager.skills_manager.get_bottom_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_bottom_cannon_autofire_enabled()
 		270.0:
-			_autofire_enabled = GameManager.skills_manager.get_left_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_left_cannon_autofire_enabled()
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
 	
@@ -70,7 +70,7 @@ func _setup_autofire() -> void:
 	
 
 func _set_fire_cooldown() -> void:
-	var cooldown := GameManager.skills_manager.get_cannon_cooldown()
+	var cooldown := SkillsManager.get_cannon_cooldown()
 	radial_cooldown.cooldown_duration = cooldown
 	
 	

@@ -67,18 +67,18 @@ func _set_shield_upgrades() -> void:
 	var angle := roundi(rotation_degrees)
 	match angle:
 		0:
-			_shield_bounce_enabled = GameManager.skills_manager.get_top_shield_bounce_enabled()
-			_autoshield_enabled = GameManager.skills_manager.get_top_autoshield_enabled()
+			_shield_bounce_enabled = SkillsManager.get_top_shield_bounce_enabled()
+			_autoshield_enabled = SkillsManager.get_top_autoshield_enabled()
 		90:
-			_shield_bounce_enabled = GameManager.skills_manager.get_right_shield_bounce_enabled()
-			_autoshield_enabled = GameManager.skills_manager.get_right_autoshield_enabled()
+			_shield_bounce_enabled = SkillsManager.get_right_shield_bounce_enabled()
+			_autoshield_enabled = SkillsManager.get_right_autoshield_enabled()
 			_reverse_shield_eye_anim = true
 		180:
-			_shield_bounce_enabled = GameManager.skills_manager.get_bottom_shield_bounce_enabled()
-			_autoshield_enabled = GameManager.skills_manager.get_bottom_autoshield_enabled()
+			_shield_bounce_enabled = SkillsManager.get_bottom_shield_bounce_enabled()
+			_autoshield_enabled = SkillsManager.get_bottom_autoshield_enabled()
 		270:
-			_shield_bounce_enabled = GameManager.skills_manager.get_left_shield_bounce_enabled()
-			_autoshield_enabled = GameManager.skills_manager.get_left_autoshield_enabled()
+			_shield_bounce_enabled = SkillsManager.get_left_shield_bounce_enabled()
+			_autoshield_enabled = SkillsManager.get_left_autoshield_enabled()
 			_reverse_shield_eye_anim = true
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)

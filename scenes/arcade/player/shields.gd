@@ -53,12 +53,12 @@ func _input(event: InputEvent) -> void:
 
 
 func reset() -> void:
-	shields_enabled = GameManager.skills_manager.get_shields_enabled()
-	cur_shield_energy_max = GameManager.skills_manager.get_shield_max_energy()
-	cur_shield_charge_rate = GameManager.skills_manager.get_shield_charge_rate()
-	cur_shield_drain_rate = GameManager.skills_manager.get_shield_drain_rate()
-	shield_timeout_timer.wait_time = GameManager.skills_manager.get_shield_timeout()
-	multi_shield_enabled = GameManager.skills_manager.get_multishield_enabled()
+	shields_enabled = SkillsManager.get_shields_enabled()
+	cur_shield_energy_max = SkillsManager.get_shield_max_energy()
+	cur_shield_charge_rate = SkillsManager.get_shield_charge_rate()
+	cur_shield_drain_rate = SkillsManager.get_shield_drain_rate()
+	shield_timeout_timer.wait_time = SkillsManager.get_shield_timeout()
+	multi_shield_enabled = SkillsManager.get_multishield_enabled()
 	
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max

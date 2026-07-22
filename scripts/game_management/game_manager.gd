@@ -9,8 +9,6 @@ const INDENT_ID := "1a4c9433-55c1-4774-bd45-b5275c63ad76"
 var _skill_nodes_by_name: Dictionary[String, SkillNodeData] = {}
 #gdscript doesn't support nested typed collections, unfortunately
 var _skill_nodes_by_affected_stat: Dictionary = {}
-#var _base_points_to_bucks_rate: float = 0.1
-var skills_manager := SkillsManager.new()
 
 
 func _ready() -> void:
@@ -33,7 +31,7 @@ func set_points(new_points: int) -> void:
 
 	
 func convert_points_to_bucks() -> int:
-	var new_bucks:int = floor(game_data.current_points * skills_manager.get_points_to_bucks_conversion_rate())
+	var new_bucks:int = floor(game_data.current_points * SkillsManager.get_points_to_bucks_conversion_rate())
 	set_points(0)
 	game_data.current_bucks += new_bucks
 	return new_bucks
@@ -63,7 +61,7 @@ func process_node_purchase(node: SkillTreeNodeBase) -> void:
 	game_data.current_bucks -= int(node.skill_cost)
 	var skill_node := node as SkillTreeNode
 	if skill_node:
-		skills_manager.request_refresh(node.affected_stat)
+		SkillsManager.request_refresh(node.affected_stat)
 	
 	
 func is_node_purchased(node: SkillTreeNodeBase) -> bool:

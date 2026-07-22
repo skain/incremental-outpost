@@ -40,8 +40,8 @@ func _handle_smart_bomb() -> bool:
 
 func reset() -> void:
 	is_dead = false
-	hull_plating = GameManager.skills_manager.get_hull_plating()
-	smart_bombs_max = GameManager.skills_manager.get_num_smart_bombs()
+	hull_plating = SkillsManager.get_hull_plating()
+	smart_bombs_max = SkillsManager.get_num_smart_bombs()
 	smart_bombs_left = smart_bombs_max
 	_update_smart_bombs_ui()
 	cannons.reset_cannons()	

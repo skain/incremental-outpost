@@ -8,7 +8,7 @@ signal buy_skill_node_pressed(node: SkillTreeNodeBase)
 @onready var respec_button: Button = %RespecButton
 
 func _ready() -> void:
-	respec_button.visible =  GameManager.skills_manager.get_respec_enabled()
+	respec_button.visible =  SkillsManager.get_respec_enabled()
 
 func update_ui() -> void:
 	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)

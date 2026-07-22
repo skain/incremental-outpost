@@ -21,15 +21,15 @@ func _ready() -> void:
 
 
 func _load_stats() -> void:
-	var shields_enabled := GameManager.skills_manager.get_shields_enabled()
-	var hull_plating := GameManager.skills_manager.get_hull_plating()
-	var cannon_cooldown := GameManager.skills_manager.get_cannon_cooldown()
-	var shields_max := GameManager.skills_manager.get_shield_max_energy()
-	var shields_drain := GameManager.skills_manager.get_shield_drain_rate()
-	var shields_charge := GameManager.skills_manager.get_shield_charge_rate()
-	var shields_timeout := GameManager.skills_manager.get_shield_timeout()
-	var bucks_rate := GameManager.skills_manager.get_points_to_bucks_conversion_rate()
-	var points_mult := GameManager.skills_manager.get_points_multiplier()
+	var shields_enabled := SkillsManager.get_shields_enabled()
+	var hull_plating := SkillsManager.get_hull_plating()
+	var cannon_cooldown := SkillsManager.get_cannon_cooldown()
+	var shields_max := SkillsManager.get_shield_max_energy()
+	var shields_drain := SkillsManager.get_shield_drain_rate()
+	var shields_charge := SkillsManager.get_shield_charge_rate()
+	var shields_timeout := SkillsManager.get_shield_timeout()
+	var bucks_rate := SkillsManager.get_points_to_bucks_conversion_rate()
+	var points_mult := SkillsManager.get_points_multiplier()
 	
 	shields_enabled_check_box.button_pressed = shields_enabled
 	hull_plating_label.text = str(hull_plating)
