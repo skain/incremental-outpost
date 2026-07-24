@@ -13,5 +13,3 @@ theme_override_font_sizes/font_size = 22
 text = "100"
 label_settings = SubResource("LabelSettings_5volw")
 script = ExtResource("1_5volw")
-travel_distance = Vector2(100, -200)
-duration = 2.0

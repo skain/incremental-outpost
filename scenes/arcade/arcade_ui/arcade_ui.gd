@@ -26,12 +26,6 @@ func _ready() -> void:
 		shield_energy_h_box_container.hide()
 
 
-func _connect_signals() -> void:
-	SignalBus.shield_cooldown_updated.connect(update_shield_cooldown)
-	SignalBus.shield_energy_updated.connect(update_shield_energy)
-	SignalBus.smart_bombs_updated.connect(update_smart_bombs)
-
-
 func update_ui(score: int, player_hull_plating: int) -> void:
 	score_value.text = str(score)
 	_set_player_hull_plating(player_hull_plating)
@@ -42,6 +36,7 @@ func update_shield_energy(cur_shield_energy: float, cur_max_shield_energy: float
 	shield_progress_bar.value = cur_shield_energy
 	var percent := remap(cur_max_shield_energy, 10.0, 100.0, 10.0, 100.0)
 	shield_progress_bar.custom_minimum_size.x = 640 * (percent / 100)
+
 
 func update_shield_cooldown(shield_cooldown_max: float, shield_cooldown_cur_value: float) -> void:
 	shield_cooldown_progress_bar.hide()
@@ -69,6 +64,19 @@ func update_smart_bombs(smart_bombs_max: int, smart_bombs_left: int) -> void:
 		smart_bombs_h_box_container.add_child(t)
 
 
+func show_new_wave_message(wave_number: int) -> void:
+	var new_message := "WAVE " + str(wave_number) + "\rINCOMING"
+	new_wave_label.text = new_message
+	new_wave_label.self_modulate = Color.WHITE
+	new_wave_label.show()
+	
+	if new_wave_label_tween:
+		new_wave_label_tween.kill()
+	
+	new_wave_label_tween = create_tween()
+	new_wave_label_tween.tween_property(new_wave_label, "self_modulate:a", 0.0, 2.0)
+	
+
 func _set_player_hull_plating(player_hull_plating: int) -> void:
 	if player_hull_plating > 0:
 		hull_plating_1.visible = true
@@ -86,14 +94,7 @@ func _set_player_hull_plating(player_hull_plating: int) -> void:
 		hull_plating_3.visible = false
 
 
-func show_new_wave_message(wave_number: int) -> void:
-	var new_message := "WAVE " + str(wave_number) + "\rINCOMING"
-	new_wave_label.text = new_message
-	new_wave_label.self_modulate = Color.WHITE
-	new_wave_label.show()
-	
-	if new_wave_label_tween:
-		new_wave_label_tween.kill()
-	
-	new_wave_label_tween = create_tween()
-	new_wave_label_tween.tween_property(new_wave_label, "self_modulate:a", 0.0, 2.0)
+func _connect_signals() -> void:
+	SignalBus.shield_cooldown_updated.connect(update_shield_cooldown)
+	SignalBus.shield_energy_updated.connect(update_shield_energy)
+	SignalBus.smart_bombs_updated.connect(update_smart_bombs)
