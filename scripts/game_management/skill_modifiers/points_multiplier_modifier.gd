@@ -1,5 +1,0 @@
-class_name PointsMultiplierModifier extends ModifierBase
-
-func get_value(purchased_nodes: Array[SkillNodeData]) -> float:
-	var stat_nodes := find_nodes_by_affected_stat(SkillTreeNode.AffectedStat.POINTS_MULTIPLIER, purchased_nodes)
-	return max(get_cached_value(stat_nodes), 1.0)

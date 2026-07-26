@@ -8,61 +8,26 @@ const BASE_SHIELD_CHARGE_RATE := 0.25
 const BASE_SHIELD_TIMEOUT := 5.0
 const BASE_POINTS_MULTIPLIER := 1.0
 
-var modifiers := {
-	SkillTreeNode.AffectedStat.CANNON_COOLDOWN:
-		CannonCooldownModifier.new(),
-	SkillTreeNode.AffectedStat.HULL_PLATING:
-		HullPlatingModifier.new(),
-	SkillTreeNode.AffectedStat.SHIELDS_ENABLED:
-		ShieldsEnabledModifier.new(),
-	SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY:
-		ShieldMaxEnergyModifier.new(),
-	SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE:
-		ShieldDrainRateModifier.new(),
-	SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE:
-		ShieldChargeRateModifier.new(),
-	SkillTreeNode.AffectedStat.SHIELD_TIMEOUT:
-		ShieldTimeoutModifier.new(),
-	SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE:
-		BucksConversionRateModifier.new(),
-	SkillTreeNode.AffectedStat.POINTS_MULTIPLIER:
-		PointsMultiplierModifier.new(),
-	SkillTreeNode.AffectedStat.NUM_SMART_BOMBS:
-		SmartBombsModifier.new(),
-	SkillTreeNode.AffectedStat.RESPEC_ENABLED:
-		RespecEnabledModifier.new(),
-	SkillTreeNode.AffectedStat.TOP_SHIELD_BOUNCE:
-		ShieldBounceModifier.new(Enums.OutpostArms.TOP),
-	SkillTreeNode.AffectedStat.RIGHT_SHIELD_BOUNCE:
-		ShieldBounceModifier.new(Enums.OutpostArms.RIGHT),
-	SkillTreeNode.AffectedStat.BOTTOM_SHIELD_BOUNCE:
-		ShieldBounceModifier.new(Enums.OutpostArms.BOTTOM),
-	SkillTreeNode.AffectedStat.LEFT_SHIELD_BOUNCE:
-		ShieldBounceModifier.new(Enums.OutpostArms.LEFT),
-	SkillTreeNode.AffectedStat.AUTOFIRE_TOP:
-		AutofireModifier.new(Enums.OutpostArms.TOP),
-	SkillTreeNode.AffectedStat.AUTOFIRE_RIGHT:
-		AutofireModifier.new(Enums.OutpostArms.RIGHT),
-	SkillTreeNode.AffectedStat.AUTOFIRE_BOTTOM:
-		AutofireModifier.new(Enums.OutpostArms.BOTTOM),
-	SkillTreeNode.AffectedStat.AUTOFIRE_LEFT:
-		AutofireModifier.new(Enums.OutpostArms.LEFT),
-	SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED:
-		MultiShieldEnabledModifier.new(),
-	SkillTreeNode.AffectedStat.AUTOSHIELD_TOP:
-		AutoshieldsModifier.new(Enums.OutpostArms.TOP),
-	SkillTreeNode.AffectedStat.AUTOSHIELD_RIGHT:
-		AutoshieldsModifier.new(Enums.OutpostArms.RIGHT),
-	SkillTreeNode.AffectedStat.AUTOSHIELD_BOTTOM:
-		AutoshieldsModifier.new(Enums.OutpostArms.BOTTOM),
-	SkillTreeNode.AffectedStat.AUTOSHIELD_LEFT:
-		AutoshieldsModifier.new(Enums.OutpostArms.LEFT),
-}
+var modifiers := {}
 
+
+func _ready() -> void:
+	_add_basic_modifiers()
 
 func request_refresh(affected_stat: SkillTreeNode.AffectedStat) -> void:
 	modifiers[affected_stat].request_refresh()
 
+
+func _add_basic_modifiers() -> void:
+	for i : int in SkillTreeNode.AffectedStat.values():
+		_add_basic_modifier(i)
+
+
+func _add_basic_modifier(stat: SkillTreeNode.AffectedStat) -> void:
+	if modifiers.has(stat):
+		return
+	
+	modifiers[stat] = SkillModifier.new(stat)
 
 func _get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
 	var purchased_nodes := GameManager.get_purchased_nodes()
@@ -205,7 +170,7 @@ func get_left_autoshield_enabled() -> bool:
 
 #region QTC
 func get_qtc_cooldown() -> float:
-	return 2.0
+	return 0.0
 
 
 func get_qtc_chain_count() -> int:

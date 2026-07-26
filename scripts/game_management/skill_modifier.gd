@@ -1,7 +1,18 @@
-class_name ModifierBase extends Node
+class_name SkillModifier
 
+var _affected_stat : SkillTreeNode.AffectedStat
 var _refresh_requested := true
 var _cached_value := 0.0
+
+func _init(stat: SkillTreeNode.AffectedStat) -> void:
+	_affected_stat = stat
+
+
+func get_value(purchased_nodes: Array[SkillNodeData]) -> float:
+	var stat_nodes := find_nodes_by_affected_stat(_affected_stat, purchased_nodes)
+	return get_cached_value(stat_nodes)
+
+
 
 func _refresh_cache(owned_nodes: Array[SkillNodeData]) -> void:
 	_cached_value = 0.0
