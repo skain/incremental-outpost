@@ -70,7 +70,7 @@ func _setup_autofire() -> void:
 	
 
 func _set_fire_cooldown() -> void:
-	var cooldown := SkillsManager.get_cannon_cooldown()
+	var cooldown := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
 	radial_cooldown.cooldown_duration = cooldown
 	
 	

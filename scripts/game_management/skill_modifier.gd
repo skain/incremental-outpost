@@ -2,21 +2,23 @@ class_name SkillModifier
 
 var _affected_stat : SkillTreeNode.AffectedStat
 var _refresh_requested := true
+var _base_value : float
 var _cached_value := 0.0
 
-func _init(stat: SkillTreeNode.AffectedStat) -> void:
+func _init(stat: SkillTreeNode.AffectedStat, base_val := 0.0) -> void:
 	_affected_stat = stat
+	_base_value = base_val
 
 
 func _refresh_cache(purchased_nodes: Array[SkillNodeData]) -> void:
 	var relevant_nodes := find_nodes_by_affected_stat(_affected_stat, purchased_nodes)
-	_cached_value = 0.0
+	_cached_value = _base_value
 	for node: SkillNodeData in relevant_nodes:
 		if node.modifier_type == SkillTreeNode.ModifierType.ADD:
 			_cached_value += node.modifier_value
 		elif node.modifier_type == SkillTreeNode.ModifierType.MULTIPLY:
-			if _cached_value == 0.0:
-				_cached_value = 1
+			#if _cached_value == 0.0:
+				#_cached_value = 1
 			_cached_value *= node.modifier_value
 
 

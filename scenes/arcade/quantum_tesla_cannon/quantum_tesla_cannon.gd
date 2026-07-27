@@ -32,8 +32,8 @@ func _process(delta: float) -> void:
 
 func reset() -> void:
 	radial_cooldown.set_one_shot(true)
-	chain_count = SkillsManager.get_qtc_chain_count()	
-	cooldown = SkillsManager.get_qtc_cooldown()
+	chain_count = SkillsManager.get_as_int(SkillTreeNode.AffectedStat.QTC_CHAIN_LENGTH)
+	cooldown = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.QTC_CHARGE_TIME)
 	
 	if cooldown == 0.0:
 		disable()
