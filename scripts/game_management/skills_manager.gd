@@ -30,8 +30,8 @@ func _add_basic_modifier(stat: SkillTreeNode.AffectedStat) -> void:
 	modifiers[stat] = SkillModifier.new(stat)
 
 func _get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
-	var purchased_nodes := GameManager.get_purchased_nodes()
-	var value :float = modifiers[stat].get_value(purchased_nodes)
+	#var purchased_nodes := GameManager.get_purchased_nodes()
+	var value :float = modifiers[stat].get_cached_value()
 	return value
 
 
@@ -43,16 +43,27 @@ func _calc_multiplicative(base: float, stat: SkillTreeNode.AffectedStat) -> floa
 	return val
 
 
+func get_modifier(stat: SkillTreeNode.AffectedStat) -> SkillModifier:
+	return modifiers[stat] as SkillModifier
+
+
+func get_as_bool(stat: SkillTreeNode.AffectedStat) -> bool:
+	return get_modifier(stat).get_as_bool()
+
+
+func get_as_int(stat: SkillTreeNode.AffectedStat) -> int:
+	return get_modifier(stat).get_as_int()
+
+
+func get_as_float(stat: SkillTreeNode.AffectedStat) -> float:
+	return get_modifier(stat).get_as_float()
+
+
 # The rate at which points are converted to bucks at end of 
 # arcade game.
 func get_points_to_bucks_conversion_rate() -> float:
 	var rate := _calc_multiplicative(BASE_POINTS_TO_BUCKS_RATE, SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
 	return rate
-
-
-# Controls whether shields are available for use.
-func get_shields_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.SHIELDS_ENABLED))
 
 
 # How long each cannon takes to cooldown after firing
@@ -86,87 +97,24 @@ func get_shield_timeout() -> float:
 	return shield_timeout
 
 
-# Each level of hull plating absorbs one core hit
-func get_hull_plating() -> int:
-	var plating := int(_get_modifier_value(SkillTreeNode.AffectedStat.HULL_PLATING))
-	return plating
-
-
-# Applied when calculating points to award for destroying an enemy
-func get_points_multiplier() -> float:
-	var pm := _get_modifier_value(SkillTreeNode.AffectedStat.POINTS_MULTIPLIER)
-	return pm
-
-
-
-# Max number of smart bombs available
-func get_num_smart_bombs() -> int:
-	var smart_bombs := int(_get_modifier_value(SkillTreeNode.AffectedStat.NUM_SMART_BOMBS))
-	return smart_bombs
-
-
-# Controls whether the skill tree respec button is available for use.
-func get_respec_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RESPEC_ENABLED))
-
-
-func get_multishield_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED))
-
-
-#region shield bounce
-func get_top_shield_bounce_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.TOP_SHIELD_BOUNCE))
-
-
-func get_right_shield_bounce_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.RIGHT_SHIELD_BOUNCE))
-
-
-func get_bottom_shield_bounce_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.BOTTOM_SHIELD_BOUNCE))
-
-
-func get_left_shield_bounce_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.LEFT_SHIELD_BOUNCE))
-#endregion
-
 #region autofire
 func get_top_cannon_autofire_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_TOP))
+	return get_modifier(SkillTreeNode.AffectedStat.AUTOFIRE_TOP).get_as_bool()
 
 
 func get_right_cannon_autofire_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_RIGHT))
-
+	return get_modifier(SkillTreeNode.AffectedStat.AUTOFIRE_RIGHT).get_as_bool()
 
 
 func get_bottom_cannon_autofire_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_BOTTOM))
+	return get_modifier(SkillTreeNode.AffectedStat.AUTOFIRE_BOTTOM).get_as_bool()
 
 
 func get_left_cannon_autofire_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOFIRE_LEFT))
+	return get_modifier(SkillTreeNode.AffectedStat.AUTOFIRE_LEFT).get_as_bool()
 
 #endregion
 
-#region autoshields
-func get_top_autoshield_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_TOP))
-
-
-func get_right_autoshield_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_RIGHT))
-
-
-func get_bottom_autoshield_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_BOTTOM))
-
-
-func get_left_autoshield_enabled() -> bool:
-	return bool(_get_modifier_value(SkillTreeNode.AffectedStat.AUTOSHIELD_LEFT))
-
-#endregion
 
 #region QTC
 func get_qtc_cooldown() -> float:

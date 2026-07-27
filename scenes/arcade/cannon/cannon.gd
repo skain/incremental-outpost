@@ -54,13 +54,13 @@ func _setup_autofire() -> void:
 	_flicker_phase_offset = randf_range(0.0, 100.0)
 	match rotation_degrees:
 		0.0:
-			_autofire_enabled = SkillsManager.get_top_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.AUTOFIRE_TOP)
 		90.0:
-			_autofire_enabled = SkillsManager.get_right_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.AUTOFIRE_RIGHT)
 		180.0:
-			_autofire_enabled = SkillsManager.get_bottom_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.AUTOFIRE_BOTTOM)
 		270.0:
-			_autofire_enabled = SkillsManager.get_left_cannon_autofire_enabled()
+			_autofire_enabled = SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.AUTOFIRE_LEFT)
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)
 	

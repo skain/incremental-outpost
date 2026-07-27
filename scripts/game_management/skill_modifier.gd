@@ -8,15 +8,10 @@ func _init(stat: SkillTreeNode.AffectedStat) -> void:
 	_affected_stat = stat
 
 
-func get_value(purchased_nodes: Array[SkillNodeData]) -> float:
-	var stat_nodes := find_nodes_by_affected_stat(_affected_stat, purchased_nodes)
-	return get_cached_value(stat_nodes)
-
-
-
-func _refresh_cache(owned_nodes: Array[SkillNodeData]) -> void:
+func _refresh_cache(purchased_nodes: Array[SkillNodeData]) -> void:
+	var relevant_nodes := find_nodes_by_affected_stat(_affected_stat, purchased_nodes)
 	_cached_value = 0.0
-	for node: SkillNodeData in owned_nodes:
+	for node: SkillNodeData in relevant_nodes:
 		if node.modifier_type == SkillTreeNode.ModifierType.ADD:
 			_cached_value += node.modifier_value
 		elif node.modifier_type == SkillTreeNode.ModifierType.MULTIPLY:
@@ -25,12 +20,24 @@ func _refresh_cache(owned_nodes: Array[SkillNodeData]) -> void:
 			_cached_value *= node.modifier_value
 
 
-func get_cached_value(owned_nodes: Array[SkillNodeData]) -> float:
+func get_cached_value() -> float:
 	if _refresh_requested:
-		_refresh_cache(owned_nodes)
+		var purchased_nodes := GameManager.get_purchased_nodes()
+		_refresh_cache(purchased_nodes)
 		_refresh_requested = false
 	return _cached_value
-	
+
+
+func get_as_float() -> float:
+	return get_cached_value()
+
+
+func get_as_bool() -> bool:
+	return bool(get_cached_value())
+
+
+func get_as_int() -> int:
+	return int(get_cached_value())
 
 
 func request_refresh() -> void:
