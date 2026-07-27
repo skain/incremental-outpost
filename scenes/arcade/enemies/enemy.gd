@@ -34,7 +34,7 @@ func take_damage() -> void:
 
 
 func _update_stats() -> void:
-	var cur_mult : float = max(SkillsManager.get_as_float(SkillTreeNode.AffectedStat.POINTS_MULTIPLIER), 1.0)
+	var cur_mult : float = max(SkillsManager.get_as_float(Enums.SkillTypes.POINTS_MULTIPLIER), 1.0)
 	cur_points = round(enemy_level * cur_mult * BASE_POINTS)
 	debug_label.text = str(enemy_level)
 

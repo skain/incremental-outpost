@@ -49,12 +49,12 @@ func _input(event: InputEvent) -> void:
 
 
 func reset() -> void:
-	shields_enabled = SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.SHIELDS_ENABLED)
-	cur_shield_energy_max = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
-	cur_shield_charge_rate = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
-	cur_shield_drain_rate = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
-	shield_timeout_timer.wait_time = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
-	multi_shield_enabled = SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.MULTISHIELD_ENABLED)
+	shields_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.SHIELDS_ENABLED)
+	cur_shield_energy_max = SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_MAX_ENERGY)
+	cur_shield_charge_rate = SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_CHARGE_RATE)
+	cur_shield_drain_rate = SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_DRAIN_RATE)
+	shield_timeout_timer.wait_time = SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_TIMEOUT)
+	multi_shield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.MULTISHIELD_ENABLED)
 	
 	if shields_enabled:
 		cur_shield_energy = cur_shield_energy_max

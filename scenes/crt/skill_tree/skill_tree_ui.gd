@@ -8,7 +8,7 @@ signal buy_skill_node_pressed(node: SkillTreeNodeBase)
 @onready var respec_button: Button = %RespecButton
 
 func _ready() -> void:
-	respec_button.visible =  SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.RESPEC_ENABLED)
+	respec_button.visible =  SkillsManager.get_as_bool(Enums.SkillTypes.RESPEC_ENABLED)
 
 func update_ui() -> void:
 	bucks_label.text = "$ : " + str(GameManager.game_data.current_bucks)
@@ -37,7 +37,7 @@ func _on_skill_node_info_container_buy_button_pressed(node: SkillTreeNodeBase) -
 	buy_skill_node_pressed.emit(node)
 	var stn := node as SkillTreeNode
 	if stn:
-		if stn.affected_stat == SkillTreeNode.AffectedStat.RESPEC_ENABLED:
+		if stn.affected_stat == Enums.SkillTypes.RESPEC_ENABLED:
 			# respec enabled was just purchased so show the button
 			respec_button.show()
 	skill_node_info_container.hide()

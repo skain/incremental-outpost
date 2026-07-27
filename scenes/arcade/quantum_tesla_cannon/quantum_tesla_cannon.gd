@@ -27,15 +27,15 @@ func _process(delta: float) -> void:
 
 
 func reset() -> void:
-	cooldown = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.QTC_CHARGE_TIME)
+	cooldown = SkillsManager.get_as_float(Enums.SkillTypes.QTC_CHARGE_TIME)
 	
 	if cooldown == 0.0:
 		disable()
 		return	
 	
 	radial_cooldown.set_one_shot(true)
-	chain_count = SkillsManager.get_as_int(SkillTreeNode.AffectedStat.QTC_CHAIN_LENGTH)
-	speed = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.QTC_ORBIT_SPEED)
+	chain_count = SkillsManager.get_as_int(Enums.SkillTypes.QTC_CHAIN_LENGTH)
+	speed = SkillsManager.get_as_float(Enums.SkillTypes.QTC_ORBIT_SPEED)
 	
 	enable()
 

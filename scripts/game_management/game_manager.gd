@@ -31,7 +31,7 @@ func set_points(new_points: int) -> void:
 
 	
 func convert_points_to_bucks() -> int:
-	var new_bucks:int = floor(game_data.current_points * SkillsManager.get_as_float(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE))
+	var new_bucks:int = floor(game_data.current_points * SkillsManager.get_as_float(Enums.SkillTypes.BUCKS_CONVERSION_RATE))
 	set_points(0)
 	game_data.current_bucks += new_bucks
 	return new_bucks

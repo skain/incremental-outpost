@@ -3,8 +3,8 @@ class_name SkillNodeData extends RefCounted
 var skill_name: String
 var skill_desc: String
 var skill_cost: int
-var affected_stat: SkillTreeNode.AffectedStat
-var modifier_type: SkillTreeNode.ModifierType
+var affected_stat: Enums.SkillTypes
+var modifier_type: Enums.SkillModifierTypes
 var modifier_value: float
 
 func _init(node: SkillTreeNodeBase) -> void:

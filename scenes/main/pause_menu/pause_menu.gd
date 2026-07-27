@@ -21,15 +21,15 @@ func _ready() -> void:
 
 
 func _load_stats() -> void:
-	var shields_enabled := SkillsManager.get_as_bool(SkillTreeNode.AffectedStat.SHIELDS_ENABLED)
-	var hull_plating := SkillsManager.get_as_int(SkillTreeNode.AffectedStat.HULL_PLATING)
-	var cannon_cooldown := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.CANNON_COOLDOWN)
-	var shields_max := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_MAX_ENERGY)
-	var shields_drain := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE)
-	var shields_charge := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE)
-	var shields_timeout := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.SHIELD_TIMEOUT)
-	var bucks_rate := SkillsManager.get_as_float(SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE)
-	var points_mult : float = max(SkillsManager.get_as_float(SkillTreeNode.AffectedStat.POINTS_MULTIPLIER), 1.0)
+	var shields_enabled := SkillsManager.get_as_bool(Enums.SkillTypes.SHIELDS_ENABLED)
+	var hull_plating := SkillsManager.get_as_int(Enums.SkillTypes.HULL_PLATING)
+	var cannon_cooldown := SkillsManager.get_as_float(Enums.SkillTypes.CANNON_COOLDOWN)
+	var shields_max := SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_MAX_ENERGY)
+	var shields_drain := SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_DRAIN_RATE)
+	var shields_charge := SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_CHARGE_RATE)
+	var shields_timeout := SkillsManager.get_as_float(Enums.SkillTypes.SHIELD_TIMEOUT)
+	var bucks_rate := SkillsManager.get_as_float(Enums.SkillTypes.BUCKS_CONVERSION_RATE)
+	var points_mult : float = max(SkillsManager.get_as_float(Enums.SkillTypes.POINTS_MULTIPLIER), 1.0)
 	
 	shields_enabled_check_box.button_pressed = shields_enabled
 	hull_plating_label.text = str(hull_plating)

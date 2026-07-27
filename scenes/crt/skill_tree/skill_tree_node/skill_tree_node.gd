@@ -1,23 +1,9 @@
 class_name SkillTreeNode extends SkillTreeNodeBase
 
-
-enum AffectedStat { 
-	CANNON_COOLDOWN, HULL_PLATING, SHIELDS_ENABLED, SHIELD_MAX_ENERGY, SHIELD_DRAIN_RATE, SHIELD_CHARGE_RATE, SHIELD_TIMEOUT,
-	BUCKS_CONVERSION_RATE, POINTS_MULTIPLIER, NUM_SMART_BOMBS,
-	RESPEC_ENABLED, TOP_SHIELD_BOUNCE, RIGHT_SHIELD_BOUNCE,
-	BOTTOM_SHIELD_BOUNCE, LEFT_SHIELD_BOUNCE, AUTOFIRE_TOP,
-	AUTOFIRE_RIGHT, AUTOFIRE_BOTTOM, AUTOFIRE_LEFT, MULTISHIELD_ENABLED,
-	AUTOSHIELD_TOP, AUTOSHIELD_RIGHT, AUTOSHIELD_BOTTOM, AUTOSHIELD_LEFT,
-	QTC_CHARGE_TIME, QTC_ORBIT_SPEED, QTC_CHAIN_LENGTH
-}
-
-enum ModifierType { ADD, MULTIPLY, ENABLE }
-
-
 @export var skill_name: String
 @export var skill_desc: String
-@export var affected_stat: AffectedStat
-@export var modifier_type: ModifierType
+@export var affected_stat: Enums.SkillTypes
+@export var modifier_type: Enums.SkillModifierTypes
 @export var modifier_value: float
 
 

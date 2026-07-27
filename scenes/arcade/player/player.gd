@@ -40,8 +40,8 @@ func _handle_smart_bomb() -> bool:
 
 func reset() -> void:
 	is_dead = false
-	hull_plating = SkillsManager.get_as_int(SkillTreeNode.AffectedStat.HULL_PLATING)
-	smart_bombs_max = SkillsManager.get_as_int(SkillTreeNode.AffectedStat.NUM_SMART_BOMBS)
+	hull_plating = SkillsManager.get_as_int(Enums.SkillTypes.HULL_PLATING)
+	smart_bombs_max = SkillsManager.get_as_int(Enums.SkillTypes.NUM_SMART_BOMBS)
 	smart_bombs_left = smart_bombs_max
 	_update_smart_bombs_ui()
 	cannons.reset_cannons()	
