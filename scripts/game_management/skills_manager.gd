@@ -7,7 +7,9 @@ var base_values : Dictionary[SkillTreeNode.AffectedStat, float] = {
 	SkillTreeNode.AffectedStat.SHIELD_DRAIN_RATE: 30.0,
 	SkillTreeNode.AffectedStat.SHIELD_CHARGE_RATE: 0.25,
 	SkillTreeNode.AffectedStat.SHIELD_TIMEOUT: 5.0,
-	SkillTreeNode.AffectedStat.POINTS_MULTIPLIER: 1.0
+	SkillTreeNode.AffectedStat.POINTS_MULTIPLIER: 1.0,
+	SkillTreeNode.AffectedStat.QTC_CHARGE_TIME: 10.0,
+	SkillTreeNode.AffectedStat.QTC_ORBIT_SPEED: 1.0
 }
 
 var modifiers := {}

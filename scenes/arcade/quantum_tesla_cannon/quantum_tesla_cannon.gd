@@ -2,7 +2,7 @@ class_name QuantumTeslaCannon extends Sprite2D
 
 @export var player: Player
 @export var radius: float = 200.0
-@export var speed: float = 2.0
+@export var speed: float
 
 @onready var cpu_particles_2d: CPUParticles2D = %CPUParticles2D
 @onready var radial_cooldown: RadialCooldown = %RadialCooldown
@@ -13,10 +13,6 @@ var cooldown := 10.0
 var enemies_in_sight: Array[Enemy] = []
 var speed_modifier := 0.1
 var chain_count := 0
-
-
-func _ready() -> void:
-	pass
 
 
 func _process(delta: float) -> void:
@@ -31,13 +27,15 @@ func _process(delta: float) -> void:
 
 
 func reset() -> void:
-	radial_cooldown.set_one_shot(true)
-	chain_count = SkillsManager.get_as_int(SkillTreeNode.AffectedStat.QTC_CHAIN_LENGTH)
 	cooldown = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.QTC_CHARGE_TIME)
 	
 	if cooldown == 0.0:
 		disable()
-		return
+		return	
+	
+	radial_cooldown.set_one_shot(true)
+	chain_count = SkillsManager.get_as_int(SkillTreeNode.AffectedStat.QTC_CHAIN_LENGTH)
+	speed = SkillsManager.get_as_float(SkillTreeNode.AffectedStat.QTC_ORBIT_SPEED)
 	
 	enable()
 
