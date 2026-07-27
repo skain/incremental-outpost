@@ -1,5 +1,8 @@
 extends Node
 
+# This dict is a little weird but seemed like the least code-heavy
+# way to define base values for different stats. If the stat is 
+# not included in this dict then its base is set to 0.0
 var base_values : Dictionary[SkillTreeNode.AffectedStat, float] = {
 	SkillTreeNode.AffectedStat.CANNON_COOLDOWN: 10.0,
 	SkillTreeNode.AffectedStat.BUCKS_CONVERSION_RATE: 0.1,
