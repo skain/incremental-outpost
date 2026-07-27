@@ -7,6 +7,7 @@ class_name ShieldsManager extends Node2D
 @onready var shield_timeout_timer: Timer = %ShieldTimeoutTimer
 
 var active_inputs: Array[String] = []
+var active_autoshields: Array[Shield] = []
 var shields_enabled := false
 var cur_shield_energy_max: float
 var cur_shield_energy: float
@@ -22,8 +23,8 @@ const ACTIONS = ["shield_up", "shield_down", "shield_left", "shield_right"]
 
 func _ready() -> void:
 	for s: Shield in all_shields:
-		s.autoshield_engaged.connect(_on_autoshield_changed)
-		s.autoshield_disengaged.connect(_on_autoshield_changed)
+		s.autoshield_engaged.connect(_on_autoshield_engaged)
+		s.autoshield_disengaged.connect(_on_autoshield_disengaged)
 
 
 func _input(event: InputEvent) -> void:
@@ -67,30 +68,34 @@ func _process(delta: float) -> void:
 	var new_shield_energy := cur_shield_energy
 	var energy_changed := false
 
+	# 1. Energy Calculation Step
 	if is_shield_on:
 		if cur_shield_energy > 0.0:
-			# Drain scales dynamically based on total active shields across input and autoshields
 			var total_drain := cur_shield_drain_rate * active_count
 			new_shield_energy = cur_shield_energy - (total_drain * delta)
 			energy_changed = true
 	else:
-		# Recharge when zero shields are active and recharge is available
 		if is_shield_charge_available and cur_shield_energy < cur_shield_energy_max:
 			new_shield_energy = cur_shield_energy + (cur_shield_charge_rate * delta)
 			energy_changed = true
 
+	# 2. State & Signal Updates
 	if energy_changed:
 		cur_shield_energy = clamp(new_shield_energy, 0.0, cur_shield_energy_max)
 		SignalBus.shield_energy_updated.emit(cur_shield_energy, cur_shield_energy_max)
 
-	# Shut down player-held shields on depletion without forcing autoshields off completely
-	if is_shield_on and cur_shield_energy <= 0.0:
-		_shut_down_manual_shields()
+	# 3. Depletion Handler
+	if cur_shield_energy <= 0.0 and is_shield_on:
+		_shut_down_all_shields()
 		is_shield_charge_available = false
 		shield_timeout_timer.start()
-	
+
+	# 4. Cooldown UI Updates
 	if not is_shield_charge_available:
-		SignalBus.shield_cooldown_updated.emit(shield_timeout_timer.wait_time, shield_timeout_timer.time_left)
+		SignalBus.shield_cooldown_updated.emit(
+			shield_timeout_timer.wait_time, 
+			shield_timeout_timer.time_left
+		)
 
 
 ## Queries the child shield nodes directly to determine total active shields.
@@ -114,6 +119,7 @@ func _apply_shield_logic() -> void:
 	
 	_shut_down_manual_shields()
 	
+	# Block manual shields if out of energy
 	if cur_shield_energy <= 0.0:
 		return
 
@@ -133,9 +139,25 @@ func _activate_shield(direction: String) -> void:
 		"left": left_shield.shield_on(false)
 
 
-# Handlers to hook UI/audio updates on autoshield state changes if needed
-func _on_autoshield_changed() -> void:
-	pass
+func _shut_down_all_shields() -> void:
+	for s in all_shields:
+		s.clear_manual_activation()
+		s.shield_off(true)
+		
+
+func _on_autoshield_engaged(shield: Shield) -> void:	
+	if cur_shield_energy <= 0.0:
+		return
+	
+	if not active_autoshields.has(shield):
+		active_autoshields.append(shield)
+	
+	shield.shield_on(true)
+
+
+func _on_autoshield_disengaged(shield: Shield) -> void:
+	active_autoshields.erase(shield)
+	shield.shield_off(true)
 
 
 func _on_shield_timeout_timer_timeout() -> void:

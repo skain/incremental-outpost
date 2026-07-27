@@ -1,7 +1,7 @@
 class_name Shield extends Area2D
 
-signal autoshield_engaged
-signal autoshield_disengaged
+signal autoshield_engaged(shield: Shield)
+signal autoshield_disengaged(shield: Shield)
 
 const HIT_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Library/Hit_00.wav")
 const BOUNCE_AUDIO : AudioStream = preload("res://assets/sounds/8-bit Sound Library/Shoot_02.wav")
@@ -156,11 +156,9 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_autoshield_area_2d_area_entered(_area: Area2D) -> void:
 	shield_eye.modulate = Color.RED
-	shield_on(true)
-	autoshield_engaged.emit()
+	autoshield_engaged.emit(self)
 
 
 func _on_autoshield_area_2d_area_exited(_area: Area2D) -> void:
 	shield_eye.modulate = Color.WHITE
-	shield_off(true)
-	autoshield_disengaged.emit()
+	autoshield_disengaged.emit(self)
