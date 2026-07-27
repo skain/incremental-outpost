@@ -21,21 +21,17 @@ func request_refresh(affected_stat: SkillTreeNode.AffectedStat) -> void:
 
 
 func _add_basic_modifiers() -> void:
-	for i : int in SkillTreeNode.AffectedStat.values():
-		var base := 0.0
-		if base_values.has(i):
-			base = base_values[i]
-		_add_basic_modifier(i, base)
-
-
-func _add_basic_modifier(stat: SkillTreeNode.AffectedStat, base_val: float) -> void:
-	if modifiers.has(stat):
-		return
-	
-	modifiers[stat] = SkillModifier.new(stat, base_val)
+	for stat : int in SkillTreeNode.AffectedStat.values():
+		if modifiers.has(stat):
+			return
+		
+		var base_val := 0.0
+		if base_values.has(stat):
+			base_val = base_values[stat]
+		
+		modifiers[stat] = SkillModifier.new(stat, base_val)
 
 func _get_modifier_value(stat: SkillTreeNode.AffectedStat) -> float:
-	#var purchased_nodes := GameManager.get_purchased_nodes()
 	var value :float = modifiers[stat].get_cached_value()
 	return value
 
