@@ -104,7 +104,6 @@ func _destroy_all_projectiles() -> void:
 # Signal Handlers
 func _on_enemy_hit(enemy: Enemy) -> void:
 	var points := enemy.cur_points
-	current_score += points
 	
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
 	get_tree().current_scene.add_child(text_popup)
@@ -114,8 +113,10 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	text_popup.travel_distance = direction
 	
 	# Pass enemy position as starting point and score label position as final destination
-	text_popup.start(str(points), enemy.global_position, arcade_ui.score_value.global_position)
+	text_popup.start(str(points), enemy.global_position, arcade_ui.score_value.global_position)	
+	await text_popup.arrived
 	
+	current_score += points
 	_update_ui()
 
 
