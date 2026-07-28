@@ -96,92 +96,19 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "Modification Statistics"
 
-[node name="GridContainer" type="GridContainer" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=1638455276]
+[node name="ScrollContainer" type="ScrollContainer" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=589469065]
+custom_minimum_size = Vector2(300, 400)
+custom_maximum_size = Vector2(620, 620)
+propagate_maximum_size = true
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsContainer" type="GridContainer" parent="StatsPanel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1638455276]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 2
-
-[node name="Label" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=639617219]
-layout_mode = 2
-text = "Shields Enabled"
-
-[node name="ShieldsEnabledCheckBox" type="CheckBox" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1019651021]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-disabled = true
-button_pressed = true
-
-[node name="Label2" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1125966594]
-layout_mode = 2
-text = "Hull Plating Level"
-
-[node name="HullPlatingLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1745135309]
-unique_name_in_owner = true
-layout_mode = 2
-text = "2"
-
-[node name="Label3" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=936966683]
-layout_mode = 2
-text = "Cannon Cooldown"
-
-[node name="CannonCooldownLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=552469323]
-unique_name_in_owner = true
-layout_mode = 2
-text = "2.0 sec"
-
-[node name="Label4" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1646863958]
-layout_mode = 2
-text = "Shields Max Energy"
-
-[node name="ShieldsMaxLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1449030091]
-unique_name_in_owner = true
-layout_mode = 2
-text = "10.0"
-
-[node name="Label5" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1722266975]
-layout_mode = 2
-text = "Shields Drain Rate"
-
-[node name="ShieldsDrainLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1512394373]
-unique_name_in_owner = true
-layout_mode = 2
-text = "2.0/sec"
-
-[node name="Label6" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1820526159]
-layout_mode = 2
-text = "Shields Charge Rate"
-
-[node name="ShieldsChargeLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1653137936]
-unique_name_in_owner = true
-layout_mode = 2
-text = "2.0/sec"
-
-[node name="Label7" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=361970548]
-layout_mode = 2
-text = "Shields Charge Timeout"
-
-[node name="ShieldsTimeoutLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=1792600916]
-unique_name_in_owner = true
-layout_mode = 2
-text = "2.0/sec"
-
-[node name="Label8" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=443693431]
-layout_mode = 2
-text = "Points to Bucks Conversion Rate"
-
-[node name="BucksRateLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=494064402]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0.1"
-
-[node name="Label9" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=2075849878]
-layout_mode = 2
-text = "Points Multiplier"
-
-[node name="PointsMultLabel" type="Label" parent="StatsPanel/MarginContainer/VBoxContainer/GridContainer" unique_id=2048596709]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0.1"
 
 [node name="CloseButton" type="Button" parent="StatsPanel/MarginContainer/VBoxContainer" unique_id=837600574]
 layout_mode = 2
@@ -189,6 +116,7 @@ text = "Close"
 
 [node name="NoDataContainer" type="PanelContainer" parent="." unique_id=267889574]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

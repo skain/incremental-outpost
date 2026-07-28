@@ -98,18 +98,18 @@ func _set_shield_upgrades() -> void:
 	var angle := roundi(rotation_degrees)
 	match angle:
 		0:
-			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.TOP_SHIELD_BOUNCE)
-			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_TOP)
+			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.TOP_SHIELD_BOUNCE_ENABLED)
+			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_TOP_ENABLED)
 		90:
-			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.RIGHT_SHIELD_BOUNCE)
-			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_RIGHT)
+			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.RIGHT_SHIELD_BOUNCE_ENABLED)
+			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_RIGHT_ENABLED)
 			_reverse_shield_eye_anim = true
 		180:
-			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.BOTTOM_SHIELD_BOUNCE)
-			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_BOTTOM)
+			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.BOTTOM_SHIELD_BOUNCE_ENABLED)
+			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_BOTTOM_ENABLED)
 		270:
-			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.LEFT_SHIELD_BOUNCE)
-			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_LEFT)
+			_shield_bounce_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.LEFT_SHIELD_BOUNCE_ENABLED)
+			_autoshield_enabled = SkillsManager.get_as_bool(Enums.SkillTypes.AUTOSHIELD_LEFT_ENABLED)
 			_reverse_shield_eye_anim = true
 		_:
 			print("Error: " + name + " has unrecognized rotation: ", rotation_degrees)

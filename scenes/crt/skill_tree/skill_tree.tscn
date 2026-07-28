@@ -445,9 +445,10 @@ skill_cost = 1000
 position = Vector2(0, -56)
 texture = ExtResource("24_pyhf0")
 skill_name = "QTC Charge Time 2"
-skill_desc = "Decrease the amount of time the QTC takes to charge up by 1 seconds."
+skill_desc = "Decrease the amount of time the QTC takes to charge up by 50%."
 affected_stat = 24
-modifier_value = -1.0
+modifier_type = 1
+modifier_value = 0.5
 skill_cost = 1000
 
 [node name="QTCChargeTime3" parent="CannonCooldown1/CannonCooldown2/RespecEnabled/QTCEnable/QTCChargeTime1/QTCChargeTime2" unique_id=828624263 instance=ExtResource("2_vt0yg")]
