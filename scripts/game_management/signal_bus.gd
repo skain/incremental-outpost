@@ -12,9 +12,13 @@ signal smart_bombs_updated(smart_bombs_max: int, smart_bombs_left: int)
 
 #region enemy signals
 signal enemy_hit(enemy: Enemy)
-signal enemy_spawned()
+signal enemy_spawned
 #endregion
 
 #region skill tree signals
-signal respec_requested()
+signal respec_requested
+#endregion
+
+#region repair drone signals
+signal repair_drones_updated
 #endregion

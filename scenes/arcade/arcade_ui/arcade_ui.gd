@@ -1,6 +1,7 @@
 class_name ArcadeUI extends CanvasLayer
 
-const SMART_BOMB_UI_ICON : Texture2D = preload("uid://npeeevesdgsd")
+const SMART_BOMB_UI_ICON : Texture2D = preload("res://assets/smart-bomb-ui-icon.png")
+const REPAIR_DRONE_UI_ICON : Texture2D = preload("res://assets/wrench.png")
 const TOTAL_MAX_SHIELD_ENERGY := 300.0
 
 @onready var score_value: Label = %ScoreValue
@@ -12,6 +13,7 @@ const TOTAL_MAX_SHIELD_ENERGY := 300.0
 @onready var shield_progress_bar: ProgressBar = %ShieldProgressBar
 @onready var shield_cooldown_progress_bar: TextureProgressBar = %ShieldCooldownProgressBar
 @onready var smart_bombs_h_box_container: HBoxContainer = %SmartBombsHBoxContainer
+@onready var repair_drones_h_box_container: HBoxContainer = %RepairDronesHBoxContainer
 
 var new_wave_label_tween: Tween
 
@@ -47,21 +49,30 @@ func update_shield_cooldown(shield_cooldown_max: float, shield_cooldown_cur_valu
 
 
 func update_smart_bombs(smart_bombs_max: int, smart_bombs_left: int) -> void:
+	update_icons_container(smart_bombs_h_box_container, SMART_BOMB_UI_ICON, smart_bombs_max, smart_bombs_left)
+
+
+func update_repair_drones(repair_drones_max: int, repair_drones_left: int) -> void:
+	update_icons_container(repair_drones_h_box_container, REPAIR_DRONE_UI_ICON, repair_drones_max, repair_drones_left)
+
+
+func update_icons_container(container: HBoxContainer, icon_texture: Texture2D, max: int, remaining: int) -> void:
 	#delete all children
-	for c in smart_bombs_h_box_container.get_children():
+	for c in container.get_children():
 		c.queue_free()
 	#add new texturerects for each bomb
 	#modulate used bomb color
-	for i in range(smart_bombs_max):
+	for i in range(max):
 		var t := TextureRect.new()
-		t.texture = SMART_BOMB_UI_ICON
+		t.texture = icon_texture
 		
-		if (i + 1) > smart_bombs_left:
+		if (i + 1) > remaining:
 			t.modulate = Color(0.471, 0.471, 0.471)
 		else:
 			pass
 		
-		smart_bombs_h_box_container.add_child(t)
+		container.add_child(t)
+
 
 
 func show_new_wave_message(wave_number: int) -> void:
@@ -98,3 +109,4 @@ func _connect_signals() -> void:
 	SignalBus.shield_cooldown_updated.connect(update_shield_cooldown)
 	SignalBus.shield_energy_updated.connect(update_shield_energy)
 	SignalBus.smart_bombs_updated.connect(update_smart_bombs)
+	SignalBus.repair_drones_updated.connect(update_repair_drones)

@@ -13,6 +13,8 @@ signal smart_bomb_triggered
 var hull_plating := 0
 var smart_bombs_max := 0
 var smart_bombs_left := 0
+var repair_drones_max := 4
+var repair_drones_left := 4
 var is_dead := false
 
 
@@ -43,8 +45,9 @@ func reset() -> void:
 	hull_plating = SkillsManager.get_as_int(Enums.SkillTypes.HULL_PLATING)
 	smart_bombs_max = SkillsManager.get_as_int(Enums.SkillTypes.NUM_SMART_BOMBS)
 	smart_bombs_left = smart_bombs_max
+	_update_repair_drones_ui()
 	_update_smart_bombs_ui()
-	cannons.reset_cannons()	
+	cannons.reset_cannons()
 	shields.reset()
 	qtc.reset()
 
@@ -86,6 +89,10 @@ func _shake_camera(intensity: float, duration: float) -> void:
 
 func _update_smart_bombs_ui() -> void:
 	SignalBus.smart_bombs_updated.emit(smart_bombs_max, smart_bombs_left)
+
+
+func _update_repair_drones_ui() -> void:
+	SignalBus.repair_drones_updated.emit(repair_drones_max, repair_drones_left)
 
 
 func _on_cannon_hit(_cannon_direction: Vector2) -> void:
