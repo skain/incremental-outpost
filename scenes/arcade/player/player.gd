@@ -19,9 +19,10 @@ var is_dead := false
 
 
 func _process(_delta: float) -> void:
+	cannons.can_fire = false
 	if hull_plating > -1:
 		if not _handle_smart_bomb():
-			cannons.handle_firing()
+			cannons.can_fire = true
 
 
 func die() -> void:

@@ -61,9 +61,10 @@ pulse_max_amount = 1.25
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Cannons" type="Node2D" parent="." unique_id=1725042301]
+[node name="Cannons" type="Node2D" parent="." unique_id=1725042301 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("5_7ow0l")
+player = NodePath("..")
 
 [node name="TopCannon" parent="Cannons" unique_id=1127117473 instance=ExtResource("4_dqkch")]
 position = Vector2(0, -49.666664)
