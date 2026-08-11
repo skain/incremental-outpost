@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://r5kq08ikb0kb"]
+
+[ext_resource type="Script" uid="uid://dlxal6j1v8ql8" path="res://scenes/arcade/tinted_progress_icon/tinted_progress_icon.gd" id="1_xh0vy"]
+
+[node name="TintedProgressIcon" type="TextureProgressBar" unique_id=1061811936]
+fill_mode = 3
+tint_under = Color(0.35, 0.35, 0.35, 1)
+script = ExtResource("1_xh0vy")

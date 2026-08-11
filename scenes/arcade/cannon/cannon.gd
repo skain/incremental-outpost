@@ -1,6 +1,6 @@
 class_name Cannon extends Area2D
 
-enum CannonStates { READY_TO_FIRE, RECHARGING, DESTROYED }
+enum CannonStates { READY_TO_FIRE, RECHARGING, REPAIRING, DESTROYED }
 
 signal cannon_hit(cannon_direction: Vector2)
 
@@ -17,6 +17,7 @@ const MAX_CANNON_LIGHT_ENERGY = 7.0
 @onready var autofire_area_2d: Area2D = %AutofireArea2D
 @onready var autofire_cpu_particles: CPUParticles2D = %AutofireCPUParticles
 @onready var cannon_point_light_2d: PointLight2D = %CannonPointLight2D
+@onready var repair_drone_icon: TintedProgressIcon = %RepairDroneIcon
 
 @export var fire_cooldown_base: float = 10.0
 @export var autofire_not_detected_color : Color
@@ -26,14 +27,18 @@ const MAX_CANNON_LIGHT_ENERGY = 7.0
 var fire_direction: Vector2
 var cur_state := CannonStates.READY_TO_FIRE
 var _autofire_enabled := false
-var _flicker_phase_offset: float = 0.0
+var _flicker_phase_offset:= 0.0
+var _drone_repair_duration:= 2.0
 
 func _ready() -> void:
 	fire_direction = _get_fire_direction()
 	_setup_autofire()
+	_position_radial_cooldown()
+
+
+func _position_radial_cooldown() -> void:
 	if rotation_degrees == 90.0 or rotation_degrees == 180.0:
 		radial_cooldown.position.x *= -1.0
-
 
 
 func _process(_delta: float) -> void:
@@ -116,10 +121,21 @@ func reset() -> void:
 	cur_state = CannonStates.READY_TO_FIRE
 	collision_shape_2d.set_deferred("disabled", false)
 	_set_fire_cooldown()
+	repair_drone_icon.hide()
 	
 	
 func disable() -> void:
 	cur_state = CannonStates.DESTROYED
+
+
+func try_begin_drone_repair() -> bool:
+	if cur_state != CannonStates.DESTROYED:
+		return false
+	
+	cur_state = CannonStates.REPAIRING
+	repair_drone_icon.show()
+	repair_drone_icon.start_countdown(_drone_repair_duration)
+	return true
 
 
 func _evaluate_autofire() -> void:
@@ -167,3 +183,7 @@ func _on_autofire_area_2d_area_entered(_area: Area2D) -> void:
 func _on_autofire_area_2d_area_exited(_area: Area2D) -> void:
 	_evaluate_autofire()
 #endregion
+
+
+func _on_repair_drone_icon_countdown_complete() -> void:
+	reset()

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bkgov81stuqku" path="res://scenes/arcade/muzzle_flash/muzzle_flash.tscn" id="4_hrred"]
 [ext_resource type="Texture2D" uid="uid://n4afrcf75re3" path="res://assets/Cannon.png" id="5_lb0lo"]
 [ext_resource type="PackedScene" uid="uid://7wadnnpadmh6" path="res://scenes/arcade/radial_cooldown/radial_cooldown.tscn" id="7_d1hnl"]
+[ext_resource type="PackedScene" uid="uid://r5kq08ikb0kb" path="res://scenes/arcade/tinted_progress_icon/tinted_progress_icon.tscn" id="8_f877y"]
+[ext_resource type="Texture2D" uid="uid://bpqefutnp26qw" path="res://assets/wrench.png" id="9_5b1n1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvx6h"]
 size = Vector2(2, 320)
@@ -112,7 +114,20 @@ offset_right = 21.0
 offset_bottom = -13.0
 scale = Vector2(0.75, 0.75)
 
+[node name="RepairDroneIcon" parent="." unique_id=1061811936 instance=ExtResource("8_f877y")]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = -27.0
+offset_right = 16.0
+offset_bottom = 5.0
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.5, 0.5)
+value = 25.0
+texture_under = ExtResource("9_5b1n1")
+texture_progress = ExtResource("9_5b1n1")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="Autofire/AutofireArea2D" to="." method="_on_autofire_area_2d_area_entered"]
 [connection signal="area_exited" from="Autofire/AutofireArea2D" to="." method="_on_autofire_area_2d_area_exited"]
 [connection signal="cooldown_complete" from="RadialCooldown" to="." method="_on_radial_cooldown_cooldown_complete"]
+[connection signal="countdown_complete" from="RepairDroneIcon" to="." method="_on_repair_drone_icon_countdown_complete"]

@@ -30,6 +30,12 @@ func die() -> void:
 	cannons.disable_cannons()
 
 
+func decrement_repair_drones() -> void:
+	if repair_drones_left > 0:
+		repair_drones_left -= 1
+		_update_repair_drones_ui()
+
+
 func _handle_smart_bomb() -> bool:
 	if Input.is_action_just_pressed("smart_bomb") and not is_dead and smart_bombs_left > 0:
 		smart_bombs_left -= 1

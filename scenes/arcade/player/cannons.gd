@@ -26,21 +26,25 @@ func _process(_delta: float) -> void:
 
 func _handle_drone_deploy() -> void:
 	if Input.is_action_just_pressed("deploy_drone"):
-		if _get_num_active_cannons() < 4:
-			_deploy_drone()
+		_try_deploy_drone()
 
 
-func _get_num_active_cannons() -> int:
-	var num_active := 0
+func _try_deploy_drone() -> void:
+	var to_repair : Cannon = null
 	for cannon in cannons:
-		if cannon.cur_state != Cannon.CannonStates.DESTROYED:
-			num_active += 1
+		if cannon.cur_state == Cannon.CannonStates.DESTROYED:
+			to_repair = cannon
+			break
 	
-	return num_active
-
-
-func _deploy_drone() -> void:
-	print("deploy")
+	if to_repair:
+		if to_repair.try_begin_drone_repair():
+			player.decrement_repair_drones()
+		else:
+			# play fail to repair sound?
+			pass
+	else:
+		#play fail to repair sound?
+		print("no cannons found to repair")
 
 
 func _handle_firing() -> void:
