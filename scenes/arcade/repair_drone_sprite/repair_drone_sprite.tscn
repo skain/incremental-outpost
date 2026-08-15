@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b3ygva2djllo6"]
+
+[ext_resource type="Script" uid="uid://c438smakkapnm" path="res://scenes/arcade/repair_drone_sprite/repair_drone_sprite.gd" id="1_3ux6d"]
+
+[sub_resource type="Gradient" id="Gradient_d3c65"]
+offsets = PackedFloat32Array(0, 0.63529414)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r56om"]
+gradient = SubResource("Gradient_d3c65")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="RepairDroneSprite" type="Sprite2D" unique_id=1436175595]
+texture = SubResource("GradientTexture2D_r56om")
+script = ExtResource("1_3ux6d")

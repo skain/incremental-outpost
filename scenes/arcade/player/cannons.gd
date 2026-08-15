@@ -1,5 +1,7 @@
 class_name Cannons extends Node2D
 
+const REPAIR_DRONE_SPRITE := preload("res://scenes/arcade/repair_drone_sprite/repair_drone_sprite.tscn")
+
 @onready var top_cannon: Cannon = $TopCannon
 @onready var right_cannon: Cannon = $RightCannon
 @onready var bottom_cannon: Cannon = $BottomCannon
@@ -38,6 +40,9 @@ func _try_deploy_drone() -> void:
 	
 	if to_repair:
 		if to_repair.try_begin_drone_repair():
+			var sprite : RepairDroneSprite = REPAIR_DRONE_SPRITE.instantiate()
+			add_child(sprite)
+			sprite.zoom(Vector2(40.0, 40.0), to_repair.global_position)
 			player.decrement_repair_drones()
 		else:
 			# play fail to repair sound?
