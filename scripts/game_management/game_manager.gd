@@ -106,6 +106,7 @@ func respec() -> void:
 	#rebuild game_data.purchased_node_names with just story nodes
 	game_data.purchased_node_names = story_node_names
 	
+	SkillsManager.refresh_all()
 	save_game()
 
 

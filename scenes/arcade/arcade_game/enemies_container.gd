@@ -59,9 +59,10 @@ func _on_enemy_spawned() -> void:
 
 
 func _on_node_removed(node: Node) -> void:
-	if node.is_in_group("Enemy"):
+	if node.is_in_group("Enemy") and is_inside_tree():
 		await get_tree().physics_frame
-		_check_wave_progression()
+		if is_inside_tree():
+			_check_wave_progression()
 
 
 func _check_wave_progression() -> void:

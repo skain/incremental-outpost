@@ -25,6 +25,11 @@ func request_refresh(affected_stat: Enums.SkillTypes) -> void:
 	modifiers[affected_stat].request_refresh()
 
 
+func refresh_all() -> void:
+	for stat : int in Enums.SkillTypes.values():
+		modifiers[stat].request_refresh()
+
+
 func _add_basic_modifiers() -> void:
 	for stat : int in Enums.SkillTypes.values():
 		if modifiers.has(stat):
