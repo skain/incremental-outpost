@@ -47,6 +47,7 @@ func _play_startup_sound() -> void:
 
 
 func _end_game() -> void:
+	return
 	game_over = true
 	_update_ui()
 	enemies_container._disable_enemy_spawning()

@@ -1,12 +1,12 @@
-class_name QuantumTeslaCannon extends Sprite2D
+class_name QuantumTeslaCannon extends TextureProgressBar
 
 @export var player: Player
 @export var radius: float = 200.0
 @export var speed: float
 
 @onready var cpu_particles_2d: CPUParticles2D = %CPUParticles2D
-@onready var radial_cooldown: RadialCooldown = %RadialCooldown
 @onready var scan_timer: Timer = %ScanTimer
+@onready var charge_timer: Timer = %ChargeTimer
 
 var angle := 0.0
 var cooldown := 10.0
@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 		return
 		
 	_do_orbit(delta)
+	_update_texture_progress_bar()
 	_try_shoot()
 
 
@@ -33,7 +34,6 @@ func reset() -> void:
 		disable()
 		return	
 	
-	radial_cooldown.set_one_shot(true)
 	chain_count = SkillsManager.get_as_int(Enums.SkillTypes.QTC_CHAIN_LENGTH)
 	speed = SkillsManager.get_as_float(Enums.SkillTypes.QTC_ORBIT_SPEED)
 	
@@ -49,8 +49,7 @@ func disable() -> void:
 
 func enable() -> void:
 	set_process(true)
-	radial_cooldown.cooldown_duration = cooldown
-	radial_cooldown.start_cooldown()
+	charge_timer.start(cooldown)
 	scan_timer.start()
 	cpu_particles_2d.emitting = true
 
@@ -63,13 +62,23 @@ func _do_orbit(delta: float) -> void:
 	global_position = player.global_position + offset
 
 
+func _update_texture_progress_bar() -> void:
+	if not charge_timer.is_stopped():
+		var time_left := charge_timer.time_left
+		var total_time := charge_timer.wait_time
+		
+		value = (time_left / total_time) * max_value
+	else:
+		value = max_value
+
 func _try_shoot() -> void:
 	# Only attempt a shot cycle if off cooldown
-	if not radial_cooldown.is_on_cooldown() and not enemies_in_sight.is_empty():
+	if charge_timer.is_stopped() and not enemies_in_sight.is_empty():
 		var first_target := _find_closest_enemy(global_position, enemies_in_sight)
 		if first_target:
 			# Fire initial shot & start cooldown ONCE here
-			radial_cooldown.start_cooldown()
+			#radial_cooldown.start_cooldown()
+			charge_timer.start(cooldown)
 			_shoot_enemy(global_position, first_target)
 			_process_chain(first_target)
 
