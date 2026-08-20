@@ -32,6 +32,10 @@ func _handle_drone_deploy() -> void:
 
 
 func _try_deploy_drone() -> void:
+	if player.repair_drones_left < 1:
+		_play_fail_to_repair_sound()
+		return
+	
 	var to_repair : Cannon = null
 	for cannon in cannons:
 		if cannon.cur_state == Cannon.CannonStates.DESTROYED:
@@ -45,11 +49,14 @@ func _try_deploy_drone() -> void:
 			sprite.zoom(Vector2(40.0, 40.0), to_repair.global_position)
 			player.decrement_repair_drones()
 		else:
-			# play fail to repair sound?
-			pass
+			_play_fail_to_repair_sound()
 	else:
-		#play fail to repair sound?
+		_play_fail_to_repair_sound()
 		print("no cannons found to repair")
+
+
+func _play_fail_to_repair_sound() -> void:
+	pass
 
 
 func _handle_firing() -> void:

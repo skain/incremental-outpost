@@ -11,7 +11,7 @@ var base_values : Dictionary[Enums.SkillTypes, float] = {
 	Enums.SkillTypes.SHIELD_CHARGE_RATE: 0.25,
 	Enums.SkillTypes.SHIELD_TIMEOUT: 5.0,
 	Enums.SkillTypes.POINTS_MULTIPLIER: 1.0,
-	Enums.SkillTypes.QTC_CHARGE_TIME: 10.0,
+	Enums.SkillTypes.QTC_CHARGE_TIME: 0.0,
 	Enums.SkillTypes.QTC_ORBIT_SPEED: 1.0
 }
 

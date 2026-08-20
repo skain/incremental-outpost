@@ -13,8 +13,8 @@ signal smart_bomb_triggered
 var hull_plating := 0
 var smart_bombs_max := 0
 var smart_bombs_left := 0
-var repair_drones_max := 4
-var repair_drones_left := 4
+var repair_drones_max := 0
+var repair_drones_left := 0
 var is_dead := false
 
 
@@ -52,6 +52,8 @@ func reset() -> void:
 	hull_plating = SkillsManager.get_as_int(Enums.SkillTypes.HULL_PLATING)
 	smart_bombs_max = SkillsManager.get_as_int(Enums.SkillTypes.NUM_SMART_BOMBS)
 	smart_bombs_left = smart_bombs_max
+	repair_drones_max = SkillsManager.get_as_int(Enums.SkillTypes.NUM_REPAIR_DRONES)
+	repair_drones_left = repair_drones_max
 	_update_repair_drones_ui()
 	_update_smart_bombs_ui()
 	cannons.reset_cannons()
