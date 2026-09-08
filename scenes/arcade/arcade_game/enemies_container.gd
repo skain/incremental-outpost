@@ -43,7 +43,7 @@ func _check_enemies_exist() -> bool:
 
 
 func start_new_game() -> void:
-	cur_wave = 0 
+	cur_wave = SkillsManager.get_as_int(Enums.SkillTypes.WAVE_FAST_FORWARD)
 	start_new_enemy_wave() 
 
 
