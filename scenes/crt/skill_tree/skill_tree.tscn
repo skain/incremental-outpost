@@ -415,7 +415,7 @@ skill_cost = 1000
 
 [node name="StorySkillTreeNode" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1" unique_id=756124445 instance=ExtResource("6_frlcx")]
 
-[node name="SkillTreeNode" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1/StorySkillTreeNode" unique_id=844524280 instance=ExtResource("2_vt0yg")]
+[node name="WaveFastForward1" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1/StorySkillTreeNode" unique_id=844524280 instance=ExtResource("2_vt0yg")]
 position = Vector2(-56, 0)
 texture = ExtResource("22_ibafa")
 skill_name = "Wave Fast Forward 1"
@@ -423,6 +423,24 @@ skill_desc = "Automatically skip the first 5 enemy waves."
 affected_stat = 28
 modifier_value = 5.0
 skill_cost = 100
+
+[node name="WaveFastForward2" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1/StorySkillTreeNode/WaveFastForward1" unique_id=622982054 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("22_ibafa")
+skill_name = "Wave Fast Forward 2"
+skill_desc = "Automatically skip the first 10 enemy waves."
+affected_stat = 28
+modifier_value = 5.0
+skill_cost = 1000
+
+[node name="WaveFastForward3" parent="CannonCooldown1/StorySkillTreeNode1/ShieldsEnabled/ShieldTimeout1/StorySkillTreeNode/WaveFastForward1/WaveFastForward2" unique_id=1921414611 instance=ExtResource("2_vt0yg")]
+position = Vector2(0, -56)
+texture = ExtResource("22_ibafa")
+skill_name = "Wave Fast Forward 3"
+skill_desc = "Automatically skip the first 15 enemy waves."
+affected_stat = 28
+modifier_value = 5.0
+skill_cost = 5000
 
 [node name="SmartBomb1" parent="CannonCooldown1/StorySkillTreeNode1" unique_id=1325372915 instance=ExtResource("2_vt0yg")]
 position = Vector2(0, -56)
