@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://4myt7nckr64v" path="res://scenes/arcade/smart_bomb_screen_effect/smart_bomb_screen_effect.tscn" id="9_leafu"]
 [ext_resource type="Shader" uid="uid://dlhm2ihkk25o6" path="res://scenes/arcade/arcade_game/arcade_overlay.gdshader" id="11_7p05h"]
 [ext_resource type="Shader" uid="uid://dhk0jr35jdqff" path="res://shaders/pixel_fade_out.gdshader" id="12_8pd1k"]
+[ext_resource type="Shader" uid="uid://bsm0sdkk63mvs" path="res://shaders/fast_forward_shader.gdshader" id="13_fouas"]
+[ext_resource type="Texture2D" uid="uid://b5px7jjsffvib" path="res://assets/skill_tree/icons/fast-forward-icon.png" id="13_girc2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xvx6h"]
 shader = ExtResource("11_7p05h")
@@ -20,6 +22,16 @@ shader_parameter/intensity = 0.43200002052
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r56om"]
 shader = ExtResource("12_8pd1k")
 shader_parameter/pixel_size = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5fhm"]
+shader = ExtResource("13_fouas")
+shader_parameter/effect_strength = 1.0
+shader_parameter/tape_jitter = 0.008
+shader_parameter/chromatic_aberration = 0.006
+shader_parameter/tracking_line_frequency = 12.0
+shader_parameter/tracking_speed = 4.0
+shader_parameter/static_noise_strength = 0.15
+shader_parameter/scanline_count = 240.0
 
 [node name="ArcadeGame" type="Node2D" unique_id=2042800404]
 process_mode = 1
@@ -100,6 +112,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="FastForwardCanvasLayer" type="CanvasLayer" parent="." unique_id=2121563253]
+unique_name_in_owner = true
+
+[node name="FastFowardShader" type="ColorRect" parent="FastForwardCanvasLayer" unique_id=4370461]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_f5fhm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="FastForwardCanvasLayer" unique_id=1868222094]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FastForwardCanvasLayer/Panel" unique_id=878530337]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FastForwardCanvasLayer/Panel/MarginContainer" unique_id=2005556963]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="FastForwardCanvasLayer/Panel/MarginContainer/HBoxContainer" unique_id=1829396624]
+layout_mode = 2
+text = "Fast Forward"
+
+[node name="TextureRect" type="TextureRect" parent="FastForwardCanvasLayer/Panel/MarginContainer/HBoxContainer" unique_id=1505004996]
+layout_mode = 2
+texture = ExtResource("13_girc2")
+
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="smart_bomb_triggered" from="Player" to="." method="_on_player_smart_bomb_triggered"]
+[connection signal="fast_forward_triggered" from="EnemiesContainer" to="." method="_on_enemies_container_fast_forward_triggered"]
 [connection signal="new_enemy_wave_started" from="EnemiesContainer" to="." method="_on_enemies_new_enemy_wave_started"]

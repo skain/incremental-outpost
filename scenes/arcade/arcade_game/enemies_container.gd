@@ -1,6 +1,7 @@
 class_name EnemiesContainer extends Node2D
 
 signal new_enemy_wave_started(wave_number: int)
+signal fast_forward_triggered(waves_skipped: int)
 
 var cur_wave := 0
 var num_enemies_per_wave := 6
@@ -44,6 +45,8 @@ func _check_enemies_exist() -> bool:
 
 func start_new_game() -> void:
 	cur_wave = SkillsManager.get_as_int(Enums.SkillTypes.WAVE_FAST_FORWARD)
+	if cur_wave > 0:
+		fast_forward_triggered.emit(cur_wave)
 	start_new_enemy_wave() 
 
 

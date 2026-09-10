@@ -9,6 +9,8 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 
 @export var game_start_sound: AudioStream
 @export var game_over_sound: AudioStream
+@export var fast_forward_duration: float = 1.2
+
 @onready var bg_music_player: AudioStreamPlayer = %BGMusicPlayer
 @onready var player: Player = %Player
 @onready var arcade_ui: ArcadeUI = %ArcadeUI
@@ -17,6 +19,8 @@ const POOF_LABEL_SCENE := preload("res://scenes/arcade/poof_label/poof_label.tsc
 @onready var fade_out_shader: ColorRect = %FadeOutShader
 @onready var fade_out_material := fade_out_shader.material
 @onready var fade_out_overlay: CanvasLayer = %FadeOutOverlay
+@onready var fast_foward_shader: ColorRect = %FastFowardShader
+@onready var fast_forward_canvas_layer: CanvasLayer = %FastForwardCanvasLayer
 
 func start_game() -> void:
 	game_over = false
@@ -100,6 +104,30 @@ func _destroy_all_projectiles() -> void:
 	for p in projectiles:
 		p.call_deferred("queue_free")
 
+func _run_ff_anim() -> void:
+	var mat := fast_foward_shader.material as ShaderMaterial
+	if not mat:
+		return
+	
+	fast_forward_canvas_layer.show()
+
+	var tween := create_tween()
+	
+	# Ramp up glitch effect quickly
+	tween.tween_property(mat, "shader_parameter/effect_strength", 1.0, 0.2)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_OUT)
+		
+	# Hold at peak intensity briefly while state settles
+	tween.tween_interval(fast_forward_duration - 0.5)
+	
+	# Settle back to normal view
+	tween.tween_property(mat, "shader_parameter/effect_strength", 0.0, 0.3)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_IN)
+	
+	tween.tween_callback(fast_forward_canvas_layer.hide)
+
 
 # Signal Handlers
 func _on_enemy_hit(enemy: Enemy) -> void:
@@ -135,3 +163,7 @@ func _on_enemies_new_enemy_wave_started(wave_number: int) -> void:
 
 func _on_player_smart_bomb_triggered() -> void:
 	_handle_smart_bomb()
+
+
+func _on_enemies_container_fast_forward_triggered(waves_skipped: int) -> void:
+	_run_ff_anim()
