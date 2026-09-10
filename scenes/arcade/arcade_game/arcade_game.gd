@@ -47,7 +47,6 @@ func _play_startup_sound() -> void:
 
 
 func _end_game() -> void:
-	return
 	game_over = true
 	_update_ui()
 	enemies_container._disable_enemy_spawning()
@@ -123,6 +122,7 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 
 func _on_player_player_hit() -> void:	
 	player.hull_plating -= 1
+	print(player.hull_plating)
 	if player.hull_plating < 0:
 		_end_game()
 		return
