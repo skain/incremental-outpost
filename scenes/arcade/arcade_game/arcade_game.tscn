@@ -114,6 +114,7 @@ grow_vertical = 2
 
 [node name="FastForwardCanvasLayer" type="CanvasLayer" parent="." unique_id=2121563253]
 unique_name_in_owner = true
+visible = false
 
 [node name="FastFowardShader" type="ColorRect" parent="FastForwardCanvasLayer" unique_id=4370461]
 unique_name_in_owner = true

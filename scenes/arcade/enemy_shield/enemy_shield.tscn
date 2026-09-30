@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://diydnaro2575r"]
+
+[ext_resource type="Texture2D" uid="uid://oeo48f5126ju" path="res://assets/enemy-shield.png" id="1_iia6p"]
+[ext_resource type="Script" uid="uid://dxpe5s1668dgm" path="res://scenes/arcade/enemy_shield/enemy_shield.gd" id="2_i7oqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvx6h"]
+size = Vector2(32, 4)
+
+[node name="Area2D" type="Area2D" unique_id=1865818001]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("2_i7oqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1884394130]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_xvx6h")
+
+[node name="EnemyShield" type="Sprite2D" parent="." unique_id=1590076408]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_iia6p")

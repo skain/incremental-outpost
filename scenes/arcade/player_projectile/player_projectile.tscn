@@ -9,6 +9,7 @@ size = Vector2(64, 64)
 [node name="PlayerProjectile" type="Area2D" unique_id=123665237 groups=["PlayerProjectile"]]
 show_behind_parent = true
 collision_layer = 8
+collision_mask = 32
 script = ExtResource("1_8fsl8")
 
 [node name="PlayerProjectile" type="Sprite2D" parent="." unique_id=1607288836]
@@ -24,4 +25,5 @@ shape = SubResource("RectangleShape2D_oxij3")
 visible = false
 rect = Rect2(-32, -32, 64, 64)
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
