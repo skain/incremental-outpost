@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ct38itdxum0sd"]
 
 [ext_resource type="Script" uid="uid://dud3351rov223" path="res://scenes/arcade/enemies/enemy.gd" id="1_s7rde"]
-[ext_resource type="Texture2D" uid="uid://btdbahkbxq7hn" path="res://assets/enemy2.png" id="2_s7rde"]
+[ext_resource type="Texture2D" uid="uid://btdbahkbxq7hn" path="res://assets/shield_gen_enemy_sprite.png" id="2_s7rde"]
 [ext_resource type="Shader" uid="uid://bpkr2sln3kef" path="res://shaders/hit_flash.gdshader" id="2_w2g0x"]
 [ext_resource type="AudioStream" uid="uid://30n5ehy3il2a" path="res://assets/sounds/8-bit Sound Library/Shoot_01.wav" id="3_3a56k"]
 [ext_resource type="AudioStream" uid="uid://ck3bxuak0ycbf" path="res://assets/sounds/8-bit Sound Library/Explosion_00.wav" id="4_021k4"]

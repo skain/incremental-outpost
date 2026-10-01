@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://pybvtkjm8d8d"]
+
+[ext_resource type="Texture2D" uid="uid://btdbahkbxq7hn" path="res://assets/shield_gen_enemy_sprite.png" id="1_ny0yw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvx6h"]
+size = Vector2(112, 38)
+
+[node name="ShieldGenEnemy" type="Area2D" unique_id=757705790]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1388142416]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_xvx6h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1587615911]
+texture = ExtResource("1_ny0yw")
