@@ -22,3 +22,8 @@ signal respec_requested
 #region repair drone signals
 signal repair_drones_updated
 #endregion
+
+#region enemy shield gen signals
+#to be emitted when a shield gen enemy is created or destroyed
+signal shield_gen_enemies_count_changed
+#endregion

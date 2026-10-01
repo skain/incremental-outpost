@@ -165,5 +165,5 @@ func _on_player_smart_bomb_triggered() -> void:
 	_handle_smart_bomb()
 
 
-func _on_enemies_container_fast_forward_triggered(waves_skipped: int) -> void:
+func _on_enemies_container_fast_forward_triggered(_waves_skipped: int) -> void:
 	_run_ff_anim()

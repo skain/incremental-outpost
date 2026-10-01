@@ -56,13 +56,13 @@ func update_repair_drones(repair_drones_max: int, repair_drones_left: int) -> vo
 	update_icons_container(repair_drones_h_box_container, REPAIR_DRONE_UI_ICON, repair_drones_max, repair_drones_left)
 
 
-func update_icons_container(container: HBoxContainer, icon_texture: Texture2D, max: int, remaining: int) -> void:
+func update_icons_container(container: HBoxContainer, icon_texture: Texture2D, max_val: int, remaining: int) -> void:
 	#delete all children
 	for c in container.get_children():
 		c.queue_free()
 	#add new texturerects for each bomb
 	#modulate used bomb color
-	for i in range(max):
+	for i in range(max_val):
 		var t := TextureRect.new()
 		t.texture = icon_texture
 		
