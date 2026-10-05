@@ -46,6 +46,7 @@ Enemy=""
 Player=""
 EnemyProjectile=""
 PlayerProjectile=""
+ShieldGenEnemies=""
 
 [gui]
 

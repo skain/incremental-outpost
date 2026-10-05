@@ -130,14 +130,14 @@ func _run_ff_anim() -> void:
 
 
 # Signal Handlers
-func _on_enemy_hit(enemy: Enemy) -> void:
-	var points := enemy.cur_points
+func _on_enemy_hit(enemy: Node) -> void:
+	var points : int = enemy.cur_points
 	
 	var text_popup := POOF_LABEL_SCENE.instantiate() as PoofLabel
 	get_tree().current_scene.add_child(text_popup)
 	
 	var middle := Vector2(320.0, 320.0)
-	var direction := (middle - enemy.global_position) / 2.0
+	var direction : Vector2 = (middle - enemy.global_position) / 2.0
 	text_popup.travel_distance = direction
 	
 	# Pass enemy position as starting point and score label position as final destination

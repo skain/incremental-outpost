@@ -35,4 +35,4 @@ func _on_area_entered(area: Area2D) -> void:
 		handle_shield_hit()
 	elif area is Enemy or area is ShieldGenEnemy:
 		area.take_damage()
-		queue_free()
+		handle_hit()

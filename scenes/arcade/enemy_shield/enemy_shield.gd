@@ -22,6 +22,7 @@ func on_shield_gen_enemies_count_changed() -> void:
 
 func _set_status_by_active_generators() -> void:
 	var generators := get_tree().get_nodes_in_group("ShieldGenEnemies")
+	print("generators: " + str(generators.size()))
 	if generators.size() > 0:
 		turn_on()
 	else:

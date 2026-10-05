@@ -13,7 +13,6 @@ const MAX_CANNON_LIGHT_ENERGY := 2.0
 @export var base_shoot_chance: float = 50
 @export var base_revive_delay: float = 5
 
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var muzzle_flash: MuzzleFlash = $MuzzleFlash
 @onready var sprite_2d: Sprite2D = %Sprite2D

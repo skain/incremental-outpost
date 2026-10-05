@@ -1,11 +1,64 @@
 class_name ShieldGenEnemy extends Area2D
 
+const BASE_POINTS := 10
+const HIT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Explosion_00.wav")
+const SPAWN_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Hit_01.wav")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var debug_label: Label = %DebugLabel
+
+var enemy_level := 1
+var cur_points := BASE_POINTS
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func take_damage() -> void:
+	await _hit_flash()
+	
+	SfxManager.play_sfx(HIT_AUDIO, global_position)
+	
+	SignalBus.enemy_hit.emit(self as Node)
+	
+	SignalBus.shield_gen_enemies_count_changed.emit()
+	
+	self.call_deferred("queue_free")
+
+
+func _update_stats() -> void:
+	var cur_mult : float = max(SkillsManager.get_as_float(Enums.SkillTypes.POINTS_MULTIPLIER), 1.0)
+	cur_points = round(enemy_level * cur_mult * BASE_POINTS)
+	debug_label.text = str(enemy_level)
+
+
+func spawn(level: int) -> void:
+	enemy_level = level
+	_update_stats()
+	
+	#await _tween_spawn_in()
+	
+	SfxManager.play_sfx(SPAWN_AUDIO, global_position)
+	
+	SignalBus.shield_gen_enemies_count_changed.emit()
+
+
+func _tween_spawn_in() -> void:
+	sprite_2d.frame = 0
+	var tween := create_tween()
+	tween.tween_property(sprite_2d, "frame", 2, 0.3)
+	await tween.finished
+
+
+## --- Signal Handlers ---
+func _on_area_entered(projectile: Node2D) -> void:
+	if not is_instance_valid(projectile):
+		return
+	
+	take_damage()
+	
+	if is_instance_valid(projectile):
+		projectile.handle_hit()
+
+
+func _hit_flash() -> void:
+	var tween := create_tween()
+	HitFlashHelper.add_hit_flash_to_tween(tween, sprite_2d)
+	await tween.finished

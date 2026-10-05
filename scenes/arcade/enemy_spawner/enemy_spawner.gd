@@ -2,9 +2,8 @@ class_name EnemySpawner extends Node2D
 
 enum State { SPAWNED, SPAWN_ENABLED, SPAWN_DISABLED }
 
-const ENEMY_1_SCENE = preload("uid://cmc3ik5tigjec")
-const ENEMY_2_SCENE = preload("uid://ct38itdxum0sd")
-const ENEMY_3_SCENE = preload("uid://c645kldb4mfr3")
+const ENEMY_1_SCENE = preload("res://scenes/arcade/enemies/enemy1.tscn")
+const SHIELD_GEN_ENEMY_SCENE = preload("res://scenes/arcade/shield_gen_enemy/shield_gen_enemy.tscn")
 
 @onready var placeholder_sprite_2d: Sprite2D = %PlaceholderSprite2D
 @onready var revive_timer: Timer = %ReviveTimer
@@ -44,10 +43,16 @@ func _spawn_new_enemy() -> void:
 	SignalBus.enemy_spawned.emit()
 
 
-func _get_new_enemy_instance() -> Enemy:
-	#logic to select which enemy to spawn will go here
-	#for now, just use enemy1
-	return ENEMY_1_SCENE.instantiate() as Enemy
+func _get_new_enemy_instance() -> Node:
+	var roll := GameMath.chance_check(25.0)
+	var enemy : Node
+	
+	if roll:
+		enemy = SHIELD_GEN_ENEMY_SCENE.instantiate()
+	else:
+		enemy = ENEMY_1_SCENE.instantiate()
+	
+	return enemy
 
 
 func _on_revive_timer_timeout() -> void:
