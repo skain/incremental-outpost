@@ -18,9 +18,11 @@ func take_damage() -> void:
 	
 	SignalBus.enemy_hit.emit(self as Node)
 	
+	#best way I could figure to handle emitting the signal and queue_freeing this node
+	remove_from_group("ShieldGenEnemies")
 	SignalBus.shield_gen_enemies_count_changed.emit()
-	
-	self.call_deferred("queue_free")
+
+	queue_free()
 
 
 func _update_stats() -> void:
