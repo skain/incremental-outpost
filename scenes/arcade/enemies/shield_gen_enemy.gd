@@ -1,6 +1,6 @@
 class_name ShieldGenEnemy extends Enemy
 
-const BASE_POINTS := 10
+const BASE_POINTS := 100
 const HIT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Explosion_00.wav")
 const SPAWN_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Hit_01.wav")
 
@@ -9,9 +9,14 @@ const SPAWN_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Hit_01.wav
 
 var enemy_level := 1
 var cur_points := BASE_POINTS
+var _is_dying := false
 
 
 func take_damage() -> void:
+	if _is_dying:
+		return
+	_is_dying = true
+	
 	await _hit_flash()
 	
 	SfxManager.play_sfx(HIT_AUDIO, global_position)
@@ -26,8 +31,7 @@ func take_damage() -> void:
 
 
 func _update_stats() -> void:
-	var cur_mult : float = max(SkillsManager.get_as_float(Enums.SkillTypes.POINTS_MULTIPLIER), 1.0)
-	cur_points = round(enemy_level * cur_mult * BASE_POINTS)
+	cur_points = _calc_cur_points(enemy_level, BASE_POINTS)
 	debug_label.text = str(enemy_level)
 
 
