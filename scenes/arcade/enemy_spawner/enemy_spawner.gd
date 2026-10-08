@@ -76,7 +76,7 @@ func _get_shield_gen_enemy_chance() -> float:
 			on_screen_mod = 1
 	
 	#get scaled value based on cur_wave_number
-	var scaled := GameMath.get_scaled_value(base_shield_gen_enemy_chance, _cur_wave_number, shield_gen_enemy_scaling_factor)
+	var scaled := GameMath.get_scaled_value(base_shield_gen_enemy_chance, _cur_wave_number - min_wave_shield_gen_enemies_enabled, shield_gen_enemy_scaling_factor)
 	
 	return on_screen_mod * scaled
 
