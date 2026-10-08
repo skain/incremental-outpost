@@ -2,15 +2,18 @@ class_name EnemySpawner extends Node2D
 
 enum State { SPAWNED, SPAWN_ENABLED, SPAWN_DISABLED }
 
-const ENEMY_1_SCENE = preload("res://scenes/arcade/enemies/basic_enemy.tscn")
+const BASIC_ENEMY_SCENE = preload("res://scenes/arcade/enemies/basic_enemy.tscn")
 const SHIELD_GEN_ENEMY_SCENE = preload("res://scenes/arcade/enemies/shield_gen_enemy.tscn")
 
-@onready var placeholder_sprite_2d: Sprite2D = %PlaceholderSprite2D
-@onready var revive_timer: Timer = %ReviveTimer
+@onready var placeholder_sprite_2d : Sprite2D = %PlaceholderSprite2D
+@onready var revive_timer : Timer = %ReviveTimer
 
-@export var base_revive_delay: float = 5
+@export var base_revive_delay := 5.0
+@export var base_shield_gen_enemy_chance := 10.0
+@export var shield_gen_enemy_scaling_factor := 1.5
+@export var min_wave_shield_gen_enemies_enabled := 6
 
-var _current_state: State = State.SPAWN_ENABLED
+var _current_state : State = State.SPAWN_ENABLED
 var _cur_wave_number := 1
 
 func _ready() -> void:
@@ -43,17 +46,39 @@ func _spawn_new_enemy() -> void:
 	SignalBus.enemy_spawned.emit()
 
 
-func _get_new_enemy_instance() -> Node:
-	var roll := GameMath.chance_check(25.0)
-	var enemy : Node
+func _get_new_enemy_instance() -> Enemy:
+	var shield_gen_enemy_chance := _get_shield_gen_enemy_chance()
+	print("Shield gen enemy chance: %f" % shield_gen_enemy_chance)
+	var roll := GameMath.chance_check(shield_gen_enemy_chance)
+	var enemy : Enemy
 	
 	if roll:
 		enemy = SHIELD_GEN_ENEMY_SCENE.instantiate()
 	else:
-		enemy = ENEMY_1_SCENE.instantiate()
+		enemy = BASIC_ENEMY_SCENE.instantiate()
 	
 	return enemy
 
+
+func _get_shield_gen_enemy_chance() -> float:
+	if _cur_wave_number < min_wave_shield_gen_enemies_enabled:
+		return 0.0
+	
+	#get current count on screen
+	var on_screen := get_tree().get_nodes_in_group("ShieldGenEnemies").size()
+	
+	#calc on_screen_modifier (no chance if more than 2, 50% of chance if 1, full chance if 0)
+	var on_screen_mod := 0.0
+	if on_screen < 2.0:
+		if on_screen > 0.0:
+			on_screen_mod = 0.5
+		else:
+			on_screen_mod = 1
+	
+	#get scaled value based on cur_wave_number
+	var scaled := GameMath.get_scaled_value(base_shield_gen_enemy_chance, _cur_wave_number, shield_gen_enemy_scaling_factor)
+	
+	return on_screen_mod * scaled
 
 func _on_revive_timer_timeout() -> void:
 	_spawn_new_enemy()
