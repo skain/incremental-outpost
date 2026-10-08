@@ -1,5 +1,4 @@
-extends Area2D
-class_name Enemy
+class_name BasicEnemy extends Enemy
 
 const PROJECTILE_SCENE = preload("res://scenes/arcade/enemy_projectile/enemy_projectile.tscn")
 const BASE_POINTS := 10

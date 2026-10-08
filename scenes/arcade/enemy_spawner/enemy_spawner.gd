@@ -2,8 +2,8 @@ class_name EnemySpawner extends Node2D
 
 enum State { SPAWNED, SPAWN_ENABLED, SPAWN_DISABLED }
 
-const ENEMY_1_SCENE = preload("res://scenes/arcade/enemies/enemy1.tscn")
-const SHIELD_GEN_ENEMY_SCENE = preload("res://scenes/arcade/shield_gen_enemy/shield_gen_enemy.tscn")
+const ENEMY_1_SCENE = preload("res://scenes/arcade/enemies/basic_enemy.tscn")
+const SHIELD_GEN_ENEMY_SCENE = preload("res://scenes/arcade/enemies/shield_gen_enemy.tscn")
 
 @onready var placeholder_sprite_2d: Sprite2D = %PlaceholderSprite2D
 @onready var revive_timer: Timer = %ReviveTimer

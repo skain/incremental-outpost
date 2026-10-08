@@ -1,4 +1,4 @@
-class_name ShieldGenEnemy extends Area2D
+class_name ShieldGenEnemy extends Enemy
 
 const BASE_POINTS := 10
 const HIT_AUDIO := preload("res://assets/sounds/8-bit Sound Library/Explosion_00.wav")

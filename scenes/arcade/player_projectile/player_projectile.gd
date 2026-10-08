@@ -33,6 +33,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is EnemyShield:
 		handle_shield_hit()
-	elif area is Enemy or area is ShieldGenEnemy:
-		area.take_damage()
+	elif area is Enemy:
+		(area as Enemy).take_damage()
 		handle_hit()

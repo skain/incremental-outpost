@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pybvtkjm8d8d"]
 
 [ext_resource type="Shader" uid="uid://bpkr2sln3kef" path="res://shaders/hit_flash.gdshader" id="1_6tgra"]
-[ext_resource type="Script" uid="uid://bm3e1lu3sewje" path="res://scenes/arcade/shield_gen_enemy/shield_gen_enemy.gd" id="1_10pbo"]
+[ext_resource type="Script" uid="uid://bm3e1lu3sewje" path="res://scenes/arcade/enemies/shield_gen_enemy.gd" id="1_10pbo"]
 [ext_resource type="Texture2D" uid="uid://btdbahkbxq7hn" path="res://assets/shield_gen_enemy_sprite.png" id="1_ny0yw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvx6h"]
